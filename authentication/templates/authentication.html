@@ -1,0 +1,21 @@
+{% extends 'basefile.html' %}
+
+{% load static %}
+
+{% block title %}Login to HMS{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'authentication/css/authentication.sass' %}" type="text/x-sass" charset="utf-8">
+{% endblock %}
+
+{% block body %}
+    <body>
+        {% if error %}{{ error }}{% endif %}
+        <form method="post">
+            {% csrf_token %}
+
+            {{ form }}
+            <input type="submit" value="Login!" />
+        </form>
+    </body>
+{% endblock %}
