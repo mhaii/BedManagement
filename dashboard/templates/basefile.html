@@ -1,0 +1,21 @@
+{% load compress %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Default Title ;({% endblock %}</title>
+        {% compress css %}
+            <link rel="stylesheet" href="{% static 'css/global.sass' %}" type="text/x-sass" charset="utf-8">
+            {% block css %}{% endblock %}
+        {% endcompress %}
+        <script type="text/javascript" src="{% static 'static_jquery/js/jquery.js' %}"></script>
+    </head>
+    <body>
+        {% include 'header.html' %}
+        {% block content %}{% endblock %}
+        {% include 'footer.html' %}
+    </body>
+    {% block js %}{% endblock %}
+</html>

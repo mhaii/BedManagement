@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_static_jquery',
     'compressor',
     'api', 'authentication', 'dashboard'
 ]
@@ -129,7 +130,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 COMPRESS_PRECOMPILERS = (
     ('text/coffeescript', 'coffee --compile --stdio'),
-    ('text/x-sass', 'sass {infile} {outfile}'),
+    ('text/x-sass', 'django_libsass.SassCompiler'),
 )
 STATICFILES_FINDERS = ["django.contrib.staticfiles.finders.FileSystemFinder",
                        "django.contrib.staticfiles.finders.AppDirectoriesFinder",
