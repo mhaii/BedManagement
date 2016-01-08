@@ -2,11 +2,10 @@
 .idea/
 __pycache__/
 
-static/
+/static/
 
 *.sqlite3
 
 *.pyc
 *.log
-*.rdb
 .sass-cache
