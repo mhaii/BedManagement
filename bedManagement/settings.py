@@ -37,8 +37,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # Third-party app
     'django_static_jquery',
-    'compressor',
+    'compressor', 'djangobower',
+
+    # Our homebrew app~ <3
     'api', 'authentication', 'dashboard'
 ]
 
@@ -90,18 +94,10 @@ DATABASES = {
 # https://docs.djangoproject.com/en/1.9/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
+    {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator', },
+    {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator', },
+    {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator', },
+    {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator', },
 ]
 
 
@@ -128,10 +124,19 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
+STATICFILES_FINDERS = ["django.contrib.staticfiles.finders.FileSystemFinder",
+                       "django.contrib.staticfiles.finders.AppDirectoriesFinder",
+                       "compressor.finders.CompressorFinder",
+                       "djangobower.finders.BowerFinder", ]
+
 COMPRESS_PRECOMPILERS = (
     ('text/coffeescript', 'coffee --compile --stdio'),
     ('text/x-sass', 'django_libsass.SassCompiler'),
 )
-STATICFILES_FINDERS = ["django.contrib.staticfiles.finders.FileSystemFinder",
-                       "django.contrib.staticfiles.finders.AppDirectoriesFinder",
-                       "compressor.finders.CompressorFinder", ]
+
+BOWER_COMPONENTS_ROOT = os.path.join(BASE_DIR, 'components')
+
+BOWER_INSTALLED_APPS = (
+    'underscore',
+)
+
