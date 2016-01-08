@@ -18,5 +18,5 @@ from django.conf.urls import url
 from dashboard.views import landing
 
 urlpatterns = [
-    url(r'^$', landing.as_view()),
+    url(r'^$', landing.as_view(), name='landing-page'),
 ]
