@@ -12,10 +12,14 @@
         {% endcompress %}
         <script type="text/javascript" src="{% static 'static_jquery/js/jquery.js' %}"></script>
     </head>
-    <body>
-        {% include 'header.html' %}
-        {% block content %}{% endblock %}
-        {% include 'footer.html' %}
-    </body>
+
+    {% block body %}
+        <body>
+            {% include 'header.html' %}
+            {% block content %}{% endblock %}
+            {% include 'footer.html' %}
+        </body>
+    {% endblock %}
+
     {% block js %}{% endblock %}
 </html>
