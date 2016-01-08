@@ -1,0 +1,10 @@
+Django >= 1.9.1
+Pillow >= 3.0.0
+PyYAML >= 3.11
+beautifulsoup4 >= 4.4.1
+django-angularjs >= 1.0.2
+django_compressor >= 1.6
+django-static-jquery >= 2.1.4
+# django-static-precompiler >= 1.1
+pip >= 7.1.2
+setuptools >= 19.2
