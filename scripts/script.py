@@ -3,7 +3,7 @@ import re
 import sys
 
 python = sys.executable
-pip = os.path.join(os.path.dirname(python), 'pip')
+pip = os.path.join(os.path.dirname(python), 'pip' + '.exe' if os.name is 'nt' else '')
 rootDir = os.path.dirname(os.path.dirname(__file__))
 manage = os.path.join(rootDir, 'manage.py')
 
@@ -19,7 +19,7 @@ def create_app():
 
 
 def flush_db():
-    os.system('{0} flush --no-input'.format(manage))
+    os.system('{0} {1} flush --no-input'.format(python, manage))
 
 
 def import_fixture():
@@ -27,7 +27,7 @@ def import_fixture():
     for file in os.listdir(rootDir):
         path = os.path.join(rootDir, file, 'fixtures')
         if os.path.isdir(path):
-            [os.system('{0} loaddata {1}'.format(manage, fixture[:-5])) for fixture in os.listdir(path) if regex.search(fixture)]
+            [os.system('{0} {1} loaddata {2}'.format(python, manage, fixture[:-5])) for fixture in os.listdir(path) if regex.search(fixture)]
 
 
 def install_requirement():
@@ -35,5 +35,10 @@ def install_requirement():
 
 
 def make_and_migrate():
-    os.system('{0} makemigrations'.format(manage))
-    os.system('{0} migrate'.format(manage))
+    os.system('{0} {1} makemigrations'.format(python, manage))
+    os.system('{0} {1} migrate'.format(python, manage))
+
+
+def manage_init():
+    os.system('{0} {1} bower install'.format(python, manage))
+    collect_static()
