@@ -1,0 +1,12 @@
+.DS_Store
+.idea/
+__pycache__/
+
+static/
+
+*.sqlite3
+
+*.pyc
+*.log
+*.rdb
+.sass-cache
