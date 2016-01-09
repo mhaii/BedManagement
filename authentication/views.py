@@ -1,5 +1,6 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.views.generic import View, RedirectView
 from django.contrib.auth import authenticate, login, logout
@@ -11,7 +12,6 @@ from .forms import LoginForm
 class LoginPage(View):
     def redirect_if_logged_in(self):
         pass
-
     def get(self, request):
         if request.user.is_authenticated():
             return redirect(request.GET.get('next', '/'))
@@ -38,3 +38,11 @@ class LogoutPage(LoginRequiredMixin, View):
     def get(self, request):
         logout(request)
         return redirect('login')
+
+
+class CreateUser(View):
+    def get(self, request, username, password):
+        print(username)
+        print(password)
+        User.objects.create_user(username=username, password=password)
+        return HttpResponse('ok', status=201)
