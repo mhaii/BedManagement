@@ -12,3 +12,5 @@ class LoginForm(ModelForm):
             'username': 'ID number',
             'password': 'Password'
         }
+
+        help_texts = {'username': None, 'password': None}
