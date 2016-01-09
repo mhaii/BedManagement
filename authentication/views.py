@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, redirect
 from django.views.generic import View
 from django.contrib.auth import authenticate, login, logout
@@ -32,8 +33,7 @@ class LoginPage(View):
         return render(request, 'authentication.html', context=context)
 
 
-class LogoutPage(View):
+class LogoutPage(LoginRequiredMixin, View):
     def get(self, request):
-        if request.user.is_authenticated():
-            logout(request)
+        logout(request)
         return redirect('login')
