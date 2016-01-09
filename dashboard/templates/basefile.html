@@ -6,16 +6,21 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Default Title ;({% endblock %}</title>
+         <!-- Material Design fonts -->
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+        <!-- Bootstrap -->
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
         {% compress css %}
-            <link rel="stylesheet" href="{% static 'css/global.sass' %}" type="text/x-sass" charset="utf-8">
-            {% block css %}{% endblock %}
+            {% block css %}{% endblock %}{% static 'bootstrap/package.json' %}
         {% endcompress %}
-        <script type="text/javascript" src="{% static 'static_jquery/js/jquery.js' %}"></script>
     </head>
 
     {% block body %}
         <body>
             {% include 'header.html' %}
+        {{ STATIC_URL }}bower_components/bootstrap/dist/css/bootstrap.css
             {% block content %}{% endblock %}
             {% include 'footer.html' %}
         </body>
