@@ -40,6 +40,7 @@ class LogoutPage(LoginRequiredMixin, View):
         return redirect('login')
 
 
+# TODO get rid of this when finished
 class CreateUser(View):
     def get(self, request, username, password):
         print(username)
