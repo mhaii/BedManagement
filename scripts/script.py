@@ -12,7 +12,7 @@ os.chdir(rootDir)
 
 def bower():
     os.system('npm install -g bower')
-    os.system('bower install bootstrap-material-design --save')
+    os.system('bower install')
 
 
 def collect_static():
