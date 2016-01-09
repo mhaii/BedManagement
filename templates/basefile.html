@@ -6,26 +6,31 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Default Title ;({% endblock %}</title>
-        <script src="{% static 'bower/jquery/dist/jquery.min.js' %}"></script>
-         <!-- Material Design fonts -->
-        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-        <!-- Bootstrap -->
-        <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+        {# Bootstrap Material Design #}
+        <link rel="stylesheet" href="{% static 'bower/bootstrap/dist/css/bootstrap.min.css' %}" type="text/css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
+        <link rel="stylesheet" href="{% static 'bower/bootstrap-material-design/dist/css/ripples.min.css' %}" type="text/css">
+        <link rel="stylesheet" href="{% static 'bower/bootstrap-material-design/dist/css/bootstrap-material-design.css' %}" type="text/css">
+
+        <script type="text/javascript" src="{% static 'bower/jquery/dist/jquery.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'bower/bootstrap/dist/js/bootstrap.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'bower/bootstrap-material-design/dist/js/material.js' %}"></script>
         {% compress css %}
-            {% block css %}{% endblock %}{% static 'bootstrap/package.json' %}
+            {% block css %}{% endblock %}
         {% endcompress %}
     </head>
 
     {% block body %}
         <body>
             {% include 'header.html' %}
-        {{ STATIC_URL }}bower_components/bootstrap/dist/css/bootstrap.css
             {% block content %}{% endblock %}
             {% include 'footer.html' %}
         </body>
     {% endblock %}
 
-    {% block js %}{% endblock %}
+    {% compress js %}
+        {% block js %}{% endblock %}
+    {% endcompress %}
 </html>

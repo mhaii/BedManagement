@@ -40,7 +40,7 @@ INSTALLED_APPS = [
 
     # Third-party app
     'django_static_jquery',
-    'compressor', 'djangobower',
+    'compressor',
 
     # Our homebrew app~ <3
     'api', 'authentication', 'dashboard'
@@ -107,11 +107,8 @@ AUTH_PASSWORD_VALIDATORS = [
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'Asia/Bangkok'
-
 USE_I18N = True
-
 USE_L10N = True
-
 USE_TZ = True
 
 

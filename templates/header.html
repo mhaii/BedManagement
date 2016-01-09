@@ -1,1 +1,20 @@
-header
+<div id="header">
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header"><a class="navbar-brand navbar-link" href="#">HBM</a>
+                <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+            </div>
+            <div class="collapse navbar-collapse" id="navcol-1">
+                <ul class="nav navbar-nav">
+                    <li class="{% if request.resolver_match.url_name == "status" %}active{% endif %}" role="presentation"><a href="{% url "status" %}">Home</a></li>
+                    <li role="presentation"><a href="#">Process </a></li>
+                    <li class="{% if request.resolver_match.url_name == "check_in" %}active{% endif %}" role="presentation"><a href="{% url "check_in" %}">Check-in</a></li>
+                    <li role="presentation"><a href="#">Check-out </a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="active" role="presentation"><a href="#">Username</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>

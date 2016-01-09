@@ -22,7 +22,7 @@ class LoginPage(View):
         if user is not None:
             if user.is_active:
                 login(request, user)
-                return redirect('landing-page')
+                return redirect('landing')
             else:
                 # account disabled
                 context['error'] = 'This account is currently disabled, please contact IT department.'
