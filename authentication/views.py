@@ -1,33 +1,34 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
-from django.views.generic import View
+from django.views.generic import View, RedirectView
 from django.contrib.auth import authenticate, login, logout
 
-from . import helper
 from .forms import LoginForm
 
 
 # Create your views here.
 class LoginPage(View):
-    def get(self, request):
-        context = helper.get_context(request)
+    def redirect_if_logged_in(self):
+        pass
 
-        context['form'] = LoginForm()
-        return render(request, 'authentication.html', context=context)
+    def get(self, request):
+        if request.user.is_authenticated():
+            return redirect(request.GET.get('next', '/'))
+        return render(request, 'authentication.html', context={'form': LoginForm()})
 
     def post(self, request):
-        context = helper.get_context(request)
+        context = dict()
         user = authenticate(username=request.POST.get('username', ''), password=request.POST.get('password', ''))
 
         if user is not None:
             if user.is_active:
                 login(request, user)
-                return redirect('landing')
+                return redirect(request.GET.get('next', '/'))
             else:
-                # account disabled
                 context['error'] = 'This account is currently disabled, please contact IT department.'
         else:
-            context['error'] = 'Username or password is incorrect.'
+            context['error'] = 'Password is incorrect.' if User.objects.filter(username=request.POST.get('username', '')).exists() else : 'Username not found.'
 
         context['form'] = LoginForm(request.POST)
         return render(request, 'authentication.html', context=context)
