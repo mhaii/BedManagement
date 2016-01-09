@@ -31,6 +31,7 @@
     {% endblock %}
 
     {% compress js %}
+        <script> $.material.init(); </script>
         {% block js %}{% endblock %}
     {% endcompress %}
 </html>
