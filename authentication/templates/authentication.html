@@ -9,12 +9,31 @@
 {% endblock %}
 
 {% block content %}
-    <div id="login-form">
+    <div id="login-form" class="container">
         {% if error %}{{ error }}{% endif %}
-        <form method="post">
+        <form method="post" class="form-horizontal">
+
             {% csrf_token %}
-            {{ form }}
-            <input type="submit" value="Login!" />
+
+            <h1>Login</h1>
+            <div class="form-group">
+            <label for="id_username" class="control-label col-md-2">ID number:</label>
+                <div class="col-md-10">
+                    <input id="id_username" maxlength="30" name="username" type="text" class="form-control">
+                </div>
+                <span class="material-input"> </span>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2" for="id_password">Password:</label>
+                <div class="col-md-10">
+                    <input id="id_password" maxlength="128" name="password" type="password" class="form-control">
+                </div>
+                <span class="material-input"> </span>
+            </div>
+            <div class="form-group">
+                <div class="col-md-10 col-md-offset-2">
+                <input type="submit" value="Login!" />
+            </div>
         </form>
     </div>
 {% endblock %}
