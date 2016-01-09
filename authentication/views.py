@@ -28,7 +28,7 @@ class LoginPage(View):
             else:
                 context['error'] = 'This account is currently disabled, please contact IT department.'
         else:
-            context['error'] = 'Password is incorrect.' if User.objects.filter(username=request.POST.get('username', '')).exists() else : 'Username not found.'
+            context['error'] = 'Password is incorrect.' if User.objects.filter(username=request.POST.get('username', '')).exists() else 'Username not found.'
 
         context['form'] = LoginForm(request.POST)
         return render(request, 'authentication.html', context=context)
