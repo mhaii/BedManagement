@@ -10,8 +10,13 @@ manage = os.path.join(rootDir, 'manage.py')
 os.chdir(rootDir)
 
 
+def bower():
+    os.system('npm install -g bower')
+    os.system('bower install bootstrap-material-design --save')
+
+
 def collect_static():
-    os.system('{0} {1} collectstatic --noinput -i *.sass -i *.coffee'.format(python, manage))
+    os.system('{0} {1} collectstatic --noinput -i {2}'.format(python, manage, ' -i '.join(['*.sass', '*.coffee'])))
 
 
 def create_app():
@@ -39,6 +44,5 @@ def make_and_migrate():
     os.system('{0} {1} migrate'.format(python, manage))
 
 
-def manage_init():
-    os.system('{0} {1} bower install'.format(python, manage))
+def init():
     collect_static()

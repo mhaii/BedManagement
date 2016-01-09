@@ -126,17 +126,12 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 STATICFILES_FINDERS = ["django.contrib.staticfiles.finders.FileSystemFinder",
                        "django.contrib.staticfiles.finders.AppDirectoriesFinder",
-                       "compressor.finders.CompressorFinder",
-                       "djangobower.finders.BowerFinder", ]
+                       "compressor.finders.CompressorFinder", ]
+
+STATICFILES_DIR = [os.path.join(BASE_DIR, 'static/bower'), ]
 
 COMPRESS_PRECOMPILERS = (
     ('text/coffeescript', 'coffee --compile --stdio'),
     ('text/x-sass', 'django_libsass.SassCompiler'),
-)
-
-BOWER_COMPONENTS_ROOT = os.path.join(BASE_DIR, 'components')
-
-BOWER_INSTALLED_APPS = (
-    'underscore',
 )
 

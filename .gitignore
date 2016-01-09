@@ -2,7 +2,8 @@
 .idea/
 __pycache__/
 
-/static/
+static/
+!static/*.sass
 
 *.sqlite3
 

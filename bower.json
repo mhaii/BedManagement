@@ -1,0 +1,17 @@
+{
+  "name": "HospitalBedManagement",
+  "version": "0.0.0",
+  "homepage": "https://github.com/mhaii/BedManagement",
+  "authors": [
+    "Nutchanon Anurakboonying <nutchanon.9@gmail.com>",
+    "Pennattha Tankulrat <dude.noeyfml@gmail.com>",
+    "Puri Jankrajang <ppuri.y@gmail.com>"
+  ],
+  "license": "Apache 2.0",
+  "private": true,
+  "dependencies": {
+    "bootstrap-sass": "~3.3.6",
+    "bootstrap-material-design": "~0.5.7",
+    "jquery": "~2.1.4"
+  }
+}
