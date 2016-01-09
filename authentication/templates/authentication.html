@@ -8,14 +8,13 @@
     <link rel="stylesheet" href="{% static 'authentication/css/authentication.sass' %}" type="text/x-sass" charset="utf-8">
 {% endblock %}
 
-{% block body %}
-    <body>
+{% block content %}
+    <div id="login-form">
         {% if error %}{{ error }}{% endif %}
         <form method="post">
             {% csrf_token %}
-
             {{ form }}
             <input type="submit" value="Login!" />
         </form>
-    </body>
+    </div>
 {% endblock %}
