@@ -10,9 +10,8 @@
                     <ul class="nav navbar-nav">
                         <li class="{% if request.resolver_match.url_name == 'landing' %}active{% endif %}" role="presentation"><a href="{% url 'home' %}">Home</a></li>
                         <li class="{% if request.resolver_match.url_name == 'status' %}active{% endif %}" role="presentation"><a href="{% url 'status' %}">Status</a></li>
-                        <li role="presentation"><a href="#">Process </a></li>
-                        <li class="{% if request.resolver_match.url_name == 'check_in' %}active{% endif %}" role="presentation"><a href="{% url 'check_in' %}">Check-in</a></li>
-                        <li role="presentation"><a href="#">Check-out </a></li>
+                        <li class="{% if request.resolver_match.url_name == 'statistic' %}active{% endif %}" role="presentation"><a href="{% url 'statistic' %}">Statistic</a></li>
+                        <li class="{% if request.resolver_match.url_name == 'check_out' %}active{% endif %}" role="presentation"><a href="{% url 'check_out' %}">Check-out</a></li>
                     </ul>
                 {% endif %}
                 <ul class="nav navbar-nav navbar-right">
