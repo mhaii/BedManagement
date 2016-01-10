@@ -23,3 +23,13 @@ class CheckIn(LoginRequiredMixin, View):
 class Home(LoginRequiredMixin, View):
     def get(self, request):
         return redirect('landing')
+
+
+class CheckOut(LoginRequiredMixin, View):
+    def get(self, request):
+        return render(request, 'check-out.html')
+
+
+class Statistic(LoginRequiredMixin, View):
+    def get(self, request):
+        return render(request, 'statistic.html')
