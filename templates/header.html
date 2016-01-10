@@ -15,14 +15,22 @@
                     </ul>
                 {% endif %}
                 <ul class="nav navbar-nav navbar-right">
-                    <li class="active" role="presentation">
                     {# show user stuff if logged in, login button if not #}
                         {% if request.user.is_authenticated %}
-                            <a href="{% url 'logout' %}">{{ request.user }}</a>
+                            <li class="dropdown">
+                                <a href="bootstrap-elements.html" data-target="#" class="dropdown-toggle" data-toggle="dropdown">Username
+                                <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="javascript:void(0)">Setting</a></li>
+                                    <li><a href="javascript:void(0)">Logout</a></li>
+                                    <li><a href="javascript:void(0)">Something else here</a></li>
+                                </ul>
+                            </li>
                         {% else %}
-                            <a href="{% url 'login' %}">Login</a>
+                            <li class="active" role="presentation">
+                              <a href="{% url 'login' %}">Login</a>
+                            </li>
                         {% endif %}
-                    </li>
                 </ul>
             </div>
         </div>
