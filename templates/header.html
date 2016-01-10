@@ -8,7 +8,8 @@
                 {# only show if user logged in #}
                 {% if request.user.is_authenticated %}
                     <ul class="nav navbar-nav">
-                        <li class="{% if request.resolver_match.url_name == 'status' %}active{% endif %}" role="presentation"><a href="{% url 'status' %}">Home</a></li>
+                        <li role="presentation"><a href="#">Home</a></li>
+                        <li class="{% if request.resolver_match.url_name == 'status' %}active{% endif %}" role="presentation"><a href="{% url 'status' %}">Status</a></li>
                         <li role="presentation"><a href="#">Process </a></li>
                         <li class="{% if request.resolver_match.url_name == 'check_in' %}active{% endif %}" role="presentation"><a href="{% url 'check_in' %}">Check-in</a></li>
                         <li role="presentation"><a href="#">Check-out </a></li>
@@ -18,11 +19,11 @@
                     {# show user stuff if logged in, login button if not #}
                         {% if request.user.is_authenticated %}
                             <li class="dropdown">
-                                <a href="bootstrap-elements.html" data-target="#" class="dropdown-toggle" data-toggle="dropdown">Username
+                                <a href="bootstrap-elements.html" data-target="#" class="dropdown-toggle" data-toggle="dropdown">{{ request.user }}
                                 <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     <li><a href="javascript:void(0)">Setting</a></li>
-                                    <li><a href="javascript:void(0)">Logout</a></li>
+                                    <li><li><a href="{% url 'logout' %}">Logout</a></li>
                                     <li><a href="javascript:void(0)">Something else here</a></li>
                                 </ul>
                             </li>
