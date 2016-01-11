@@ -3,7 +3,7 @@ import re
 import sys
 
 python = sys.executable
-pip = os.path.join(os.path.dirname(python), 'pip' + '.exe' if os.name is 'nt' else '')
+pip = os.path.join(os.path.dirname(python), 'pip' + ('.exe' if os.name is 'nt' else ''))
 rootDir = os.path.dirname(os.path.dirname(__file__))
 manage = os.path.join(rootDir, 'manage.py')
 
