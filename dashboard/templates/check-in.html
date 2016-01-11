@@ -16,16 +16,16 @@
                     <form class="bs-component">
                         <div class="form-group">
                             <label class="control-label" for="addon1">Put in HN number to search</label>
-                                <div class="input-group">
-                                    <span class="input-group-addon">HN:</span>
-                                    <input type="text" class="form-control" id="addon1">
-                                    <span class="input-group-btn">
-                                        <button class="btn btn-primary" type="button">
+                            <div class="input-group">
+                                <span class="input-group-addon">HN:</span>
+                                <input type="text" class="form-control" id="addon1">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-primary" type="button">
                                         Search
                                         <div class="ripple-container"></div>
-                                        </button>
-                                    </span>
-                                </div>
+                                    </button>
+                                </span>
+                            </div>
                         </div>
                     </form>
                 </div>
@@ -35,14 +35,16 @@
                     <label class="control-label col-md-2" for="inputFirstName">First name :</label>
                     <div class="col-md-10">
                         <input class="form-control" type="text" id="inputFirstName">
-                        </div><span class="material-input"> </span></div>
-                        <div class="form-group">
-                            <label class="control-label col-md-2" for="inputLastName">Last name :</label>
-                            <div class="col-md-10">
-                                <input class="form-control" type="text" id="inputLastName">
-                            </div>
-                            <span class="material-input"> </span>
-                        </div>
+                    </div>
+                    <span class="material-input"></span>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-2" for="inputLastName">Last name :</label>
+                    <div class="col-md-10">
+                        <input class="form-control" type="text" id="inputLastName">
+                    </div>
+                    <span class="material-input"> </span>
+                </div>
                 <div class="form-group style=&quot;margin-top:0;&quot;">
                     <div class="col-md-offset-2 col-md-10">
                         <div class="checkbox">
@@ -50,12 +52,11 @@
                             <label>
                                 <input type="checkbox">
                                 <span class="checkbox-material"></span>
-                            Male
+                                Male
                             </label>
                             <label>
                                 <input type="checkbox">
-                                <span class="checkbox-material">
-                            </span>
+                                <span class="checkbox-material"></span>
                                 Female
                             </label>
                         </div>
@@ -86,7 +87,9 @@
                     <label class="control-label col-md-2" for="inputEDD"> Estimate Duration Date:</label>
                     <div class="col-md-10">
                         <input class="form-control" type="text" id="inputEDD">
-                    </div><span class="material-input"> </span></div>
+                    </div>
+                    <span class="material-input"></span>
+                </div>
                 <div class="form-group">
                     <div class="col-md-10 col-md-offset-2">
                         <a class="btn btn-primary" href="{% url 'status' %}">Assign Room</a>
