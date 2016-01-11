@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.conf.urls import url
 
-from dashboard.views import CheckIn, Landing, Status, Home, CheckOut
+from dashboard.views import CheckIn, Landing, Status, Home, CheckOut, Statistic
 
 urlpatterns = [
     url(r'^home', Home.as_view(), name='home'),
