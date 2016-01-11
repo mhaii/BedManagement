@@ -1,0 +1,6 @@
+@media screen and (min-width: 700px) {
+    .dropdown:hover .dropdown-menu {
+        display: block;
+        margin-top: 0;
+    }
+}
