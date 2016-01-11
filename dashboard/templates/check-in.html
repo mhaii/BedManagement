@@ -3,6 +3,10 @@
 
 {% block title %}Check-In{% endblock %}
 
+{% block css %}
+        <link rel="stylesheet" type="text/x-sass" href="{% static 'dashboard/css/check-in.sass' %}">
+{%  endblock %}
+
 {% block content %}
     <div id="check-in" class="container">
         <h1>Check-in Page</h1>
@@ -26,63 +30,74 @@
                     </form>
                 </div>
             </div>
-            <form class="form-horizontal">
-            <div class="form-group">
-                <label class="control-label col-md-2" for="inputFirstName">First name :</label>
-                <div class="col-md-10">
-                    <input class="form-control" type="text" id="inputFirstName">
-                </div><span class="material-input"> </span></div>
-            <div class="form-group">
-                <label class="control-label col-md-2" for="inputLastName">Last name :</label>
-                <div class="col-md-10">
-                    <input class="form-control" type="text" id="inputLastName">
-                </div><span class="material-input"> </span></div>
-            <div class="form-group style=&quot;margin-top:0;&quot;">
-                <div class="col-md-offset-2 col-md-10">
-                    <div class="checkbox">
-                        <label class="short-word">Sex : </label>
-                        <label>
-                            <input type="checkbox">
-                            <span class="checkbox-material">
-                            </span>
-                            Male
-                        </label>
-
-                        <label>
-                            <input type="checkbox">
-                            <span class="checkbox-material">
-                            </span>
-                            Female
-                        </label>
+            <div class="form-horizontal">
+                <div class="form-group">
+                    <label class="control-label col-md-2" for="inputFirstName">First name :</label>
+                    <div class="col-md-10">
+                        <input class="form-control" type="text" id="inputFirstName">
+                    </div>
+                    <span class="material-input"></span>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-2" for="inputLastName">Last name :</label>
+                    <div class="col-md-10">
+                        <input class="form-control" type="text" id="inputLastName">
+                    </div>
+                    <span class="material-input"> </span>
+                </div>
+                <div class="form-group style=&quot;margin-top:0;&quot;">
+                    <div class="col-md-offset-2 col-md-10">
+                        <div class="checkbox">
+                            <label class="short-word">Sex : </label>
+                            <label>
+                                <input type="checkbox">
+                                <span class="checkbox-material"></span>
+                                Male
+                            </label>
+                            <label>
+                                <input type="checkbox">
+                                <span class="checkbox-material"></span>
+                                Female
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-2" for="inputAge"> Age :</label>
+                    <div class="col-md-10">
+                        <input class="form-control" type="text" id="inputAge">
+                    </div>
+                    <span class="material-input"> </span>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-2" for="inputSyndrome"> Syndrome :</label>
+                    <div class="col-md-10">
+                        <input class="form-control" type="text" id="inputSyndrome">
+                    </div>
+                    <span class="material-input"> </span>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-2" for="inputDoctor"> Doctor :</label>
+                    <div class="col-md-10">
+                        <input class="form-control" type="text" id="inputDoctor">
+                    </div>
+                    <span class="material-input"> </span>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-2" for="inputEDD"> Estimate Duration Date:</label>
+                    <div class="col-md-10">
+                        <input class="form-control" type="text" id="inputEDD">
+                    </div>
+                    <span class="material-input"></span>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-10 col-md-offset-2">
+                        <a class="btn btn-primary" href="{% url 'status' %}">Assign Room</a>
+                        <!--<button class="btn btn-primary" type="submit">Assign Room</button>-->
                     </div>
                 </div>
             </div>
-            <div class="form-group">
-                <label class="control-label col-md-2" for="inputAge"> Age :</label>
-                <div class="col-md-10">
-                    <input class="form-control" type="text" id="inputAge">
-                </div><span class="material-input"> </span></div>
-            <div class="form-group">
-                <label class="control-label col-md-2" for="inputSyndrome"> Syndrome :</label>
-                <div class="col-md-10">
-                    <input class="form-control" type="text" id="inputSyndrome">
-                </div><span class="material-input"> </span></div>
-            <div class="form-group">
-                <label class="control-label col-md-2" for="inputDoctor"> Doctor :</label>
-                <div class="col-md-10">
-                    <input class="form-control" type="text" id="inputDoctor">
-                </div><span class="material-input"> </span></div>
-            <div class="form-group">
-                <label class="control-label col-md-2" for="inputEDD"> Estimate Duration Date:</label>
-                <div class="col-md-10">
-                    <input class="form-control" type="text" id="inputEDD">
-                </div><span class="material-input"> </span></div>
-            <div class="form-group">
-                <div class="col-md-10 col-md-offset-2">
-                    <button class="btn btn-primary" type="submit">Assign Room</button>
-                </div>
-            </div>
-        </form>
+            </form>
         </div>
     </div>
 {% endblock %}

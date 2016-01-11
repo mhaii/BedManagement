@@ -1,5 +1,5 @@
 <div id="header">
-    <nav class="navbar navbar-default">
+    <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
             <div class="navbar-header"><a class="navbar-brand navbar-link" href="#">HBM</a>
                 <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
@@ -8,21 +8,29 @@
                 {# only show if user logged in #}
                 {% if request.user.is_authenticated %}
                     <ul class="nav navbar-nav">
-                        <li class="{% if request.resolver_match.url_name == 'status' %}active{% endif %}" role="presentation"><a href="{% url 'status' %}">Home</a></li>
-                        <li role="presentation"><a href="#">Process </a></li>
-                        <li class="{% if request.resolver_match.url_name == 'check_in' %}active{% endif %}" role="presentation"><a href="{% url 'check_in' %}">Check-in</a></li>
-                        <li role="presentation"><a href="#">Check-out </a></li>
+                        <li class="{% if request.resolver_match.url_name == 'landing' %}active{% endif %}" role="presentation"><a href="{% url 'home' %}">Home</a></li>
+                        <li class="{% if request.resolver_match.url_name == 'status' %}active{% endif %}" role="presentation"><a href="{% url 'status' %}">Status</a></li>
+                        <li class="{% if request.resolver_match.url_name == 'statistic' %}active{% endif %}" role="presentation"><a href="{% url 'statistic' %}">Statistic</a></li>
+                        <li class="{% if request.resolver_match.url_name == 'check_out' %}active{% endif %}" role="presentation"><a href="{% url 'check_out' %}">Check-out</a></li>
                     </ul>
                 {% endif %}
                 <ul class="nav navbar-nav navbar-right">
-                    <li class="active" role="presentation">
                     {# show user stuff if logged in, login button if not #}
-                        {% if request.user.is_authenticated %}
-                            <a href="{% url 'logout' %}">{{ request.user }}</a>
-                        {% else %}
-                            <a href="{% url 'login' %}">Login</a>
-                        {% endif %}
-                    </li>
+                    {% if request.user.is_authenticated %}
+                        <li class="dropdown">
+                            <a href="#" data-target="#" class="dropdown-toggle" data-toggle="dropdown">{{ request.user }}
+                            <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <!--<li><a href="#">Setting</a></li>-->
+                                <li><a href="{% url 'logout' %}">Logout</a></li>
+                                <!--<li><a href="#">Something else here</a></li>-->
+                            </ul>
+                        </li>
+                    {% else %}
+                        <li class="active" role="presentation">
+                          <a href="{% url 'login' %}">Login</a>
+                        </li>
+                    {% endif %}
                 </ul>
             </div>
         </div>

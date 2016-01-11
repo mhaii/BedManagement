@@ -1,0 +1,23 @@
+{% extends 'basefile.html' %}
+
+{% load static %}
+
+{% block title %}Statistic{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" type="text/x-sass" href="{% static 'dashboard/css/statistic.sass' %}"></link>
+{% endblock %}
+
+{% block content %}
+
+    <div class="graph col-md-10">
+            <div id="container"></div>
+    </div>
+
+{% endblock %}
+
+{% block js %}
+    <script src={% static 'bower/highcharts/highcharts.js' %}></script>
+     <script src={% static 'dashboard/js/statistic.js' %}></script>
+{% endblock %}
+

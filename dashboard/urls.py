@@ -15,10 +15,13 @@ Including another URLconf
 """
 from django.conf.urls import url
 
-from dashboard.views import CheckIn, Landing, Status
+from dashboard.views import CheckIn, Landing, Status, Home, CheckOut, Statistic
 
 urlpatterns = [
+    url(r'^home', Home.as_view(), name='home'),
     url(r'^status/$', Status.as_view(), name='status'),
     url(r'^check-in/', CheckIn.as_view(), name='check_in'),
+    url(r'^check-out/', CheckOut.as_view(), name='check_out'),
+    url(r'^statistic/', Statistic.as_view(), name='statistic'),
     url(r'^$', Landing.as_view(), name='landing'),
 ]

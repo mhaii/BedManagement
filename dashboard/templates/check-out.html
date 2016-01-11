@@ -1,0 +1,60 @@
+{% extends 'basefile.html' %}
+{% load static %}
+
+{% block title%}
+    Check-out
+{%  endblock %}
+
+{% block css %}
+    <link rel="stylesheet" type="text/x-sass" href="{% static 'dashboard/css/check-out.sass' %}">
+{% endblock %}
+
+{% block content %}
+    <body>
+    <h1>Check-Out</h1>
+    <div class="container">
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>Name </th>
+                        <th>Expected Discharge Date</th>
+                        <th>Process </th>
+                        <th>Start </th>
+                        <th>End </th>
+                        <th> </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Patient 1</td>
+                        <td>Today </td>
+                        <td>Discharging-Doctor dischaged </td>
+                        <td>8:00 AM</td>
+                        <td>In Process</td>
+                        <td><a href="#">Done</a></td>
+                    </tr>
+                    <tr>
+                        <td>Patient 2</td>
+                        <td>Today </td>
+                        <td>Discharged </td>
+                        <td>7:00 AM</td>
+                        <td>10:00 AM</td>
+                        <td><a href="#">Done</a></td>
+                    </tr>
+                    <tr>
+                        <td>Patient 2</td>
+                        <td>Tomorrow </td>
+                        <td>should - Pre-Discharge </td>
+                        <td> </td>
+                        <td> </td>
+                        <td><a href="#">Discharge</a></td>
+                    </tr>
+                </tbody>
+                <caption class="lead text-center text-success">Check out</caption>
+            </table>
+        </div>
+    </div>
+</body>
+
+{% endblock %}
