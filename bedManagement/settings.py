@@ -39,7 +39,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # Third-party app
-    'django_static_jquery',
     'compressor',
 
     # Our homebrew app~ <3
