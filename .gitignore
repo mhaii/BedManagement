@@ -3,6 +3,7 @@
 __pycache__/
 
 /static/
+!/static/css/*.sass
 
 *.sqlite3
 
