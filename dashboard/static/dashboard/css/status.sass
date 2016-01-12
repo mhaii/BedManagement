@@ -4,6 +4,9 @@
 
 table
   a
-    display: none
-  tr td:hover a
-    display: block
+    color: rgb(51, 51, 51)
+  tr td
+    &:hover a
+      text-decoration: dotted
+    &.free
+      background-color: mediumspringgreen

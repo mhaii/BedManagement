@@ -9,15 +9,21 @@
 {% endblock %}
 
 {% block content %}
-
-    <div class="graph col-md-10">
-            <div id="container"></div>
-    </div>
-
+    <body class="graph">
+        <div class="col-md-10 multiple">
+            <div class="col-md-4" id="acceptvsnot"></div>
+            <div class="col-md-4" id="turnover"></div>
+        </div>
+        <div class="col-md-10" id="patientflow"></div>
+    </body>
 {% endblock %}
 
 {% block js %}
     <script src={% static 'bower/highcharts/highcharts.js' %}></script>
-     <script src={% static 'dashboard/js/statistic.js' %}></script>
+    <script src={% static 'bower/highcharts/highcharts-more.js' %}></script>
+    <script src={% static 'bower/highcharts/modules/heatmap.js' %}></script>
+    <script src={% static 'bower/highcharts/modules/treemap.js' %}></script>
+    <script src={% static 'bower/highcharts/modules/exporting.js' %}></script>
+    <script src={% static 'dashboard/js/statistic.js' %}></script>
 {% endblock %}
 
