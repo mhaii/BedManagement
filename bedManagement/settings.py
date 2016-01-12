@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'compressor',
 
     # Our homebrew app~ <3
-    'api', 'authentication', 'dashboard'
+    'api', 'authentication', 'dashboard', 'statistic'
 ]
 
 MIDDLEWARE_CLASSES = [

@@ -30,6 +30,3 @@ class CheckOut(LoginRequiredMixin, View):
         return render(request, 'check-out.html')
 
 
-class Statistic(LoginRequiredMixin, View):
-    def get(self, request):
-        return render(request, 'statistic.html')
