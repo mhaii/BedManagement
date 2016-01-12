@@ -127,7 +127,7 @@ STATICFILES_FINDERS = ["django.contrib.staticfiles.finders.FileSystemFinder",
 STATICFILES_DIR = [os.path.join(BASE_DIR, 'static/bower'), ]
 
 COMPRESS_PRECOMPILERS = (
-    ('text/coffeescript', 'coffee --compile --stdio'),
+    ('text/coffeescript', 'coffeecompressorcompiler.filter.CoffeeScriptCompiler'),
     ('text/x-sass', 'django_libsass.SassCompiler'),
 )
 
