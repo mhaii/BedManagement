@@ -4,62 +4,14 @@
 {% block title%}Queues{%  endblock %}
 
 {% block css %}
-    <link rel="stylesheet" type="text/x-sass" href="{% static 'dashboard/css/check-out.sass' %}">
+    <link rel="stylesheet" type="text/x-sass" href="{% static 'dashboard/css/queues.sass' %}">
 {% endblock %}
 
 {% block content %}
     <body>
     <h1>Queues </h1>
     <div class="container">
-        <div class="table-responsive">
-            <table class="table table-striped table-bordered table-hover">
-                <thead>
-                    <tr>
-                        <th>HN Number</th>
-                        <th>Name</th>
-                        <th>วันนัด</th>
-                        <th>Symptom</th>
-                        <th>Doctor</th>
-                        <th>Phone Number</th>
-                        <th>Status</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>00000001</td>
-                        <td>คนไข้ทดลอง1 โดยเด็กมหิดล</td>
-                        <td>Today</td>
-                        <td>มะเร็งกล่องเสียง</td>
-                        <td>หมอ1</td>
-                        <td>081-234-5678</td>
-                        <td>Confirmed</td>
-                        <td><a href="{% url 'choose_bed' %}">Choose</a></td>
-                    </tr>
-                    <tr>
-                        <td>00000002</td>
-                        <td>คนไข้ทดลอง2ที่ชื่อยาวกว่า โดยเด็กมหิดล</td>
-                        <td>พรุ่งนี้ </td>
-                        <td>ผ่าตัดลำไส้เล็ก</td>
-                        <td>ชื่อหมอยาวยาว โดยเด็กมหิดล</td>
-                        <td>081-223-4567</td>
-                        <td>Pending</td>
-                        <td><a class="disabled" href="{% url 'choose_bed' %}">Choose</a></td>
-                    </tr>
-                    <tr>
-                        <td>00000003</td>
-                        <td>คนไข้ทดลอง3ที่ชื่อยาวกว่า โดยเด็กมหิดล</td>
-                        <td>พรุ่งนี้ </td>
-                        <td>โรคอะไรสักอย่าง</td>
-                        <td>ชื่อหมอยาวยาว โดยเด็กมหิดล</td>
-                        <td>089-787-7777</td>
-                        <td>Pending</td>
-                        <td><a class="disabled" href="{% url 'choose_bed' %}">Choose</a></td>
-                    </tr>
-                </tbody>
-                <caption class="lead text-center text-success">Queues</caption>
-            </table>
-        </div>
+        {% include 'tables/q-table.html' %}
     </div>
 </body>
 
