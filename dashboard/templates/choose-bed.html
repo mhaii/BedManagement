@@ -2,7 +2,7 @@
 
 {% load static %}
 
-{% block title %}Bed Status{% endblock %}
+{% block title %}Home{% endblock %}
 
 {% block css %}
     <link rel="stylesheet" type="text/x-sass" href="{% static 'dashboard/css/status.sass' %}">
@@ -10,6 +10,15 @@
 
 {% block content %}
 <div class="container">
+    <div class="patientinfo">
+        <dl class="detailPatient">
+            <dt>Name: Patient1</dt>
+            <dt>Sex: Male</dt>
+            <dt>Age: 50</dt>
+            <dt>Symptom: เนื้องอกในลำไส้เล็ก</dt>
+            <dt>Doctor: Doctor1</dt>
+        </dl>
+    </div>
     <div class="bs-docs-section">
         <div class="row">
             <div>
@@ -26,84 +35,9 @@
                     <tbody>
                         <tr>
                             <td>84/9 อ (2500+250) โทร. 7259</td>
-                            <td class="busy">
-                                <div id="patientpopup">
-                                    <dl class="detaillist">
-                                        <dt>ห้อง: 919</dt>
-                                        <dt>ชื้อ: คนไข้1</dt>
-                                        <dt>อาการ: ไข้หวัดใหญ่</dt>
-                                        <dt>หมอ: หมอ1</dt>
-                                        <dt>EDD: 13/4/2016</dt>
-                                    </dl>
-                                    <a class="btn-sm infobutton" href="#">ย้าย</a>
-                                    <a class="btn-sm infobutton" href="{% url 'edit_patient_info_filled' %}">แก้ไข</a>
-                                    <a class="btn-sm infobutton" href="#">ลบ</a>
-                                </div>
-                                919
-                            </td>
-                            <td class="busy">920</td>
-                            <td class="free">
-                                <div id="patientpopup">
-                                    <dl class="detaillist">
-                                        <dt>ห้อง: 921</dt>
-                                        <dt>สถานะ: ว่าง</dt>
-                                    </dl>
-                                    <a class="btn-sm infobutton" href="#">
-                                        จอง
-                                        <div id="queuespopup">
-                                                <div class="table-responsive">
-                                                    <table class="table table-striped table-bordered table-hover">
-                                                        <thead>
-                                                        <tr>
-                                                            <th>HN Number</th>
-                                                            <th>Name</th>
-                                                            <th>วันนัด</th>
-                                                            <th>Symptom</th>
-                                                            <th>Doctor</th>
-                                                            <th>Phone Number</th>
-                                                            <th>Status</th>
-                                                            <th></th>
-                                                        </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                        <tr>
-                                                            <td>00000001</td>
-                                                            <td>คนไข้ทดลอง1 โดยเด็กมหิดล</td>
-                                                            <td>Today</td>
-                                                            <td>มะเร็งกล่องเสียง</td>
-                                                            <td>หมอ1</td>
-                                                            <td>081-234-5678</td>
-                                                            <td>Confirmed</td>
-                                                            <td><a href="#">Choose</a></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>00000002</td>
-                                                            <td>คนไข้ทดลอง2ที่ชื่อยาวกว่า โดยเด็กมหิดล</td>
-                                                            <td>Today </td>
-                                                            <td>ผ่าตัดลำไส้เล็ก</td>
-                                                            <td>ชื่อหมอยาวยาว โดยเด็กมหิดล</td>
-                                                            <td>081-223-4567</td>
-                                                            <td>Confirmed</td>
-                                                            <td><a href="#">Choose</a></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>00000003</td>
-                                                            <td>คนไข้ทดลอง3ที่ชื่อยาวกว่า โดยเด็กมหิดล</td>
-                                                            <td>Today </td>
-                                                            <td>โรคอะไรสักอย่าง</td>
-                                                            <td>ชื่อหมอยาวยาว โดยเด็กมหิดล</td>
-                                                            <td>089-787-7777</td>
-                                                            <td>Confirmed</td>
-                                                            <td><a class="disabled" href="#">Choose</a></td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                                </div>
-                                        </div>
-                                    </a>
-                                </div>
-                                921
-                            </td>
+                            <td class="busy">919 </td>
+                            <td class="busy">920 </td>
+                            <td class="free"><a href="#">921</a></td>
                             <td class="busy">922 </td>
                             <td class="busy">923 </td>
                             <td class="busy">924 </td>
