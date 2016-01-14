@@ -91,8 +91,8 @@ DATABASES = {
         'NAME': 'bedmanagement',
         'USER': 'username',
         'PASSWORD': 'password',
-        'HOST': '127.0.0.1',
-        'PORT': '3306',
+        'HOST': '127.0.0.1',                        # localhost via TCP
+        'PORT': '',                                 # default
     }
 }
 
