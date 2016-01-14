@@ -1,3 +1,5 @@
+#!/usr/bin/python
+
 import os
 import re
 import sys
@@ -8,6 +10,17 @@ rootDir = os.path.dirname(os.path.dirname(__file__))
 manage = os.path.join(rootDir, 'manage.py')
 
 os.chdir(rootDir)
+
+# fix $PATH for OSX
+if os.name is 'nt':
+    print('# Executing on Windows')
+else:
+    print('# Executing on Unix')
+    if '/usr/local/bin' in os.environ['PATH']:
+        print('# PATH is fine')
+    else:
+        print('# PATH is fucked')
+        os.environ['PATH'] += ':/usr/local/bin'
 
 
 def bower():
@@ -45,4 +58,5 @@ def make_and_migrate():
 
 
 def init():
-    collect_static()
+    pass
+
