@@ -1,8 +1,6 @@
 Django >= 1.9.1
-Pillow >= 3.0.0
 PyYAML >= 3.11
-django-angularjs >= 1.0.2
-django-appconf >= 1.0.1
+django-angular >= 0.7.15
 django_compressor >= 1.6
 django-libsass >= 0.6
 coffee-compressor-compiler >= 0.2.0
