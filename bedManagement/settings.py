@@ -89,8 +89,8 @@ DATABASES = {
     'deployment': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'bedmanagement',
-        'USER': 'username',
-        'PASSWORD': 'password',
+        'USER': 'root',
+        'PASSWORD': '',
         'HOST': '127.0.0.1',                        # localhost via TCP
         'PORT': '',                                 # default
     }
