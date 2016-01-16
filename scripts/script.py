@@ -23,11 +23,6 @@ else:
         os.environ['PATH'] += ':/usr/local/bin'
 
 
-def bower():
-    os.system('npm install -g bower')
-    os.system('bower install')
-
-
 def collect_static():
     os.system('{0} {1} collectstatic --noinput -i {2}'.format(python, manage, ' -i '.join(['*.sass', '*.coffee'])))
 
@@ -48,6 +43,13 @@ def import_fixture():
             [os.system('{0} {1} loaddata {2}'.format(python, manage, fixture[:-5])) for fixture in os.listdir(path) if regex.search(fixture)]
 
 
+def init():
+    if sys.platform == 'darwin':
+        [os.system('brew install {0}'.format(drink)) for drink in ['mysql']]
+    elif sys.platform == 'linux':
+        [os.system('apt-get install {0}'.format(stuff)) for stuff in ['mysql']]
+
+
 def install_requirement():
     os.system('{0} install -r {1}'.format(pip, os.path.join(rootDir, 'requirement.txt')))
 
@@ -57,6 +59,6 @@ def make_and_migrate():
     os.system('{0} {1} migrate'.format(python, manage))
 
 
-def init():
-    pass
-
+def module():
+    [os.system('npm install -g {0}'.format(module)) for module in ['bower', 'angular']]
+    os.system('bower install')
