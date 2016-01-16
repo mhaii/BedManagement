@@ -23,3 +23,5 @@ before_script:
   - python scripts/import_fixture.py
   - python manage.py
   - python manage.py
+
+script: "python manage.py test"
