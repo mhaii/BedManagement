@@ -12,6 +12,7 @@
 from fabric.api import local, settings, abort, run, cd, env, sudo
 
 import os
+import sys
 
 # Configurations
 APP_NAME = 'django'
@@ -26,7 +27,13 @@ def prepare():
     pass
 
 
+def pre_deploy():
+    if raw_input('Enter CONFIRM to continue: ') != 'CONFIRM':
+        sys.exit(0)
+
+
 def deploy(branch='master'):
+    pre_deploy()
     with settings(warn_only=True):
         if run('test -d %s' % APP_DIR).failed:
             run('git clone %s --branch %s %s' % (REPO_URL, branch, APP_DIR))
@@ -36,6 +43,7 @@ def deploy(branch='master'):
 
 
 def deploy_clean(branch='master'):
+    pre_deploy()
     with settings(warn_only=True):
         sudo('rm -rf %s' % APP_DIR)
         deploy(branch)
@@ -44,6 +52,7 @@ def deploy_clean(branch='master'):
 def post_deploy():
     sudo('python3 scripts/install_requirement.py')
     sudo('pip3 install gunicorn')
+    run('bower install')
     run('python3 scripts/collect_static.py')
     run('python3 scripts/make_and_migrate.py')
     run('python3 scripts/import_fixture.py')
