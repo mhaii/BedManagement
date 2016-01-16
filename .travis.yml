@@ -18,7 +18,6 @@ install:
   - pip install -r requirement.txt
 
 before_script:
-  - mysql -e 'create database IF NOT EXISTS bedmanagement;" -uroot
   - python scripts/make_and_migrate.py
   - python scripts/collect_static.py
   - python scripts/import_fixture.py
