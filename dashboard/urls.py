@@ -18,7 +18,7 @@ from django.conf.urls import url
 from .views import CheckIn, CheckOut, Home, Landing, Status
 
 urlpatterns = [
-    url(r'^home', Home.as_view(), name='home'),
+    url(r'^home/', Home.as_view(), name='home'),
     url(r'^status/$', Status.as_view(), name='status'),
     url(r'^check-in/', CheckIn.as_view(), name='check_in'),
     url(r'^check-out/', CheckOut.as_view(), name='check_out'),
