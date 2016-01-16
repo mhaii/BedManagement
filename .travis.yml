@@ -4,6 +4,10 @@ notifications:
     - baantak:LtnT2T5a5AbrxUpM4FlUUuyl
     - egci492:6E7WBO5v99TplnGk0pZFsv8A
 
+os:
+  - linux
+  - osx
+
 language: python
 python:
   - 3.4
