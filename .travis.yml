@@ -1,5 +1,8 @@
 notifications:
-  slack: baantak:LtnT2T5a5AbrxUpM4FlUUuyl
+  slack:
+    room:
+    - baantak:LtnT2T5a5AbrxUpM4FlUUuyl
+    - egci492:6E7WBO5v99TplnGk0pZFsv8A
 
 language: python
 python:
