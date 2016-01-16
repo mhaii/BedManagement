@@ -1,0 +1,25 @@
+notifications:
+  slack: baantak:LtnT2T5a5AbrxUpM4FlUUuyl
+
+language: python
+python:
+  - "3.2"
+  - "3.3"
+  - "3.4"
+  - "3.5"
+
+services:
+  - mysql
+
+install:
+  - npm install -g bower
+  - npm install -g angular
+  - pip install -r requirement.txt
+  - bower install
+
+before_script:
+  - python scripts/make_and_migrate.py
+  - python scripts/collect_static.py
+  - python scripts/import_fixture.py
+  - python manage.py
+  - python manage.py
