@@ -37,7 +37,7 @@ def deploy(branch='master'):
 
 def deploy_clean(branch='master'):
     with settings(warn_only=True):
-        run('rm -rf %s' % APP_DIR)
+        sudo('rm -rf %s' % APP_DIR)
         deploy(branch)
 
 
