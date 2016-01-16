@@ -1,17 +1,19 @@
 import multiprocessing
 from os.path import dirname, join
 
-pidfile = '/var/run/gunicorn-bedmanagement.pid'
-errorlog = '/var/log/gunicorn.log'
+dir = dirname(dirname(__file__))
+
+pidfile = join(dir, 'gunicorn.pid')
+errorlog = join(dir, 'gunicorn.log')
 loglevel = 'warning'
-bind = 'unix:///{0}'.format(join(dirname(dirname(__file__))), 'django.sock')
+bind = 'unix:///{0}'.format(join(dir, 'django.sock'))
 workers = multiprocessing.cpu_count() * 2 + 1
 daemon = True
 threads = workers // 2
 user = 'daemon'
 group = 'daemon'
 
-proc_name = 'gUnicorn-bedmanagement'
+proc_name = 'gunicorn-bedmanagement'
 
 
 def post_fork(server, worker):
