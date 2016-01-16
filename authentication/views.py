@@ -10,8 +10,6 @@ from .forms import LoginForm
 
 # Create your views here.
 class LoginPage(View):
-  #  def redirect_if_logged_in(self):
- #     pass
     def get(self, request):
         if request.user.is_authenticated():
             return redirect(request.GET.get('next', '/'))
