@@ -1,6 +1,8 @@
 Django >= 1.9.1
 PyYAML >= 3.11
-django-angular >= 0.7.15
+# django-angular 0.7.15 doesn't support Django 1.9, so we pulled it from github instead
+# django-angular >= 0.7.16
+git+https://github.com/jrief/django-angular.git#egg=django_angular-master
 django_compressor >= 1.6
 django-libsass >= 0.6
 coffee-compressor-compiler >= 0.2.0
