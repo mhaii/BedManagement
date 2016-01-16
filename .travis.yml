@@ -1,12 +1,8 @@
 notifications:
   slack:
     rooms:
-      - baantak:LtnT2T5a5AbrxUpM4FlUUuyl
-      - egci492:6E7WBO5v99TplnGk0pZFsv8A
-
-os:
-  - linux
-  - osx
+      - baantak:LtnT2T5a5AbrxUpM4FlUUuyl#codeeeeeeeeeeeee
+      - egci492:6E7WBO5v99TplnGk0pZFsv8A#bed-management-g
 
 language: python
 python:
@@ -22,6 +18,7 @@ install:
   - pip install -r requirement.txt
 
 before_script:
+  - mysql -e 'create database IF NOT EXISTS bedmanagement;" -uroot
   - python scripts/make_and_migrate.py
   - python scripts/collect_static.py
   - python scripts/import_fixture.py
