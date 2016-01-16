@@ -12,19 +12,16 @@ python:
   - "3.5"
 
 services:
+  - sqlite3
   - mysql
 
 install:
-  - npm install -g bower
-  - npm install -g angular
+  - python scripts/module.py
   - pip install -r requirement.txt
-  - bower install
 
 before_script:
   - python scripts/make_and_migrate.py
   - python scripts/collect_static.py
   - python scripts/import_fixture.py
-  - python manage.py
-  - python manage.py
 
-script: "python manage.py test"
+script: python manage.py test
