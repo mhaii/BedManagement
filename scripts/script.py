@@ -47,7 +47,7 @@ def init():
     if sys.platform == 'darwin':
         [os.system('brew install {0}'.format(drink)) for drink in ['mysql']]
     elif sys.platform == 'linux':
-        [os.system('apt-get install {0}'.format(stuff)) for stuff in ['mysql-server']]
+        [os.system('apt-get install {0}'.format(stuff)) for stuff in ['mysql-server', 'npm']]
 
 
 def install_requirement():
