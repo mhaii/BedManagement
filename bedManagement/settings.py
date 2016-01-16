@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # Third-party app
-    'compressor',
+    'compressor', 'djangular',
 
     # Our homebrew app~ <3
     'api', 'authentication', 'dashboard', 'statistic'
