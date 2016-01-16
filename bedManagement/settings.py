@@ -23,9 +23,13 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'a)dg*3orbx!#t4!b3by8#tqcw*p(crp-c(ksdq0=k9*23vp5fk'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+try:
+    import gunicorn
+    DEBUG = False
+except ImportError:
+    DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1']
 
 
 # Application definition

@@ -43,6 +43,7 @@ def deploy_clean(branch='master'):
 
 def post_deploy():
     sudo('python3 scripts/install_requirement.py')
+    sudo('pip3 install gunicorn')
     run('python3 scripts/collect_static.py')
     run('python3 scripts/make_and_migrate.py')
     run('python3 scripts/import_fixture.py')
