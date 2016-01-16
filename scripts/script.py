@@ -5,7 +5,7 @@ import re
 import sys
 
 python = sys.executable
-pip = os.path.join(os.path.dirname(python), 'pip' + ('.exe' if os.name is 'nt' else ''))
+pip = os.path.join(os.path.dirname(python), 'pip' + ('.exe' if os.name is 'nt' else ('3' if sys.platform == 'linux' else '')))
 rootDir = os.path.dirname(os.path.dirname(__file__))
 manage = os.path.join(rootDir, 'manage.py')
 
@@ -24,7 +24,7 @@ else:
 
 
 def collect_static():
-    os.system('{0} {1} collectstatic --noinput -i {2}'.format(python, manage, ' -i '.join(['*.sass', '*.coffee'])))
+    os.system('{0} {1} collectstatic --noinput --link -i {2}'.format(python, manage, ' -i '.join(['*.sass', '*.coffee'])))
 
 
 def create_app():
@@ -47,7 +47,7 @@ def init():
     if sys.platform == 'darwin':
         [os.system('brew install {0}'.format(drink)) for drink in ['mysql']]
     elif sys.platform == 'linux':
-        [os.system('apt-get install {0}'.format(stuff)) for stuff in ['mysql']]
+        [os.system('apt-get install {0}'.format(stuff)) for stuff in ['mysql-server']]
 
 
 def install_requirement():
