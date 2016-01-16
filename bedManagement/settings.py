@@ -90,7 +90,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     },
-    'deployment': {
+    'production': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'bedmanagement',
         'USER': 'root',
