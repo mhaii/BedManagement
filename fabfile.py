@@ -23,17 +23,18 @@ env.key_filename = ['~/.ssh/id_rsa.pub']
 env.host_string = '%s@bed.mhaii.xyz' % os.environ['USER']
 
 
-def prepare():
+def _prepare():
     pass
 
 
-def pre_deploy():
-    if raw_input('Enter CONFIRM to continue: ') != 'CONFIRM':
-        sys.exit(0)
+def _pre_deploy(branch):
+    if branch == 'master':
+        if raw_input('Enter CONFIRM to continue: ') != 'CONFIRM':
+            sys.exit(0)
 
 
 def deploy(branch='master'):
-    pre_deploy()
+    _pre_deploy(branch)
     with settings(warn_only=True):
         if run('test -d %s' % APP_DIR).failed:
             run('git clone %s --branch %s %s' % (REPO_URL, branch, APP_DIR))
@@ -42,20 +43,26 @@ def deploy(branch='master'):
         run('git reset --hard')
         # pull updates from github
         run('git pull')
-        post_deploy()
+        _post_deploy()
 
 
 def deploy_clean(branch='master'):
-    pre_deploy()
+    _pre_deploy(branch)
     with settings(warn_only=True):
         sudo('rm -rf %s' % APP_DIR)
         deploy(branch)
 
 
-def post_deploy():
+def _post_deploy():
     sudo('python3 scripts/install_requirement.py')
     sudo('pip3 install gunicorn')
     run('bower install')
     run('python3 scripts/collect_static.py')
     run('python3 scripts/make_and_migrate.py')
     run('python3 scripts/import_fixture.py')
+    run('python3 scripts/i18n.py')
+    gunicorn('restart')
+
+
+def gunicorn(args='restart'):
+    run('%s/gunicorn.sh %s' % (APP_DIR, args))
