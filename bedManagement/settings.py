@@ -29,7 +29,7 @@ try:
 except ImportError:
     DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1']
+ALLOWED_HOSTS = ['bed.mhaii.xyz', '127.0.0.1']
 
 
 # Application definition
@@ -70,6 +70,7 @@ TEMPLATES = [
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
+                'django.core.context_processors.request',
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
@@ -135,8 +136,8 @@ STATICFILES_FINDERS = ["django.contrib.staticfiles.finders.FileSystemFinder",
 
 STATICFILES_DIR = [os.path.join(BASE_DIR, 'static/bower'), ]
 
-COMPRESS_PRECOMPILERS = (
+COMPRESS_ENABLED = not DEBUG
+COMPRESS_PRECOMPILERS = [
     ('text/coffeescript', 'coffeecompressorcompiler.filter.CoffeeScriptCompiler'),
     ('text/x-sass', 'django_libsass.SassCompiler'),
-)
-
+]
