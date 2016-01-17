@@ -1,12 +1,12 @@
 import multiprocessing
-from os.path import dirname, join
+from os.path import abspath, dirname, join
 
-dir = dirname(dirname(__file__))
+dir = dirname(dirname(dirname(abspath(__file__))))
 
 pidfile = join(dir, 'gunicorn.pid')
 errorlog = join(dir, 'gunicorn.log')
 loglevel = 'warning'
-bind = 'unix:///{0}'.format(join(dir, 'django.sock'))
+bind = 'unix://{0}'.format(join(dir, 'gunicorn.sock'))
 workers = multiprocessing.cpu_count() * 2 + 1
 daemon = True
 threads = workers // 2
