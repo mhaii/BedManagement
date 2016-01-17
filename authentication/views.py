@@ -2,8 +2,9 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
-from django.views.generic import View, RedirectView
+from django.views.generic import View
 from django.contrib.auth import authenticate, login, logout
+from django.utils.translation import ugettext_lazy as _
 
 from .forms import LoginForm
 
@@ -24,9 +25,9 @@ class LoginPage(View):
                 login(request, user)
                 return redirect(request.GET.get('next', '/'))
             else:
-                context['error'] = 'This account is currently disabled, please contact IT department.'
+                context['error'] = _('This account is currently disabled, please contact IT department.')
         else:
-            context['error'] = 'Password is incorrect.' if User.objects.filter(username=request.POST.get('username', '')).exists() else 'Username not found.'
+            context['error'] = _('Password is incorrect.') if User.objects.filter(username=request.POST.get('username', '')).exists() else _('Username not found.')
 
         context['form'] = LoginForm(request.POST)
         return render(request, 'authentication.html', context=context)
