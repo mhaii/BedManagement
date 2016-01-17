@@ -1,8 +1,9 @@
 {% extends 'basefile.html' %}
 
+{% load i18n %}
 {% load static %}
 
-{% block title %}Login to HMS{% endblock %}
+{% block title %}{% trans "Login to HMS" %}{% endblock %}
 
 {% block css %}
     <link rel="stylesheet" href="{% static 'authentication/css/authentication.sass' %}" type="text/x-sass" charset="utf-8">
@@ -15,24 +16,24 @@
 
             {% csrf_token %}
 
-            <h1>Login</h1>
+            <h1>{% trans "Login" %}</h1>
             <div class="form-group">
-                <label for="id_username" class="control-label col-md-2">ID number:</label>
+                <label for="id_username" class="control-label col-md-2">{% trans "ID number" %}:</label>
                 <div class="col-md-10">
                     <input id="id_username" maxlength="30" name="username" type="text" class="form-control">
                 </div>
-                <span class="material-input"> </span>
+                <span class="material-input"></span>
             </div>
             <div class="form-group">
-                <label class="control-label col-md-2" for="id_password">Password:</label>
+                <label class="control-label col-md-2" for="id_password">{% trans "Password" %}:</label>
                 <div class="col-md-10">
                     <input id="id_password" maxlength="128" name="password" type="password" class="form-control">
                 </div>
-                <span class="material-input"> </span>
+                <span class="material-input"></span>
             </div>
             <div class="form-group">
                 <div class="col-md-10 col-md-offset-2">
-                    <input type="submit" value="Login!" />
+                    <input type="submit" value="{% trans "Login" %}!" />
                 </div>
             </div>
         </form>
