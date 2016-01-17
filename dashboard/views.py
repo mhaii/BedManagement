@@ -17,7 +17,7 @@ class Status(LoginRequiredMixin, View):
 
 class BookQueue(LoginRequiredMixin, View):
     def get(self, request):
-        return render(request, 'bookQ.html')
+        return render(request, 'bookQueues.html')
 
 
 class Home(LoginRequiredMixin, View):
