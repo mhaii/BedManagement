@@ -38,6 +38,9 @@ def deploy(branch='master'):
         if run('test -d %s' % APP_DIR).failed:
             run('git clone %s --branch %s %s' % (REPO_URL, branch, APP_DIR))
     with cd(APP_DIR):
+        # reset any manual changes to the remote files
+        run('git reset --hard')
+        # pull updates from github
         run('git pull')
         post_deploy()
 
