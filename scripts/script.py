@@ -35,6 +35,11 @@ def flush_db():
     os.system('{0} {1} flush --no-input'.format(python, manage))
 
 
+def i18n():
+    os.system('{0} {1} makemessages --all'.format(python, manage))
+    os.system('{0} {1} compilemessages'.format(python, manage))
+
+
 def import_fixture():
     regex = re.compile(r'\.(json|yaml)$')
     for file in os.listdir(rootDir):
@@ -45,9 +50,10 @@ def import_fixture():
 
 def init():
     if sys.platform == 'darwin':
-        [os.system('brew install {0}'.format(drink)) for drink in ['mysql', 'npm']]
+        [os.system('brew install {0}'.format(drink)) for drink in ['mysql', 'npm', 'gettext', 'msgpack']]
+        os.system('brew link gettext --force')
     elif sys.platform == 'linux':
-        [os.system('apt-get install {0}'.format(stuff)) for stuff in ['mysql-server', 'npm']]
+        [os.system('apt-get install {0}'.format(stuff)) for stuff in ['mysql-server', 'npm', 'gettext', 'msgpack']]
 
 
 def install_requirement():
