@@ -9,7 +9,9 @@
                 {% if request.user.is_authenticated %}
                     <ul class="nav navbar-nav">
                         <li class="{% if request.resolver_match.url_name == 'landing' %}active{% endif %}" role="presentation"><a href="{% url 'home' %}">Home</a></li>
-                        <li class="{% if request.resolver_match.url_name == 'status' %}active{% endif %}" role="presentation"><a href="{% url 'status' %}">Status</a></li>
+                        <li class="{% if request.resolver_match.url_name == 'queues' %}active{% endif %}" role="presentation"><a href="{% url 'queues' %}">Queue</a></li>
+                        <li class="{% if request.resolver_match.url_name == 'book_queue' %}active{% endif %}" role="presentation"><a href="{% url 'book_queue' %}">Add Queue</a></li>
+                        <li class="{% if request.resolver_match.url_name == 'status' %}active{% endif %}" role="presentation"><a href="{% url 'status' %}">Bed Status</a></li>
                         <li class="{% if request.resolver_match.url_name == 'statistic' %}active{% endif %}" role="presentation"><a href="{% url 'statistic' %}">Statistic</a></li>
                         <li class="{% if request.resolver_match.url_name == 'check_out' %}active{% endif %}" role="presentation"><a href="{% url 'check_out' %}">Check-out</a></li>
                     </ul>

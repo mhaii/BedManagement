@@ -1,0 +1,18 @@
+{% extends 'basefile.html' %}
+{% load static %}
+
+{% block title%}Queues{%  endblock %}
+
+{% block css %}
+    <link rel="stylesheet" type="text/x-sass" href="{% static 'dashboard/css/queues.sass' %}">
+{% endblock %}
+
+{% block content %}
+    <body>
+    <h1>Queues </h1>
+    <div class="container">
+        {% include 'tables/q-table.html' %}
+    </div>
+</body>
+
+{% endblock %}
