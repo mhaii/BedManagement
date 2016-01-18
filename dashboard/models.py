@@ -3,6 +3,20 @@ from django.db.models import ForeignKey
 
 
 # Create your models here.
+class Ward(Model):
+    name = CharField('Name of the Ward', max_length=30, default='Olympus')
+
+
+class Patient(Model):
+    hn = PositiveIntegerField(unique=True, primary_key=True, editable=False)
+    first_name = CharField(max_length=20)
+    last_name = CharField(max_length=20)
+
+
+class Doctor(Model):
+    name = CharField(max_length=50)
+
+
 class User(Model):
     enum_role = [
         (-2, 'Cashier'),
@@ -16,10 +30,6 @@ class User(Model):
     name = CharField('Name of the User', max_length=50, default='Saitama-san')
     role = SmallIntegerField('Role of the User', choices=enum_role, default=0)
     ward = ForeignKey(Ward, blank=True)
-
-
-class Ward(Model):
-    name = CharField('Name of the Ward', max_length=30, default='Olympus')
 
 
 class Room(Model):
@@ -54,12 +64,3 @@ class Admit(Model):
     symptom = CharField(max_length=30)
     admit_date = DateTimeField(auto_now_add=True)
 
-
-class Patient(Model):
-    hn = PositiveIntegerField(unique=True, primary_key=True, editable=False)
-    first_name = CharField(max_length=20)
-    last_name = CharField(max_length=20)
-
-
-class Doctor(Model):
-    name = CharField(max_length=50)
