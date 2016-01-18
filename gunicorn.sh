@@ -61,6 +61,19 @@ stop_server () {
 	echo "Server not running"
 }
 
+status () {
+	if [ -f $pidfile ]; then
+		pid=$(cat $pidfile)
+		if [ $(ps -p $pid | wc -l) -gt 1 ]; then
+			echo "Server is running"
+			return
+		fi
+		echo "Stale PID file"
+		rm -f $pidfile
+	fi
+	echo "Server not running"
+}
+
 case $1 in
 'start')
 	start_server
@@ -74,7 +87,7 @@ case $1 in
 	start_server
 	;;
 *)
-	echo "Usage: $0 { start | stop | restart }"
+	echo "Usage: $0 { start | stop | restart | status}"
 	;;
 esac
 
