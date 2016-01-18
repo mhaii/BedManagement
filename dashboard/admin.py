@@ -12,7 +12,7 @@ class UserAdmin(ModelAdmin):
 
 @admin.register(Ward)
 class WardAdmin(ModelAdmin):
-    list_filter = ['name']
+    list_display = ['name']
 
 
 @admin.register(Room)
@@ -35,6 +35,6 @@ class RoomAdmin(ModelAdmin):
 
 @admin.register(Doctor)
 class DoctorAdmin(ModelAdmin):
-    list_filter = ['name']
+    list_display = ['name']
 
 
