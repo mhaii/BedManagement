@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # Third-party app
-    'compressor', 'djangular',
+    'compressor', 'djangobower', 'djangular',
 
     # Our homebrew app~ <3
     'api', 'authentication', 'dashboard', 'statistic'
@@ -138,17 +138,34 @@ LANGUAGE = [
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
+# # settings with default values # #
+STATICFILES_DIRS = []
 STATICFILES_FINDERS = ["django.contrib.staticfiles.finders.FileSystemFinder",
-                       "django.contrib.staticfiles.finders.AppDirectoriesFinder",
-                       "compressor.finders.CompressorFinder", ]
-
-STATICFILES_DIR = [os.path.join(BASE_DIR, 'static/bower'), ]
+                       "django.contrib.staticfiles.finders.AppDirectoriesFinder"]
 
 
 # Django-Compressor (Coffee, SASS)
+# https://django-compressor.readthedocs.org/en/latest/settings/
 
-COMPRESS_ENABLED = not DEBUG
+STATICFILES_FINDERS += ["compressor.finders.CompressorFinder"]
+
+COMPRESS_OUTPUT_DIR = 'cache'
 COMPRESS_PRECOMPILERS = [
     ('text/coffeescript', 'coffeecompressorcompiler.filter.CoffeeScriptCompiler'),
     ('text/x-sass', 'django_libsass.SassCompiler'),
+]
+
+
+# Django-Bower (CSS, JavaScript Dependencies)
+# https://django-bower.readthedocs.org/en/latest/usage.html
+
+STATICFILES_DIRS += [os.path.join(BASE_DIR, 'static/bower')]
+
+BOWER_COMPONENTS_ROOT = BASE_DIR
+BOWER_INSTALLED_APPS = [
+    'jquery#~2.1.4',
+    'angular#~1.4.8',
+    'bootstrap-sass#~3.3.6',
+    'bootstrap-material-design#~0.5.7',
+    'highcharts#~4.2.1'
 ]
