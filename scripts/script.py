@@ -53,7 +53,7 @@ def init():
         [os.system('brew install {0}'.format(drink)) for drink in ['mysql', 'npm', 'gettext', 'msgpack']]
         os.system('brew link gettext --force')
     elif sys.platform == 'linux':
-        [os.system('sudo apt-get install {0} -y'.format(stuff)) for stuff in ['mysql-server', 'npm', 'gettext', 'libmsgpack*']]
+        [os.system('sudo apt-get install {0} -y'.format(stuff)) for stuff in ['mysql-server', 'npm', 'gettext', 'libmsgpack*', 'coffeescript']]
 
 
 def install_requirement():
