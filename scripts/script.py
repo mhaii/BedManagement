@@ -53,7 +53,7 @@ def init():
         [os.system('brew install {0}'.format(drink)) for drink in ['mysql', 'npm', 'gettext', 'msgpack']]
         os.system('brew link gettext --force')
     elif sys.platform == 'linux':
-        [os.system('apt-get install {0}'.format(stuff)) for stuff in ['mysql-server', 'npm', 'gettext', 'msgpack']]
+        [os.system('sudo apt-get install {0} -y'.format(stuff)) for stuff in ['mysql-server', 'npm', 'gettext', 'libmsgpack*']]
 
 
 def install_requirement():
@@ -66,5 +66,5 @@ def make_and_migrate():
 
 
 def module():
-    [os.system('npm install -g {0}'.format(module)) for module in ['bower', 'angular']]
+    [os.system('sudo npm install -g {0}'.format(module)) for module in ['bower', 'angular']]
     os.system('bower install')
