@@ -93,14 +93,14 @@ WSGI_APPLICATION = 'bedManagement.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 
-DATABASES = {
-    'default': {
+DATABASES = dict()
+DATABASES['default'] = \
+    {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    },
-}
-if not DEBUG:
-    DATABASES['default'] = {
+    } \
+    if DEBUG else \
+    {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'bedmanagement',
         'USER': 'root',
