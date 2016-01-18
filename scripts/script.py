@@ -67,4 +67,4 @@ def make_and_migrate():
 
 def module():
     [os.system('sudo npm install -g {0}'.format(module)) for module in ['bower', 'angular']]
-    os.system('bower install')
+    os.system('{0} {1} bower install'.format(python, manage))
