@@ -5,7 +5,7 @@ import re
 import sys
 
 python = sys.executable
-pip = os.path.join(os.path.dirname(python), 'pip' + ('.exe' if os.name is 'nt' else ('3' if sys.platform == 'linux' else '')))
+pip = os.path.join(os.path.dirname(python), ('Scripts/pip.exe' if os.name is 'nt' else ('pip3' if sys.platform == 'linux' else 'pip')))
 rootDir = os.path.dirname(os.path.dirname(__file__))
 manage = os.path.join(rootDir, 'manage.py')
 
