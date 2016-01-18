@@ -165,8 +165,6 @@ COMPRESS_PRECOMPILERS = [
 # Django-Bower (CSS, JavaScript Dependencies)
 # https://django-bower.readthedocs.org/en/latest/usage.html
 
-STATICFILES_DIRS += [os.path.join(BASE_DIR, 'static/bower')]
-
 BOWER_COMPONENTS_ROOT = BASE_DIR
 BOWER_INSTALLED_APPS = [
     'jquery#~2.1.4',
