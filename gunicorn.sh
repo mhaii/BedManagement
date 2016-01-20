@@ -1,7 +1,7 @@
 #!/bin/bash
 
-appdir="/var/www/bedmanagement/django"
-dir=$(dirname $appdir)
+appdir="/var/www/bed_management/current"
+dir=$(dirname $appdir)"/shared"
 app="gunicorn"
 pidfile=$dir/$app".pid"
 
@@ -12,8 +12,8 @@ do_start () {
 	loglevel="warning"
 	bind="unix://"$dir/$app".sock"
 	workers=$(python -c 'import multiprocessing; print(multiprocessing.cpu_count() * 2 + 1)')
-	user='daemon'
-	group='daemon'
+	user='deploy'
+	group='deploy'
 	umask=664
 
 	args=" bedManagement.wsgi"
