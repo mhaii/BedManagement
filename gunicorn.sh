@@ -1,7 +1,7 @@
 #!/bin/bash
 
-appdir="/var/www/bedmanagement/django"
-dir=$(dirname $appdir)
+appdir="/var/www/bed_management/current"
+dir=$(dirname $appdir)"/shared"
 app="gunicorn"
 pidfile=$dir/$app".pid"
 
@@ -12,8 +12,8 @@ do_start () {
 	loglevel="warning"
 	bind="unix://"$dir/$app".sock"
 	workers=$(python -c 'import multiprocessing; print(multiprocessing.cpu_count() * 2 + 1)')
-	user='daemon'
-	group='daemon'
+	user='deploy'
+	group='deploy'
 	umask=664
 
 	args=" bedManagement.wsgi"
@@ -61,6 +61,19 @@ stop_server () {
 	echo "Server not running"
 }
 
+status () {
+	if [ -f $pidfile ]; then
+		pid=$(cat $pidfile)
+		if [ $(ps -p $pid | wc -l) -gt 1 ]; then
+			echo "Server is running"
+			return
+		fi
+		echo "Stale PID file"
+		rm -f $pidfile
+	fi
+	echo "Server not running"
+}
+
 case $1 in
 'start')
 	start_server
@@ -74,7 +87,7 @@ case $1 in
 	start_server
 	;;
 *)
-	echo "Usage: $0 { start | stop | restart }"
+	echo "Usage: $0 { start | stop | restart | status}"
 	;;
 esac
 

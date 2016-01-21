@@ -93,14 +93,14 @@ WSGI_APPLICATION = 'bedManagement.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 
-DATABASES = {
-    'default': {
+DATABASES = dict()
+DATABASES['default'] = \
+    {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    },
-}
-if not DEBUG:
-    DATABASES['default'] = {
+    } \
+    if DEBUG else \
+    {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'bedmanagement',
         'USER': 'root',
@@ -164,8 +164,6 @@ COMPRESS_PRECOMPILERS = [
 
 # Django-Bower (CSS, JavaScript Dependencies)
 # https://django-bower.readthedocs.org/en/latest/usage.html
-
-STATICFILES_DIRS += [os.path.join(BASE_DIR, 'static/bower')]
 
 BOWER_COMPONENTS_ROOT = BASE_DIR
 BOWER_INSTALLED_APPS = [
