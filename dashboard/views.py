@@ -17,7 +17,7 @@ class Status(LoginRequiredMixin, View):
 
 class BookQueue(LoginRequiredMixin, View):
     def get(self, request):
-        return render(request, 'bookQueues.html')
+        return render(request, 'book-queue.html')
 
 
 class Home(LoginRequiredMixin, View):
@@ -37,7 +37,7 @@ class ChooseBed(LoginRequiredMixin, View):
 
 class EditPatientInfo(LoginRequiredMixin, View):
     def get(self, request):
-        return render(request, 'edit_patient_info-filled.html')
+        return render(request, 'edit-patient-info-filled.html')
 
 
 class Queues(LoginRequiredMixin, View):
