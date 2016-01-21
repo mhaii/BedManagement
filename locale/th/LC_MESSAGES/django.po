@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-18 16:55+0700\n"
+"POT-Creation-Date: 2016-01-21 14:28+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,7 +19,7 @@ msgstr ""
 
 #: authentication/templates/authentication.html:6
 msgid "Login to HMS"
-msgstr "เข้าใช้งานระบบบริหารเตียงผู้ป่วย"
+msgstr "เข้าใช้งานระบบบริหารจัดการเตียงผู้ป่วย"
 
 #: authentication/templates/authentication.html:19
 #: authentication/templates/authentication.html:36 templates/header.html:38
@@ -36,7 +36,7 @@ msgstr "รหัสผ่าน"
 
 #: authentication/views.py:28
 msgid "This account is currently disabled, please contact IT department."
-msgstr "บัญชีผู้ใช้งานนี้ถูกระงับการใช้งาน"
+msgstr "บัญชีผู้ใช้งานนี้ถูกระงับการใช้งาน กรุณาติดต่อแผนก IT"
 
 #: authentication/views.py:30
 msgid "Password is incorrect."
@@ -48,11 +48,11 @@ msgstr "ไม่พบชื่อผู้ใช้งาน"
 
 #: templates/header.html:13
 msgid "Home"
-msgstr "หน้าแรก"
+msgstr "หน้าหลัก"
 
 #: templates/header.html:14
 msgid "Queue"
-msgstr "ดูคิวทั้งหมด"
+msgstr "คิว"
 
 #: templates/header.html:15
 msgid "Add Queue"
@@ -60,7 +60,7 @@ msgstr "เพิ่มคิว"
 
 #: templates/header.html:16
 msgid "Bed Status"
-msgstr "สถานะเตียงทั้งหมด"
+msgstr "สถานะเตียง"
 
 #: templates/header.html:17
 msgid "Statistic"
@@ -68,7 +68,7 @@ msgstr "สถิติ"
 
 #: templates/header.html:18
 msgid "Check-out"
-msgstr ""
+msgstr "แจ้งออก"
 
 #: templates/header.html:22
 msgid "ภาษาไทย"
