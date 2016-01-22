@@ -16,6 +16,9 @@ Including another URLconf
 from django.conf.urls import url
 from .views import *
 
+# this is for including signal handler, do not remove
+from .signals import *
+
 urlpatterns = [
     url(r'^login/', LoginPage.as_view(), name='login'),
     url(r'^logout/', LogoutPage.as_view(), name='logout'),
