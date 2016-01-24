@@ -18,4 +18,7 @@ from . import views
 
 urlpatterns = [
     url(r'^switch-lang/', views.switch_lang, name='switch-lang'),
+    url(r'^fetch/ward/$', views.get_ward_all),
+    url(r'^fetch/ward/(?P<id>[0-9]+)/', views.get_ward)
+
 ]
