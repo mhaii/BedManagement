@@ -1,30 +1,30 @@
 - model: auth.group
   pk: 1
   fields:
-    name: Administrator
+    name: Nobody
     permissions: []
 - model: auth.group
   pk: 2
   fields:
-    name: Admission
+    name: Cashier
     permissions: []
 - model: auth.group
   pk: 3
   fields:
-    name: Nurse
+    name: Nurse Assistance
     permissions: []
 - model: auth.group
   pk: 4
   fields:
-    name: Nurse Assistance
+    name: Nurse
     permissions: []
 - model: auth.group
   pk: 5
   fields:
-    name: Cashier
+    name: Admission
     permissions: []
 - model: auth.group
   pk: 6
   fields:
-    name: Nobody
+    name: Administrator
     permissions: []

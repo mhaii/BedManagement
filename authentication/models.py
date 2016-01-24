@@ -7,8 +7,9 @@ from dashboard.models import Ward
 
 # Create your models here.
 class Staff(Model):
-    def get_default_group():
-        return Group.objects.filter(name='Nobody').first()
+    def get_default_group(self=None):
+        # get_or_create returns tuple (object, created)
+        return Group.objects.get_or_create(name='Nobody')[0]
 
     user = OneToOneField(User, verbose_name=_('User'), related_name='staff', unique=True, on_delete=CASCADE)
     role = ForeignKey(Group, verbose_name=_('Role'), related_name='+', default=get_default_group)
