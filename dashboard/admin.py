@@ -3,38 +3,38 @@ from django.contrib import admin
 from .models import *
 
 
-# Register your models here.
-@admin.register(User)
-class UserAdmin(ModelAdmin):
-    list_display = ['name', 'role', 'ward']
-    list_filter = ['role', 'ward']
+@admin.register(WardType)
+class WardTypeAdmin(ModelAdmin):
+    list_display = ['name', 'abbreviation']
 
 
 @admin.register(Ward)
 class WardAdmin(ModelAdmin):
-    list_display = ['name']
+    list_display = ['name', 'number', 'phone']
+    list_filter = ['number']
+    radio_fields = {'number': admin.HORIZONTAL}
 
 
 @admin.register(Room)
 class RoomAdmin(ModelAdmin):
-    list_display = ['room_number', 'ward', 'status', 'phone']
+    list_display = ['room_number', 'ward', 'status']
     list_filter = ['ward', 'status']
+    radio_fields = {'status': admin.HORIZONTAL}
 
 
 @admin.register(Admit)
 class AdmitAdmin(ModelAdmin):
-    list_display = ['patient', 'doctor', 'status', 'edd', 'symptom', 'admit_date']
-    list_filter = ['doctor', 'status', 'edd']
+    list_display = ['patient', 'symptom', 'doctor', 'edd', 'admit_date']
     list_display_links = ['patient', 'doctor']
+    list_filter = ['status', 'edd']
+    radio_fields = {'status': admin.HORIZONTAL}
 
 
 @admin.register(Patient)
-class RoomAdmin(ModelAdmin):
+class PatientAdmin(ModelAdmin):
     list_display = ['hn', 'first_name', 'last_name']
 
 
 @admin.register(Doctor)
 class DoctorAdmin(ModelAdmin):
     list_display = ['name']
-
-
