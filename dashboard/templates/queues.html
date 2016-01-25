@@ -10,10 +10,16 @@
 {% block content %}
     <body>
     <h1>Queues </h1>
-    <div class="container">
+    <div class="container" ng-app="QueuesApp" ng-controller="QueuesController as queuesController">
         {% include 'tables/queue-table.html' %}
         <p class="explain">*ตารางแสดงคนไข้ที่รอการจำหน่ายเตียงซึ่งสามารถจำหน่ายเตียงได้ทันทีโดยการกดปุ่ม "choose"</p>
     </div>
 </body>
+{% endblock %}
 
+{% block js %}
+    <script src="{% static 'angular/angular.min.js' %}" type="text/javascript"></script>
+    <script src="{% static 'djangular/js/django-angular.min.js' %}" type="text/javascript"></script>
+    <script> var static_url = {% get_static_prefix %}</script>
+    <script type="text/coffeescript" src="{% static 'dashboard/js/queues.coffee' %}"></script>
 {% endblock %}
