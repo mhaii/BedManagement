@@ -53,11 +53,14 @@ def init():
         [os.system('brew install {0}'.format(drink)) for drink in ['mysql', 'npm', 'gettext', 'msgpack']]
         os.system('brew link gettext --force')
     elif sys.platform == 'linux':
-        [os.system('sudo apt-get install {0} -y'.format(stuff)) for stuff in ['mysql-server', 'npm', 'gettext', 'libmsgpack*']]
+        [os.system('sudo apt-get install {0} -y'.format(stuff)) for stuff in ['mysql-server', 'libmysqlclient-dev', 'nodejs', 'npm', 'gettext', 'libmsgpack*', 'python3-dev']]
+        if not os.path.isfile('/usr/bin/node'):
+            os.system('sudo ln -s /usr/bin/nodejs /usr/bin/node')
 
 
 def install_requirement():
-    os.system('{0} install -r {1}'.format(pip, os.path.join(rootDir, 'requirement.txt')))
+    #os.system('{0} install -r {1}'.format(pip, os.path.join(rootDir, 'requirement.txt')))
+    os.system('{0} {1} bower install'.format(python, manage))
 
 
 def make_and_migrate():
@@ -67,4 +70,3 @@ def make_and_migrate():
 
 def module():
     [os.system('sudo npm install -g {0}'.format(module)) for module in ['angular', 'bower', 'coffee']]
-    os.system('{0} {1} bower install'.format(python, manage))

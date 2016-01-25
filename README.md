@@ -56,3 +56,11 @@ cap deploy
 + `module.py`  
   install `Javascript` dependencies, [`angular`, `bower`, `coffee`]  
   then run `manage.py bower install` to import required static files
+  
+### Order of script from scratch
+1. `init.py`
+2. `module.py`
+3. `install_requirement.py`
+4. `make_and_migrate.py`
+5. `import_fixture.py`
+6. `i18n.py`
