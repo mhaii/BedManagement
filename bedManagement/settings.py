@@ -23,6 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 if sys.platform == 'darwin' and '/usr/local/bin' not in os.environ['PATH']:
     os.environ['PATH'] += ':/usr/local/bin'
 
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
 
