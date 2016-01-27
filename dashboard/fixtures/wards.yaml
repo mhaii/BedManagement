@@ -1,0 +1,119 @@
+- model: dashboard.ward
+  pk: 1
+  fields:
+    name: 84/5
+    remark: East
+    price: 2500
+    phone: 8415, 8590
+    bed_type: 1
+    type:
+      - 1
+      - 2
+- model: dashboard.ward
+  pk: 2
+  fields:
+    name: 84/5
+    remark: West
+    price: 2000
+    phone: 7240-1
+    bed_type: 1
+    type:
+      - 1
+      - 2
+- model: dashboard.ward
+  pk: 3
+  fields:
+    name: 84/6
+    remark: East
+    price: 3000
+    phone: 7249, 7250
+    bed_type: 1
+    type:
+      - 1
+      - 2
+- model: dashboard.ward
+  pk: 4
+  fields:
+    name: 84/6
+    remark: West
+    price: 3000
+    phone: 7251, 7252
+    bed_type: 1
+    type:
+      - 1
+      - 2
+- model: dashboard.ward
+  pk: 5
+  fields:
+    name: 84/7
+    remark: East
+    price: 3000
+    phone: 7255-6
+    bed_type: 1
+    type:
+      - 2
+- model: dashboard.ward
+  pk: 6
+  fields:
+    name: 84/7
+    remark: West
+    price: 3000
+    phone: 7450, 9112
+    bed_type: 1
+    type:
+      - 1
+      - 2
+- model: dashboard.ward
+  pk: 7
+  fields:
+    name: 84/9
+    remark: East
+    price: 2500
+    phone: 7259
+    bed_type: 1
+    type: []
+- model: dashboard.ward
+  pk: 8
+  fields:
+    name: 84/10
+    remark: East
+    price: 2500
+    phone: 7263
+    bed_type: 1
+    type: []
+- model: dashboard.ward
+  pk: 9
+  fields:
+    name: 84/10
+    remark: West
+    price: 2500
+    phone: 7265
+    bed_type: 1
+    type: []
+- model: dashboard.ward
+  pk: 10
+  fields:
+    name: วธ.3
+    remark: 
+    price: 2000
+    phone: 7489
+    bed_type: 1
+    type: []
+- model: dashboard.ward
+  pk: 11
+  fields:
+    name: วธ.3
+    remark: 
+    price: 2000
+    phone: 7490
+    bed_type: 1
+    type: []
+- model: dashboard.ward
+  pk: 12
+  fields:
+    name: 72/9
+    remark: East Female
+    price: 800
+    phone: 8076
+    bed_type: 2
+    type: []
