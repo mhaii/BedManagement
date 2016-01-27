@@ -16,6 +16,8 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 
+from django.conf import settings
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^accounts/', include('authentication.urls')),
@@ -23,3 +25,6 @@ urlpatterns = [
     url(r'^api/', include('api.urls')),
     url(r'', include('dashboard.urls')),
 ]
+
+if settings.DEBUG and 'rosetta' in settings.INSTALLED_APPS:
+    urlpatterns += [url(r'^translate/', include('rosetta.urls'))]
