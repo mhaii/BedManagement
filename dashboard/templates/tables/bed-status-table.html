@@ -1,153 +1,27 @@
+{% load i18n %}
+
 <div class="bs-docs-section">
     <div class="row">
         <div>
-            <h1 id="table">Bed Status</h1>
+            <h1 id="table">{% trans 'Bed Status'%}</h1>
         </div>
-            <div class="bs-component">
+        <div class="bs-component" ng-controller="BedStatusController as beds">
             <table class="table table-bordered table-striped table-hover">
                 <thead>
                     <tr>
-                        <th>Name</th>
-                        <th colspan="18">Room Number</th>
+                        <th>{% trans 'Name' %}</th>
+                        <th colspan="18">{% trans 'Room Number'%}</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>84/9 อ (2500+250) โทร. 7259</td>
-                        <td class="busy">
-                            <div id="patientpopup">
-                                {% include 'tables/patient-detail-hover.html' %}
-                            </div>
-                            919
-                        </td>
-                        <td class="busy">920</td>
-                        <td class="free">
-                            <div id="patientpopup">
-                                {% include 'tables/free-status-hover.html' %}
-                            </div>
-                            921
-                        </td>
-                        <td class="busy">922</td>
-                        <td class="busy">923</td>
-                        <td class="busy">924</td>
-                        <td class="busy">925</td>
-                        <td class="busy">926</td>
-                        <td class="busy">927</td>
-                        <td class="busy">928</td>
-                        <td class="busy">929</td>
-                        <td class="busy">930</td>
-                        <td class="busy">931</td>
-                        <td class="busy">932</td>
-                        <td class="busy">933</td>
-                        <td class="busy">934</td>
-                        <td class="busy">935</td>
-                        <td class="busy">936</td>
-                    </tr>
-                    <tr>
-                        <td>84/10 อ (2500+250) โทร. 7263</td>
-                        <td class="busy">1001</td>
-                        <td class="busy">1002</td>
-                        <td class="busy">1003</td>
-                        <td class="busy">1004</td>
-                        <td class="busy">1005</td>
-                        <td class="busy">1006</td>
-                        <td class="busy">1007</td>
-                        <td class="busy">1008</td>
-                        <td class="busy">1009</td>
-                        <td class="busy">1010</td>
-                        <td class="busy">1011</td>
-                        <td class="busy">1012</td>
-                        <td class="busy">1013</td>
-                        <td class="busy">1014</td>
-                        <td class="busy">1015</td>
-                        <td class="busy">1016</td>
-                        <td class="busy">1017</td>
-                        <td class="busy">1018</td>
-                    </tr>
-                    <tr>
-                        <td>84/10 ต (2500+250) โทร. 7265</td>
-                        <td class="busy">1019</td>
-                        <td class="busy">1020</td>
-                        <td class="busy">1021</td>
-                        <td class="busy">1022</td>
-                        <td class="busy">1023</td>
-                        <td class="busy">1024</td>
-                        <td class="busy">1025</td>
-                        <td class="busy">1026</td>
-                        <td class="busy">1027</td>
-                        <td class="busy">1028</td>
-                        <td class="busy">1029</td>
-                        <td class="busy">1030</td>
-                        <td class="busy">1031</td>
-                        <td class="busy">1032</td>
-                        <td class="busy">1033</td>
-                        <td class="busy">1034</td>
-                        <td class="busy">1035</td>
-                        <td class="busy">1036</td>
-                    </tr>
-                    <tr>
-                        <td>วธ.3 (2000+250) โทร. 7489</td>
-                        <td class="busy">301</td>
-                        <td class="busy">302</td>
-                        <td class="busy">303</td>
-                        <td class="busy">304</td>
-                        <td class="busy">305</td>
-                        <td class="busy">306</td>
-                        <td class="busy">307</td>
-                        <td class="busy">308</td>
-                        <td class="busy">309</td>
-                        <td class="busy">322</td>
-                        <td class="busy">323</td>
-                        <td class="busy">324</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>วธ.3 (2000+250) โทร. 7490</td>
-                        <td class="busy">310</td>
-                        <td class="busy">311</td>
-                        <td class="busy">312</td>
-                        <td class="busy">313</td>
-                        <td class="busy">314</td>
-                        <td class="busy">315</td>
-                        <td class="busy">316</td>
-                        <td class="busy">317</td>
-                        <td class="busy">318</td>
-                        <td class="busy">319</td>
-                        <td class="busy">320</td>
-                        <td class="busy">321</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>มว.2 (2000+250) โทร. 7490</td>
-                        <td class="busy">310</td>
-                        <td class="busy">311</td>
-                        <td class="busy">312</td>
-                        <td class="busy">313</td>
-                        <td class="busy">314</td>
-                        <td class="busy">315</td>
-                        <td class="busy">316</td>
-                        <td class="busy">317</td>
-                        <td class="busy">318</td>
-                        <td class="busy">319</td>
-                        <td class="busy">320</td>
-                        <td class="busy">321</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
+                    {% for ward in wards %}
+                        <tr>
+                            <td>{{ ward }}</td>
+                            {% for room in ward.rooms.all %}
+                                <td id="{{ room.number }}"class="room-{{ room.get_status_display|lower }}">{{ room.number }}</td>
+                            {% endfor %}
+                        </tr>
+                    {% endfor %}
                 </tbody>
             </table>
         </div>

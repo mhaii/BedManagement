@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 
 # Create your views here.
 from django.views.generic import View
+from .models import *
 
 
 class Landing(LoginRequiredMixin, View):
@@ -12,7 +13,10 @@ class Landing(LoginRequiredMixin, View):
 
 class Status(LoginRequiredMixin, View):
     def get(self, request):
-        return render(request, 'status-all.html')
+        context = dict()
+        wards = Ward.objects.all()
+        context['wards'] = wards
+        return render(request, 'status-all.html', context=context)
 
 
 class BookQueue(LoginRequiredMixin, View):
