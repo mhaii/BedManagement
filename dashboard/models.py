@@ -29,20 +29,21 @@ class Ward(Model):
     enum_type = [
         (1, _('Single')),
         (2, _('Double')),
+        (3, _('Mixed')),
     ]
 
     name = CharField(_('Ward Name'), max_length=15, default='Ward')
-    type = ManyToManyField(WardType, verbose_name=_('Ward Type'), related_name='wards')
+    type = ManyToManyField(WardType, verbose_name=_('Ward Type'), related_name='wards', blank=True)
     price = IntegerField(_('Default price for room'), default=0)
     phone = CharField(_('Phone no.'), max_length=12)
-    number = PositiveSmallIntegerField(_('Bed')+':', default=1, choices=enum_type)
+    bed_type = PositiveSmallIntegerField(_('Bed')+':', default=1, choices=enum_type)
 
     class Meta:
         verbose_name = _('Ward')
         verbose_name_plural = _('Wards')
 
     def __str__(self):
-        return str(self.name)
+        return str('{0} {1} {2} ({3})'.format(_(self.name), _('Tel.'), self.phone, self.price))
 
     def as_dict(self):
         return dict(name=self.name, type=self.type, price=self.price, phone=self.phone, number=self.number)
@@ -57,7 +58,7 @@ class Room(Model):
         ('AVN', _('Available')),
     ]
 
-    room_number = CharField(_('Room no.'), max_length=7)
+    number = CharField(_('Room no.'), max_length=7)
     status = CharField(_('Room status'), max_length=3, choices=enum_status, default='AVN')
     ward = ForeignKey(Ward, verbose_name=_('Ward'),  related_name='rooms')
     price = IntegerField(_('Room price'), default=0)
@@ -67,10 +68,10 @@ class Room(Model):
         verbose_name_plural = _('Rooms')
 
     def __str__(self):
-        return '[{0}] {1}'.format(*map(str, [self.ward, self.room_number]))
+        return '[{0}] {1}'.format(*map(str, [self.ward, self.number]))
 
     def as_dict(self):
-        return dict(room_number=self.room_number, status=self.status, ward=self.status, price=self.price)
+        return dict(room_number=self.number, status=self.status, ward=self.status, price=self.price)
 
 
 class Patient(Model):
