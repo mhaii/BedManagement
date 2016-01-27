@@ -51,15 +51,15 @@ class Ward(Model):
 
 class Room(Model):
     enum_status = [
-        ('DIS', _('Disabled')),
-        ('RES', _('Reserved')),
-        ('OCC', _('Occupied')),
-        ('AVS', _('Available Soon')),
-        ('AVN', _('Available')),
+        ('DI', _('Disabled')),
+        ('RE', _('Reserved')),
+        ('OC', _('Occupied')),
+        ('AS', _('Available Soon')),
+        ('AV', _('Available')),
     ]
 
     number = CharField(_('Room no.'), max_length=7)
-    status = CharField(_('Room status'), max_length=3, choices=enum_status, default='AVN')
+    status = CharField(_('Room status'), max_length=2, choices=enum_status, default='AV')
     ward = ForeignKey(Ward, verbose_name=_('Ward'),  related_name='rooms')
     price = IntegerField(_('Room price'), default=0)
 

@@ -29,7 +29,7 @@ class PatientAdmin(ModelAdmin):
 
 @admin.register(Room)
 class RoomAdmin(ModelAdmin):
-    list_display = ['number', 'ward', 'status']
+    list_display = ['number', 'price', 'ward', 'status']
     list_filter = ['ward', 'status']
     radio_fields = {'status': admin.HORIZONTAL}
 
