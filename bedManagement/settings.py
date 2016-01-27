@@ -145,6 +145,7 @@ LANGUAGE = [
 if DEBUG:
     INSTALLED_APPS += ['rosetta']
     ROSETTA_MESSAGES_PER_PAGE = 30
+    ROSETTA_STORAGE_CLASS = 'rosetta.storage.CacheRosettaStorage'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
