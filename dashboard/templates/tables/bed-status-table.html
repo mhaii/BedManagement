@@ -1,4 +1,5 @@
 {% load i18n %}
+{% load helpers %}
 
 <div class="bs-docs-section">
     <div class="row">
@@ -6,11 +7,11 @@
             <h1 id="table">{% trans 'Bed Status'%}</h1>
         </div>
         <div class="bs-component" ng-controller="BedStatusController as beds">
-            <table class="table table-bordered table-striped table-hover">
+            <table class="table table-bordered table-striped table-hover" border="1">
                 <thead>
                     <tr>
                         <th>{% trans 'Name' %}</th>
-                        <th colspan="18">{% trans 'Room Number'%}</th>
+                        <th colspan="20">{% trans 'Room Number'%}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -18,8 +19,9 @@
                         <tr>
                             <td>{{ ward }}</td>
                             {% for room in ward.rooms.all %}
-                                <td id="{{ room.number }}"class="room-{{ room.get_status_display|lower }}">{{ room.number }}</td>
+                                <td id="{{ room.number }}" class="room-{{ room.status }}">{{ room.number }}</td>
                             {% endfor %}
+                            {% for _ in max_room|times:ward.rooms.count %}<td></td>{% endfor %}
                         </tr>
                     {% endfor %}
                 </tbody>

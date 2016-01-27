@@ -16,6 +16,7 @@ class Status(LoginRequiredMixin, View):
         context = dict()
         wards = Ward.objects.all()
         context['wards'] = wards
+        context['max_room'] = max([ward.rooms.count() for ward in wards])
         return render(request, 'status-all.html', context=context)
 
 
