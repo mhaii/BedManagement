@@ -32,7 +32,8 @@ class Ward(Model):
         (3, _('Mixed')),
     ]
 
-    name = CharField(_('Ward Name'), max_length=15, default='Ward')
+    name = CharField(_('Ward Name'), max_length=15)
+    remark = CharField(_('Ward Detail'), max_length=15, blank=True)
     type = ManyToManyField(WardType, verbose_name=_('Ward Type'), related_name='wards', blank=True)
     price = IntegerField(_('Default price for room'), default=0)
     phone = CharField(_('Phone no.'), max_length=12)
@@ -43,11 +44,16 @@ class Ward(Model):
         verbose_name_plural = _('Wards')
 
     def __str__(self):
-        return str('{0} {1} {2} ({3})'.format(_(self.name), _('Tel.'), self.phone, self.price))
+        return str('{0} {1} {2} {3} ({4})'.format(_(self.name), ' '.join([str(_(word)) for word in str(self.remark).split()]),
+                                                 _('Tel.'), self.phone, self.price))
 
     def as_dict(self):
         return dict(name=self.name, type=self.type, price=self.price, phone=self.phone, number=self.number)
 
+_('East')
+_('West')
+_('Male')
+_('Female')
 
 class Room(Model):
     enum_status = [

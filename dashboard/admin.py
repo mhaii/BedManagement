@@ -36,7 +36,7 @@ class RoomAdmin(ModelAdmin):
 
 @admin.register(Ward)
 class WardAdmin(ModelAdmin):
-    list_display = ['name', 'bed_type', 'phone', '_room_count']
+    list_display = ['name', 'remark', 'bed_type', 'phone', '_room_count']
     list_filter = ['bed_type']
     radio_fields = {'bed_type': admin.HORIZONTAL}
 
