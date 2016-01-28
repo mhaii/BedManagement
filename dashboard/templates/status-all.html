@@ -1,8 +1,9 @@
 {% extends 'basefile.html' %}
 
 {% load static %}
+{% load i18n %}
 
-{% block title %}Bed Status{% endblock %}
+{% block title %}{% trans 'Bed Status' %}{% endblock %}
 
 {% block css %}
     <link rel="stylesheet" type="text/x-sass" href="{% static 'dashboard/css/status.sass' %}">

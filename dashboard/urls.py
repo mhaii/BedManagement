@@ -14,8 +14,11 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf.urls import url
+from .views import *
 
-from .views import BookQueue, CheckOut, ChooseBed, Home, Landing, Status, EditPatientInfo, Queues
+# this is for including signal handler, do not remove
+from .signals import *
+
 
 urlpatterns = [
     url(r'^home/', Home.as_view(), name='home'),

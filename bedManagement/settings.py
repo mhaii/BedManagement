@@ -23,6 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 if sys.platform == 'darwin' and '/usr/local/bin' not in os.environ['PATH']:
     os.environ['PATH'] += ':/usr/local/bin'
 
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
 
@@ -138,6 +139,14 @@ LANGUAGE = [
     ('th', 'Thai'),
 ]
 
+
+# Django-Rosetta
+# http://django-rosetta.readthedocs.org/en/latest/settings.html
+
+if DEBUG:
+    INSTALLED_APPS += ['rosetta']
+    ROSETTA_MESSAGES_PER_PAGE = 30
+    ROSETTA_STORAGE_CLASS = 'rosetta.storage.CacheRosettaStorage'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
