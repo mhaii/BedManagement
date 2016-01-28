@@ -23,7 +23,7 @@ StatusController = ($filter)->
   return
 
 angular
-  .module('MyApp',[])
+  .module('checkOutAppc',[])
   .config ($interpolateProvider) ->
     $interpolateProvider.startSymbol('{$')
     $interpolateProvider.endSymbol('$}')
