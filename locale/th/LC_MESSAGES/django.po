@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-28 04:46+0700\n"
-"PO-Revision-Date: 2016-01-28 04:46+0700\n"
+"POT-Creation-Date: 2016-01-28 13:25+0700\n"
+"PO-Revision-Date: 2016-01-28 13:24+0700\n"
 "Last-Translator: b'  <>'\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -32,7 +32,7 @@ msgstr "วอร์ด"
 
 #: authentication/models.py:22
 msgid "Nobody"
-msgstr "จิ้"
+msgstr "ผู้ใช้สามัญ"
 
 #: authentication/models.py:23
 msgid "Cashier"
@@ -121,11 +121,11 @@ msgstr "ชื่อวอร์ด"
 
 #: dashboard/models.py:36
 msgid "Ward Detail"
-msgstr "ชนิดของวอร์ด"
+msgstr "รายละเอียดของวอร์ด"
 
 #: dashboard/models.py:38
 msgid "Default price for room"
-msgstr ""
+msgstr "ราคาเริ่มต้นของห้องพัก"
 
 #: dashboard/models.py:39
 msgid "Phone no."
@@ -173,7 +173,7 @@ msgstr "ไม่ว่าง"
 
 #: dashboard/models.py:63
 msgid "Available Soon"
-msgstr "ใกล้ว่าง"
+msgstr "กำลังจะว่าง"
 
 #: dashboard/models.py:64
 msgid "Available"
@@ -233,15 +233,15 @@ msgstr "แพทย์"
 
 #: dashboard/models.py:118
 msgid "Discharged"
-msgstr ""
+msgstr "จำหน่ายออก"
 
 #: dashboard/models.py:119
 msgid "Pre-discharged"
-msgstr ""
+msgstr "เตรียมจำหน่ายออก"
 
 #: dashboard/models.py:120
 msgid "Currently admit"
-msgstr ""
+msgstr "กำลังรักษาตัว"
 
 #: dashboard/models.py:121
 msgid "In Queue"
