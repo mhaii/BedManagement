@@ -7,15 +7,52 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-21 14:28+0700\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2016-01-28 13:25+0700\n"
+"PO-Revision-Date: 2016-01-28 13:24+0700\n"
+"Last-Translator: b'  <>'\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"X-Translated-Using: django-rosetta 0.7.8\n"
+
+#: authentication/models.py:14
+msgid "User"
+msgstr "ผู้ใช้"
+
+#: authentication/models.py:15
+msgid "Role"
+msgstr "หน้าที่"
+
+#: authentication/models.py:16 dashboard/models.py:43 dashboard/models.py:69
+msgid "Ward"
+msgstr "วอร์ด"
+
+#: authentication/models.py:22
+msgid "Nobody"
+msgstr "ผู้ใช้สามัญ"
+
+#: authentication/models.py:23
+msgid "Cashier"
+msgstr "แคชเชียร์"
+
+#: authentication/models.py:24
+msgid "Nurse Assistance"
+msgstr "ผู้ช่วยพยาบาล"
+
+#: authentication/models.py:25
+msgid "Nurse"
+msgstr "พยาบาล"
+
+#: authentication/models.py:26
+msgid "Admission"
+msgstr "แอดมิชชั่น"
+
+#: authentication/models.py:27
+msgid "Administrator"
+msgstr "ผู้ดูแล"
 
 #: authentication/templates/authentication.html:6
 msgid "Login to HMS"
@@ -46,6 +83,211 @@ msgstr "รหัสผ่านไม่ถูกต้อง"
 msgid "Username not found."
 msgstr "ไม่พบชื่อผู้ใช้งาน"
 
+#: dashboard/admin.py:48
+msgid "Room Count"
+msgstr "จำนวนห้อง"
+
+#: dashboard/apps.py:7
+msgid "dashboard"
+msgstr "แผงควบคุม"
+
+#: dashboard/models.py:13 dashboard/models.py:17 dashboard/models.py:37
+msgid "Ward Type"
+msgstr "ชนิดของวอร์ด"
+
+#: dashboard/models.py:14
+msgid "Abbreviated Ward Type"
+msgstr "คำย่อ"
+
+#: dashboard/models.py:18
+msgid "Ward Types"
+msgstr "ชนิดของวอร์ด"
+
+#: dashboard/models.py:30
+msgid "Single"
+msgstr "เดี่ยว"
+
+#: dashboard/models.py:31
+msgid "Double"
+msgstr "คู่"
+
+#: dashboard/models.py:32
+msgid "Mixed"
+msgstr "ผสม"
+
+#: dashboard/models.py:35
+msgid "Ward Name"
+msgstr "ชื่อวอร์ด"
+
+#: dashboard/models.py:36
+msgid "Ward Detail"
+msgstr "รายละเอียดของวอร์ด"
+
+#: dashboard/models.py:38
+msgid "Default price for room"
+msgstr "ราคาเริ่มต้นของห้องพัก"
+
+#: dashboard/models.py:39
+msgid "Phone no."
+msgstr "เบอร์โทรศัพท์"
+
+#: dashboard/models.py:40
+msgid "Bed"
+msgstr "เตียง"
+
+#: dashboard/models.py:44
+msgid "Wards"
+msgstr "วอร์ด"
+
+#: dashboard/models.py:48
+msgid "Tel."
+msgstr "โทร."
+
+#: dashboard/models.py:53
+msgid "East"
+msgstr "ออก"
+
+#: dashboard/models.py:54
+msgid "West"
+msgstr "ตก"
+
+#: dashboard/models.py:55
+msgid "Male"
+msgstr "ชาย"
+
+#: dashboard/models.py:56
+msgid "Female"
+msgstr "หญิง"
+
+#: dashboard/models.py:60
+msgid "Disabled"
+msgstr "ปิดการใช้งาน"
+
+#: dashboard/models.py:61
+msgid "Reserved"
+msgstr "ถูกจอง"
+
+#: dashboard/models.py:62
+msgid "Occupied"
+msgstr "ไม่ว่าง"
+
+#: dashboard/models.py:63
+msgid "Available Soon"
+msgstr "กำลังจะว่าง"
+
+#: dashboard/models.py:64
+msgid "Available"
+msgstr "ว่าง"
+
+#: dashboard/models.py:67
+msgid "Room no."
+msgstr "เลขห้อง"
+
+#: dashboard/models.py:68
+msgid "Room status"
+msgstr "สถานะห้อง"
+
+#: dashboard/models.py:70
+msgid "Room price"
+msgstr "ราคาห้อง"
+
+#: dashboard/models.py:73
+msgid "Room"
+msgstr "ห้อง"
+
+#: dashboard/models.py:74
+msgid "Rooms"
+msgstr "ห้อง"
+
+#: dashboard/models.py:84
+msgid "Patient's HN number"
+msgstr "เลขประจำตัวผู้ป่วย"
+
+#: dashboard/models.py:85
+msgid "First name"
+msgstr "ชื่อ"
+
+#: dashboard/models.py:86
+msgid "Last name"
+msgstr "นามสกุล"
+
+#: dashboard/models.py:89 dashboard/models.py:124
+msgid "Patient"
+msgstr "ผู้ป่วย"
+
+#: dashboard/models.py:90
+msgid "Patients"
+msgstr "ผู้ป่วย"
+
+#: dashboard/models.py:100
+msgid "Doctor's name"
+msgstr "ชื่อแพทย์"
+
+#: dashboard/models.py:103
+msgid "Doctor"
+msgstr "แพทย์"
+
+#: dashboard/models.py:104
+msgid "Doctors"
+msgstr "แพทย์"
+
+#: dashboard/models.py:118
+msgid "Discharged"
+msgstr "จำหน่ายออก"
+
+#: dashboard/models.py:119
+msgid "Pre-discharged"
+msgstr "เตรียมจำหน่ายออก"
+
+#: dashboard/models.py:120
+msgid "Currently admit"
+msgstr "กำลังรักษาตัว"
+
+#: dashboard/models.py:121
+msgid "In Queue"
+msgstr "อยู่ในคิว"
+
+#: dashboard/models.py:125
+msgid "Primary Doctor"
+msgstr "แพทย์หลัก"
+
+#: dashboard/models.py:126
+msgid "Patient Status"
+msgstr "สถานะผู้ป่วย"
+
+#: dashboard/models.py:127
+msgid "Estimated date to be discharged"
+msgstr "วันที่คาดว่าจะออกจากโรงพยาบาล"
+
+#: dashboard/models.py:128
+msgid "Symptom"
+msgstr "อาการผู้ป่วย"
+
+#: dashboard/models.py:129
+msgid "Admitted Date"
+msgstr "วันที่เข้ารับการรักษา"
+
+#: dashboard/models.py:132
+msgid "Admit"
+msgstr "แอดมิท"
+
+#: dashboard/models.py:133
+msgid "Admits"
+msgstr "แอดมิท"
+
+#: dashboard/templates/status-all.html:6
+#: dashboard/templates/tables/bed-status-table.html:7 templates/header.html:16
+msgid "Bed Status"
+msgstr "สถานะเตียง"
+
+#: dashboard/templates/tables/bed-status-table.html:13
+msgid "Name"
+msgstr "ชื่อวอร์ด"
+
+#: dashboard/templates/tables/bed-status-table.html:14
+msgid "Room Number"
+msgstr "เลขห้อง"
+
 #: templates/header.html:13
 msgid "Home"
 msgstr "หน้าหลัก"
@@ -57,10 +299,6 @@ msgstr "คิว"
 #: templates/header.html:15
 msgid "Add Queue"
 msgstr "เพิ่มคิว"
-
-#: templates/header.html:16
-msgid "Bed Status"
-msgstr "สถานะเตียง"
 
 #: templates/header.html:17
 msgid "Statistic"
