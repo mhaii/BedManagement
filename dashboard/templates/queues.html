@@ -12,35 +12,7 @@
     <body>
     <h1>{% trans queues %} </h1>
     <div class="container" ng-app="QueuesApp" ng-controller="QueuesController as qCtrl">
-{#        {% include 'tables/queue-table.html' %}#}
-        <div class="table-responsive" style="margin-top: 2%;">
-            <table class="table table-striped table-bordered table-hover">
-                <thead>
-                <tr>
-                    <th>{% trans 'HN Number' %}</th>
-                    <th>{% trans 'Name' %}</th>
-                    <th>{% trans 'Appointment' %}</th>
-                    <th>{% trans 'Symptom' %}</th>
-                    <th>{% trans 'Doctor' %}</th>
-                    <th>{% trans 'Phone Number' %}</th>
-                    <th>{% trans 'Status' %}</th>
-                    <th></th>
-                </tr>
-                </thead>
-                <tbody>
-                    <tr ng-repeat="item in qCtrl.qData">
-                        <td>{$ item.id $}</td>
-                        <td>{$ item.firstname $}</td>
-                        <td>{$ item.lastname $}</td>
-                        <td>{$ item.appointment $}</td>
-                        <td>{$ item.doctor $}</td>
-                        <td>{$ item.phoneNo $}</td>
-                        <td>{$ item.status $}</td>
-                        <td><a href="{% url 'status' %}" ng-if="item.status.toLowerCase() === 'confirmed'" ng-click="qCtrl.choose(item)">{% trans 'Choose' %}</a></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+        {% include 'tables/queue-table.html' %}
         <p class="explain">*ตารางแสดงคนไข้ที่รอการจำหน่ายเตียงซึ่งสามารถจำหน่ายเตียงได้ทันทีโดยการกดปุ่ม "choose"</p>
     </div>
 </body>

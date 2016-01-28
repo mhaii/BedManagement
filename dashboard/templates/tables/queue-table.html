@@ -1,47 +1,29 @@
+{% load i18n %}
+
 <div class="table-responsive" style="margin-top: 2%;">
     <table class="table table-striped table-bordered table-hover">
         <thead>
-            <tr>
-                <th>HN Number</th>
-                <th>Name</th>
-                <th>Appointment</th>
-                <th>Symptom</th>
-                <th>Doctor</th>
-                <th>Phone Number</th>
-                <th>Status</th>
-                <th></th>
-            </tr>
+        <tr>
+            <th>{% trans 'HN Number' %}</th>
+            <th>{% trans 'Name' %}</th>
+            <th>{% trans 'Appointment' %}</th>
+            <th>{% trans 'Symptom' %}</th>
+            <th>{% trans 'Doctor' %}</th>
+            <th>{% trans 'Phone Number' %}</th>
+            <th>{% trans 'Status' %}</th>
+            <th></th>
+        </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>00000001</td>
-                <td>คนไข้ทดลอง1 โดยเด็กมหิดล</td>
-                <td>Today</td>
-                <td>มะเร็งกล่องเสียง</td>
-                <td>หมอ1</td>
-                <td>081-234-5678</td>
-                <td>Confirmed</td>
-                <td><a href="{% if request.resolver_match.url_name == 'landing' or request.resolver_match.url_name == 'queues' %}{% url 'choose_bed' %}{% endif %}">Choose</a></td>
-            </tr>
-            <tr>
-                <td>00000002</td>
-                <td>คนไข้ทดลอง2ที่ชื่อยาวกว่า โดยเด็กมหิดล</td>
-                <td>พรุ่งนี้ </td>
-                <td>ผ่าตัดลำไส้เล็ก</td>
-                <td>ชื่อหมอยาวยาว โดยเด็กมหิดล</td>
-                <td>081-223-4567</td>
-                <td>Pending</td>
-                <td><a class="disabled" href="{% url 'choose_bed' %}">Choose</a></td>
-            </tr>
-            <tr>
-                <td>00000003</td>
-                <td>คนไข้ทดลอง3ที่ชื่อยาวกว่า โดยเด็กมหิดล</td>
-                <td>พรุ่งนี้ </td>
-                <td>โรคปากแหว่งเพดานโหว่</td>
-                <td>ชื่อหมอยาวยาว โดยเด็กมหิดล</td>
-                <td>089-787-7777</td>
-                <td>Pending</td>
-                <td><a class="disabled" href="{% url 'choose_bed' %}">Choose</a></td>
+            <tr ng-repeat="item in qCtrl.qData">
+                <td>{$ item.id $}</td>
+                <td>{$ item.firstname $}</td>
+                <td>{$ item.lastname $}</td>
+                <td>{$ item.appointment $}</td>
+                <td>{$ item.doctor $}</td>
+                <td>{$ item.phoneNo $}</td>
+                <td>{$ item.status $}</td>
+                <td><a href="{% url 'status' %}" ng-if="item.status.toLowerCase() === 'confirmed'" ng-click="qCtrl.choose(item)">{% trans 'Choose' %}</a></td>
             </tr>
         </tbody>
     </table>

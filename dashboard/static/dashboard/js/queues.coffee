@@ -1,17 +1,22 @@
-QueuesController = (myService)->
+QueuesController = (MainService)->
   vm = @
   vm.qData = []
-  myService.getQueuesData().then (data)->
-#    console.log(data.queues)
+
+  MainService.getQueuesData().then (data)->
+    console.log(data)
     vm.qData = data.queues
     return
+   ,(error)->
+    return
+
   vm.choose = (item)->
     console.log(item)
     return
+
   return
 
 QueuesController
-  .$inject = ['myService']
+  .$inject = ['MainService']
 
 angular
   .module('QueuesApp',['globalApp'])
