@@ -94,7 +94,7 @@
   pk: 10
   fields:
     name: วธ.3
-    remark: 
+    remark: ''
     price: 2000
     phone: 7489
     bed_type: 1
@@ -103,7 +103,7 @@
   pk: 11
   fields:
     name: วธ.3
-    remark: 
+    remark: ''
     price: 2000
     phone: 7490
     bed_type: 1
