@@ -13,3 +13,18 @@
     date_joined: '2016-01-21T16:26:41.445Z'
     groups: []
     user_permissions: []
+- model: auth.user
+  pk: 2
+  fields:
+    password: pbkdf2_sha256$24000$177AFQg4VPhS$Wj/YspQeUqB39oOqobQXyP0bnwUAeRqceJP/S9KHNFA=
+    last_login: '2016-01-21T17:12:27.818Z'
+    is_superuser: true
+    username: noeyfml
+    first_name: ''
+    last_name: ''
+    email: ''
+    is_staff: true
+    is_active: true
+    date_joined: '2016-01-21T16:26:41.445Z'
+    groups: []
+    user_permissions: []
