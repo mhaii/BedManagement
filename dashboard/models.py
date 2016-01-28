@@ -55,6 +55,7 @@ _('West')
 _('Male')
 _('Female')
 
+
 class Room(Model):
     enum_status = [
         ('DI', _('Disabled')),
@@ -111,22 +112,23 @@ class Doctor(Model):
 
 
 class Admit(Model):
-    def yesterday():
+    def yesterday(self=None):
         return timezone.now() - timedelta(1)
 
     enum_status = [
-        ('DIS', _('Discharged')),
-        ('PRE', _('Pre-discharged')),
-        ('CUR', _('Currently admit')),
-        ('QUE', _('In Queue')),
+        (0, _('Pending')),
+        (1, _('Confirmed')),
+        (2, _('Currently admit')),
+        (3, _('Pre-discharged')),
+        (4, _('Discharged')),
     ]
 
     patient = ForeignKey(Patient, verbose_name=_('Patient'), related_name='admits')
     doctor = ForeignKey(Doctor, verbose_name=_('Primary Doctor'), related_name='patients')
-    status = CharField(_('Patient Status'), max_length=3, choices=enum_status, default='QUE')
-    edd = DateField(_('Estimated date to be discharged'), default=yesterday)
+    status = PositiveSmallIntegerField(_('Patient Status'), choices=enum_status, default=0)
+    edd = DateField(_('Estimated date to be discharged'), default=timezone.now)
+    admit_date = DateField(_('Admitted Date'), default=timezone.now)
     symptom = CharField(_('Symptom'), max_length=30)
-    admit_date = DateTimeField(_('Admitted Date'), auto_now_add=True)
 
     class Meta:
         verbose_name = _('Admit')

@@ -11,7 +11,7 @@ from django.utils.translation import ugettext_lazy as _
 
 @admin.register(Admit)
 class AdmitAdmin(ModelAdmin):
-    list_display = ['patient', 'symptom', 'doctor', 'edd', 'admit_date']
+    list_display = ['patient', 'symptom', 'doctor', 'admit_date', 'edd']
     list_display_links = ['patient', 'doctor']
     list_filter = ['status', 'edd']
     radio_fields = {'status': admin.HORIZONTAL}
