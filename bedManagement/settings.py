@@ -188,3 +188,4 @@ BOWER_INSTALLED_APPS = [
 # http://django-angular.readthedocs.org/en/latest/reverse-urls.html
 
 MIDDLEWARE_CLASSES.insert(0, 'djangular.middleware.DjangularUrlMiddleware')
+STATICFILES_DIRS += [os.path.join(BASE_DIR, 'dashboard/templates')]
