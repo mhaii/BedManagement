@@ -5,9 +5,11 @@ dir=$(dirname $appdir)"/shared"
 app="gunicorn"
 pidfile=$dir/$app".pid"
 
+
 do_start () {
 	# Assuming this is on root directory of project
 	daemon=true
+	if [ $# -gt 1 ]; then daemon=false; fi
 	log=$dir/$app".log"
 	loglevel="warning"
 	bind="unix://"$dir/$app".sock"
