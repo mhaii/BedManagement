@@ -183,3 +183,8 @@ BOWER_INSTALLED_APPS = [
     'highcharts#~4.2.1',
     'angular-ui-router#~0.2.0'
 ]
+
+# Django-Angular
+# http://django-angular.readthedocs.org/en/latest/reverse-urls.html
+
+MIDDLEWARE_CLASSES.insert(0, 'djangular.middleware.DjangularUrlMiddleware')
