@@ -180,5 +180,6 @@ BOWER_INSTALLED_APPS = [
     'angular#~1.4.8',
     'bootstrap-sass#~3.3.6',
     'bootstrap-material-design#~0.5.7',
-    'highcharts#~4.2.1'
+    'highcharts#~4.2.1',
+    'angular-ui-router#~0.2.0'
 ]

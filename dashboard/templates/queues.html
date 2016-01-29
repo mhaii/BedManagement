@@ -11,7 +11,7 @@
 {% block content %}
     <body>
     <h1>{% trans queues %} </h1>
-    <div class="container" ng-app="QueuesApp" ng-controller="QueuesController as qCtrl">
+    <div class="container">
         {% include 'tables/queue-table.html' %}
         <p class="explain">*ตารางแสดงคนไข้ที่รอการจำหน่ายเตียงซึ่งสามารถจำหน่ายเตียงได้ทันทีโดยการกดปุ่ม "choose"</p>
     </div>
