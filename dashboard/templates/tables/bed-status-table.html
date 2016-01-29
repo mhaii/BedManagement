@@ -1,29 +1,28 @@
-{% load i18n %}
-{% load helpers %}
-
 <div class="bs-docs-section">
     <div class="row">
-        <div>
-            <h1 id="table">{% trans 'Bed Status'%}</h1>
+        <div ng-controller="BedStatusController as bedCtrl">
+            <div class="patientinfo">
+                <dl class="detailPatient" ng-if="bedCtrl.eiei == true">
+                    <dt>{$ bedCtrl.firstName $}</dt>
+                    <dt>{$ bedCtrl.lastName $}</dt>
+                    <dt>{$ bedCtrl.symptom $}</dt>
+                    <dt>{$ bedCtrl.doctor $}</dt>
+                    </dl>
+            </div>
         </div>
-        <div class="bs-component" ng-controller="BedStatusController as beds">
+        <div class="bs-component">
             <table class="table table-bordered table-striped table-hover" border="1">
                 <thead>
                     <tr>
-                        <th>{% trans 'Name' %}</th>
-                        <th colspan="20">{% trans 'Room Number'%}</th>
+                        <th>Name</th>
+                        <th colspan="20">Room Number</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {% for ward in wards %}
-                        <tr>
-                            <td>{{ ward }}</td>
-                            {% for room in ward.rooms.all %}
-                                <td id="{{ room.number }}" class="room-{{ room.status }}">{{ room.number }}</td>
-                            {% endfor %}
-                            {% for _ in max_room|times:ward.rooms.count %}<td></td>{% endfor %}
-                        </tr>
-                    {% endfor %}
+                    <tr ng-repeat="ward in bedCtrl.wards">
+                        <td>{$ ward.name $}</td>
+                        <td ng-repeat="room in ward.rooms" id="{$ room.number $}" class="room-{$ room.status $}">{$ room.number $}</td>
+                    </tr>
                 </tbody>
             </table>
         </div>
