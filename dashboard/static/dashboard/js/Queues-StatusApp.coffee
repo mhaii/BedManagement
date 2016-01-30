@@ -2,6 +2,7 @@ QueuesController = ($http, patientData)->
   vm = @
   vm.qData = []
   $http.get(static_url+'dashboard/SampleJson/queues.json').success((data)->
+    console.log("load")
     vm.qData = data.queues
   )
   vm.choose = (item)->
@@ -25,10 +26,10 @@ BedStatusController = ($http, djangoUrl, patientData)->
     return
   vm.onHover = (room)->
     console.log(room)
-    return vm.show = !vm.show
+    return
 
   vm.onOutHover = ()->
-    return vm.show = !vm.show
+    return
   return
 
 patientData = ()->
