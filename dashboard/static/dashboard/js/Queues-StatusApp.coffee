@@ -15,7 +15,7 @@ BedStatusController = ($http, djangoUrl, patientData)->
   vm.wards = []
   if patientData.list().length is 0 then vm.eiei = false
   else
-    vm.eiei = true
+    vm.isPatientData = true
     vm.firstName = 'First name: '+patientData.list()[0].firstname
     vm.lastName = 'Last name: '+patientData.list()[0].lastname
     vm.symptom = 'Symptom: '+patientData.list()[0].symptom
@@ -23,6 +23,12 @@ BedStatusController = ($http, djangoUrl, patientData)->
   $http.get(djangoUrl.reverse('fetch-ward')).success (data)->
     vm.wards = data
     return
+  vm.onHover = (room)->
+    console.log(room)
+    return vm.show = !vm.show
+
+  vm.onOutHover = ()->
+    return vm.show = !vm.show
   return
 
 patientData = ()->
