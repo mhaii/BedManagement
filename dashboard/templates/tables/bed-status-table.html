@@ -1,8 +1,8 @@
 <div class="bs-docs-section">
     <div class="row">
         <div ng-controller="BedStatusController as bedCtrl">
-            <div class="patientinfo">
-                <dl class="detailPatient" ng-show="bedCtrl.isPatientData">
+            <div class="patientinfo" ng-show="bedCtrl.isPatientData">
+                <dl class="detailPatient">
                     <dt>{$ bedCtrl.firstName $}</dt>
                     <dt>{$ bedCtrl.lastName $}</dt>
                     <dt>{$ bedCtrl.symptom $}</dt>
@@ -40,7 +40,7 @@
                                     <dt>ห้อง: {$ room.number $}</dt>
                                     <dt>สถานะ: ว่าง</dt>
                                 </dl>
-                                <a class="btn-sm infobutton" href="#">
+                                <a ng-hide="bedCtrl.isPatientData" class="btn-sm infobutton" href="#">
                                     จอง
                                     <div ng-controller="QueuesController as qCtrl" id="queuespopup">
                                         <div class="table-responsive" style="margin-top: 2%;" ng-controller="QueuesController as qCtrl">
@@ -73,6 +73,7 @@
                                         </div>
                                     </div>
                                 </a>
+                                <a ng-show="bedCtrl.isPatientData" class="btn-sm infobutton" href="#">จอง</a>
                             </div>
                         </td>
                     </tr>
