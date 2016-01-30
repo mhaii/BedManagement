@@ -1,6 +1,6 @@
 <div class="bs-docs-section">
     <div class="row">
-        <div ng-controller="BedStatusController as bedCtrl">
+        <div>
             <div class="patientinfo" ng-show="bedCtrl.isPatientData">
                 <dl class="detailPatient">
                     <dt>{$ bedCtrl.firstName $}</dt>
@@ -42,7 +42,7 @@
                                 </dl>
                                 <a ng-hide="bedCtrl.isPatientData" class="btn-sm infobutton" href="#">
                                     จอง
-                                    <div ng-controller="QueuesController as qCtrl" id="queuespopup">
+                                    <div id="queuespopup">
                                         <div class="table-responsive" style="margin-top: 2%;" ng-controller="QueuesController as qCtrl">
                                             <table class="table table-striped table-bordered table-hover">
                                                 <thead>
@@ -52,6 +52,7 @@
                                                     <th>Appointment</th>
                                                     <th>Symptom</th>
                                                     <th>Doctor</th>
+                                                    <th>Phone Number</th>
                                                     <th>Phone Number</th>
                                                     <th>Status</th>
                                                     <th></th>

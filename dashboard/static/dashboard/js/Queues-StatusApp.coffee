@@ -1,8 +1,10 @@
 QueuesController = ($http, patientData)->
   vm = @
   vm.qData = []
+  count = 0
   $http.get(static_url+'dashboard/SampleJson/queues.json').success((data)->
-    console.log("load")
+    count++
+    console.log(count)
     vm.qData = data.queues
   )
   vm.choose = (item)->
