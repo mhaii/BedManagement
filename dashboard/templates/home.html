@@ -5,8 +5,6 @@
 
 {% block css %}
     <link rel="stylesheet" href="{% static 'dashboard/css/home.sass' %}" type="text/x-sass" charset="utf-8">
-    <link rel="stylesheet" type="text/x-sass" href="{% static 'dashboard/css/queues.sass' %}">
-    <link rel="stylesheet" type="text/x-sass" href="{% static 'dashboard/css/status.sass' %}">
 {% endblock %}
 
 {% block content %}
@@ -28,13 +26,14 @@
             <p class="explain">*ตารางแสดงชื่อและแผนกที่คนไข้ได้แอดมิท</p>
         </div>
     </div>
-    <div ng-app="QueuesApp" class="col-md-12 admittable">
+    <div class="col-md-12 admittable">
         <label class="lead text-center text-primary">Queues</label>
-       <div ui-view></div>
+        {% include 'tables/queue-table.html' %}
+        <p class="explain">*ตารางแสดงคนไข้ที่รอการจำหน่ายเตียงซึ่งสามารถจำหน่ายเตียงได้ทันทีโดยการกดปุ่ม "choose"</p>
     </div>
 </div>
 {% endblock %}
 
 {% block js %}
-    <script type="text/coffeescript" src="{% static 'dashboard/js/queues.coffee' %}"></script>
+    <script type="text/coffeescript" src="{% static 'dashboard/js/Queues-StatusApp.coffee' %}"></script>
 {% endblock %}
