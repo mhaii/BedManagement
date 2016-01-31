@@ -181,7 +181,8 @@ BOWER_INSTALLED_APPS = [
     'bootstrap-sass#~3.3.6',
     'bootstrap-material-design#~0.5.7',
     'highcharts#~4.2.1',
-    'angular-ui-router#~0.2.0'
+    'angular-ui-router#~0.2.0',
+    'angular-resource#~1.4.9'
 ]
 
 # Django-Angular
