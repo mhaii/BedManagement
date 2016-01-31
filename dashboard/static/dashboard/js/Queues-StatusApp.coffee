@@ -1,5 +1,10 @@
 QueuesController = ($http, patientService, queuesService)->
   vm = @
+  queuesDataPromise = queuesService.get()
+  queuesDataPromise.then((data)->
+    vm.qData = data.queues
+    console.log("load")
+  )
 #  $http.get(static_url+'dashboard/SampleJson/queues.json').success((data)->
 #    vm.qData = queuesData
 #  )
@@ -7,8 +12,7 @@ QueuesController = ($http, patientService, queuesService)->
     patientService.clear()
     patientService.add(item)
     return
-  vm.qData = queuesService.list()[0]
-  console.log("loaded")
+
   return
 
 BedStatusController = ($http, djangoUrl, patientService)->
@@ -47,17 +51,12 @@ patientService = ()->
   return itemsService
 
 queuesService = ($http)->
-  queues = []
-  queuesItem = {}
-  $http.get(static_url+'dashboard/SampleJson/queues.json').success((data)->
-    queues.push(data.queues)
-    console.log("data loaded")
-    console.log(queues[0])
-    return
-  )
-  queuesItem.list = ()->
-    return queues
-  return queuesItem
+  get = ()->
+    return $http({method:"GET", url: static_url+'dashboard/SampleJson/queues.json'}).then((data)->
+      console.log(data)
+      return data.data
+    )
+  return {get:get}
 
 BedStatusController
   .$inject = ['$http','djangoUrl','patientService']
