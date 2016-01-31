@@ -51,7 +51,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # Third-party app
-    'compressor', 'djangobower', 'djangular',
+    'compressor', 'djangobower', 'djangular', 'rest_framework',
 
     # Our homebrew app~ <3
     'api', 'authentication', 'dashboard', 'statistic'
