@@ -18,9 +18,9 @@ QueuesController = ($http, patientService, queuesService)->
 BedStatusController = ($http, djangoUrl, patientService)->
   vm = @
   vm.wards = []
-  if patientService.list().length is 0 then vm.eiei = false
+  if patientService.list().length is 0 then vm.isPatientData = false
   else
-    vm.ispatientService = true
+    vm.isPatientData = true
     vm.firstName = 'First name: '+patientService.list()[0].firstname
     vm.lastName = 'Last name: '+patientService.list()[0].lastname
     vm.symptom = 'Symptom: '+patientService.list()[0].symptom
