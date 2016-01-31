@@ -1,7 +1,16 @@
 from django.db.models.query import QuerySet
 from django.http import HttpResponse
 
+from datetime import date, datetime
 import json
+
+
+class BetterEncoder(json.JSONEncoder):
+    def default(self, o):
+        if  isinstance(o, date) or isinstance(o, datetime):
+            return o.isoformat()
+
+        return json.JSONEncoder.default(self, o)
 
 
 def JsonErrorResponse(error):
