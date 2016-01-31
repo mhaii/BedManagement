@@ -3,6 +3,8 @@ from django.contrib.admin import ModelAdmin
 
 from .models import *
 
+admin.site.unregister(User)
+
 
 # Register your models here.
 class UserInline(admin.StackedInline):
@@ -12,10 +14,8 @@ class UserInline(admin.StackedInline):
     can_delete = False
 
 
+@admin.register(User)
 class UserAdmin(ModelAdmin):
     inlines = [UserInline]
 
 
-# Re-register UserAdmin
-admin.site.unregister(User)
-admin.site.register(User, UserAdmin)

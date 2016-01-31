@@ -1,12 +1,7 @@
 from django.db.models import Model, ForeignKey, OneToOneField, ManyToManyField, CASCADE, \
-    CharField, \
-    PositiveSmallIntegerField, PositiveIntegerField, SmallIntegerField, IntegerField, \
-    DateField, DateTimeField
+    CharField, PositiveSmallIntegerField, IntegerField, DateField
 
 from django.utils.translation import ugettext_lazy as _
-from django.utils import timezone
-
-from datetime import timedelta
 
 
 class WardType(Model):
@@ -45,7 +40,7 @@ class Ward(Model):
 
     def __str__(self):
         return str('{0} {1} {2} {3} ({4})'.format(_(self.name), ' '.join([str(_(word)) for word in str(self.remark).split()]),
-                                                 _('Tel.'), self.phone, self.price))
+                                                  _('Tel.'), self.phone, self.price))
 
 
 (_('East'),  _('West'),  _('Male'),  _('Female'))
@@ -98,9 +93,6 @@ class Doctor(Model):
 
 
 class Admit(Model):
-    def yesterday(self=None):
-        return timezone.now() - timedelta(1)
-
     enum_status = [
         (0, _('Pending')),
         (1, _('Confirmed')),
@@ -113,8 +105,8 @@ class Admit(Model):
     doctor = ForeignKey(Doctor, verbose_name=_('Primary Doctor'), related_name='patients')
     status = PositiveSmallIntegerField(_('Patient Status'), choices=enum_status, default=0)
     room = OneToOneField(Room, verbose_name=_('Room'), related_name='patient', blank=True, null=True)
-    admit_date = DateField(_('Admitted Date'), default=timezone.now)
-    edd = DateField(_('Estimated date to be discharged'), default=timezone.now, blank=True, null=True)
+    admit_date = DateField(_('Admitted Date'), default=None)
+    edd = DateField(_('Estimated date to be discharged'), default=None, blank=True, null=True)
     symptom = CharField(_('Symptom'), max_length=30)
 
     class Meta:
