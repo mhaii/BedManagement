@@ -1,0 +1,29 @@
+{"queues":[{
+  "id": "00000001",
+  "firstname":"patient1",
+  "lastname":"patient1lastname",
+  "appointment":"01/3/2016",
+  "symptom":"someSymptom",
+  "doctor":"doctor1",
+  "phoneNo":"081-234-5678",
+  "status":"Confirmed"
+  },{
+  "id":"00000002",
+  "firstname":"patient2",
+  "lastname":"patient2lastname",
+  "appointment":"14/3/2016",
+  "symptom":"someSymptom",
+  "doctor":"doctor2",
+  "phoneNo":"081-233-5678",
+  "status":"Pending"
+  },{
+  "id":"00000003",
+  "firstname":"patient3",
+  "lastname":"patient3lastname",
+  "appointment":"14/3/2016",
+  "symptom":"someSymptom",
+  "doctor":"doctor3",
+  "phoneNo":"081-233-5678",
+  "status":"Confirmed"
+  }
+]}

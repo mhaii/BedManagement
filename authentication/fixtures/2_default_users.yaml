@@ -28,3 +28,18 @@
     date_joined: '2016-01-21T16:26:41.445Z'
     groups: []
     user_permissions: []
+- model: "auth.user"
+  pk: 3
+  fields:
+    password: "pbkdf2_sha256$24000$EXUehJL9YHk3$AWIVQpDb2csw/M/7qKH8Wj8I5al2u4kAn+6SYlUk4c8="
+    last_login: null
+    is_superuser: true
+    username: "boss"
+    first_name: ''
+    last_name: ''
+    email: ''
+    is_staff: true
+    is_active: true
+    date_joined: "2016-01-31T19:44:13.499Z"
+    groups: []
+    user_permissions: []

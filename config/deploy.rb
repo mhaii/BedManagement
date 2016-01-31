@@ -40,11 +40,12 @@ namespace :deploy do
     on roles(:app), in: :sequence, wait: 5 do |host|
       within release_path do
         # post scripts
+        execute :python3, "scripts/make_and_migrate.py"
         execute :python3, "scripts/collect_static.py"
         execute :python3, "scripts/import_fixture.py"
         execute :python3, "scripts/i18n.py"
         # restart gunicorn
-        execute :bash, "gunicorn.sh restart"        
+        execute :bash, "gunicorn.sh restart 0"        
       end
     end
   end

@@ -51,7 +51,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # Third-party app
-    'compressor', 'djangobower', 'djangular',
+    'compressor', 'djangobower', 'djangular', 'rest_framework',
 
     # Our homebrew app~ <3
     'api', 'authentication', 'dashboard', 'statistic'
@@ -180,5 +180,12 @@ BOWER_INSTALLED_APPS = [
     'angular#~1.4.8',
     'bootstrap-sass#~3.3.6',
     'bootstrap-material-design#~0.5.7',
-    'highcharts#~4.2.1'
+    'highcharts#~4.2.1',
+    'angular-ui-router#~0.2.0'
 ]
+
+# Django-Angular
+# http://django-angular.readthedocs.org/en/latest/reverse-urls.html
+
+MIDDLEWARE_CLASSES.insert(0, 'djangular.middleware.DjangularUrlMiddleware')
+STATICFILES_DIRS += [os.path.join(BASE_DIR, 'dashboard/templates')]

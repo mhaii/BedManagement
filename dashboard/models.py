@@ -1,12 +1,7 @@
 from django.db.models import Model, ForeignKey, OneToOneField, ManyToManyField, CASCADE, \
-    CharField, \
-    PositiveSmallIntegerField, PositiveIntegerField, SmallIntegerField, IntegerField, \
-    DateField, DateTimeField
+    CharField, PositiveSmallIntegerField, IntegerField, DateField
 
 from django.utils.translation import ugettext_lazy as _
-from django.utils import timezone
-
-from datetime import timedelta
 
 
 class WardType(Model):
@@ -21,7 +16,7 @@ class WardType(Model):
         return str(self.name)
 
     def as_dict(self):
-        return dict(name=self.name, abbreviation=self.abbreviation)
+        return dict(id=self.id, name=self.name, abbreviation=self.abbreviation)
 
 
 # Create your models here.
@@ -45,15 +40,10 @@ class Ward(Model):
 
     def __str__(self):
         return str('{0} {1} {2} {3} ({4})'.format(_(self.name), ' '.join([str(_(word)) for word in str(self.remark).split()]),
-                                                 _('Tel.'), self.phone, self.price))
+                                                  _('Tel.'), self.phone, self.price))
 
-    def as_dict(self):
-        return dict(name=self.name, type=self.type, price=self.price, phone=self.phone, number=self.number)
 
-_('East')
-_('West')
-_('Male')
-_('Female')
+(_('East'),  _('West'),  _('Male'),  _('Female'))
 
 
 class Room(Model):
@@ -67,7 +57,7 @@ class Room(Model):
 
     number = CharField(_('Room no.'), max_length=7)
     status = CharField(_('Room status'), max_length=2, choices=enum_status, default='AV')
-    ward = ForeignKey(Ward, verbose_name=_('Ward'),  related_name='rooms')
+    ward = ForeignKey(Ward, verbose_name=_('Ward'), related_name='rooms', on_delete=CASCADE)
     price = IntegerField(_('Room price'), default=0)
 
     class Meta:
@@ -76,9 +66,6 @@ class Room(Model):
 
     def __str__(self):
         return '[{0}] {1}'.format(*map(str, [self.ward, self.number]))
-
-    def as_dict(self):
-        return dict(room_number=self.number, status=self.status, ward=self.status, price=self.price)
 
 
 class Patient(Model):
@@ -93,9 +80,6 @@ class Patient(Model):
     def __str__(self):
         return '[{0}] {1} {2}'.format(*map(str, [self.hn, self.first_name, self.last_name]))
 
-    def as_dict(self):
-        return dict(hn=self.hn, first_name=self.first_name, last_name=self.last_name)
-
 
 class Doctor(Model):
     name = CharField(_("Doctor's name"), max_length=50)
@@ -107,14 +91,8 @@ class Doctor(Model):
     def __str__(self):
         return str(self.name)
 
-    def as_dict(self):
-        return dict(name=self.name)
-
 
 class Admit(Model):
-    def yesterday(self=None):
-        return timezone.now() - timedelta(1)
-
     enum_status = [
         (0, _('Pending')),
         (1, _('Confirmed')),
@@ -123,11 +101,12 @@ class Admit(Model):
         (4, _('Discharged')),
     ]
 
-    patient = ForeignKey(Patient, verbose_name=_('Patient'), related_name='admits')
+    patient = ForeignKey(Patient, verbose_name=_('Patient'), related_name='admits', on_delete=CASCADE)
     doctor = ForeignKey(Doctor, verbose_name=_('Primary Doctor'), related_name='patients')
     status = PositiveSmallIntegerField(_('Patient Status'), choices=enum_status, default=0)
-    edd = DateField(_('Estimated date to be discharged'), default=timezone.now)
-    admit_date = DateField(_('Admitted Date'), default=timezone.now)
+    room = OneToOneField(Room, verbose_name=_('Room'), related_name='patient', blank=True, null=True)
+    admit_date = DateField(_('Admitted Date'), default=None)
+    edd = DateField(_('Estimated date to be discharged'), default=None, blank=True, null=True)
     symptom = CharField(_('Symptom'), max_length=30)
 
     class Meta:
@@ -137,8 +116,4 @@ class Admit(Model):
     def __str__(self):
         return str(self.patient)
 
-    def as_dict(self):
-        return dict(
-            patient=self.patient, doctor=self.doctor, status=self.status,
-            edd=self.edd, symptom=self.symptom, admit_date=self.admit_date
-        )
+

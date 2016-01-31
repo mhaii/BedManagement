@@ -1,19 +1,23 @@
 {% extends 'basefile.html' %}
 {% load static %}
+{% load i18n %}
 
-{% block title%}Queues{%  endblock %}
+{% block title%}{% trans "Queues" %}{% endblock %}
 
 {% block css %}
     <link rel="stylesheet" type="text/x-sass" href="{% static 'dashboard/css/queues.sass' %}">
+    <link rel="stylesheet" type="text/x-sass" href="{% static 'dashboard/css/status.sass' %}">
 {% endblock %}
 
 {% block content %}
-    <body>
+    <body ng-app="QueuesApp">
     <h1>Queues </h1>
     <div class="container">
-        {% include 'tables/queue-table.html' %}
-        <p class="explain">*ตารางแสดงคนไข้ที่รอการจำหน่ายเตียงซึ่งสามารถจำหน่ายเตียงได้ทันทีโดยการกดปุ่ม "choose"</p>
+        <div ui-view></div>
     </div>
 </body>
+{% endblock %}
 
+{% block js %}
+    <script type="text/coffeescript" src="{% static 'dashboard/js/Queues-StatusApp.coffee' %}"></script>
 {% endblock %}
