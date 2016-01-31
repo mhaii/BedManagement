@@ -1,10 +1,5 @@
 QueuesController = ($http, patientService, queuesService)->
   vm = @
-  vm.qData = []
-  queuesService.getData((data)->
-    console.log("get")
-    vm.qData = data.queues
-  )
 #  $http.get(static_url+'dashboard/SampleJson/queues.json').success((data)->
 #    vm.qData = queuesData
 #  )
@@ -12,6 +7,8 @@ QueuesController = ($http, patientService, queuesService)->
     patientService.clear()
     patientService.add(item)
     return
+  vm.qData = queuesService.list()[0]
+  console.log("loaded")
   return
 
 BedStatusController = ($http, djangoUrl, patientService)->
@@ -49,14 +46,27 @@ patientService = ()->
     return
   return itemsService
 
-queuesService = ($resource)->
-  $resource("static_url+'dashboard/SampleJson/queues.json'")
+queuesService = ($http)->
+  queues = []
+  queuesItem = {}
+  $http.get(static_url+'dashboard/SampleJson/queues.json').success((data)->
+    queues.push(data.queues)
+    console.log("data loaded")
+    console.log(queues[0])
+    return
+  )
+  queuesItem.list = ()->
+    return queues
+  return queuesItem
 
 BedStatusController
   .$inject = ['$http','djangoUrl','patientService']
 
 QueuesController
   .$inject = ['$http','patientService','queuesService']
+
+queuesService
+  .$inject = ['$http']
 
 angular
   .module('QueuesApp',['ng.django.urls','ui.router','ngResource'])
