@@ -19,7 +19,6 @@ class WardType(Model):
         return dict(id=self.id, name=self.name, abbreviation=self.abbreviation)
 
 
-# Create your models here.
 class Ward(Model):
     enum_type = [
         (1, _('Single')),

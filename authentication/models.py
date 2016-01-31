@@ -5,7 +5,6 @@ from django.contrib.auth.models import User, Group
 from dashboard.models import Ward
 
 
-# Create your models here.
 class Staff(Model):
     def get_default_group(self=None):
         # get_or_create returns tuple (object, created)
@@ -19,9 +18,4 @@ class Staff(Model):
             return '[{0}] {1}'.format(*map(str, [self.role, self.name]))
 
 # placebo for translating role-group name
-_('Nobody')
-_('Cashier')
-_('Nurse Assistance')
-_('Nurse')
-_('Admission')
-_('Administrator')
+(_('Nobody'), _('Cashier'), _('Nurse Assistance'), _('Nurse'), _('Admission'), _('Administrator'))

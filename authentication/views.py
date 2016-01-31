@@ -9,7 +9,6 @@ from django.utils.translation import ugettext_lazy as _
 from .forms import LoginForm
 
 
-# Create your views here.
 class LoginPage(View):
     def get(self, request):
         if request.user.is_authenticated():
