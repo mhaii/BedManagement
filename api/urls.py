@@ -30,9 +30,6 @@ router.register(r'doctors', DoctorAPI)
 urlpatterns = [
     url(r'^switch-lang/', switch_lang, name='switch-lang'),
     url(r'', include(router.urls))
-    url(r'^switch-lang/', views.switch_lang, name='switch-lang'),
-    url(r'^fetch/ward/$', views.get_ward_all, name='fetch-ward'),
-    url(r'^fetch/ward/(?P<id>[0-9]+)/', views.get_ward)
 
 ]
 
