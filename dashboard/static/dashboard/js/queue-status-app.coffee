@@ -12,9 +12,11 @@ QueuesController = ($http, patientService, queuesService)->
 
   return
 
-BedStatusController = ($http, djangoUrl, patientService)->
+################# END OF QueuesController ##############################
+
+BedStatusController = ($http, djangoUrl, patientService, wardService, roomService)->
   vm = @
-  vm.wards = []
+#  vm.wards = []
   if patientService.list().length is 0 then vm.isPatientData = false
   else
     vm.isPatientData = true
@@ -23,13 +25,22 @@ BedStatusController = ($http, djangoUrl, patientService)->
     vm.symptom = 'Symptom: '+patientService.list()[0].symptom
     vm.doctor = 'Doctor: '+patientService.list()[0].doctor
 
-  $http.get(djangoUrl.reverse('ward-list')).success (data)->
-    vm.wards = data
-    for ward in vm.wards
-      $http.get(djangoUrl.reverse('ward-rooms', {'pk': ward.id})).success (data)->
-        ward.rooms = data
-        return
+#  $http.get(djangoUrl.reverse('ward-list')).success (data)->
+#    vm.wards = data
+#    for ward in vm.wards
+#      $http.get(djangoUrl.reverse('ward-rooms', {'pk': ward.id})).success (data)->
+#        ward.rooms = data
+#        return
+#    return
+
+  vm.rooms = {}
+  vm.wards = wardService.query()
+  vm.wards.$promise.then((results)->
+    angular.forEach results, (ward)->
+      vm.rooms[ward.id] = roomService.query({ward: ward.id})
+      return
     return
+  )
 
   console.log(vm.wards)
 
@@ -40,6 +51,8 @@ BedStatusController = ($http, djangoUrl, patientService)->
   vm.onOutHover = ()->
     return
   return
+
+####################### END OF BedStatusController #################################
 
 patientService = ()->
   items = []
@@ -55,6 +68,8 @@ patientService = ()->
     return
   return itemsService
 
+######################### END OF patientService #################################
+
 queuesService = ($http, djangoUrl)->
   get = ()->
     return $http({method:"GET", url: djangoUrl.reverse('admit-queue')}).then((data)->
@@ -63,14 +78,36 @@ queuesService = ($http, djangoUrl)->
     )
   return {get:get}
 
+########################## END OF queuesService ##################################
+
+roomService = ($resource, djangoUrl)->
+   $resource('/api/rooms/:id',{},{
+    query:{method: "GET", isArray: true}
+  })
+
+############################ END of roomService ##################################
+
+wardService = ($resource, djangoUrl)->
+  $resource(djangoUrl.reverse('ward-list'))
+
+########################### END of wardService ##################################
+
 BedStatusController
-  .$inject = ['$http','djangoUrl','patientService']
+  .$inject = ['$http','djangoUrl','patientService', 'wardService', 'roomService']
 
 QueuesController
   .$inject = ['$http','patientService','queuesService']
 
 queuesService
   .$inject = ['$http','djangoUrl']
+
+roomService
+  .$inject = ['$resource', 'djangoUrl']
+
+wardService
+  .$inject = ['$resource', 'djangoUrl']
+
+######################### END OF INJECTION MODULE ##################################
 
 angular
   .module('QueuesApp',['ng.django.urls','ui.router','ngResource'])
@@ -90,7 +127,9 @@ angular
     })
     $urlRouterProvider.otherwise('/')
     return
-  .factory('patientService',patientService)
-  .factory('queuesService',queuesService)
+  .factory('patientService', patientService)
+  .factory('queuesService', queuesService)
+  .factory('wardService', wardService)
+  .factory('roomService', roomService)
   .controller('QueuesController', QueuesController)
   .controller('BedStatusController', BedStatusController)
