@@ -15,6 +15,7 @@
         <h1 id="table">Bed Status</h1>
     </div>
     <div ng-controller="QueuesController as qCtrl">
+{#        {% url 'room-list' ward=1 %}#}
         <div ui-view></div>
         <p class="explain">*ตารางแสดงสถานะของเตียงทั้งหมด โดยสามารถดูข้อมูลของห้องต่างๆได้ </p>
         <p class="explain">     1.ถ้าห้องว่าง เมื่อลากเมาส์ไปอยู่บนหมายเลขห้อง ปุ่มจองจะถูกแสดงขึ้นมาบนหน้าจอ และเมื่อเลือนไปที่ปุ่มจอง ระบบจะแสดงคิวของคนไข้เพื่อให้เลือกและทำการจำหน่ายเตียงได้ทันที</p>
@@ -30,5 +31,5 @@
 {% endblock %}
 
 {% block js %}
-    <script type="text/coffeescript" src="{% static 'dashboard/js/Queues-StatusApp.coffee' %}"></script>
+    <script type="text/coffeescript" src="{% static 'dashboard/js/queue-status-app.coffee' %}"></script>
 {% endblock %}
