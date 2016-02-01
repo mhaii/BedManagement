@@ -1,10 +1,10 @@
-from rest_framework.serializers import HyperlinkedModelSerializer, StringRelatedField
+from rest_framework.serializers import ModelSerializer, HyperlinkedModelSerializer, StringRelatedField
 from dashboard.models import *
 
 ###############################################################################
 
 
-class WardSerializer(HyperlinkedModelSerializer):
+class WardSerializer(ModelSerializer):
     type = StringRelatedField(many=True)
 
     def create(self, validated_data):
@@ -20,7 +20,7 @@ class WardSerializer(HyperlinkedModelSerializer):
 ###############################################################################
 
 
-class RoomSerializer(HyperlinkedModelSerializer):
+class RoomSerializer(ModelSerializer):
 
     def create(self, validated_data):
         return Room.objects.create(**validated_data)
@@ -35,7 +35,7 @@ class RoomSerializer(HyperlinkedModelSerializer):
 ###############################################################################
 
 
-class PatientSerializer(HyperlinkedModelSerializer):
+class PatientSerializer(ModelSerializer):
 
     def create(self, validated_data):
         return Patient.objects.create(**validated_data)
@@ -51,7 +51,7 @@ class PatientSerializer(HyperlinkedModelSerializer):
 ###############################################################################
 
 
-class AdmitSerializer(HyperlinkedModelSerializer):
+class AdmitSerializer(ModelSerializer):
     doctor = StringRelatedField()
 
     def create(self, validated_data):
@@ -68,7 +68,7 @@ class AdmitSerializer(HyperlinkedModelSerializer):
 ###############################################################################
 
 
-class DoctorSerializer(HyperlinkedModelSerializer):
+class DoctorSerializer(ModelSerializer):
     def create(self, validated_data):
         pass
 
