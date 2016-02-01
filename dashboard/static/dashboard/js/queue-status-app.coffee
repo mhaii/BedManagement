@@ -16,7 +16,7 @@ QueuesController = ($http, patientService, queuesService)->
 
 BedStatusController = ($http, djangoUrl, patientService, wardService, roomService)->
   vm = @
-#  vm.wards = []
+
   if patientService.list().length is 0 then vm.isPatientData = false
   else
     vm.isPatientData = true
@@ -24,14 +24,6 @@ BedStatusController = ($http, djangoUrl, patientService, wardService, roomServic
     vm.lastName = 'Last name: '+patientService.list()[0].lastname
     vm.symptom = 'Symptom: '+patientService.list()[0].symptom
     vm.doctor = 'Doctor: '+patientService.list()[0].doctor
-
-#  $http.get(djangoUrl.reverse('ward-list')).success (data)->
-#    vm.wards = data
-#    for ward in vm.wards
-#      $http.get(djangoUrl.reverse('ward-rooms', {'pk': ward.id})).success (data)->
-#        ward.rooms = data
-#        return
-#    return
 
   vm.rooms = {}
   vm.wards = wardService.query()
