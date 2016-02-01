@@ -21,7 +21,7 @@
                 <tbody>
                     <tr ng-repeat="ward in bedCtrl.wards">
                         <td>{$ ward.name $} {$ ward.remark $} Tel. {$ ward.phone $} ({$ ward.price $})</td>
-                        <td ng-repeat="room in ward.rooms" id="{$ ward.id $}-{$ room.number $}" class="room-{$ room.status $}" ng-mouseenter="bedCtrl.onHover(room)" ng-mouseleave="bedCtrl.onOutHover(room)">
+                        <td ng-repeat="room in bedCtrl.rooms[ward.id]" id="{$ ward.id $}-{$ room.number $}" class="room-{$ room.status $}" ng-mouseenter="bedCtrl.onHover(room)" ng-mouseleave="bedCtrl.onOutHover(room)">
                             {$ room.number $}
                             <div ng-if="room.status === 'OC'" id ="patientpopup">
                                 <dl class="detaillist">
