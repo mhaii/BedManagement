@@ -59,7 +59,7 @@ def init():
 
 
 def install_requirement():
-    #os.system('{0} install -r {1}'.format(pip, os.path.join(rootDir, 'requirement.txt')))
+    os.system('{0} install -r {1}'.format(pip, os.path.join(rootDir, 'requirement.txt')))
     os.system('{0} {1} bower install'.format(python, manage))
 
 
