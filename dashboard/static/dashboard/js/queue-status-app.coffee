@@ -29,8 +29,10 @@ BedStatusController = ($http, djangoUrl, patientService)->
       $http.get(djangoUrl.reverse('ward-rooms', {'pk': ward.id})).success (data)->
         ward.rooms = data
         return
-
     return
+
+  console.log(vm.wards)
+
   vm.onHover = (room)->
     console.log(room)
     return
@@ -55,7 +57,7 @@ patientService = ()->
 
 queuesService = ($http, djangoUrl)->
   get = ()->
-    return $http({method:"GET", url: djangoUrl.reverse('admit-queues')}).then((data)->
+    return $http({method:"GET", url: djangoUrl.reverse('admit-queue')}).then((data)->
       console.log(data)
       return data.data
     )
