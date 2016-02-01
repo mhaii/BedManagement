@@ -13,12 +13,35 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import url
-from . import views
+from django.conf.urls import include, url
+
+from .views import *
+
+# Convention-based REST router lol
+from rest_framework.routers import DefaultRouter
+
+router = DefaultRouter()
+router.register(r'wards', WardAPI)
+router.register(r'rooms', RoomAPI)
+router.register(r'patients', PatientAPI)
+router.register(r'admits', AdmitAPI)
+router.register(r'doctors', DoctorAPI)
 
 urlpatterns = [
+    url(r'^switch-lang/', switch_lang, name='switch-lang'),
+    url(r'', include(router.urls))
     url(r'^switch-lang/', views.switch_lang, name='switch-lang'),
     url(r'^fetch/ward/$', views.get_ward_all, name='fetch-ward'),
     url(r'^fetch/ward/(?P<id>[0-9]+)/', views.get_ward)
 
 ]
+
+'''
+Additional URLs
+
+GET /rooms/?ward={ward_id}      ::  Get all rooms in the specified ward
+GET /admits/queue               ::  Get all today scheduled admits
+GET /admits/queue/?limit={days} ::  Get scheduled admits between today and next X days
+GET /admits/today               ::  Get list of today admits
+
+'''
