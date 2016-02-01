@@ -37,12 +37,3 @@ class LogoutPage(LoginRequiredMixin, View):
     def get(self, request):
         logout(request)
         return redirect('login')
-
-
-# TODO get rid of this when finished
-class CreateUser(View):
-    def get(self, request, username, password):
-        print(username)
-        print(password)
-        User.objects.create_user(username=username, password=password)
-        return HttpResponse('ok', status=201)
