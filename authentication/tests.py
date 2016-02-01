@@ -3,7 +3,6 @@ from django.core.urlresolvers import reverse
 from django.test import TestCase, Client
 
 
-# Create your tests here.
 class AuthenticationTest(TestCase):
     def setUp(self):
         self.client = Client()
