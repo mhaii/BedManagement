@@ -37,7 +37,7 @@ BedStatusController = ($http, djangoUrl, patientService, wardService, roomServic
   vm.wards = wardService.query()
   vm.wards.$promise.then((results)->
     angular.forEach results, (ward)->
-      vm.rooms[ward.id] = roomService.query({ward: ward.id})
+      vm.rooms[ward.id] = roomService.query({id: ward.id})
       return
     return
   )
@@ -81,7 +81,7 @@ queuesService = ($http, djangoUrl)->
 ########################## END OF queuesService ##################################
 
 roomService = ($resource, djangoUrl)->
-   $resource('/api/rooms/:id',{},{
+   $resource('/api/wards/:id/rooms',{},{
     query:{method: "GET", isArray: true}
   })
 
