@@ -1,3 +1,4 @@
+from .signals import *
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 from django.http import HttpResponse
