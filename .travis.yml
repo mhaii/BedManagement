@@ -10,12 +10,12 @@ python:
   - 3.5
 
 services:
-  - sqlite3
   - mysql
 
 install:
-  - python scripts/module.py
-  - pip install -r requirement.txt
+  - python scripts/install_requirement.py
+  - python scripts/mysql_init.py
+  - python scripts/npm.py
 
 before_script:
   - python scripts/bower.py

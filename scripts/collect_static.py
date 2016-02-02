@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 from script import collect_static
 
 if __name__ == '__main__':
