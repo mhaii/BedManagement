@@ -23,17 +23,16 @@ else:
         os.environ['PATH'] += ':/usr/local/bin'
 
 
-def collect_static():
+def bower():
     os.system('{0} {1} bower install'.format(python, manage))
+
+
+def collect_static():
     os.system('{0} {1} collectstatic --noinput --link -i {2}'.format(python, manage, ' -i '.join(['*.sass', '*.coffee'])))
 
 
 def create_app():
     os.system('{0} {1} startapp {2}'.format(python, manage, input('New app name?: ')))
-
-
-def flush_db():
-    os.system('{0} {1} flush --no-input'.format(python, manage))
 
 
 def i18n():

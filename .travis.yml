@@ -18,6 +18,7 @@ install:
   - pip install -r requirement.txt
 
 before_script:
+  - python scripts/bower.py
   - python scripts/make_and_migrate.py
   - python scripts/collect_static.py
   - python scripts/import_fixture.py
