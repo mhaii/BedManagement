@@ -1,5 +1,6 @@
 #!/usr/bin/env python
-from script import create_app
+
+from script import mysql_reset
 
 if __name__ == '__main__':
-    create_app()
+    mysql_reset()
