@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 
 import os
 import re
@@ -23,16 +23,16 @@ else:
         os.environ['PATH'] += ':/usr/local/bin'
 
 
+def bower():
+    os.system('{0} {1} bower install'.format(python, manage))
+
+
 def collect_static():
     os.system('{0} {1} collectstatic --noinput --link -i {2}'.format(python, manage, ' -i '.join(['*.sass', '*.coffee'])))
 
 
 def create_app():
     os.system('{0} {1} startapp {2}'.format(python, manage, input('New app name?: ')))
-
-
-def flush_db():
-    os.system('{0} {1} flush --no-input'.format(python, manage))
 
 
 def i18n():
@@ -60,7 +60,6 @@ def init():
 
 def install_requirement():
     os.system('{0} install -r {1}'.format(pip, os.path.join(rootDir, 'requirement.txt')))
-    os.system('{0} {1} bower install'.format(python, manage))
 
 
 def make_and_migrate():

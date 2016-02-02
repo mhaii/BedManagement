@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 from script import import_fixture
 
 if __name__ == '__main__':

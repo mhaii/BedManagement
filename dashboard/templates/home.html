@@ -26,10 +26,14 @@
             <p class="explain">*ตารางแสดงชื่อและแผนกที่คนไข้ได้แอดมิท</p>
         </div>
     </div>
-    <div class="col-md-12 admittable">
+    <div class="col-md-12 admittable" ng-app="QueuesApp">
         <label class="lead text-center text-primary">Queues</label>
-        {% include 'tables/queue-table.html' %}
+        <div ui-view></div>
         <p class="explain">*ตารางแสดงคนไข้ที่รอการจำหน่ายเตียงซึ่งสามารถจำหน่ายเตียงได้ทันทีโดยการกดปุ่ม "choose"</p>
     </div>
 </div>
+{% endblock %}
+
+{% block js %}
+    <script type="text/coffeescript" src="{% static 'dashboard/js/queue-status-app.coffee' %}"></script>
 {% endblock %}

@@ -33,7 +33,7 @@ SECRET_KEY = 'a)dg*3orbx!#t4!b3by8#tqcw*p(crp-c(ksdq0=k9*23vp5fk'
 # SECURITY WARNING: don't run with debug turned on in production!
 try:
     import gunicorn
-    DEBUG = False
+    DEBUG = True
 except ImportError:
     DEBUG = True
 
@@ -180,5 +180,13 @@ BOWER_INSTALLED_APPS = [
     'angular#~1.4.8',
     'bootstrap-sass#~3.3.6',
     'bootstrap-material-design#~0.5.7',
-    'highcharts#~4.2.1'
+    'highcharts#~4.2.1',
+    'angular-ui-router#~0.2.0',
+    'angular-resource#~1.4.9'
 ]
+
+# Django-Angular
+# http://django-angular.readthedocs.org/en/latest/reverse-urls.html
+
+MIDDLEWARE_CLASSES.insert(0, 'djangular.middleware.DjangularUrlMiddleware')
+STATICFILES_DIRS += [os.path.join(BASE_DIR, 'dashboard/templates')]

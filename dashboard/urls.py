@@ -1,13 +1,22 @@
 from django.conf.urls import url
-from .views import *
+from django.core.urlresolvers import reverse_lazy
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic import RedirectView, TemplateView
+
+# this is for including signal handler, do not remove
+from .signals import *
+
+
+class TemplateViewRequiredLogin(LoginRequiredMixin, TemplateView):
+    pass
 
 urlpatterns = [
-    url(r'^home/', Home.as_view(), name='home'),
-    url(r'^status/$', Status.as_view(), name='status'),
-    url(r'^book-queue/', BookQueue.as_view(), name='book_queue'),
-    url(r'^edit-patient-info-filled/', EditPatientInfo.as_view(), name='edit_patient_info_filled'),
-    url(r'^check-out/', CheckOut.as_view(), name='check_out'),
-    url(r'^choose-bed/', ChooseBed.as_view(), name='choose_bed'),
-    url(r'^queues', Queues.as_view(), name='queues'),
-    url(r'^$', Landing.as_view(), name='landing'),
+    url(r'^$', TemplateViewRequiredLogin.as_view(template_name='home.html'), name='landing'),
+    url(r'^home/', RedirectView.as_view(url=reverse_lazy('landing')), name='home'),
+    url(r'^status/$', TemplateViewRequiredLogin.as_view(template_name='status-all.html'), name='status'),
+    url(r'^book-queue/', TemplateViewRequiredLogin.as_view(template_name='book-queue.html'), name='book_queue'),
+    url(r'^edit-patient-info-filled/', TemplateViewRequiredLogin.as_view(template_name='edit-patient-info-filled.html'), name='edit_patient_info_filled'),
+    url(r'^check-out/', TemplateViewRequiredLogin.as_view(template_name='check-out.html'), name='check_out'),
+    url(r'^choose-bed/', TemplateViewRequiredLogin.as_view(template_name='choose-bed.html'), name='choose_bed'),
+    url(r'^queues', TemplateViewRequiredLogin.as_view(template_name='queues.html'), name='queues'),
 ]

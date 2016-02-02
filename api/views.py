@@ -29,20 +29,9 @@ class WardAPI(ModelViewSet):
     serializer_class = WardSerializer
     permission_classes = [IsAuthenticated]
 
-###############################################################################
-
-
-class RoomAPI(ModelViewSet):
-    queryset = Room.objects.all()
-    serializer_class = RoomSerializer
-    permission_classes = [IsAuthenticated]
-
-    def list(self, request, *args, **kwargs):
-        pk = request.GET.get('ward', None)
-        if pk is None:
-            rooms = Room.objects.all()
-        else:
-            rooms = Room.objects.filter(ward=pk)
+    @detail_route(serializer_class=RoomSerializer)
+    def rooms(self, request, pk, *args, **kwargs):
+        rooms = Ward.objects.get(pk=pk).rooms.all()
 
         page = self.paginate_queryset(rooms)
         if page is not None:
@@ -51,6 +40,14 @@ class RoomAPI(ModelViewSet):
 
         serializer = self.get_serializer(rooms, many=True)
         return Response(serializer.data)
+
+###############################################################################
+
+
+class RoomAPI(ModelViewSet):
+    queryset = Room.objects.all()
+    serializer_class = RoomSerializer
+    permission_classes = [IsAuthenticated]
 
 ###############################################################################
 

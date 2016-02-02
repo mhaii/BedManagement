@@ -30,6 +30,7 @@ router.register(r'doctors', DoctorAPI)
 urlpatterns = [
     url(r'^switch-lang/', switch_lang, name='switch-lang'),
     url(r'', include(router.urls))
+
 ]
 
 '''

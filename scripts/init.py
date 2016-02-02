@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 from script import init
 
 if __name__ == '__main__':
