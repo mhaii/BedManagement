@@ -1,7 +1,21 @@
 addQueuesCtrl = ()->
   vm = @
+  vm.searchInput = { hnNumber : ''}
   vm.search = (hnNumber)->
-    console.log(hnNunber)
+    console.log(hnNumber)
+    return
+
+  vm.patientInfo = {
+    first_name: '',
+    last_name: '',
+    sex: '',
+    age: '',
+    symptom: '',
+    doctor: '',
+    admit_date:''
+  }
+  vm.addToQueue = (patientInfo)->
+    console.log(patientInfo)
     return
   return
 

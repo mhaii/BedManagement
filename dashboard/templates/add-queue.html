@@ -19,9 +19,9 @@
                             <label class="control-label" for="addon1">Put in HN number to search</label>
                             <div class="input-group">
                                 <span class="input-group-addon">HN:</span>
-                                <input type="text" class="form-control" id="addon1" ng-model="hn-number">
+                                <input type="text" class="form-control" id="addon1" ng-model="searchInput.hnNumber">
                                 <span class="input-group-btn">
-                                    <button class="btn btn-primary" type="button" ng-click="search(hn-number)">
+                                    <button class="btn btn-primary" type="button" ng-click="addCtrl.search(searchInput)">
                                         Search
                                         <div class="ripple-container"></div>
                                     </button>
@@ -29,21 +29,20 @@
                             </div>
                         </div>
                     </form>
-                    <pre>hn-number = {}</pre>
                 </div>
             </div>
             <div class="form-horizontal">
                 <div class="form-group">
                     <label class="control-label col-md-2" for="inputFirstName">First name :</label>
                     <div class="col-md-10">
-                        <input class="form-control" type="text" id="inputFirstName">
+                        <input class="form-control" type="text" id="inputFirstName" ng-model="patientInfo.first_name">
                     </div>
                     <span class="material-input"></span>
                 </div>
                 <div class="form-group">
                     <label class="control-label col-md-2" for="inputLastName">Last name :</label>
                     <div class="col-md-10">
-                        <input class="form-control" type="text" id="inputLastName">
+                        <input class="form-control" type="text" id="inputLastName" ng-model="patientInfo.last_name">
                     </div>
                     <span class="material-input"> </span>
                 </div>
@@ -52,7 +51,7 @@
                     <div class="col-md-10">
                         <div class="radio radio-primary">
                             <label>
-                                <input type="radio" name="optionsRadios" id="optionsRadio1" value="option1">
+                                <input type="radio" name="sex" id="male" ng-model="patientInfo.sex" ng-value="name">
                                 <span class="circle"></span>
                                 <span class="check"></span>
                                 Male
@@ -60,7 +59,7 @@
                         </div>
                         <div class="radio radio-primary">
                             <label>
-                                <input type="radio" name="optionsRadios" id="optionsRadio2" value="option2">
+                                <input type="radio" name="sex" id="female" ng-model="patientInfo.sex" ng-value="name">
                                 <span class="circle"></span>
                                 <span class="check"></span>
                                 Female
@@ -71,34 +70,34 @@
                 <div class="form-group">
                     <label class="control-label col-md-2" for="inputAge">Age :</label>
                     <div class="col-md-10">
-                        <input class="form-control" type="text" id="inputAge">
+                        <input class="form-control" type="text" id="inputAge" ng-model="patientInfo.age">
                     </div>
                     <span class="material-input"> </span>
                 </div>
                 <div class="form-group">
                     <label class="control-label col-md-2" for="inputSyndrome">Symptom :</label>
                     <div class="col-md-10">
-                        <input class="form-control" type="text" id="inputSyndrome">
+                        <input class="form-control" type="text" id="inputSyndrome" ng-model="patientInfo.symptom">
                     </div>
                     <span class="material-input"> </span>
                 </div>
                 <div class="form-group">
                     <label class="control-label col-md-2" for="inputDoctor">Doctor :</label>
                     <div class="col-md-10">
-                        <input class="form-control" type="text" id="inputDoctor">
+                        <input class="form-control" type="text" id="inputDoctor" ng-model="patientInfo.doctor">
                     </div>
                     <span class="material-input"> </span>
                 </div>
                 <div class="form-group">
                     <label class="control-label col-md-2" for="inputBookingDate">Booking Date:</label>
                     <div class="col-md-10">
-                        <input class="form-control" type="text" id="inputBookingDate">
+                        <input class="form-control" type="text" id="inputBookingDate" ng-model="patientInfo.admit_date">
                     </div>
                     <span class="material-input"></span>
                 </div>
                 <div class="form-group">
                     <div class="col-md-10 col-md-offset-2">
-                        <a class="btn btn-primary" href="{% url 'queues' %}">Confirm</a>
+                        <a class="btn btn-primary" href="{% url 'queues' %}" ng-click="addCtrl.addToQueue(patientInfo)">Confirm</a>
                         <!--<button class="btn btn-primary" type="submit">Assign Room</button>-->
                     </div>
                 </div>
