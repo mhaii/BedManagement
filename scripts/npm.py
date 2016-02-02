@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-
 from script import npm
 
 if __name__ == '__main__':
