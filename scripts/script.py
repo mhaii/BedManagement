@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 
 import os
 import re
@@ -24,6 +24,7 @@ else:
 
 
 def collect_static():
+    os.system('{0} {1} bower install'.format(python, manage))
     os.system('{0} {1} collectstatic --noinput --link -i {2}'.format(python, manage, ' -i '.join(['*.sass', '*.coffee'])))
 
 
@@ -60,7 +61,6 @@ def init():
 
 def install_requirement():
     os.system('{0} install -r {1}'.format(pip, os.path.join(rootDir, 'requirement.txt')))
-    os.system('{0} {1} bower install'.format(python, manage))
 
 
 def make_and_migrate():
