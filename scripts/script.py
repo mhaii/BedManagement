@@ -4,11 +4,13 @@ import os
 import re
 import sys
 
+
 python = sys.executable
 pip = os.path.join(os.path.dirname(python), ('Scripts/pip.exe' if os.name is 'nt' else
                                              ('pip3' if sys.platform == 'linux' else 'pip')))
 rootDir = os.path.dirname(os.path.dirname(__file__))
-manage = os.path.join(rootDir, 'manage.py')
+manage = '%s %s' % (python, os.path.join(rootDir, 'manage.py'))
+travis = 'TRAVIS' in os.environ
 
 os.chdir(rootDir)
 
@@ -16,18 +18,20 @@ os.chdir(rootDir)
 if os.name is not 'nt' and '/usr/local/bin' not in os.environ['PATH']:
     os.environ['PATH'] += ':/usr/local/bin'
 
+############################################################################################################
+
 
 def bower():
-    os.system('%s %s bower install' % (python, manage))
+    os.system('%s bower install' % manage)
 
 
 def collect_static():
-    os.system('%s %s collectstatic --noinput --link -i %s' % (python, manage, ' -i '.join(['*.sass', '*.coffee'])))
+    os.system('%s collectstatic --noinput --link -i %s' % (manage, ' -i '.join(['*.sass', '*.coffee'])))
 
 
 def i18n():
-    os.system('%s %s makemessages --all' % (python, manage))
-    os.system('%s %s compilemessages' % (python, manage))
+    os.system('%s makemessages --all' % manage)
+    os.system('%s compilemessages' % manage)
 
 
 def import_fixture():
@@ -35,8 +39,8 @@ def import_fixture():
     for dir in os.listdir(rootDir):
         path = os.path.join(rootDir, dir, 'fixtures')
         if os.path.isdir(path):
-            os.system('%s %s loaddata %s' % (python, manage, ' '.join([file[:-5] for file in os.listdir(path)
-                                                                       if regex.search(file)])))
+            os.system('%s loaddata %s' % (manage, ' '.join([file[:-5] for file in os.listdir(path)
+                                                            if regex.search(file)])))
 
 
 def init():
@@ -55,13 +59,12 @@ def install_requirement():
 
 
 def make_and_migrate():
-    os.system('%s %s makemigrations' % (python, manage))
-    os.system('%s %s migrate' % (python, manage))
+    os.system('%s makemigrations' % manage)
+    os.system('%s migrate' % manage)
 
 
-def module():
-    print('Installing from npm')
-    os.system('sudo npm install -g %s' % (' '.join(['angular', 'bower', 'coffee'])))
+def _mysql_cmd(sql):
+    os.system('mysql -uroot -e "%s"' % sql)
 
 
 def mysql_init():
@@ -69,10 +72,11 @@ def mysql_init():
     make_and_migrate()
 
 
-def _mysql_cmd(sql):
-    os.system('mysql -uroot -e "%s"' % sql)
-
-
 def mysql_reset():
     _mysql_cmd('drop database bed_management')
     mysql_init()
+
+
+def npm():
+    print('Installing from npm')
+    os.system('%snpm install -g %s' % ('sudo ' if not travis else '', ' '.join(['angular', 'bower', 'coffee'])))

@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-from script import module
+from script import npm
 
 if __name__ == '__main__':
-    module()
+    npm()
