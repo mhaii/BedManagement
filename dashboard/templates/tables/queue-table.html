@@ -3,7 +3,8 @@
         <thead>
         <tr>
             <th>HN Number</th>
-            <th>Name</th>
+            <th>First name</th>
+            <th>Last name</th>
             <th>Appointment</th>
             <th>Symptom</th>
             <th>Doctor</th>
@@ -14,14 +15,15 @@
         </thead>
         <tbody>
             <tr ng-repeat="item in qCtrl.qData">
-                <td>{$ item.id $}</td>
-                <td>{$ item.firstname $}</td>
+                <td>{$ item.patient.hn $}</td>
+                <td>{$ item.patient.first_name $}</td>
+                <td>{$ item.patient.last_name $}</td>
+                <td>{$ item.admit_date $}</td>
                 <td>{$ item.symptom $}</td>
-                <td>{$ item.appointment $}</td>
                 <td>{$ item.doctor $}</td>
                 <td>{$ item.phoneNo $}</td>
                 <td>{$ item.status $}</td>
-                <td><a ui-sref="choose-bed" ng-if="item.status.toLowerCase() === 'confirmed'" ng-click="qCtrl.choose(item)">Choose</a></td>
+                <td><a ui-sref="choose-bed" ng-if="item.status === 0" ng-click="qCtrl.choose(item)">Choose</a></td>
             </tr>
         </tbody>
     </table>
