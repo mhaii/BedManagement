@@ -73,7 +73,7 @@ queuesService = ($http, djangoUrl)->
 ########################## END OF queuesService ##################################
 
 roomService = ($resource, djangoUrl)->
-   $resource('/api/wards/:id/rooms',{},{
+  $resource('/api/wards/:id/rooms',{},{
     query:{method: "GET", isArray: true}
   })
 

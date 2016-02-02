@@ -33,7 +33,7 @@ SECRET_KEY = 'a)dg*3orbx!#t4!b3by8#tqcw*p(crp-c(ksdq0=k9*23vp5fk'
 # SECURITY WARNING: don't run with debug turned on in production!
 try:
     import gunicorn
-    DEBUG = False
+    DEBUG = True
 except ImportError:
     DEBUG = True
 
