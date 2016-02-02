@@ -8,7 +8,7 @@
 {%  endblock %}
 
 {% block content %}
-    <div id="check-in" class="container">
+    <div id="check-in" class="container" ng-app="addQueueApp" ng-controller="addQueuesCtrl as addCtrl">
         <h1>Booking</h1>
         <div class="bs-docs-section">
             <p class="explain">*หน้าเพิ่มข้อมูลคนไข้เข้าสู่ระบบ หรือ ใส่ HN number เพื่อที่จะดึงข้อมูลคนไข้ที่มีอยู่ในระบบอยู่แล้วอัตโนมัติ<br> จากนั้นให้ใส่วันที่ที่นัดไว้แล้วกด "confirm" เพื่อยืนยันการนัดหมาย ชื่อของคนไข้จะขึ้นในหน้า Queues</p>
@@ -19,9 +19,9 @@
                             <label class="control-label" for="addon1">Put in HN number to search</label>
                             <div class="input-group">
                                 <span class="input-group-addon">HN:</span>
-                                <input type="text" class="form-control" id="addon1">
+                                <input type="text" class="form-control" id="addon1" ng-model="hn-number">
                                 <span class="input-group-btn">
-                                    <button class="btn btn-primary" type="button">
+                                    <button class="btn btn-primary" type="button" ng-click="search(hn-number)">
                                         Search
                                         <div class="ripple-container"></div>
                                     </button>
@@ -29,6 +29,7 @@
                             </div>
                         </div>
                     </form>
+                    <pre>hn-number = {}</pre>
                 </div>
             </div>
             <div class="form-horizontal">
@@ -105,4 +106,8 @@
             </form>
         </div>
     </div>
+{% endblock %}
+
+{% block js %}
+    <script type="text/coffeescript" src="{% static 'dashboard/js/add-queue-controller.coffee' %}"></script>
 {% endblock %}
