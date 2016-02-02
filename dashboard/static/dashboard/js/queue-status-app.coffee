@@ -8,10 +8,9 @@ QueuesController = ($http, patientService, queuesService)->
     patientService.clear()
     patientService.add(item)
     return
-
   return
 
-################# END OF QueuesController ##############################
+#####################################################################################
 
 BedStatusController = ($http, djangoUrl, patientService, wardService, roomService)->
   vm = @
@@ -41,7 +40,7 @@ BedStatusController = ($http, djangoUrl, patientService, wardService, roomServic
     return
   return
 
-####################### END OF BedStatusController #################################
+#####################################################################################
 
 patientService = ()->
   items = []
@@ -50,13 +49,13 @@ patientService = ()->
     items.push(item)
     return
   itemsService.list = ()->
-    return items
+    items
   itemsService.clear = ()->
     items = []
     return
   return itemsService
 
-######################### END OF patientService #################################
+#####################################################################################
 
 queuesService = ($http, djangoUrl)->
   get = ()->
@@ -65,19 +64,19 @@ queuesService = ($http, djangoUrl)->
     )
   return {get:get}
 
-########################## END OF queuesService ##################################
+#####################################################################################
 
 roomService = ($resource, djangoUrl)->
   $resource('/api/wards/:id/rooms',{},{
     query:{method: "GET", isArray: true}
   })
 
-############################ END of roomService ##################################
+#####################################################################################
 
 wardService = ($resource, djangoUrl)->
   $resource(djangoUrl.reverse('ward-list'))
 
-########################### END of wardService ##################################
+#####################################################################################
 
 BedStatusController
   .$inject = ['$http','djangoUrl','patientService', 'wardService', 'roomService']
@@ -94,7 +93,7 @@ roomService
 wardService
   .$inject = ['$resource', 'djangoUrl']
 
-######################### END OF INJECTION MODULE ##################################
+#####################################################################################
 
 angular
   .module('QueuesApp',['ng.django.urls','ui.router','ngResource'])
