@@ -2,8 +2,7 @@ QueuesController = ($http, patientService, queuesService)->
   vm = @
   queuesDataPromise = queuesService.get()
   queuesDataPromise.then((data)->
-    vm.qData = data.queues
-    console.log("load")
+    vm.qData = data
   )
   vm.choose = (item)->
     patientService.clear()
@@ -20,8 +19,8 @@ BedStatusController = ($http, djangoUrl, patientService, wardService, roomServic
   if patientService.list().length is 0 then vm.isPatientData = false
   else
     vm.isPatientData = true
-    vm.firstName = 'First name: '+patientService.list()[0].firstname
-    vm.lastName = 'Last name: '+patientService.list()[0].lastname
+    vm.firstName = 'First name: '+patientService.list()[0].patient.first_name
+    vm.lastName = 'Last name: '+patientService.list()[0].patient.last_name
     vm.symptom = 'Symptom: '+patientService.list()[0].symptom
     vm.doctor = 'Doctor: '+patientService.list()[0].doctor
 
@@ -33,8 +32,6 @@ BedStatusController = ($http, djangoUrl, patientService, wardService, roomServic
       return
     return
   )
-
-  console.log(vm.wards)
 
   vm.onHover = (room)->
     console.log(room)
@@ -51,7 +48,6 @@ patientService = ()->
   itemsService = {}
   itemsService.add = (item)->
     items.push(item)
-    console.log(items)
     return
   itemsService.list = ()->
     return items
@@ -65,7 +61,6 @@ patientService = ()->
 queuesService = ($http, djangoUrl)->
   get = ()->
     return $http({method:"GET", url: djangoUrl.reverse('admit-queue')}).then((data)->
-      console.log(data)
       return data.data
     )
   return {get:get}
