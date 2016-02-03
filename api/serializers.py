@@ -1,4 +1,6 @@
-from rest_framework.serializers import ModelSerializer, HyperlinkedModelSerializer, StringRelatedField
+from rest_framework.serializers import \
+    ModelSerializer, Serializer, \
+    SerializerMethodField, StringRelatedField
 from dashboard.models import *
 
 ###############################################################################
@@ -21,6 +23,11 @@ class WardSerializer(ModelSerializer):
 
 
 class RoomSerializer(ModelSerializer):
+    status = SerializerMethodField()
+
+    @staticmethod
+    def get_status(o):
+        return {'key': o.status, 'value': o.get_status_display()}
 
     def create(self, validated_data):
         return Room.objects.create(**validated_data)
@@ -53,6 +60,11 @@ class PatientSerializer(ModelSerializer):
 
 class AdmitSerializer(ModelSerializer):
     doctor = StringRelatedField()
+    status = SerializerMethodField()
+
+    @staticmethod
+    def get_status(o):
+        return {'key': o.status, 'value': o.get_status_display()}
 
     def create(self, validated_data):
         return Admit.objects.create(**validated_data)

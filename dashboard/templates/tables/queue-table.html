@@ -8,7 +8,7 @@
             <th>Appointment</th>
             <th>Symptom</th>
             <th>Doctor</th>
-            <th>Phone Number</th>
+            <th>Phone</th>
             <th>Status</th>
             <th></th>
         </tr>
@@ -21,9 +21,9 @@
                 <td>{$ item.admit_date $}</td>
                 <td>{$ item.symptom $}</td>
                 <td>{$ item.doctor $}</td>
-                <td>{$ item.phoneNo $}</td>
-                <td>{$ item.status $}</td>
-                <td><a ui-sref="choose-bed" ng-if="item.status === 0" ng-click="qCtrl.choose(item)">Choose</a></td>
+                <td>{$ item.patient.phone $}</td>
+                <td>{$ item.status.value $}</td>
+                <td><a ui-sref="choose-bed" ng-if="item.status.key === 0" ng-click="qCtrl.choose(item)">Choose</a></td>
             </tr>
         </tbody>
     </table>

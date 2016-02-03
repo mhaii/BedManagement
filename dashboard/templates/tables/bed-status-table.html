@@ -21,9 +21,9 @@
                 <tbody>
                     <tr ng-repeat="ward in bedCtrl.wards">
                         <td>{$ ward.name $} {$ ward.remark $} Tel. {$ ward.phone $} ({$ ward.price $})</td>
-                        <td ng-repeat="room in bedCtrl.rooms[ward.id]" id="{$ ward.id $}-{$ room.number $}" class="room-{$ room.status $}" ng-mouseenter="bedCtrl.onHover(room)" ng-mouseleave="bedCtrl.onOutHover(room)">
+                        <td ng-repeat="room in bedCtrl.rooms[ward.id]" id="{$ ward.id $}-{$ room.number $}" class="room-{$ room.status.key $}" ng-mouseenter="bedCtrl.onHover(room)" ng-mouseleave="bedCtrl.onOutHover(room)">
                             {$ room.number $}
-                            <div ng-if="room.status === 'OC'" id ="patientpopup">
+                            <div ng-if="room.status.key === 'OC'" id ="patientpopup">
                                 <dl class="detaillist">
                                     <dt>ห้อง: {$ room.number $}</dt>
                                     <dt>ชื้อ: คนไข้1</dt>
@@ -35,7 +35,7 @@
                                 <a class="btn-sm infobutton" href="#">แก้ไข</a>
                                 <a class="btn-sm infobutton" href="#">ลบ</a>
                             </div>
-                            <div ng-if="room.status === 'AV'" id ="patientpopup">
+                            <div ng-if="room.status.key === 'AV'" id ="patientpopup">
                                 <dl class="detaillist">
                                     <dt>ห้อง: {$ room.number $}</dt>
                                     <dt>สถานะ: ว่าง</dt>
@@ -67,8 +67,8 @@
                                                     <td>{$ item.symptom $}</td>
                                                     <td>{$ item.doctor $}</td>
                                                     <td>{$ item.phoneNo $}</td>
-                                                    <td>{$ item.status $}</td>
-                                                    <td><a ui-sref="choose-bed" ng-if="item.status === 0" ng-click="qCtrl.choose(item)">Choose</a></td>
+                                                    <td>{$ item.status.value $}</td>
+                                                    <td><a ui-sref="choose-bed" ng-if="item.status.key === 0" ng-click="qCtrl.choose(item)">Choose</a></td>
                                                 </tr>
                                                 </tbody>
                                             </table>

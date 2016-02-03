@@ -71,6 +71,7 @@ class Patient(Model):
     hn = CharField(_("Patient's HN number"), max_length=14, unique=True, primary_key=True)
     first_name = CharField(_('First name'), max_length=20)
     last_name = CharField(_('Last name'), max_length=20)
+    phone = CharField(_('Phone no.'), max_length=15)
 
     class Meta:
         verbose_name = _('Patient')
