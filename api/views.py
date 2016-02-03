@@ -4,7 +4,7 @@ from django.shortcuts import redirect
 
 from rest_framework.decorators import detail_route, list_route
 from rest_framework.permissions import IsAuthenticated
-from rest_framework.viewsets import ModelViewSet
+from rest_framework.viewsets import ModelViewSet, ReadOnlyModelViewSet
 from rest_framework.response import Response
 
 from datetime import date, timedelta
@@ -24,7 +24,7 @@ def switch_lang(request):
 ###############################################################################
 
 
-class WardAPI(ModelViewSet):
+class WardAPI(ReadOnlyModelViewSet):
     queryset = Ward.objects.all()
     serializer_class = WardSerializer
     permission_classes = [IsAuthenticated]
@@ -81,11 +81,11 @@ class AdmitAPI(ModelViewSet):
     def queue(self, request, *args, **kwargs):
         days = request.GET.get('days', None)
 
-        queues = Admit.objects.filter(status__lt=2)
         if days is None:
-            queues = queues.filter(admit_date__gte=date.today())
+            queues = Admit.objects.filter(status__lt=2)
         else:
-            queues = queues.filter(admit_date__range=[date.today(), date.today() + timedelta(int(days))])
+            queues = Admit.objects.filter(status__lt=2,
+                                          admit_date__range=[date.today(), date.today() + timedelta(int(days))])
 
         page = self.paginate_queryset(queues)
         if page is not None:
