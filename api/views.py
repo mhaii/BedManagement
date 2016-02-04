@@ -69,6 +69,13 @@ class PatientAPI(ModelViewSet):
         serializer = self.get_serializer(patients, many=True)
         return Response(serializer.data)
 
+    @detail_route()
+    def check(self, request, pk, *args, **kwargs):
+        return self.retrieve(request, pk, **kwargs) \
+            if Patient.objects.filter(hn=pk).count()\
+            else Response({"detail": "Not found."})
+
+
 ###############################################################################
 
 
