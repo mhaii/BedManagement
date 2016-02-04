@@ -1,19 +1,13 @@
 from dashboard.models import *
 from rest_framework.serializers import \
-    ModelSerializer, Serializer, \
-    SerializerMethodField, StringRelatedField, DateField, DateTimeField
+    ModelSerializer, \
+    SerializerMethodField, StringRelatedField, PrimaryKeyRelatedField, ChoiceField
 
 ###############################################################################
 
 
 class WardSerializer(ModelSerializer):
     type = StringRelatedField(many=True)
-
-    def create(self, validated_data):
-        return Ward.objects.create(**validated_data)
-
-    def update(self, instance, validated_data):
-        pass
 
     class Meta:
         model = Ward
@@ -23,17 +17,12 @@ class WardSerializer(ModelSerializer):
 
 
 class RoomSerializer(ModelSerializer):
-    status = SerializerMethodField()
+    status = ChoiceField(choices=Room.enum_status, write_only=True)
+    status_r = SerializerMethodField(read_only=False)
 
     @staticmethod
-    def get_status(o):
+    def get_status_r(o):
         return {'key': o.status, 'value': o.get_status_display()}
-
-    def create(self, validated_data):
-        return Room.objects.create(**validated_data)
-
-    def update(self, instance, validated_data):
-        pass
 
     class Meta:
         model = Room
@@ -49,50 +38,35 @@ class WardRoomSerializer(WardSerializer):
 
 
 class PatientSerializer(ModelSerializer):
-
-    def create(self, validated_data):
-        return Patient.objects.create(**validated_data)
-
-    def update(self, instance, validated_data):
-        pass
-
     class Meta:
         model = Patient
         fields = '__all__'
-        depth = 1
 
 ###############################################################################
 
 
 class AdmitSerializer(ModelSerializer):
-    doctor = StringRelatedField()
-    status = SerializerMethodField()
+    doctor = PrimaryKeyRelatedField(queryset=Doctor.objects.all(), write_only=True)
+    doctor_r = SerializerMethodField()
+    status = ChoiceField(choices=Admit.enum_status, write_only=True)
+    status_r = SerializerMethodField()
 
     @staticmethod
-    def get_status(o):
+    def get_doctor_r(o):
+        return {'key': o.doctor.id, 'value': o.doctor.name}
+
+    @staticmethod
+    def get_status_r(o):
         return {'key': o.status, 'value': o.get_status_display()}
-
-    def create(self, validated_data):
-        return Admit.objects.create(**validated_data)
-
-    def update(self, instance, validated_data):
-        pass
 
     class Meta:
         model = Admit
         fields = '__all__'
-        depth = 1
 
 ###############################################################################
 
 
 class DoctorSerializer(ModelSerializer):
-    def create(self, validated_data):
-        pass
-
-    def update(self, instance, validated_data):
-        pass
-
     class Meta:
         model = Doctor
         fields = '__all__'
