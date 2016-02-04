@@ -1,7 +1,7 @@
+from dashboard.models import *
 from rest_framework.serializers import \
     ModelSerializer, Serializer, \
-    SerializerMethodField, StringRelatedField
-from dashboard.models import *
+    SerializerMethodField, StringRelatedField, DateField, DateTimeField
 
 ###############################################################################
 
@@ -38,6 +38,12 @@ class RoomSerializer(ModelSerializer):
     class Meta:
         model = Room
         fields = '__all__'
+
+###############################################################################
+
+
+class WardRoomSerializer(WardSerializer):
+    rooms = RoomSerializer(many=True)
 
 ###############################################################################
 

@@ -29,6 +29,10 @@ class WardAPI(ReadOnlyModelViewSet):
     serializer_class = WardSerializer
     permission_classes = [IsAuthenticated]
 
+    @list_route(serializer_class=WardRoomSerializer)
+    def with_rooms(self, request, *args, **kwargs):
+        return self.list(request, *args, **kwargs)
+
     @detail_route(serializer_class=RoomSerializer)
     def rooms(self, request, pk, *args, **kwargs):
         rooms = Ward.objects.get(pk=pk).rooms.all()

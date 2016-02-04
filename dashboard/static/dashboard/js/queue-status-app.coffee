@@ -15,7 +15,8 @@ QueuesController = ($http, patientService, queuesService)->
 BedStatusController = ($http, djangoUrl, patientService, wardService, roomService)->
   vm = @
 
-  if patientService.list().length is 0 then vm.isPatientData = false
+  if patientService.list().length is 0
+  then vm.isPatientData = false
   else
     vm.isPatientData = true
     vm.firstName = 'First name: '+patientService.list()[0].patient.first_name
@@ -23,14 +24,7 @@ BedStatusController = ($http, djangoUrl, patientService, wardService, roomServic
     vm.symptom = 'Symptom: '+patientService.list()[0].symptom
     vm.doctor = 'Doctor: '+patientService.list()[0].doctor
 
-  vm.rooms = {}
   vm.wards = wardService.query()
-  vm.wards.$promise.then((results)->
-    angular.forEach results, (ward)->
-      vm.rooms[ward.id] = roomService.query({id: ward.id})
-      return
-    return
-  )
 
   vm.onHover = (room)->
     console.log(room)
@@ -52,8 +46,7 @@ patientService = ()->
     items
   itemsService.clear = ()->
     items = []
-    return
-  return itemsService
+  itemsService
 
 #####################################################################################
 
@@ -66,15 +59,13 @@ queuesService = ($http, djangoUrl)->
 
 #####################################################################################
 
-roomService = ($resource)->
-  $resource('/api/wards/:id/rooms',{},{
-    query:{method: "GET", isArray: true}
-  })
+roomService = ($resource, djangoUrl)->
+  $resource(djangoUrl.reverse('ward-rooms')+'&djng_url_kwarg_pk=:id')
 
 #####################################################################################
 
 wardService = ($resource, djangoUrl)->
-  $resource(djangoUrl.reverse('ward-list'))
+  $resource(djangoUrl.reverse('ward-with-rooms'))
 
 #####################################################################################
 
