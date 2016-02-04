@@ -1,41 +1,62 @@
 addQueuesCtrl = ($http,searchService)->
   vm = @
-  vm.searchInput = { hnNumber : ''}
-  vm.search = (hnNumber)->
-    searchService.get({id: hnNumber.hnNumber}).$promise.then((user)->
-      console.log(user)
-    ,(error)->
-      console.log(error) if error.status is 404
-    )
-    return
-
+  patient = false
   vm.patientInfo = {
+    hn : ''
     first_name: '',
     last_name: '',
     phone: '',
-    #sex: '',
-    #age: '',
-    status: 0,
-    admit_date:'',
-    symptom: '',
-    doctor: '',
   }
 
-  vm.addToQueue = (patientInfo)->
-    $http(
-      method: 'POST',
-      url: '/api/admits/',
-      data:{ Data: patientInfo }
-    ).success((data)->
-      console.log("done")
-    ).error((data)->
-      console.log(data)
+  vm.admitInfo = {
+    doctor: '',
+    status: 0,
+    admit_date: '',
+    edd: null,
+    symptom: ''
+    patient: ''
+    room: null
+  }
+
+  vm.search = ()->
+    searchService.get({id: vm.patientInfo.hn}).$promise.then((user)->
+      if user.detail
+        console.log(user)
+
+      else
+        console.log(user)
+        patient = true
+        vm.patientInfo.first_name = user.first_name
+        vm.patientInfo.last_name = user.last_name
+        vm.patientInfo.phone = user.phone
+        vm.admitInfo.patient = vm.patientInfo.hn
     )
+    return
+
+
+
+  vm.addToQueue = ()->
+    if patient
+      console.log(vm.admitInfo)
+      $http(
+        method: 'POST',
+        url: '/api/admits/',
+        data: vm.admitInfo
+      ).success((data)->
+        console.log("done")
+      )
+    else
+      console.log(vm.patientInfo)
+      $http(
+        method: 'POST',
+        url: '/api/patients/'
+        data: vm.patientInfo
+      )
     return
   return
 
 searchService = ($resource)->
-  $resource('/api/patients/:id',{id:'@id'})
+  $resource('/api/patients/:id/check',{id:'@id'})
 
 addQueuesCtrl
   .$inject = ['$http','searchService']

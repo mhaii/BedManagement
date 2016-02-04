@@ -19,9 +19,9 @@
                             <label class="control-label" for="addon1">Put in HN number to search</label>
                             <div class="input-group">
                                 <span class="input-group-addon">HN:</span>
-                                <input type="text" class="form-control" id="addon1" ng-model="searchInput.hnNumber">
+                                <input type="text" class="form-control" id="addon1" ng-model="addCtrl.patientInfo.hn">
                                 <span class="input-group-btn">
-                                    <button class="btn btn-primary" type="button" ng-click="addCtrl.search(searchInput)">
+                                    <button class="btn btn-primary" type="button" ng-click="addCtrl.search()">
                                         Search
                                         <div class="ripple-container"></div>
                                     </button>
@@ -35,14 +35,14 @@
                 <div class="form-group">
                     <label class="control-label col-md-2" for="inputFirstName">First name :</label>
                     <div class="col-md-10">
-                        <input class="form-control" type="text" id="inputFirstName" ng-model="patientInfo.first_name">
+                        <input class="form-control" type="text" id="inputFirstName" ng-model="addCtrl.patientInfo.first_name">
                     </div>
                     <span class="material-input"></span>
                 </div>
                 <div class="form-group">
                     <label class="control-label col-md-2" for="inputLastName">Last name :</label>
                     <div class="col-md-10">
-                        <input class="form-control" type="text" id="inputLastName" ng-model="patientInfo.last_name">
+                        <input class="form-control" type="text" id="inputLastName" ng-model="addCtrl.patientInfo.last_name">
                     </div>
                     <span class="material-input"> </span>
                 </div>
@@ -51,7 +51,7 @@
                     <div class="col-md-10">
                         <div class="radio radio-primary">
                             <label>
-                                <input type="radio" name="sex" id="male" ng-model="patientInfo.sex" ng-value="name">
+                                <input type="radio" name="sex" id="male" ng-model="addCtrl.patientInfo.sex" ng-value="name">
                                 <span class="circle"></span>
                                 <span class="check"></span>
                                 Male
@@ -59,7 +59,7 @@
                         </div>
                         <div class="radio radio-primary">
                             <label>
-                                <input type="radio" name="sex" id="female" ng-model="patientInfo.sex" ng-value="name">
+                                <input type="radio" name="sex" id="female" ng-model="addCtrl.patientInfo.sex" ng-value="name">
                                 <span class="circle"></span>
                                 <span class="check"></span>
                                 Female
@@ -70,41 +70,41 @@
                 <div class="form-group">
                     <label class="control-label col-md-2" for="inputAge">Age :</label>
                     <div class="col-md-10">
-                        <input class="form-control" type="text" id="inputAge" ng-model="patientInfo.age">
+                        <input class="form-control" type="text" id="inputAge" ng-model="addCtrl.patientInfo.age">
                     </div>
                     <span class="material-input"> </span>
                 </div>
                 <div class="form-group">
                     <label class="control-label col-md-2" for="inputPhoneNumber">Phone number:</label>
                     <div class="col-md-10">
-                        <input class="form-control" type="text" id="inputPhoneNumber" ng-model="patientInfo.phoneNumber">
+                        <input class="form-control" type="text" id="inputPhoneNumber" ng-model="addCtrl.patientInfo.phone">
                     </div>
                     <span class="material-input"></span>
                 </div>
                 <div class="form-group">
                     <label class="control-label col-md-2" for="inputSyndrome">Symptom :</label>
                     <div class="col-md-10">
-                        <input class="form-control" type="text" id="inputSyndrome" ng-model="patientInfo.symptom">
+                        <input class="form-control" type="text" id="inputSyndrome" ng-model="addCtrl.admitInfo.symptom">
                     </div>
                     <span class="material-input"> </span>
                 </div>
                 <div class="form-group">
                     <label class="control-label col-md-2" for="inputDoctor">Doctor :</label>
                     <div class="col-md-10">
-                        <input class="form-control" type="text" id="inputDoctor" ng-model="patientInfo.doctor">
+                        <input class="form-control" type="text" id="inputDoctor" ng-model="addCtrl.admitInfo.doctor">
                     </div>
                     <span class="material-input"> </span>
                 </div>
                 <div class="form-group">
                     <label class="control-label col-md-2" for="inputBookingDate">Booking Date:</label>
                     <div class="col-md-10">
-                        <input class="form-control" type="text" id="inputBookingDate" ng-model="patientInfo.admit_date">
+                        <input class="form-control" type="text" id="inputBookingDate" ng-model="addCtrl.admitInfo.admit_date">
                     </div>
                     <span class="material-input"></span>
                 </div>
                 <div class="form-group">
                     <div class="col-md-10 col-md-offset-2">
-                        <a class="btn btn-primary" href="#" ng-click="addCtrl.addToQueue(patientInfo)">Confirm</a>
+                        <a class="btn btn-primary" href="#" ng-click="addCtrl.addToQueue()">Confirm</a>
                         <!--<button class="btn btn-primary" type="submit">Assign Room</button>-->
                     </div>
                 </div>
