@@ -14,17 +14,20 @@
         </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="item in qCtrl.qData">
-                <td>{$ item.patient.hn $}</td>
-                <td>{$ item.patient.first_name $}</td>
-                <td>{$ item.patient.last_name $}</td>
-                <td>{$ item.admit_date $}</td>
-                <td>{$ item.symptom $}</td>
-                <td>{$ item.doctor $}</td>
-                <td>{$ item.patient.phone $}</td>
-                <td>{$ item.status.value $}</td>
-                <td><a ui-sref="choose-bed" ng-if="item.status.key.toLowerCase() === 'confirmed'" ng-click="qCtrl.choose(item)">Choose</a></td>
-            </tr>
+        <tr ng-repeat="item in qCtrl.qData">
+            <td>{$ item.patient.hn $}</td>
+            <td>{$ item.patient.first_name $}</td>
+            <td>{$ item.patient.last_name $}</td>
+            <td>{$ item.admit_date $}</td>
+            <td>{$ item.symptom $}</td>
+            <td>{$ item.doctor_r.value $}</td>
+            <td>{$ item.patient.phone $}</td>
+            <td>{$ item.status_r.value $}</td>
+            <td>
+                <a ui-sref="confirm-queue" ng-if="item.status_r.key === 0" ng-click="">Confirm</a>
+                <a ui-sref="choose-bed" ng-if="item.status_r.key === 1" ng-click="qCtrl.choose(item)">Choose</a>
+            </td>
+        </tr>
         </tbody>
     </table>
 </div>

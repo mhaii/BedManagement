@@ -22,7 +22,7 @@ BedStatusController = ($http, djangoUrl, patientService, wardService, roomServic
     vm.firstName = 'First name: '+patientService.list()[0].patient.first_name
     vm.lastName = 'Last name: '+patientService.list()[0].patient.last_name
     vm.symptom = 'Symptom: '+patientService.list()[0].symptom
-    vm.doctor = 'Doctor: '+patientService.list()[0].doctor
+    vm.doctor = 'Doctor: '+patientService.list()[0].doctor_r.value
 
   vm.wards = wardService.query()
 
@@ -52,7 +52,7 @@ patientService = ()->
 
 queuesService = ($http, djangoUrl)->
   get = ()->
-    return $http({method:"GET", url: djangoUrl.reverse('admit-queue')}).then((data)->
+    return $http({method:"GET", url: djangoUrl.reverse('admit-queue-detail')}).then((data)->
       return data.data
     )
   return {get:get}
