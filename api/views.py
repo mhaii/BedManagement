@@ -106,6 +106,10 @@ class AdmitAPI(ModelViewSet):
         serializer = self.get_serializer(queues, many=True)
         return Response(serializer.data)
 
+    @list_route(serializer_class=AdmitDetailedSerializer)
+    def queue_detail(self, request, *args, **kwargs):
+        return self.queue(request, *args, **kwargs)
+
     @list_route()
     def today(self, request, *args, **kwargs):
         admitted = Admit.objects.filter(admit_date__exact=date.today(), status__gte=2)

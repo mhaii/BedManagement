@@ -72,3 +72,11 @@ class DoctorSerializer(ModelSerializer):
         fields = '__all__'
 
 ###############################################################################
+
+
+class AdmitDetailedSerializer(AdmitSerializer):
+    class Meta:
+        model = Admit
+        depth = 1
+
+###############################################################################
