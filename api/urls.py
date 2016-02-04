@@ -32,13 +32,3 @@ urlpatterns = [
     url(r'', include(router.urls))
 
 ]
-
-'''
-Additional URLs
-
-GET /rooms/?ward={ward_id}      ::  Get all rooms in the specified ward
-GET /admits/queue               ::  Get all today scheduled admits
-GET /admits/queue/?limit={days} ::  Get scheduled admits between today and next X days
-GET /admits/today               ::  Get list of today admits
-
-'''
