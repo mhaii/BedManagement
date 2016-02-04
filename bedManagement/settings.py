@@ -172,3 +172,11 @@ BOWER_COMPONENTS_ROOT = BASE_DIR
 
 MIDDLEWARE_CLASSES.insert(0, 'djangular.middleware.DjangularUrlMiddleware')
 STATICFILES_DIRS += [os.path.join(BASE_DIR, 'dashboard/templates')]
+
+# Django REST Framework
+# http://www.django-rest-framework.org/api-guide/settings/
+
+REST_FRAMEWORK = {
+    # Return in character or escape value
+    # 'UNICODE_JSON': False,
+}
