@@ -66,7 +66,7 @@ queuesService = ($http, djangoUrl)->
 
 #####################################################################################
 
-roomService = ($resource, djangoUrl)->
+roomService = ($resource)->
   $resource('/api/wards/:id/rooms',{},{
     query:{method: "GET", isArray: true}
   })
