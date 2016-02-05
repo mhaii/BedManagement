@@ -33,8 +33,6 @@ addQueuesCtrl = ($http,searchService)->
     )
     return
 
-
-
   vm.addToQueue = ()->
     if patient
       vm.admitInfo.admit_date = vm.admitInfo.admit_date+'T00:00'
