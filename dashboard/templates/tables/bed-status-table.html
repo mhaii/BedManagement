@@ -42,41 +42,7 @@
                                 </dl>
                                 <a ng-hide="bedCtrl.isPatientData" class="btn-sm infobutton" href="#">
                                     จอง
-                                    <div id="queuespopup">
-                                        <div class="table-responsive" style="margin-top: 2%;">
-                                            <table class="table table-striped table-bordered table-hover">
-                                                <thead>
-                                                   <tr>
-                                                       <th>HN Number</th>
-                                                       <th>First name</th>
-                                                       <th>Last name</th>
-                                                       <th>Appointment</th>
-                                                       <th>Symptom</th>
-                                                       <th>Doctor</th>
-                                                       <th>Phone Number</th>
-                                                       <th>Status</th>
-                                                       <th></th>
-                                                   </tr>
-                                                </thead>
-                                                <tbody>
-                                                <tr ng-repeat="item in qCtrl.qData">
-                                                    <td>{$ item.patient.hn $}</td>
-                                                    <td>{$ item.patient.first_name $}</td>
-                                                    <td>{$ item.patient.last_name $}</td>
-                                                    <td>{$ item.admit_date $}</td>
-                                                    <td>{$ item.symptom $}</td>
-                                                    <td>{$ item.doctor_r.value $}</td>
-                                                    <td>{$ item.patient.phone $}</td>
-                                                    <td>{$ item.status_r.value $}</td>
-                                                    <td>
-                                                        <a ng-if="item.status_r.key === 0" ng-click="qCtrl.confirm(item)">Confirm</a>
-                                                        <a ui-sref="choose-bed" ng-if="item.status_r.key === 1" ng-click="qCtrl.choose(item)">Choose</a>
-                                                    </td>
-                                                </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
+                                    <div id="queuespopup" ng-include="'/static/tables/queue-table.html'"></div>
                                 </a>
                                 <a ng-show="bedCtrl.isPatientData" class="btn-sm infobutton" href="#">จอง</a>
                             </div>
