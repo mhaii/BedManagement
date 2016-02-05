@@ -8,6 +8,9 @@ QueuesController = ($http, patientService, queuesService)->
     patientService.clear()
     patientService.add(item)
     return
+
+  vm.confirm = (item)->
+    return
   return
 
 #####################################################################################

@@ -24,7 +24,7 @@
             <td>{$ item.patient.phone $}</td>
             <td>{$ item.status_r.value $}</td>
             <td>
-                <a ng-if="item.status_r.key === 0" ng-click="">Confirm</a>
+                <a ng-if="item.status_r.key === 0" ng-click="qCtrl.confirm(item)">Confirm</a>
                 <a ui-sref="choose-bed" ng-if="item.status_r.key === 1" ng-click="qCtrl.choose(item)">Choose</a>
             </td>
         </tr>
