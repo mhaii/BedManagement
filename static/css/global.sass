@@ -1,11 +1,32 @@
 .disabled
   display: none
 
-@media screen and (min-width: 700px)
-  #header
+.container
+  position: relative
+  height: 100%
+  margin: 2% auto
+  width: 80%
+
+.container-hover
+  background-color: white
+  box-shadow: 0 0 0.5cm rgba(0,0,0,0.5)
+
+.container-slim
+  width: 90%
+#header
+  height: 60px
+  @media screen and (min-width: 700px)
     .dropdown:hover .dropdown-menu
-      display: block;
+      display: block
       margin-top: 0
 
 .explain
   color: orangered
+
+//= small piece of code here
+body
+  // add-queue.html
+  #add-queue
+    .form
+      width: 80%
+

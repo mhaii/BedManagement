@@ -10,24 +10,26 @@
 {% endblock %}
 
 {% block content %}
-<div class="containerStatus" ng-app="QueuesApp">
-    <div>
-        <h1 id="table">Bed Status</h1>
+    <div id="bed-status-all" class="center-block container container-slim" ng-app="QueuesApp">
+        <div class="row">
+            <h1 id="table" class="col-xs-12 col-sm-6 col-md-8 col-lg-8 align-left">Bed Status</h1>
+            <table id="legends" class="col-xs-12 col-sm-6 col-md-4 col-lg-4  align-right table-bordered table-striped" border="1">
+                <tr class="text-center">
+                    <td class="room-AV">ห้องว่าง</td>
+                    <td class="room-AS">คาดว่าจะว่าง</td>
+                    <td class="room-OC">ห้องไม่ว่าง</td>
+                    <td class="room-RE">ถูกจอง</td>
+                    <td class="room-DI">ปิดใช้งาน</td>
+                </tr>
+            </table>
+        </div>
+        <div ng-controller="QueuesController as qCtrl">
+            <div ui-view></div>
+            <p class="explain">*ตารางแสดงสถานะของเตียงทั้งหมด โดยสามารถดูข้อมูลของห้องต่างๆได้ </p>
+            <p class="explain">     1.ถ้าห้องว่าง เมื่อลากเมาส์ไปอยู่บนหมายเลขห้อง ปุ่มจองจะถูกแสดงขึ้นมาบนหน้าจอ และเมื่อเลือนไปที่ปุ่มจอง ระบบจะแสดงคิวของคนไข้เพื่อให้เลือกและทำการจำหน่ายเตียงได้ทันที</p>
+            <p class="explain">     2.ถ้าห้องไม่ว่าง เมื่อลากเมาส์ไปอยู่บนหมายเลขห้อง ข้อมูลของคนไข้ โรค หมอผู้รับผิดชอบและวันที่คาดว่าจะออกจากโรงพยาบาลจะถูกแสดงขึ้นบนหน้าจอ นอกจากนี้ยังสามารถที่จะย้ายเตียงคนไข้ ลบออกจากระบบ และแก้ไขข้อมูลได้</p>
+        </div>
     </div>
-    <div ng-controller="QueuesController as qCtrl">
-{#        {% url 'room-list' ward=1 %}#}
-        <div ui-view></div>
-        <p class="explain">*ตารางแสดงสถานะของเตียงทั้งหมด โดยสามารถดูข้อมูลของห้องต่างๆได้ </p>
-        <p class="explain">     1.ถ้าห้องว่าง เมื่อลากเมาส์ไปอยู่บนหมายเลขห้อง ปุ่มจองจะถูกแสดงขึ้นมาบนหน้าจอ และเมื่อเลือนไปที่ปุ่มจอง ระบบจะแสดงคิวของคนไข้เพื่อให้เลือกและทำการจำหน่ายเตียงได้ทันที</p>
-        <p class="explain">     2.ถ้าห้องไม่ว่าง เมื่อลากเมาส์ไปอยู่บนหมายเลขห้อง ข้อมูลของคนไข้ โรค หมอผู้รับผิดชอบและวันที่คาดว่าจะออกจากโรงพยาบาลจะถูกแสดงขึ้นบนหน้าจอ นอกจากนี้ยังสามารถที่จะย้ายเตียงคนไข้ ลบออกจากระบบ และแก้ไขข้อมูลได้</p>
-        <p class="explain">     ความหมายของแต่ละสี</p>
-        <p class="explain">     สีเขียว: ห้องว่าง</p>
-        <p class="explain">     สีแดง: ห้องไม่ว่าง</p>
-        <p class="explain">     สีเหลือง: คาดว่าจะว่าง</p>
-        <p class="explain">     สีน้ำเงิน: จองพิเศษ</p>
-        <p class="explain">     สีเทา: ห้องไม่สามารถใช้ไงานได้</p>
-    </div>
-</div>
 {% endblock %}
 
 {% block js %}

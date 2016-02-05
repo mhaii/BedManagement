@@ -4,33 +4,31 @@
 {% block title %}Home{% endblock %}
 
 {% block css %}
-    <link rel="stylesheet" href="{% static 'dashboard/css/home.sass' %}" type="text/x-sass" charset="utf-8">
-    <link rel="stylesheet" type="text/x-sass" href="{% static 'dashboard/css/queues.sass' %}">
     <link rel="stylesheet" type="text/x-sass" href="{% static 'dashboard/css/status.sass' %}">
 {% endblock %}
 
 {% block content %}
-<div class="container">
-    <div>
-        <div class="col-md-2">
+<div id="home" class="container">
+    <div id="CurrentStatistics" ng-controller="CurrentStatisticsController as statCtrl">
+        <div class="col-md-3">
             <label class="lead text-center text-primary">Available Beds</label>
-            {% include 'tables/available-beds-table.html' %}
+            <div ng-include="'/static/tables/available-beds-table.html'"></div>
             <p class="explain">*ตารางแสดงจำนวนเตียงว่างของแผนกนั้นๆ</p>
         </div>
-        <div class="col-md-5">
+        <div class="col-md-4">
             <label class="lead text-center text-primary">Expected Discharge Date</label>
-            {% include 'tables/edd-table.html' %}
+            <div ng-include="'/static/tables/edd-table.html'"></div>
             <p class="explain">*ตารางแสดงชื่อและวันที่ของคนไข้ที่คาดว่าจะออกจากโรงพยาบาล</p>
         </div>
         <div class="col-md-5">
         <label class="lead text-center text-primary">People who admitted today</label>
-            {% include 'tables/admitted-today-table.html' %}
+            <div ng-include="'/static/tables/admitted-today-table.html'"></div>
             <p class="explain">*ตารางแสดงชื่อและแผนกที่คนไข้ได้แอดมิท</p>
         </div>
     </div>
     <div class="col-md-12 admittable" ng-app="QueuesApp">
         <label class="lead text-center text-primary">Queues</label>
-        <div ui-view></div>
+        <ui-view></ui-view>
         <p class="explain">*ตารางแสดงคนไข้ที่รอการจำหน่ายเตียงซึ่งสามารถจำหน่ายเตียงได้ทันทีโดยการกดปุ่ม "choose"</p>
     </div>
 </div>
@@ -38,4 +36,5 @@
 
 {% block js %}
     <script type="text/coffeescript" src="{% static 'dashboard/js/queue-status-app.coffee' %}"></script>
+    <script type="text/coffeescript" src="{% static 'dashboard/js/current-statistic.coffee' %}"></script>
 {% endblock %}

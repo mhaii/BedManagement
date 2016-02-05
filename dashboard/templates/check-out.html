@@ -6,13 +6,11 @@
 {%  endblock %}
 
 {% block css %}
-    <link rel="stylesheet" type="text/x-sass" href="{% static 'dashboard/css/check-out.sass' %}">
 {% endblock %}
 
 {% block content %}
-    <body>
-    <h1>Check-Out</h1>
     <div class="container" ng-app="checkOutApp">
+        <h1>Check-Out</h1>
         <div class="table-responsive" style="margin-top: 2%" ng-controller="StatusController as statuscontroller">
             <table class="table table-striped table-bordered table-hover ">
                 <thead>
@@ -51,8 +49,6 @@
         </div>
         <p class="explain">*หน้าแสดงรายชื่อคนไข้ที่ต้องออกจากโรงพยาบาลโดยที่สถานะปัจจุบันของคนไข้นั้นๆจะถูกแสดง และเมื่อกดปุ่ม "Done" ระบบจะเปลี่ยนสถานะ และบันทึกเวลาให้อัตโนมัติ</p>
     </div>
-</body>
-
 {% endblock %}
 
 {% block js %}
