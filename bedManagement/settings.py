@@ -163,7 +163,8 @@ BOWER_INSTALLED_APPS = [
     'bootstrap-material-design#~0.5.7',
     'highcharts#~4.2.1',
     'angular-ui-router#~0.2.0',
-    'angular-resource#~1.4.9'
+    'angular-resource#~1.4.9',
+    'angularjs-humanize#~0.0.1'
 ]
 BOWER_COMPONENTS_ROOT = BASE_DIR
 
