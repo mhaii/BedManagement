@@ -13,6 +13,14 @@ class WardSerializer(ModelSerializer):
         model = Ward
         fields = '__all__'
 
+
+class WardCountSerializer(WardSerializer):
+    free_count = SerializerMethodField()
+
+    @staticmethod
+    def get_free_count(o):
+        return o.free_count
+
 ###############################################################################
 
 
@@ -27,12 +35,6 @@ class RoomSerializer(ModelSerializer):
     class Meta:
         model = Room
         fields = '__all__'
-
-###############################################################################
-
-
-class WardRoomSerializer(WardSerializer):
-    rooms = RoomSerializer(many=True)
 
 ###############################################################################
 
@@ -72,6 +74,10 @@ class DoctorSerializer(ModelSerializer):
         fields = '__all__'
 
 ###############################################################################
+
+
+class WardRoomSerializer(WardSerializer):
+    rooms = RoomSerializer(many=True)
 
 
 class AdmitDetailedSerializer(AdmitSerializer):

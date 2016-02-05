@@ -1,5 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.utils.translation import LANGUAGE_SESSION_KEY
+from django.db.models import Count
 from django.shortcuts import redirect
 
 from rest_framework.decorators import detail_route, list_route
@@ -28,6 +29,18 @@ class WardAPI(ReadOnlyModelViewSet):
     queryset = Ward.objects.all()
     serializer_class = WardSerializer
     permission_classes = [IsAuthenticated]
+
+    @list_route(serializer_class=WardCountSerializer)
+    def free_count(self, request, *args, **kwargs):
+        wards = Ward.objects.filter(rooms__status='AV').annotate(free_count=Count('rooms'))
+
+        page = self.paginate_queryset(wards)
+        if page is not None:
+            serializer = self.get_serializer(page, many=True)
+            return self.get_paginated_response(serializer.data)
+
+        serializer = self.get_serializer(wards, many=True)
+        return Response(serializer.data)
 
     @list_route(serializer_class=WardRoomSerializer)
     def with_rooms(self, request, *args, **kwargs):
