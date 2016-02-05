@@ -76,17 +76,21 @@ class DoctorSerializer(ModelSerializer):
 ###############################################################################
 
 
-class WardRoomSerializer(WardSerializer):
-    rooms = RoomSerializer(many=True)
-
-
-class PatientAdmitSerializer(PatientSerializer):
-    admit = AdmitSerializer()
-
-
 class AdmitDetailedSerializer(AdmitSerializer):
     class Meta:
         model = Admit
         depth = 2
+
+
+class RoomAdmitSerializer(RoomSerializer):
+    patient = AdmitDetailedSerializer()
+
+
+class WardRoomSerializer(WardSerializer):
+    rooms = RoomAdmitSerializer(many=True)
+
+
+class PatientAdmitSerializer(PatientSerializer):
+    admit = AdmitSerializer()
 
 ###############################################################################
