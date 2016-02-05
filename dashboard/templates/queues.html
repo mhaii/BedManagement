@@ -1,21 +1,19 @@
 {% extends 'basefile.html' %}
 {% load static %}
-{% load i18n %}
 
-{% block title%}{% trans "Queues" %}{% endblock %}
+{% block title%}Queues{% endblock %}
 
 {% block css %}
-    <link rel="stylesheet" type="text/x-sass" href="{% static 'dashboard/css/queues.sass' %}">
     <link rel="stylesheet" type="text/x-sass" href="{% static 'dashboard/css/status.sass' %}">
 {% endblock %}
 
 {% block content %}
-    <body ng-app="QueuesApp">
-        <h1>Queues </h1>
-        <div class="container container-queues">
+    <div id="queues" class="container" ng-app="QueuesApp">
+        <h1>Queues</h1>
+        <div class="container container-hover container-slim">
             <div ui-view></div>
         </div>
-    </body>
+    </div>
 {% endblock %}
 
 {% block js %}

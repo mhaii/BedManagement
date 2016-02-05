@@ -4,13 +4,12 @@
 {% block title %}Add Queue{% endblock %}
 
 {% block css %}
-        <link rel="stylesheet" type="text/x-sass" href="{% static 'dashboard/css/book-queue.sass' %}">
-{%  endblock %}
+{% endblock %}
 
 {% block content %}
-    <div id="check-in" class="container" ng-app="addQueueApp" ng-controller="addQueuesCtrl as addCtrl">
+    <div id="add-queue" class="container container-hover container-slim" ng-app="addQueueApp" ng-controller="addQueuesCtrl as addCtrl">
         <h1>Booking</h1>
-        <div class="bs-docs-section">
+        <div class="form center-block">
             <p class="explain">*หน้าเพิ่มข้อมูลคนไข้เข้าสู่ระบบ หรือ ใส่ HN number เพื่อที่จะดึงข้อมูลคนไข้ที่มีอยู่ในระบบอยู่แล้วอัตโนมัติ<br> จากนั้นให้ใส่วันที่ที่นัดไว้แล้วกด "confirm" เพื่อยืนยันการนัดหมาย ชื่อของคนไข้จะขึ้นในหน้า Queues</p>
             <div class="row">
                 <div class="col-md-4 col-md-offset-1">

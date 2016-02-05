@@ -4,20 +4,18 @@
 {% block title %}Home{% endblock %}
 
 {% block css %}
-    <link rel="stylesheet" type="text/x-sass" href="{% static 'dashboard/css/home.sass' %}">
-    <link rel="stylesheet" type="text/x-sass" href="{% static 'dashboard/css/queues.sass' %}">
     <link rel="stylesheet" type="text/x-sass" href="{% static 'dashboard/css/status.sass' %}">
 {% endblock %}
 
 {% block content %}
-<div class="container">
+<div id="home" class="container">
     <div id="CurrentStatistics" ng-controller="CurrentStatisticsController as statCtrl">
-        <div class="col-md-2">
+        <div class="col-md-3">
             <label class="lead text-center text-primary">Available Beds</label>
             <div ng-include="'/static/tables/available-beds-table.html'"></div>
             <p class="explain">*ตารางแสดงจำนวนเตียงว่างของแผนกนั้นๆ</p>
         </div>
-        <div class="col-md-5">
+        <div class="col-md-4">
             <label class="lead text-center text-primary">Expected Discharge Date</label>
             <div ng-include="'/static/tables/edd-table.html'"></div>
             <p class="explain">*ตารางแสดงชื่อและวันที่ของคนไข้ที่คาดว่าจะออกจากโรงพยาบาล</p>
