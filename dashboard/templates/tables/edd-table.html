@@ -7,17 +7,9 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>คนไข้ทดลอง1 โดยเด็กมหิดล</td>
-                <td>วันนี้</td>
-            </tr>
-            <tr>
-                <td>คนไข้ทดลอง2ที่ชื่อยาวกว่า โดยเด็กมหิดล</td>
-                <td>พรุ่งนี้</td>
-            </tr>
-            <tr>
-                <td>คนไข้3</td>
-                <td>28/4/2016 </td>
+            <tr ng-repeat="admit in statCtrl.dcSoon">
+                <td>{$ admit.patient.first_name $} {$ admit.patient.last_name $}</td>
+                <td>{$ admit.edd $}</td>
             </tr>
         </tbody>
     </table>

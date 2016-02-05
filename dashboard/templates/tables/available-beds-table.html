@@ -7,17 +7,9 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>84/9 อ </td>
-                <td>1 </td>
-            </tr>
-            <tr>
-                <td>วธ.3 </td>
-                <td>2 </td>
-            </tr>
-            <tr>
-                <td>84/10 ต </td>
-                <td>2 </td>
+            <tr ng-repeat="ward in statCtrl.wards">
+                <td>{$ ward.name $}</td>
+                <td>{$ ward.free_count $}</td>
             </tr>
         </tbody>
     </table>
