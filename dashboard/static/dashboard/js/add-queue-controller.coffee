@@ -1,13 +1,8 @@
 addQueuesCtrl = ($http,searchService)->
   vm = @
   patient = false
-  vm.patientInfo = {
-    hn : ''
-    first_name: '',
-    last_name: '',
-    phone: '',
-  }
-
+  vm.isNotSearch = true
+  vm.isNotFoundPatient = false
   vm.admitInfo = {
     doctor: '',
     status: 0,
@@ -19,10 +14,17 @@ addQueuesCtrl = ($http,searchService)->
   }
 
   vm.search = ()->
+    vm.patientInfo = {
+      hn : vm.patientInfo.hn
+      first_name: '',
+      last_name: '',
+      phone: '',
+    }
     searchService.get({id: vm.patientInfo.hn}).$promise.then((user)->
+      vm.isNotSearch = false
       if user.detail
         console.log(user)
-
+        vm.isNotFoundPatient = true
       else
         console.log(user)
         patient = true
@@ -30,6 +32,7 @@ addQueuesCtrl = ($http,searchService)->
         vm.patientInfo.last_name = user.last_name
         vm.patientInfo.phone = user.phone
         vm.admitInfo.patient = vm.patientInfo.hn
+        vm.isNotFoundPatient = false
     )
     return
 
