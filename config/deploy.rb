@@ -20,7 +20,7 @@ set :repo_url, 'git@github.com:mhaii/BedManagement.git'
 # set :log_level, :debug
 
 # Default value for :pty is false
-set :pty, true
+# set :pty, true
 
 # Default value for :linked_files is []
 # set :linked_files, fetch(:linked_files, []).push('config/database.yml', 'config/secrets.yml')
@@ -46,9 +46,8 @@ namespace :deploy do
         execute :python3, "scripts/import_fixture.py"
         execute :python3, "scripts/i18n.py"
         # restart gunicorn
-        execute :bash, "gunicorn.sh restart 0"        
+        execute :bash, "/var/www/bed_management/current/gunicorn.sh restart"        
       end
     end
   end
-
 end
