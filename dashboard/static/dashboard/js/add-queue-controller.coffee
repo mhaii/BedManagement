@@ -10,7 +10,7 @@ addQueuesCtrl = ($http,searchService)->
 
   vm.admitInfo = {
     doctor: '',
-    status: null,
+    status: 0,
     admit_date: '',
     edd: null,
     symptom: ''
@@ -37,7 +37,7 @@ addQueuesCtrl = ($http,searchService)->
 
   vm.addToQueue = ()->
     if patient
-      console.log(vm.admitInfo)
+      vm.admitInfo.admit_date = vm.admitInfo.admit_date+'T00:00'
       $http(
         method: 'POST',
         url: '/api/admits/',
@@ -51,6 +51,16 @@ addQueuesCtrl = ($http,searchService)->
         method: 'POST',
         url: '/api/patients/'
         data: vm.patientInfo
+      ).then(->
+        vm.admitInfo.patient = vm.patientInfo.hn
+        vm.admitInfo.admit_date = vm.admitInfo.admit_date+'T00:00'
+        $http(
+          method: 'POST',
+          url: '/api/admits/',
+          data: vm.admitInfo
+        ).success((data)->
+          console.log("done")
+        )
       )
     return
   return
