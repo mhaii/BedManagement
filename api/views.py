@@ -22,6 +22,16 @@ def switch_lang(request):
     request.session[LANGUAGE_SESSION_KEY] = 'en' if lang == 'th' else 'th'
     return redirect(request.META.get('HTTP_REFERER', '/'))
 
+
+def data(obj, queryset):
+    page = obj.paginate_queryset(queryset)
+    if page is not None:
+        serializer = obj.get_serializer(page, many=True)
+        return obj.get_paginated_response(serializer.data)
+
+    serializer = obj.get_serializer(queryset, many=True)
+    return Response(serializer.data)
+
 ###############################################################################
 
 
@@ -32,15 +42,7 @@ class WardAPI(ReadOnlyModelViewSet):
 
     @list_route(serializer_class=WardCountSerializer)
     def free_count(self, request, *args, **kwargs):
-        wards = Ward.objects.filter(rooms__status='AV').annotate(free_count=Count('rooms'))
-
-        page = self.paginate_queryset(wards)
-        if page is not None:
-            serializer = self.get_serializer(page, many=True)
-            return self.get_paginated_response(serializer.data)
-
-        serializer = self.get_serializer(wards, many=True)
-        return Response(serializer.data)
+        return data(self, Ward.objects.filter(rooms__status='AV').annotate(free_count=Count('rooms')))
 
     @list_route(serializer_class=WardRoomSerializer)
     def with_rooms(self, request, *args, **kwargs):
@@ -48,15 +50,7 @@ class WardAPI(ReadOnlyModelViewSet):
 
     @detail_route(serializer_class=RoomSerializer)
     def rooms(self, request, pk, *args, **kwargs):
-        rooms = Ward.objects.get(pk=pk).rooms.all()
-
-        page = self.paginate_queryset(rooms)
-        if page is not None:
-            serializer = self.get_serializer(page, many=True)
-            return self.get_paginated_response(serializer.data)
-
-        serializer = self.get_serializer(rooms, many=True)
-        return Response(serializer.data)
+        return data(self, Ward.objects.get(pk=pk).rooms.all())
 
 ###############################################################################
 
@@ -74,17 +68,9 @@ class PatientAPI(ModelViewSet):
     serializer_class = PatientSerializer
     permission_classes = [IsAuthenticated]
 
-    @list_route()
+    @list_route(serializer_class=PatientAdmitSerializer)
     def current(self, request, *args, **kwargs):
-        patients = Patient.objects.filter(admits__status__lt=3)
-
-        page = self.paginate_queryset(patients)
-        if page is not None:
-            serializer = self.get_serializer(page, many=True)
-            return self.get_paginated_response(serializer.data)
-
-        serializer = self.get_serializer(patients, many=True)
-        return Response(serializer.data)
+        return data(self, Patient.objects.filter(admits__status__gt=1))
 
     @detail_route()
     def check(self, request, pk, *args, **kwargs):
@@ -110,30 +96,21 @@ class AdmitAPI(ModelViewSet):
         else:
             queues = Admit.objects.filter(status__lt=2,
                                           admit_date__range=[date.today(), date.today() + timedelta(int(days))])
-
-        page = self.paginate_queryset(queues)
-        if page is not None:
-            serializer = self.get_serializer(page, many=True)
-            return self.get_paginated_response(serializer.data)
-
-        serializer = self.get_serializer(queues, many=True)
-        return Response(serializer.data)
+        return data(self, queues)
 
     @list_route(serializer_class=AdmitDetailedSerializer)
     def queue_detail(self, request, *args, **kwargs):
         return self.queue(request, *args, **kwargs)
 
-    @list_route()
+    @list_route(serializer_class=AdmitDetailedSerializer)
     def today(self, request, *args, **kwargs):
-        admitted = Admit.objects.filter(admit_date__exact=date.today(), status__gte=2)
+        return data(self, Admit.objects.filter(admit_date__exact=date.today(), status__exact=2))
 
-        page = self.paginate_queryset(admitted)
-        if page is not None:
-            serializer = self.get_serializer(page, many=True)
-            return self.get_paginated_response(serializer.data)
-
-        serializer = self.get_serializer(admitted, many=True)
-        return Response(serializer.data)
+    @list_route(serializer_class=AdmitDetailedSerializer)
+    def discharged_soon(self, request, *args, **kwargs):
+        return data(self, Admit.objects
+                    .filter(edd__lte=date.today() + timedelta(1), status__exact=2)
+                    .order_by('edd'))
 
 ###############################################################################
 

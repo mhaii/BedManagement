@@ -80,9 +80,13 @@ class WardRoomSerializer(WardSerializer):
     rooms = RoomSerializer(many=True)
 
 
+class PatientAdmitSerializer(PatientSerializer):
+    admit = AdmitSerializer()
+
+
 class AdmitDetailedSerializer(AdmitSerializer):
     class Meta:
         model = Admit
-        depth = 1
+        depth = 2
 
 ###############################################################################
