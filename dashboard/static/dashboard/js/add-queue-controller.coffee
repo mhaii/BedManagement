@@ -10,7 +10,7 @@ addQueuesCtrl = ($http,searchService)->
 
   vm.admitInfo = {
     doctor: '',
-    status: 0,
+    status: null,
     admit_date: '',
     edd: null,
     symptom: ''
