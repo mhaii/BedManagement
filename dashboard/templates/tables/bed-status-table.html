@@ -27,10 +27,10 @@
                             <div ng-if="room.status_r.key === 'OC'" id ="patient" class="hidden-box popup">
                                 <dl class="detail-list">
                                     <dt>ห้อง: {$ room.number $}</dt>
-                                    <dt>ชื้อ: คนไข้1</dt>
-                                    <dt>อาการ: ไข้หวัดใหญ่</dt>
-                                    <dt>หมอ: หมอ1</dt>
-                                    <dt>EDD: 13/4/2016</dt>
+                                    <dt>ชื้อ: {$ room.patient.patient.first_name $} {$ room.patient.patient.last_name $}</dt>
+                                    <dt>อาการ: {$ room.patient.symptom $}</dt>
+                                    <dt>หมอ: {$ room.patient.doctor_r.value $}</dt>
+                                    <dt>EDD: {$ room.patient.edd $}</dt>
                                 </dl>
                                 <a class="btn-sm infobutton" href="#">ย้าย</a>
                                 <a class="btn-sm infobutton" href="#">แก้ไข</a>
