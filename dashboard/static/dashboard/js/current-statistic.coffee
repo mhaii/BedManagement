@@ -7,11 +7,11 @@ CurrentStatisticsController = ($http, CurrentStatisticsService) ->
 
 
 CurrentStatisticsService = ($resource, djangoUrl) ->
-  vm = @
-  vm.freeRooms = $resource(djangoUrl.reverse('ward-free-count'))
-  vm.dischargedSoon = $resource(djangoUrl.reverse('admit-discharged-soon'))
-  vm.admittedToday = $resource(djangoUrl.reverse('admit-today'))
-  vm
+  {
+    freeRooms : $resource(djangoUrl.reverse('ward-free-count'))
+    dischargedSoon : $resource(djangoUrl.reverse('admit-discharged-soon'))
+    admittedToday :$resource(djangoUrl.reverse('admit-today'))
+  }
 
 ###############################################################################
 
