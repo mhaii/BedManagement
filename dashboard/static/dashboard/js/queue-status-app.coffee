@@ -21,15 +21,14 @@ QueuesController = ($http, patientService, queuesService)->
     return
 
   vm.changeStatus = (item)->
-    itemTosend = item
-    itemTosend.status = (parseInt(item.status_r.key)+1).toString()
-    itemTosend.doctor = item.doctor_r.key
-    itemTosend.patient = item.patient.hn
+    item.status = (parseInt(item.status_r.key)+1).toString()
+    item.doctor = item.doctor_r.key
+    item.patient = item.patient.hn
     console.log(item)
     $http(
       method: 'PUT',
       url: '/api/admits/'+item.id+'/'
-      data: itemTosend
+      data: item
     ).then(->
       vm.getQueues()
     )
@@ -54,23 +53,20 @@ BedStatusController = ($http, djangoUrl, patientService, wardService)->
   vm.wards = wardService.query()
 
   vm.addToRoom = (ward, room)->
-
     if vm.isPatientData
-      dataToSend = {}
-      dataToSend.patient = patientService.list()[0].patient.hn
-      dataToSend.doctor = patientService.list()[0].doctor_r.key
-      dataToSend.symptom = patientService.list()[0].symptom
-      dataToSend.edd = null
-      dataToSend.admit_date = (new Date).toISOString()
-      dataToSend.room = room.id
-      dataToSend.status = 2
+      patientService.list()[0].patient = patientService.list()[0].patient.hn
+      patientService.list()[0].doctor = patientService.list()[0].doctor_r.key
+      patientService.list()[0].edd = null
+      patientService.list()[0].admit_date = (new Date).toISOString()
+      patientService.list()[0].room = room.id
+      patientService.list()[0].status = 2
 
       $http(
         method: 'PUT',
         url: '/api/admits/'+patientService.list()[0].id+'/',
-        data: dataToSend
-      ).success((data)->
-        console.log("done")
+        data: patientService.list()[0]
+      ).then((data)->
+        window.location.href = 'http://127.0.0.1:8000/status/#/!'
       )
     return
 
