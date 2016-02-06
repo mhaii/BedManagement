@@ -25,9 +25,36 @@
             <td>{$ item.status_r.value $}</td>
             <td>
                 <a ng-if="item.status_r.key === 0" ng-click="qCtrl.changeStatus(item)">Confirm</a>
-                <a ui-sref="choose-bed" ng-if="item.status_r.key === 1" ng-click="qCtrl.choose(item)">Choose</a>
+                <div ng-show="qCtrl.isQueue">
+                    <a ui-sref="choose-bed" ng-if="item.status_r.key === 1" ng-click="qCtrl.choose(item)">Choose</a>
+                </div>
+                <div ng-hide="qCtrl.isQueue">
+                    <a ng-if="item.status_r.key === 1" data-toggle="modal" data-target="#myModal" ng-mouseover="qCtrl.prepareData(item)">Choose</a>
+                </div>
             </td>
         </tr>
         </tbody>
     </table>
+    <div id="myModal" class="modal fade in" role="dialog">
+       <div class="modal-dialog">
+           <!-- Modal content-->
+           <div class="modal-content">
+               <div class="modal-header">
+                   <button type="button" class="close" data-dismiss="modal">&times;</button>
+                   <h4 class="modal-title">Confirm</h4>
+               </div>
+               <dl class="detail-list">
+                   <dt>Ward: {$ ward.name $}</dt>
+                   <dt>Room: {$ room.number $}</dt>
+                   <dt>Patient</dt>
+                   <dt>First name: {$ qCtrl.addRoomData.first_name $}</dt>
+                   <dt>Last name: {$ qCtrl.addRoomData.last_name $}</dt>
+                   <dt>Symptom: {$ qCtrl.addRoomData.symptom $}</dt>
+                   <dt>Doctor: {$ qCtrl.addRoomData.doctor_value $}</dt>
+               </dl>
+               <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+               <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="qCtrl.confirm()">Confirm</button>
+           </div>
+       </div>
+    </div>
 </div>

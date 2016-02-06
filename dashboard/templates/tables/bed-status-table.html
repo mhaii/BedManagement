@@ -21,7 +21,7 @@
                 <tbody>
                     <tr ng-repeat="ward in bedCtrl.wards">
                         <td>{$ ward.name $} {$ ward.remark $} Tel. {$ ward.phone $} ({$ ward.price $})</td>
-                        <td ng-repeat="room in ward.rooms" id="{$ ward.id $}-{$ room.number $}" class="room-{$ room.status_r.key $}" ng-mouseenter="bedCtrl.onHover(room)" ng-mouseleave="bedCtrl.onOutHover(room)">
+                        <td ng-repeat="room in ward.rooms" id="{$ ward.id $}-{$ room.number $}" class="room-{$ room.status_r.key $}" ng-mouseenter="bedCtrl.onHover(room)">
                             {$ room.number $}
 
                             <div ng-if="room.status_r.key === 'OC'" id ="patient" class="hidden-box popup">
@@ -41,7 +41,7 @@
                                     <dt>ห้อง: {$ room.number $}</dt>
                                     <dt>สถานะ: ว่าง</dt>
                                 </dl>
-                                <a ng-hide="bedCtrl.isPatientData" class="btn-sm info-button" href="#">
+                                <a ng-hide="bedCtrl.isPatientData" class="btn-sm info-button" href="">
                                     จอง
                                     <div id="queues" ng-include="'/static/tables/queue-table.html'" class="hidden-box popup"></div>
                                 </a>
@@ -64,7 +64,7 @@
                                                 <dt>Doctor: {$ bedCtrl.doctor $}</dt>
                                             </dl>
                                             <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
-                                            <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="bedCtrl.addToRoom(ward ,room)">Confirm</button>
+                                            <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="bedCtrl.addToRoom(room)">Confirm</button>
                                         </div>
                                     </div>
                                 </div>

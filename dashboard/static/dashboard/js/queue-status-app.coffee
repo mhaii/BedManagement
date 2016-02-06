@@ -1,5 +1,11 @@
-QueuesController = ($http, patientService, queuesService)->
+QueuesController = ($http, patientService, $location, $scope)->
   vm = @
+  vm.addRoomData = {}
+
+  if $location.path() == '/'
+    vm.isQueue = true
+  else
+    vm.isQueue = false
 
   vm.getQueues = ()->
     $http.get('/api/admits/queue_detail/').success((data)->
@@ -7,24 +13,48 @@ QueuesController = ($http, patientService, queuesService)->
     )
     return
 
+  vm.state = $location.path()
   vm.getQueues()
 
   vm.choose = (item)->
-    patientService.clear()
-    patientService.add(item)
+    if vm.isQueue
+      patientService.clear()
+      patientService.add(item)
+    return
+
+  vm.prepareData = (item)->
+    vm.addRoomData.ward = patientService.listRoom()[0].ward
+    vm.addRoomData.room = patientService.listRoom()[0].number
+    vm.addRoomData.doctor = item.doctor_r.key
+    vm.addRoomData.patient = item.patient.hn
+    vm.addRoomData.admit_date = (new Date).toISOString()
+    vm.addRoomData.edd = null
+    vm.addRoomData.room = patientService.listRoom()[0].id
+    vm.addRoomData.status = 2
+    vm.addRoomData.id = item.id
+    vm.addRoomData.first_name = item.patient.first_name
+    vm.addRoomData.last_name = item.patient.last_name
+    vm.addRoomData.doctor_value = item.doctor_r.value
+    vm.addRoomData.symptom = item.symptom
+    return
+
+  vm.confirm = ()->
+    $http(
+      method: 'PUT',
+      url: '/api/admits/'+vm.addRoomData.id+'/',
+      data: vm.addRoomData
+    ).then(()->
+      $scope.$emit('refreshStatusTable')
+    )
     return
 
   vm.toReadAble = (dateItem)->
     console.log(dateItem)
 
-  vm.confirm = (item)->
-    return
-
   vm.changeStatus = (item)->
     item.status = (parseInt(item.status_r.key)+1).toString()
     item.doctor = item.doctor_r.key
     item.patient = item.patient.hn
-    console.log(item)
     $http(
       method: 'PUT',
       url: '/api/admits/'+item.id+'/'
@@ -38,8 +68,14 @@ QueuesController = ($http, patientService, queuesService)->
 
 #####################################################################################
 
-BedStatusController = ($http, djangoUrl, patientService, wardService)->
+BedStatusController = ($scope,$http, djangoUrl, patientService, wardService)->
   vm = @
+
+  vm.onHover = (item)->
+    console.log(item)
+    patientService.clearRoom()
+    patientService.addRoom(item)
+    return
 
   if patientService.list().length is 0
   then vm.isPatientData = false
@@ -52,7 +88,14 @@ BedStatusController = ($http, djangoUrl, patientService, wardService)->
 
   vm.wards = wardService.query()
 
-  vm.addToRoom = (ward, room)->
+  $scope.$on('refreshStatusTable', ()->
+    console.log('called')
+    $http.get('/api/wards/with_rooms/').success((data)->
+      vm.qData = data
+    )
+    return
+  )
+  vm.addToRoom = (room)->
     if vm.isPatientData
       patientService.list()[0].patient = patientService.list()[0].patient.hn
       patientService.list()[0].doctor = patientService.list()[0].doctor_r.key
@@ -60,7 +103,6 @@ BedStatusController = ($http, djangoUrl, patientService, wardService)->
       patientService.list()[0].admit_date = (new Date).toISOString()
       patientService.list()[0].room = room.id
       patientService.list()[0].status = 2
-
       $http(
         method: 'PUT',
         url: '/api/admits/'+patientService.list()[0].id+'/',
@@ -70,12 +112,15 @@ BedStatusController = ($http, djangoUrl, patientService, wardService)->
       )
     return
 
+
+
   return
 
 #####################################################################################
 
 patientService = ()->
   items = []
+  rooms = []
   itemsService = {}
   itemsService.add = (item)->
     items.push(item)
@@ -84,14 +129,16 @@ patientService = ()->
     items
   itemsService.clear = ()->
     items = []
+    return
+  itemsService.addRoom = (item)->
+    rooms.push(item)
+    return
+  itemsService.clearRoom = ()->
+    rooms = []
+    return
+  itemsService.listRoom = ()->
+    rooms
   itemsService
-
-#####################################################################################
-
-queuesService = ($resource, djangoUrl)->
-  {
-    getQueues: $resource(url: djangoUrl.reverse('admit-queue-detail'))
-  }
 
 #####################################################################################
 
@@ -106,13 +153,10 @@ wardService = ($resource, djangoUrl)->
 #####################################################################################
 
 BedStatusController
-  .$inject = ['$http','djangoUrl','patientService', 'wardService', 'roomService']
+  .$inject = ['$scope','$http','djangoUrl','patientService', 'wardService', 'roomService']
 
 QueuesController
-  .$inject = ['$http','patientService','queuesService']
-
-queuesService
-  .$inject = ['$http','djangoUrl']
+  .$inject = ['$http','patientService','$location','$scope']
 
 roomService
   .$inject = ['$resource', 'djangoUrl']
@@ -143,7 +187,6 @@ angular
     $httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
     return
   .factory('patientService', patientService)
-  .factory('queuesService', queuesService)
   .factory('wardService', wardService)
   .factory('roomService', roomService)
   .controller('QueuesController', QueuesController)
