@@ -8,7 +8,8 @@ QueuesController = ($http, patientService, queuesService)->
     patientService.clear()
     patientService.add(item)
     return
-
+  vm.toReadAble = (dateItem)->
+    console.log(dateItem)
   vm.confirm = (item)->
     return
   return
@@ -90,7 +91,7 @@ wardService
 #####################################################################################
 
 angular
-  .module('QueuesApp',['ng.django.urls','ui.router','ngResource'])
+  .module('QueuesApp',['ng.django.urls','ui.router','ngResource','angular-humanize'])
   .config ($interpolateProvider, $stateProvider, $urlRouterProvider) ->
     $interpolateProvider.startSymbol('{$')
     $interpolateProvider.endSymbol('$}')
