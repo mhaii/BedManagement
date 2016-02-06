@@ -30,8 +30,9 @@ QueuesController = ($http, patientService, queuesService)->
       method: 'PUT',
       url: '/api/admits/'+item.id+'/'
       data: itemTosend
+    ).then(->
+      vm.getQueues()
     )
-    vm.getQueues()
     return
 
   return
