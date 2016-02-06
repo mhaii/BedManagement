@@ -1,8 +1,7 @@
 QueuesController = ($http, patientService, queuesService)->
   vm = @
-  queuesDataPromise = queuesService.get()
-  queuesDataPromise.then((data)->
-    vm.qData = data
+  queuesService.getQueues.then((data)->
+    vm.qData = data.data
   )
   vm.choose = (item)->
     patientService.clear()
@@ -12,11 +11,21 @@ QueuesController = ($http, patientService, queuesService)->
     console.log(dateItem)
   vm.confirm = (item)->
     return
+  vm.changeStatus = (item)->
+    item.status = (parseInt(item.status_r.key)+1).toString()
+    item.doctor = item.doctor_r.key
+    item.patient = item.patient.hn
+    $http(
+      method: 'PUT',
+      url: '/api/admits/'+item.id+'/'
+      data: item
+    )
+    return
   return
 
 #####################################################################################
 
-BedStatusController = ($http, djangoUrl, patientService, wardService, roomService)->
+BedStatusController = ($http, djangoUrl, patientService, wardService)->
   vm = @
 
   if patientService.list().length is 0
@@ -30,12 +39,9 @@ BedStatusController = ($http, djangoUrl, patientService, wardService, roomServic
 
   vm.wards = wardService.query()
 
-  vm.onHover = (room)->
+  vm.addToRoom = (ward, room)->
+    console.log(ward)
     console.log(room)
-    return
-
-  vm.onOutHover = ()->
-    return
   return
 
 #####################################################################################
@@ -54,12 +60,10 @@ patientService = ()->
 
 #####################################################################################
 
-queuesService = ($http, djangoUrl)->
-  get = ()->
-    return $http({method:"GET", url: djangoUrl.reverse('admit-queue-detail')}).then((data)->
-      return data.data
-    )
-  return {get:get}
+queuesService = ($resource, djangoUrl)->
+  {
+    getQueues: $resource(url: djangoUrl.reverse('admit-queue-detail'))
+  }
 
 #####################################################################################
 
@@ -92,7 +96,7 @@ wardService
 
 angular
   .module('QueuesApp',['ng.django.urls','ui.router','ngResource','angular-humanize'])
-  .config ($interpolateProvider, $stateProvider, $urlRouterProvider) ->
+  .config ($interpolateProvider, $stateProvider, $urlRouterProvider,$httpProvider) ->
     $interpolateProvider.startSymbol('{$')
     $interpolateProvider.endSymbol('$}')
 
@@ -107,6 +111,8 @@ angular
       templateUrl: static_url+"tables/bed-status-table.html"
     })
     $urlRouterProvider.otherwise('/')
+    $httpProvider.defaults.xsrfCookieName = 'csrftoken';
+    $httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
     return
   .factory('patientService', patientService)
   .factory('queuesService', queuesService)

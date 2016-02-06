@@ -7,7 +7,7 @@
                     <dt>{$ bedCtrl.lastName $}</dt>
                     <dt>{$ bedCtrl.symptom $}</dt>
                     <dt>{$ bedCtrl.doctor $}</dt>
-                    </dl>
+                </dl>
             </div>
         </div>
         <div class="bs-component">
@@ -45,7 +45,29 @@
                                     จอง
                                     <div id="queues" ng-include="'/static/tables/queue-table.html'" class="hidden-box popup"></div>
                                 </a>
-                                <a ng-show="bedCtrl.isPatientData" class="btn-sm info-button" href="#">จอง</a>
+                                <a ng-show="bedCtrl.isPatientData" class="btn-sm info-button" data-toggle="modal" data-target="#myModal">จอง</a>
+                                <div id="myModal" class="modal fade" role="dialog">
+                                    <div class="modal-dialog">
+                                    <!-- Modal content-->
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                <h4 class="modal-title">Confirm</h4>
+                                            </div>
+                                            <dl class="detail-list">
+                                                <dt>Ward: {$ ward.name $}</dt>
+                                                <dt>Room: {$ room.number $}</dt>
+                                                <dt>Patient</dt>
+                                                <dt>First name: {$ bedCtrl.firstName $}</dt>
+                                                <dt>Last name: {$ bedCtrl.lastName $}</dt>
+                                                <dt>Symptom: {$ bedCtrl.symptom $}</dt>
+                                                <dt>Doctor: {$ bedCtrl.doctor $}</dt>
+                                            </dl>
+                                            <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+                                            <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="bedCtrl.addToRoom(ward ,room)">Confirm</button>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </td>
                     </tr>
