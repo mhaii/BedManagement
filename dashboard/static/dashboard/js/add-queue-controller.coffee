@@ -1,4 +1,4 @@
-addQueuesCtrl = ($http,searchService)->
+addQueuesCtrl = ($http,searchService,$window)->
   vm = @
   patient = false
   vm.isNotSearch = true
@@ -43,8 +43,10 @@ addQueuesCtrl = ($http,searchService)->
         method: 'POST',
         url: '/api/admits/',
         data: vm.admitInfo
-      ).success((data)->
-        console.log("done")
+      ).then((data)->
+        console.log('done')
+        window.location.href = 'http://127.0.0.1:8000/queues'
+        return
       )
     else
       console.log(vm.patientInfo)
@@ -59,8 +61,10 @@ addQueuesCtrl = ($http,searchService)->
           method: 'POST',
           url: '/api/admits/',
           data: vm.admitInfo
-        ).success((data)->
-          console.log("done")
+        ).then((data)->
+          console.log('done')
+          window.location.href = 'http://127.0.0.1:8000/queues'
+          return
         )
       )
     return
@@ -70,7 +74,7 @@ searchService = ($resource)->
   $resource('/api/patients/:id/check',{id:'@id'})
 
 addQueuesCtrl
-  .$inject = ['$http','searchService']
+  .$inject = ['$http','searchService','$window']
 
 searchService
   .$inject = ['$resource']
