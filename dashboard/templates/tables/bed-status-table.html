@@ -73,6 +73,28 @@
                     </tr>
                 </tbody>
             </table>
+            <div id="confirmModal" class="modal fade in">
+               <div class="modal-dialog">
+                   <!-- Modal content-->
+                   <div class="modal-content">
+                       <div class="modal-header">
+                           <button type="button" class="close" data-dismiss="modal">&times;</button>
+                           <h4 class="modal-title">Confirm</h4>
+                       </div>
+                       <dl class="detail-list">
+                           <dt>Ward: {$ ward.name $}</dt>
+                           <dt>Room: {$ room.number $}</dt>
+                           <dt>Patient</dt>
+                           <dt>First name: {$ qCtrl.addRoomData.first_name $}</dt>
+                           <dt>Last name: {$ qCtrl.addRoomData.last_name $}</dt>
+                           <dt>Symptom: {$ qCtrl.addRoomData.symptom $}</dt>
+                           <dt>Doctor: {$ qCtrl.addRoomData.doctor_value $}</dt>
+                       </dl>
+                       <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+                       <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="qCtrl.confirm()">Confirm</button>
+                   </div>
+               </div>
+            </div>
         </div>
     </div>
 </div>
