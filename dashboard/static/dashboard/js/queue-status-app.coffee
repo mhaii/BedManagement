@@ -44,7 +44,8 @@ QueuesController = ($http, patientService, $location, $scope)->
       url: '/api/admits/'+vm.addRoomData.id+'/',
       data: vm.addRoomData
     ).then(()->
-      $scope.$emit('refreshStatusTable')
+      $scope.$broadcast('refreshStatusTable')
+      vm.getQueues()
     )
     return
 
@@ -90,9 +91,7 @@ BedStatusController = ($scope,$http, djangoUrl, patientService, wardService)->
 
   $scope.$on('refreshStatusTable', ()->
     console.log('called')
-    $http.get('/api/wards/with_rooms/').success((data)->
-      vm.qData = data
-    )
+    vm.wards = wardService.query()
     return
   )
   vm.addToRoom = (room)->
