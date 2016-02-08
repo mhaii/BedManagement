@@ -21,7 +21,7 @@
                 <tbody>
                     <tr ng-repeat="ward in bedCtrl.wards">
                         <td>{$ ward.name $} {$ ward.remark $} Tel. {$ ward.phone $} ({$ ward.price $})</td>
-                        <td ng-repeat="room in ward.rooms" id="{$ ward.id $}-{$ room.number $}" class="room-{$ room.status_r.key $}" ng-mouseenter="bedCtrl.onHover(room)">
+                        <td ng-repeat="room in ward.rooms" id="{$ ward.id $}-{$ room.number $}" class="room-{$ room.status_r.key $}" ng-mouseenter="bedCtrl.onHover(room,ward)">
                             {$ room.number $}
 
                             <div ng-if="room.status_r.key === 'OC'" id ="patient" class="hidden-box popup">
@@ -51,6 +51,7 @@
                     </tr>
                 </tbody>
             </table>
+            <!-- modal for add patient from status page -->
             <div id="myModal" class="modal fade" role="dialog">
                 <div class="modal-dialog">
                 <!-- Modal content-->
@@ -60,8 +61,8 @@
                             <h4 class="modal-title">Confirm</h4>
                         </div>
                         <dl class="detail-list">
-                            <dt>Ward: {$ ward.name $}</dt>
-                            <dt>Room: {$ room.number $}</dt>
+                            <dt>Ward: {$ bedCtrl.wardName $}</dt>
+                            <dt>Room: {$ bedCtrl.roomName $}</dt>
                             <dt>Patient</dt>
                             <dt>First name: {$ bedCtrl.firstName $}</dt>
                             <dt>Last name: {$ bedCtrl.lastName $}</dt>
@@ -73,6 +74,7 @@
                     </div>
                 </div>
             </div>
+            <!-- modal for add patient from queue table -->
             <div id="confirmModal" class="modal fade in">
                <div class="modal-dialog">
                    <!-- Modal content-->
@@ -82,8 +84,8 @@
                            <h4 class="modal-title">Confirm</h4>
                        </div>
                        <dl class="detail-list">
-                           <dt>Ward: {$ qCtrl.addRoomData.ward $}</dt>
-                           <dt>Room: {$ qCtrl.addRoomData.room $}</dt>
+                           <dt>Ward: {$ qCtrl.addRoomData.wardName $}</dt>
+                           <dt>Room: {$ qCtrl.addRoomData.roomName $}</dt>
                            <dt>Patient</dt>
                            <dt>First name: {$ qCtrl.addRoomData.first_name $}</dt>
                            <dt>Last name: {$ qCtrl.addRoomData.last_name $}</dt>

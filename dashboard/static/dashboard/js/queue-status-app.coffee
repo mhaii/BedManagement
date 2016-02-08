@@ -23,8 +23,9 @@ QueuesController = ($http, patientService, $location, $scope)->
     return
 
   vm.prepareData = (item)->
-    vm.addRoomData.ward = patientService.listRoom()[0].ward
-    vm.addRoomData.room = patientService.listRoom()[0].number
+    console.log(patientService.listRoom()[0])
+    vm.addRoomData.wardName = patientService.listWard()[0].name
+    vm.addRoomData.roomName = patientService.listRoom()[0].number
     vm.addRoomData.doctor = item.doctor_r.key
     vm.addRoomData.patient = item.patient.hn
     vm.addRoomData.admit_date = (new Date).toISOString()
@@ -72,9 +73,13 @@ QueuesController = ($http, patientService, $location, $scope)->
 BedStatusController = ($scope,$http, djangoUrl, patientService, wardService)->
   vm = @
 
-  vm.onHover = (item)->
+  vm.onHover = (item,ward)->
     patientService.clearRoom()
     patientService.addRoom(item)
+    patientService.clearWard()
+    patientService.addWard(ward)
+    vm.wardName = patientService.listWard()[0].name
+    vm.roomName = patientService.listRoom()[0].number
     return
 
   vm.checkPatientData = ()->
@@ -88,6 +93,8 @@ BedStatusController = ($scope,$http, djangoUrl, patientService, wardService)->
         vm.lastName = patientService.list()[0].last_name
         vm.symptom = patientService.list()[0].symptom
         vm.doctor = patientService.list()[0].doctor_r
+        vm.wardName = patientService.listWard()[0].name
+        vm.roomName = patientService.listRoom()[0].number
       else
         vm.firstName = patientService.list()[0].patient.first_name
         vm.lastName = patientService.list()[0].patient.last_name
@@ -122,6 +129,7 @@ BedStatusController = ($scope,$http, djangoUrl, patientService, wardService)->
         patientService.list()[0].admit_date = (new Date).toISOString()
         patientService.list()[0].room = patientService.listRoom()[0].id
         patientService.list()[0].status = 2
+
         $http(
           method: 'PUT',
           url: '/api/admits/'+patientService.list()[0].id+'/',
@@ -164,6 +172,7 @@ BedStatusController = ($scope,$http, djangoUrl, patientService, wardService)->
 patientService = ()->
   items = []
   rooms = []
+  wards = []
   itemsService = {}
   itemsService.add = (item)->
     items.push(item)
@@ -181,6 +190,14 @@ patientService = ()->
     return
   itemsService.listRoom = ()->
     rooms
+  itemsService.addWard = (item)->
+    wards.push(item)
+    return
+  itemsService.clearWard = ()->
+    wards = []
+    return
+  itemsService.listWard = ()->
+    wards
   itemsService
 
 #####################################################################################
