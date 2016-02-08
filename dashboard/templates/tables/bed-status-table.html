@@ -32,9 +32,9 @@
                                     <dt>หมอ: {$ room.patient.doctor_r.value $}</dt>
                                     <dt>EDD: {$ room.patient.edd $}</dt>
                                 </dl>
-                                <a class="btn-sm infobutton" ng-click="bedCtrl.movePatient(room)">ย้าย</a>
+                                <a class="btn-sm infobutton" ng-click="bedCtrl.movePatient(room, true)">ย้าย</a>
                                 <a class="btn-sm infobutton" ng-click="bedCtrl.editData(room)">แก้ไข</a>
-                                <a class="btn-sm infobutton" href="#">ลบ</a>
+                                <a class="btn-sm infobutton" ng-click="bedCtrl.movePatient(room,false)" data-toggle="modal" data-target="#confirmToDelete">ลบ</a>
                             </div>
                             <div ng-if="room.status_r.key === 'AV'" id ="patient" class="hidden-box popup">
                                 <dl class="detail-list">
@@ -58,7 +58,7 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title">Confirm</h4>
+                            <h4 class="modal-title">Confirm to Add patient to this room?</h4>
                         </div>
                         <dl class="detail-list">
                             <dt>Ward: {$ bedCtrl.wardName $}</dt>
@@ -81,7 +81,7 @@
                    <div class="modal-content">
                        <div class="modal-header">
                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                           <h4 class="modal-title">Confirm</h4>
+                           <h4 class="modal-title">Confirm to Add patient to this room?</h4>
                        </div>
                        <dl class="detail-list">
                            <dt>Ward: {$ qCtrl.addRoomData.wardName $}</dt>
@@ -94,6 +94,29 @@
                        </dl>
                        <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
                        <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="qCtrl.confirm()">Confirm</button>
+                   </div>
+               </div>
+            </div>
+            <!-- confirm to delete -->
+            <div id="confirmToDelete" class="modal fade in">
+               <div class="modal-dialog">
+                   <!-- Modal content-->
+                   <div class="modal-content">
+                       <div class="modal-header">
+                           <button type="button" class="close" data-dismiss="modal">&times;</button>
+                           <h4 class="modal-title">Confirm to Delete?</h4>
+                       </div>
+                       <dl class="detail-list">
+                           <dt>Ward: {$ bedCtrl.wardName $}</dt>
+                           <dt>Room: {$ bedCtrl.roomName $}</dt>
+                           <dt>Patient</dt>
+                           <dt>First name: {$ bedCtrl.firstName $}</dt>
+                           <dt>Last name: {$ bedCtrl.lastName $}</dt>
+                           <dt>Symptom: {$ bedCtrl.symptom $}</dt>
+                           <dt>Doctor: {$ bedCtrl.doctor $}</dt>
+                       </dl>
+                       <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+                       <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="bedCtrl.deletePatient()">Confirm</button>
                    </div>
                </div>
             </div>

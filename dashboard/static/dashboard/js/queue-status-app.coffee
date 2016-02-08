@@ -23,7 +23,6 @@ QueuesController = ($http, patientService, $location, $scope)->
     return
 
   vm.prepareData = (item)->
-    console.log(patientService.listRoom()[0])
     vm.addRoomData.wardName = patientService.listWard()[0].name
     vm.addRoomData.roomName = patientService.listRoom()[0].number
     vm.addRoomData.doctor = item.doctor_r.key
@@ -50,6 +49,12 @@ QueuesController = ($http, patientService, $location, $scope)->
     )
     return
 
+  $scope.$on('refreshQueueTable', ()->
+    vm.getQueues()
+    $scope.$broadcast('refreshStatusTable')
+    return
+  )
+
   vm.toReadAble = (dateItem)->
     console.log(dateItem)
 
@@ -70,7 +75,7 @@ QueuesController = ($http, patientService, $location, $scope)->
 
 #####################################################################################
 
-BedStatusController = ($scope,$http, djangoUrl, patientService, wardService)->
+BedStatusController = ($scope, $http, djangoUrl, patientService, wardService)->
   vm = @
 
   vm.onHover = (item,ward)->
@@ -87,7 +92,6 @@ BedStatusController = ($scope,$http, djangoUrl, patientService, wardService)->
     then vm.isPatientData = false
     else
       vm.isPatientData = true
-      console.log(patientService.list()[0].first_name)
       if patientService.list()[0].move
         vm.firstName = patientService.list()[0].first_name
         vm.lastName = patientService.list()[0].last_name
@@ -129,7 +133,6 @@ BedStatusController = ($scope,$http, djangoUrl, patientService, wardService)->
         patientService.list()[0].admit_date = (new Date).toISOString()
         patientService.list()[0].room = patientService.listRoom()[0].id
         patientService.list()[0].status = 2
-
         $http(
           method: 'PUT',
           url: '/api/admits/'+patientService.list()[0].id+'/',
@@ -139,8 +142,7 @@ BedStatusController = ($scope,$http, djangoUrl, patientService, wardService)->
         )
     return
 
-  vm.movePatient = (room) ->
-    vm.isPatientData = true
+  vm.movePatient = (room, move) ->
     patientService.clear()
     patientService.add(room)
     patientService.list()[0].admitId = room.patient.id
@@ -154,20 +156,32 @@ BedStatusController = ($scope,$http, djangoUrl, patientService, wardService)->
     patientService.list()[0].admit_date = (new Date).toISOString()
     patientService.list()[0].room = null
     patientService.list()[0].status = 1
-    patientService.list()[0].move = true
+    if move
+      vm.isPatientData = true
+      patientService.list()[0].move = true
+      vm.checkPatientData()
+    else
+      vm.firstName = patientService.list()[0].first_name
+      vm.lastName = patientService.list()[0].last_name
+      vm.symptom = patientService.list()[0].symptom
+      vm.doctor = patientService.list()[0].doctor_r
+      vm.wardName = patientService.listWard()[0].name
+      vm.roomName = patientService.listRoom()[0].number
+    return
+  vm.editData = (room)->
+#    vm.isPatientData = true
+#    patientService.clear()
+#    patientService.add(room)
+
+  vm.deletePatient = ()->
     $http(
       method: 'PUT',
       url: '/api/admits/'+patientService.list()[0].admitId+'/',
       data: patientService.list()[0]
     ).then((data)->
-      vm.checkPatientData()
-      vm.wards = wardService.query()
+      $scope.$emit('refreshQueueTable')
     )
-    return
-  vm.editData = (room)->
-    vm.isPatientData = true
-    patientService.clear()
-    patientService.add(room)
+
 
   return
 
