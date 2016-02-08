@@ -101,10 +101,11 @@ BedStatusController = ($scope,$http, djangoUrl, patientService, wardService)->
     vm.wards = wardService.query()
     return
   )
-  vm.addToRoom = (room)->
+  vm.addToRoom = ()->
     if vm.isPatientData
       if patientService.list()[0].move
         patientService.list()[0].room = patientService.listRoom()[0].id
+        patientService.list()[0].status = 2
         $http(
           method: 'PUT',
           url: '/api/admits/'+patientService.list()[0].admitId+'/',
@@ -119,7 +120,7 @@ BedStatusController = ($scope,$http, djangoUrl, patientService, wardService)->
         patientService.list()[0].doctor = patientService.list()[0].doctor_r.key
         patientService.list()[0].edd = null
         patientService.list()[0].admit_date = (new Date).toISOString()
-        patientService.list()[0].room = room.id
+        patientService.list()[0].room = patientService.listRoom()[0].id
         patientService.list()[0].status = 2
         $http(
           method: 'PUT',
