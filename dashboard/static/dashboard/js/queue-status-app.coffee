@@ -164,6 +164,10 @@ BedStatusController = ($scope,$http, djangoUrl, patientService, wardService)->
       vm.wards = wardService.query()
     )
     return
+  vm.editData = (room)->
+    vm.isPatientData = true
+    patientService.clear()
+    patientService.add(room)
 
   return
 
