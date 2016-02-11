@@ -1,6 +1,8 @@
 QueuesController = ($http, patientService, $location, $scope)->
   vm = @
   vm.addRoomData = {}
+  vm.prepareDelete = {}
+  vm.preparePending = {}
 
   if $location.path() == '/'
     vm.isQueue = true
@@ -67,6 +69,38 @@ QueuesController = ($http, patientService, $location, $scope)->
       url: '/api/admits/'+item.id+'/'
       data: item
     ).then(->
+      vm.getQueues()
+    )
+    return
+
+  vm.deleteQueue = (item)->
+    vm.prepareDelete = item
+    vm.prepareDelete.status = 0
+    vm.prepareDelete.doctor = item.doctor_r.key
+    vm.prepareDelete.first_name = item.patient.first_name
+    vm.prepareDelete.last_name = item.patient.last_name
+    vm.prepareDelete.symptom = item.symptom
+    vm.prepareDelete.patient = item.patient.hn
+    return
+
+  vm.backToPending = (item)->
+    item.status = 0
+    item.doctor = item.doctor_r.key
+    item.patient = item.patient.hn
+    $http(
+      method: 'PUT',
+      url: '/api/admits/'+item.id+'/'
+      data: item
+    ).success((data)->
+      vm.getQueues()
+    )
+    return
+
+  vm.delete = ()->
+    $http(
+      method: 'DELETE',
+      url: '/api/admits/'+vm.prepareDelete.id+'/',
+    ).success((data)->
       vm.getQueues()
     )
     return
@@ -147,7 +181,7 @@ BedStatusController = ($scope, $http, djangoUrl, patientService, wardService)->
           url: '/api/admits/'+patientService.list()[0].id+'/',
           data: patientService.list()[0]
         ).then((data)->
-          window.location.href = 'http://127.0.0.1:8000/status/#/!'
+          window.location.href = 'http://127.0.0.1:8000/queues/'
         )
     return
 
