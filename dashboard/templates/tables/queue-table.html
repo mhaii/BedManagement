@@ -29,7 +29,7 @@
                     <a ui-sref="choose-bed" ng-if="item.status_r.key === 1" ng-click="qCtrl.choose(item)">Choose</a>
                 </div>
                 <div ng-hide="qCtrl.isQueue">
-                    <a ng-if="item.status_r.key === 1" data-toggle="modal" data-target="#confirmModal" ng-mouseover="qCtrl.prepareData(item)">Choose</a>
+                    <a ng-if="item.status_r.key === 1" data-toggle="modal" data-target="#confirmModal" data-dismiss="modal" ng-mouseover="qCtrl.prepareData(item)">Choose</a>
                 </div>
             </td>
         </tr>

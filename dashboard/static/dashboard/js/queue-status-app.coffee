@@ -108,10 +108,19 @@ BedStatusController = ($scope, $http, djangoUrl, patientService, wardService)->
   vm.wards = wardService.query()
   vm.checkPatientData()
 
+  vm.getWards = ()->
+    wardService.query().$promise.then((data)->
+      console.log(data)
+      vm.wards = data
+      return
+    )
+    return
+
   $scope.$on('refreshStatusTable', ()->
-    vm.wards = wardService.query()
+    vm.getWards()
     return
   )
+
   vm.addToRoom = ()->
     if vm.isPatientData
       if patientService.list()[0].move
@@ -124,7 +133,7 @@ BedStatusController = ($scope, $http, djangoUrl, patientService, wardService)->
         ).then((data)->
           vm.isPatientData = false
           patientService.clear()
-          vm.wards = wardService.query()
+          vm.getWards()
         )
       else
         patientService.list()[0].patient = patientService.list()[0].patient.hn
