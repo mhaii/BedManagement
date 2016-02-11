@@ -33,7 +33,6 @@
                                     <dt>EDD: {$ room.patient.edd $}</dt>
                                 </dl>
                                 <a class="btn-sm infobutton" ng-click="bedCtrl.movePatient(room, true)">ย้าย</a>
-                                <a class="btn-sm infobutton" ng-click="bedCtrl.editData(room)">แก้ไข</a>
                                 <a class="btn-sm infobutton" ng-click="bedCtrl.movePatient(room,false)" data-toggle="modal" data-target="#confirmToDelete">ลบ</a>
                             </div>
                             <div ng-if="room.status_r.key === 'AV'" id ="patient" class="hidden-box popup">
