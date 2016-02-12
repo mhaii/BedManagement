@@ -1,4 +1,0 @@
-- model: "dashboard.doctor"
-  pk: 1
-  fields:
-    name: "doc"
