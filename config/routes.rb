@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  get 'wards/rooms' => 'wards#rooms_all'
+  get 'wards/:id/rooms' => 'wards#rooms'
+  resources :rooms
+  resources :admits
+  resources :wards
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
