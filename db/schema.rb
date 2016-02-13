@@ -27,6 +27,11 @@ ActiveRecord::Schema.define(version: 20160213082417) do
     t.string "abbreviation", limit: 255
   end
 
+  create_table "departments_wards", id: false, force: :cascade do |t|
+    t.integer "ward_id",       limit: 4, null: false
+    t.integer "department_id", limit: 4, null: false
+  end
+
   create_table "doctors", force: :cascade do |t|
     t.string "name", limit: 255
   end

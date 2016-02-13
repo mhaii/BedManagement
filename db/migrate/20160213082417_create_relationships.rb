@@ -9,5 +9,10 @@ class CreateRelationships < ActiveRecord::Migration
     change_table :rooms do |t|
       t.integer   :ward_id
     end
+
+    create_table :departments_wards, id: false do |t|
+      t.integer   :ward_id,       null: false
+      t.integer   :department_id, null:false
+    end
   end
 end
