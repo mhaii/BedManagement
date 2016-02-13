@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root 'application#index'
   get 'wards/rooms' => 'wards#rooms_all'
   get 'wards/:id/rooms' => 'wards#rooms'
   resources :rooms
