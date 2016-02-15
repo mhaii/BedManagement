@@ -1,10 +1,13 @@
 Rails.application.routes.draw do
   root 'application#index'
-  get 'wards/rooms' => 'wards#rooms_all'
-  get 'wards/:id/rooms' => 'wards#rooms'
-  resources :rooms
-  resources :admits
-  resources :wards
+
+  scope 'resources' do
+    get 'wards/rooms' => 'wards#rooms_all'
+    get 'wards/:id/rooms' => 'wards#rooms'
+    resources :rooms
+    resources :admits
+    resources :wards
+  end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
