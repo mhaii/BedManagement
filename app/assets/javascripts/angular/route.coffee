@@ -4,10 +4,10 @@ angular.module('app').config ($stateProvider, $urlRouterProvider, $httpProvider)
         controller: "currentStatisticsCtrl as statCtrl"
         templateUrl: "templates/home/home.html"
     })
-    $stateProvider.state("queue",{
-        url: "/queue",
+    $stateProvider.state("queues",{
+        url: "/queues",
         controller: "queueController as qCtrl"
-        templateUrl: "templates/queue/queue.html"
+        templateUrl: "templates/queues/queues.html"
     })
     $stateProvider.state("add-queue",{
         url: "/add-queue",
