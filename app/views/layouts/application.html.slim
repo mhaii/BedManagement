@@ -5,7 +5,7 @@ html(ng-app="app")
     meta[charset="UTF-8"]
     = javascript_include_tag  'application'
     = stylesheet_link_tag     'application'
-  body
+  body(ng-controller="headerController")
     include header
     ui-view
     include footer

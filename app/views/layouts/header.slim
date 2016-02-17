@@ -10,20 +10,22 @@ nav#header.navbar.navbar-default.navbar-fixed-top
     #navcol-1.collapse.navbar-collapse
       ul.nav.navbar-nav
         li(role="presentation")
-          a(ui-sref="home" translate) Home
+          a(ui-sref="home") {{ 'HOME' | translate }}
         li(role="presentation")
-          a(ui-sref="queue" translate) Queue
+          a(ui-sref="queue") {{ 'QUEUE' | translate }}
         li(role="presentation")
-          a(ui-sref="add-queue" translate) Add Queue
+          a(ui-sref="add-queue") {{ 'ADD_QUEUE' | translate }}
         li(role="presentation")
-          a(ui-sref="status" translate) Status
+          a(ui-sref="status") {{ 'STATUS' | translate }}
         li(role="presentation")
-          a(href="#" translate) Statistic
+          a(href="#") {{ 'Statistic' | translate }}
         li(role="presentation")
-          a(href="#" translate) Check Out
+          a(href="#") {{ 'Check Out' | translate }}
       ul.nav.navbar-nav.navbar-right
-        li
-          a(href="#" translate) switchlang
+        li(ng-if="getLanguage() != 'th_TH'")
+          a(href="" ng-click="changeLanguage('th_TH')") {{'THAI' | translate}}
+        li(ng-if="getLanguage() != 'en'")
+          a(href="" ng-click="changeLanguage('en')") {{'ENGLISH' | translate}}
         li.dropdown
           a.dropdown-toggle(href="#" data-target="#" data-toggle="dropdown")
             b.caret

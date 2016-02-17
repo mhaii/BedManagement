@@ -1,12 +1,15 @@
 angular.module('app').config ($translateProvider)->
+
   $translateProvider.translations('en', {
-    'Hello': 'Hello',
-    'FOO': 'This is a paragraph'
+    'HOME': 'Home',
+    'QUEUE': 'Queue',
+    'FOO': 'eiei'
   })
 
   $translateProvider.translations('th-TH', {
-    'Hello': 'สวัสดี',
-    'FOO': 'นี้คือพารากราฟฟฟ เหมือน ยีราฟฟ'
+    'HOME': 'หน้าแรก',
+    'QUEUE': 'คิว',
+    'FOO': 'อิอิ'
   })
 
   $translateProvider.preferredLanguage('th-TH')
