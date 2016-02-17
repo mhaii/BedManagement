@@ -1,37 +1,15 @@
 class WardsController < ApplicationController
   before_action :set_ward, only: [:show, :edit, :update, :destroy, :rooms]
+  before_action :get_wards, only: [:index, :rooms_all]
 
-  # GET /wards
-  # GET /wards.json
-  def index
-    @wards = Ward.all
+  def free_counts
+    @wards = Ward.select(:id, :name, :remark)
   end
 
-  # GET /wards/rooms
-  def rooms_all
-    @wards = Ward.all
-  end
-
-  # GET /wards/:id/rooms
-  def rooms
-  end
-
-  # GET /wards/1
-  # GET /wards/1.json
-  def show
-  end
-
-  # GET /wards/new
   def new
     @wards = Ward.new
   end
 
-  # GET /wards/1/edit
-  def edit
-  end
-
-  # POST /wards
-  # POST /wards.json
   def create
     @ward = Ward.new(ward_params)
 
@@ -46,8 +24,6 @@ class WardsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /wards/1
-  # PATCH/PUT /wards/1.json
   def update
     respond_to do |format|
       if @ward.update(ward_params)
@@ -60,8 +36,6 @@ class WardsController < ApplicationController
     end
   end
 
-  # DELETE /wards/1
-  # DELETE /wards/1.json
   def destroy
     @ward.destroy
     respond_to do |format|
@@ -71,13 +45,15 @@ class WardsController < ApplicationController
   end
 
   private
-  # Use callbacks to share common setup or constraints between actions.
-  def set_ward
-    @ward = Ward.find(params[:id])
-  end
+    def set_ward
+      @ward = Ward.find(params[:id])
+    end
 
-  # Never trust parameters from the scary internet, only allow the white list through.
-  def ward_params
-    params.fetch(:ward, {})
-  end
+    def get_wards
+      @wards = Ward.all
+    end
+
+    def ward_params
+      params.fetch(:ward, {})
+    end
 end
