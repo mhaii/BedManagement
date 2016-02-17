@@ -2,6 +2,9 @@ Rails.application.routes.draw do
   root 'application#index'
 
   scope 'resources' do
+    get 'admits/today' => 'admits#today'
+    get 'admits/queue' => 'admits#queue'
+
     get 'wards/free' => 'wards#free_counts'
     get 'wards/rooms' => 'wards#rooms_all'
     get 'wards/:id/rooms' => 'wards#rooms'
