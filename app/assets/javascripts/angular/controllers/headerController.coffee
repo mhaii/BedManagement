@@ -7,4 +7,4 @@ headerController = ($scope,$translate)->
     return $translate.use()
 
 
-angular.module('app').controller('headerController',headerController)
+angular.module('app').controller('headerController', headerController)
