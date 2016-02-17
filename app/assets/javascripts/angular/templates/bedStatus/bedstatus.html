@@ -1,0 +1,17 @@
+<div id="bed-status-all" class="center-block container container-slim" ng-app="QueuesApp">
+    <div class="row">
+        <h1 id="table" class="col-xs-12 col-sm-6 col-md-8 col-lg-8 align-left">Bed Status</h1>
+        <table id="legends" class="col-xs-12 col-sm-6 col-md-4 col-lg-4  align-right table-bordered table-striped" border="1">
+            <tr class="text-center">
+                <td class="room-AV">ห้องว่าง</td>
+                <td class="room-AS">คาดว่าจะว่าง</td>
+                <td class="room-OC">ห้องไม่ว่าง</td>
+                <td class="room-RE">ถูกจอง</td>
+                <td class="room-DI">ปิดใช้งาน</td>
+            </tr>
+        </table>
+    </div>
+    <div ng-controller="queueController as qCtrl">
+        <div ng-include="'templates/bedStatus/tables/status.html'"></div>
+    </div>
+</div>

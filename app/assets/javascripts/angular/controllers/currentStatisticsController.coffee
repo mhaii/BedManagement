@@ -1,4 +1,4 @@
-currentStatisticsCtrl = ($http, CurrentStatisticsService) ->
+currentStatisticsCtrl = ($http, CurrentStatService) ->
   vm = @
   vm.wards = CurrentStatService.freeRooms.query()
   vm.dcSoon = CurrentStatService.dischargedSoon.query()
@@ -9,5 +9,5 @@ currentStatisticsCtrl
   .$inject = ['$http', 'CurrentStatService']
 
 angular
-  .module('myModule')
+  .module('app')
   .controller('currentStatisticsCtrl', currentStatisticsCtrl)

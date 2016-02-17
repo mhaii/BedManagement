@@ -13,9 +13,8 @@
             <div ng-include="'templates/home/tables/admitted-today.html'"></div>
         </div>
     </div>
-    <div class="col-md-12 admittable">
+    <div class="col-md-12 admittable" ng-controller="queueController as qCtrl">
         <label class="lead text-center text-primary">Queues</label>
-        <ui-view></ui-view>
-        <p class="explain">*ตารางแสดงคนไข้ที่รอการจำหน่ายเตียงซึ่งสามารถจำหน่ายเตียงได้ทันทีโดยการกดปุ่ม "choose"</p>
+        <div ng-include="'templates/queue/queue.html'"></div>
     </div>
 </div>

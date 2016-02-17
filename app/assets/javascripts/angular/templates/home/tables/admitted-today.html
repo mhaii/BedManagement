@@ -8,8 +8,8 @@
         </thead>
         <tbody>
         <tr ng-repeat="admit in statCtrl.admitTd">
-            <td>{$ admit.patient.first_name $} {$ admit.patient.last_name $}</td>
-            <td>{$ admit.room.number $}, {$ admit.room.ward.name $} {$ admit.room.ward.remark $}</td>
+            <td>{{ admit.patient.first_name }} {{ admit.patient.last_name }}</td>
+            <td>{{ admit.room.number }}, {{ admit.room.ward.name }} {{ admit.room.ward.remark }}</td>
         </tr>
         </tbody>
     </table>

@@ -1,0 +1,134 @@
+<div id="beds-table" class="bs-docs-section">
+    <div class="row">
+        <div>
+            <div class="patient-info" ng-show="bedCtrl.isPatientData">
+                <dl class="detailPatient">
+                    <dt>First name: {{ bedCtrl.firstName }}</dt>
+                    <dt>Last name: {{ bedCtrl.lastName }}</dt>
+                    <dt>Diagnosis: {{ bedCtrl.symptom }}</dt>
+                    <dt>Doctor: {{ bedCtrl.doctor }}</dt>
+                </dl>
+            </div>
+        </div>
+        <div class="bs-component">
+            <table class="table table-bordered table-striped table-hover" border="1">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th colspan="20">Room Number</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="ward in bedCtrl.wards">
+                    <td>{{ ward.name }} {{ ward.remark }} Tel. {{ ward.phone }} ({{ ward.price }})</td>
+                    <td ng-repeat="room in ward.rooms" id="{$ ward.id $}-{$ room.number $}" class="room-{$ room.status_r.key $}" ng-mouseenter="bedCtrl.onHover(room,ward)">
+                        {{ room.number }}
+
+                        <div ng-if="room.status_r.key === 'OC'" id ="patient" class="hidden-box popup">
+                            <dl class="detail-list">
+                                <dt>ห้อง: {{ room.number }}</dt>
+                                <dt>ชื้อ: {{ room.patient.patient.first_name }} {{ room.patient.patient.last_name }}</dt>
+                                <dt>อาการ: {$ room.patient.symptom }}</dt>
+                                <dt>หมอ: {{ room.patient.doctor_r.value }}</dt>
+                                <dt>EDD: {{ room.patient.edd }}</dt>
+                            </dl>
+                            <a class="btn-sm infobutton" ng-click="bedCtrl.movePatient(room, true)">ย้าย</a>
+                            <a class="btn-sm infobutton" ng-click="bedCtrl.movePatient(room,false)" data-toggle="modal" data-target="#confirmToDelete">ลบ</a>
+                        </div>
+                        <div ng-if="room.status_r.key === 'AV'" id ="patient" class="hidden-box popup">
+                            <dl class="detail-list">
+                                <dt>ห้อง: {{ room.number }}</dt>
+                                <dt>สถานะ: ว่าง</dt>
+                            </dl>
+                            <a ng-hide="bedCtrl.isPatientData" class="btn-sm info-button" data-toggle="modal" data-target="#queueModal">
+                                จอง
+                            </a>
+                            <a ng-show="bedCtrl.isPatientData" class="btn-sm info-button" data-toggle="modal" data-target="#myModal">จอง</a>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <!-- modal for add patient from status page -->
+            <div id="myModal" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Confirm to Add patient to this room?</h4>
+                        </div>
+                        <dl class="detail-list">
+                            <dt>Ward: {{ bedCtrl.wardName }}</dt>
+                            <dt>Room: {{ bedCtrl.roomName }}</dt>
+                            <dt>Patient</dt>
+                            <dt>First name: {{ bedCtrl.firstName }}</dt>
+                            <dt>Last name: {{ bedCtrl.lastName }}</dt>
+                            <dt>Diagnosis: {{ bedCtrl.symptom }}</dt>
+                            <dt>Doctor: {{ bedCtrl.doctor }}</dt>
+                        </dl>
+                        <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="bedCtrl.addToRoom()">Confirm</button>
+                    </div>
+                </div>
+            </div>
+            <!-- modal to choose patient from queue list -->
+            <div id="queueModal" class="modal fade in">
+                <div class="modal-dialog" style="width: 80%; background: white;">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Select From Queues</h4>
+                    </div>
+                    <!-- Modal content-->
+                    <div id="queues" ng-include="'templates/queue/queue.html'"></div>
+                </div>
+            </div>
+            <!-- modal for add patient from queue table -->
+            <div id="confirmModal" class="modal fade in">
+                <div class="modal-dialog">
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Confirm to Add patient to this room?</h4>
+                        </div>
+                        <dl class="detail-list">
+                            <dt>Ward: {{ qCtrl.addRoomData.wardName }}</dt>
+                            <dt>Room: {{ qCtrl.addRoomData.roomName }}</dt>
+                            <dt>Patient</dt>
+                            <dt>First name: {{ qCtrl.addRoomData.first_name }}</dt>
+                            <dt>Last name: {{ qCtrl.addRoomData.last_name }}</dt>
+                            <dt>Diagnosis: {{ qCtrl.addRoomData.symptom }}</dt>
+                            <dt>Doctor: {{ qCtrl.addRoomData.doctor_value }}</dt>
+                        </dl>
+                        <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="qCtrl.confirm()">Confirm</button>
+                    </div>
+                </div>
+            </div>
+            <!-- confirm to delete -->
+            <div id="confirmToDelete" class="modal fade in">
+                <div class="modal-dialog">
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Confirm to Delete?</h4>
+                        </div>
+                        <dl class="detail-list">
+                            <dt>Ward: {{ bedCtrl.wardName }}</dt>
+                            <dt>Room: {{ bedCtrl.roomName }}</dt>
+                            <dt>Patient</dt>
+                            <dt>First name: {{ bedCtrl.firstName }}</dt>
+                            <dt>Last name: {{ bedCtrl.lastName }}</dt>
+                            <dt>Diagnosis: {{ bedCtrl.symptom }}</dt>
+                            <dt>Doctor: {{ bedCtrl.doctor }}</dt>
+                        </dl>
+                        <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="bedCtrl.deletePatient()">Confirm</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

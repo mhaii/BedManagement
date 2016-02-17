@@ -79,3 +79,4 @@ unless Ward.find_by_phone '7265'
   w = Ward.create(name: '84/10', remark: 'west', phone: '7265')
   (1019..1036).each{|i| Room.create(number: i.to_s, price: 2500, ward: w)}
 end
+

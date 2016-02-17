@@ -1,11 +1,11 @@
 CurrentStatService = ($resource) ->
   {
-    freeRooms : $resource()
-    dischargedSoon : $resource()
-    admittedToday :$resource()
+    freeRooms : $resource('ward-room')
+    dischargedSoon : $resource('admits')
+    admittedToday :$resource('admits')
   }
 
 CurrentStatService
   .$inject = ['$resource']
 
-angular.module('myModule').factory('CurrentStatService', CurrentStatService)
+angular.module('app').factory('CurrentStatService', CurrentStatService)

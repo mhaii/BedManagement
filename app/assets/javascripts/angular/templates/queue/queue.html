@@ -15,7 +15,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="item in qCtrl.qData">
+        <tr ng-repeat="item in qCtrl.qData track by $index">
             <td>{{ item.patient.hn }}</td>
             <td>{{ item.patient.first_name }}</td>
             <td>{{ item.patient.last_name }}</td>
