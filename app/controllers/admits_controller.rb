@@ -3,12 +3,12 @@ class AdmitsController < ApplicationController
   before_action :get_wards, only: [:index]
 
   def queue
-    @wards = Admit.where status: %w(pending, confirmed)
+    @admits = Admit.where status: %w(pending, confirmed)
     render 'admits/all'
   end
 
   def today
-    @wards = Admit.where status: 'currentlyAdmit', admitted_date: Date.today
+    @admits = Admit.where status: 'currentlyAdmit', admitted_date: Date.today
     render 'admits/all'
   end
 
