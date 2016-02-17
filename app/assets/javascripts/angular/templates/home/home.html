@@ -1,0 +1,21 @@
+<div id="home" class="container">
+    <div id="CurrentStatistics">
+        <div class="col-md-3">
+            <label class="lead text-center text-primary">Available Beds</label>
+            <div ng-include="'templates/home/tables/available-bed.html'"></div>
+        </div>
+        <div class="col-md-4">
+            <label class="lead text-center text-primary">Expected Discharge Date</label>
+            <div ng-include="'templates/home/tables/edd.html'"></div>
+        </div>
+        <div class="col-md-5">
+            <label class="lead text-center text-primary">People who admitted today</label>
+            <div ng-include="'templates/home/tables/admitted-today.html'"></div>
+        </div>
+    </div>
+    <div class="col-md-12 admittable">
+        <label class="lead text-center text-primary">Queues</label>
+        <ui-view></ui-view>
+        <p class="explain">*ตารางแสดงคนไข้ที่รอการจำหน่ายเตียงซึ่งสามารถจำหน่ายเตียงได้ทันทีโดยการกดปุ่ม "choose"</p>
+    </div>
+</div>

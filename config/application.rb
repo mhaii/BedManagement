@@ -22,5 +22,8 @@ module BedManagement
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
+
+    config.angular_templates.inside_paths   = ['app/assets']
+    config.angular_templates.ignore_prefix  = %w(angular/)
   end
 end

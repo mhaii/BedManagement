@@ -1,0 +1,16 @@
+<div class="table-responsive qtable">
+    <table class="table table-striped table-bordered table-hover">
+        <thead>
+        <tr>
+            <th>Name </th>
+            <th>Room/Beds </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="admit in statCtrl.admitTd">
+            <td>{$ admit.patient.first_name $} {$ admit.patient.last_name $}</td>
+            <td>{$ admit.room.number $}, {$ admit.room.ward.name $} {$ admit.room.ward.remark $}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
