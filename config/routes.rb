@@ -2,12 +2,12 @@ Rails.application.routes.draw do
   root 'application#index'
 
   scope 'resources' do
-    get 'admits/today' => 'admits#today'
-    get 'admits/queue' => 'admits#queue'
+    get 'admits/today(.:format)' => 'admits#today'
+    get 'admits/queue(.:format)' => 'admits#queue'
 
-    get 'wards/free' => 'wards#free_counts'
-    get 'wards/rooms' => 'wards#rooms_all'
-    get 'wards/:id/rooms' => 'wards#rooms'
+    get 'wards/free(.:format)' => 'wards#free_counts'
+    get 'wards/rooms(.:format)' => 'wards#rooms_all'
+    get 'wards/:id/rooms(.:format)' => 'wards#rooms'
 
     resources :rooms,     only: [:create, :index, :show, :update, :destroy]
     resources :admits,    only: [:create, :index, :show, :update, :destroy]
