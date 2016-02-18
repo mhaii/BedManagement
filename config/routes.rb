@@ -9,10 +9,10 @@ Rails.application.routes.draw do
     get 'wards/rooms' => 'wards#rooms_all'
     get 'wards/:id/rooms' => 'wards#rooms'
 
-    resources :rooms
-    resources :admits
-    resources :wards
-    resources :patients
+    resources :rooms,     only: [:create, :index, :show, :update, :destroy]
+    resources :admits,    only: [:create, :index, :show, :update, :destroy]
+    resources :wards,     only: [:create, :index, :show, :update, :destroy]
+    resources :patients,  only: [:create, :index, :show, :update, :destroy]
   end
 
   # The priority is based upon order of creation: first created -> highest priority.
