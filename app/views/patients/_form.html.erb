@@ -1,0 +1,17 @@
+<%= form_for(@pateint) do |f| %>
+  <% if @pateint.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@pateint.errors.count, "error") %> prohibited this pateint from being saved:</h2>
+
+      <ul>
+      <% @pateint.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

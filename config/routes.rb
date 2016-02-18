@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     resources :rooms
     resources :admits
     resources :wards
+    resources :patients
   end
 
   # The priority is based upon order of creation: first created -> highest priority.
