@@ -2,17 +2,25 @@ Rails.application.routes.draw do
   root 'application#index'
 
   scope 'resources' do
-    get 'admits/today(.:format)' => 'admits#today'
-    get 'admits/queue(.:format)' => 'admits#queue'
+    resources :admits,    except: [:new, :edit] do
+      collection do
+        get 'today'
+        get 'queue'
+      end
+    end
 
-    get 'wards/free(.:format)' => 'wards#free_counts'
-    get 'wards/rooms(.:format)' => 'wards#rooms_all'
-    get 'wards/:id/rooms(.:format)' => 'wards#rooms'
+    resources :patients,  except: [:new, :edit]
+    resources :rooms,     except: [:new, :edit]
 
-    resources :rooms,     only: [:create, :index, :show, :update, :destroy]
-    resources :admits,    only: [:create, :index, :show, :update, :destroy]
-    resources :wards,     only: [:create, :index, :show, :update, :destroy]
-    resources :patients,  only: [:create, :index, :show, :update, :destroy]
+    resources :wards,     except: [:new, :edit]  do
+      collection do
+        get 'free',                 to: :free
+        get 'rooms',                to: :ward_index
+      end
+
+      get 'rooms',    on: :member,  to: :wards_index
+    end
+
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

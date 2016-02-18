@@ -1,8 +1,8 @@
 class WardsController < ApplicationController
-  before_action :set_ward, only: [:show, :update, :destroy, :rooms]
-  before_action :get_wards, only: [:index, :rooms_all]
+  before_action :set_ward, only: [:show, :update, :destroy, :ward_index]
+  before_action :get_wards, only: [:index, :wards_index]
 
-  def free_counts
+  def free
     @wards = Ward.select(:id, :name, :remark)
   end
 
