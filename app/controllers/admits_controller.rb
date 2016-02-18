@@ -1,6 +1,6 @@
 class AdmitsController < ApplicationController
   before_action :set_admit, only: [:show, :edit, :update, :destroy]
-  before_action :get_wards, only: [:index]
+  before_action :get_admits, only: [:index]
 
   def queue
     @admits = Admit.where status: %w(pending, confirmed)
@@ -55,8 +55,8 @@ class AdmitsController < ApplicationController
       @admit = Admit.find(params[:id])
     end
 
-    def get_wards
-      @wards = Ward.all
+    def get_admits
+      @admits = Admit.all
     end
 
     def admit_params
