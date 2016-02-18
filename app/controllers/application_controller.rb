@@ -5,6 +5,6 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   def index
-    render 'layouts/application'
+    render 'layouts/application' unless params[:format]
   end
 end
