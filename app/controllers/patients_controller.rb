@@ -43,5 +43,9 @@ class PatientsController < ApplicationController
     def get_patients
       @patients = Patient.all
     end
+
+    def patient_params
+      params.fetch(:patient, {})
+    end
 end
 
