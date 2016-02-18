@@ -37,7 +37,11 @@ class WardsController < ApplicationController
 
   private
     def set_ward
-      @ward = Ward.find(params[:id])
+      if Ward.exists?(params[:id])
+        @ward = Ward.find(params[:id])
+      else
+        render json: { error: 'not found' }
+      end
     end
 
     def get_wards

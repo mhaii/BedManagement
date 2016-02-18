@@ -43,7 +43,11 @@ class AdmitsController < ApplicationController
 
   private
     def set_admit
-      @admit = Admit.find(params[:id])
+      if Admit.exists?(params[:id])
+        @admit = Admit.find(params[:id])
+      else
+        render json: { error: 'not found' }
+      end
     end
 
     def get_admits
