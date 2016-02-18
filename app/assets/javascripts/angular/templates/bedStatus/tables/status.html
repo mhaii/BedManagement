@@ -20,22 +20,22 @@
                 </thead>
                 <tbody>
                 <tr ng-repeat="ward in bedCtrl.wards">
-                    <td>{{ ward.name }} {{ ward.remark }} Tel. {{ ward.phone }} ({{ ward.price }})</td>
-                    <td ng-repeat="room in ward.rooms" id="{$ ward.id $}-{$ room.number $}" class="room-{$ room.status_r.key $}" ng-mouseenter="bedCtrl.onHover(room,ward)">
+                    <td>{{ ward.name }} {{ ward.remark }} Tel. {{ ward.phone }} ({{ ward.rooms[0].price }})</td>
+                    <td ng-repeat="room in ward.rooms" id="{{ ward.id }}-{{ room.number }}" class="room-{{ room.status }}" ng-mouseenter="bedCtrl.onHover(room,ward)">
                         {{ room.number }}
 
-                        <div ng-if="room.status_r.key === 'OC'" id ="patient" class="hidden-box popup">
+                        <div ng-if="room.status === 'occupied'" id="patient" class="hidden-box popup">
                             <dl class="detail-list">
                                 <dt>ห้อง: {{ room.number }}</dt>
                                 <dt>ชื้อ: {{ room.patient.patient.first_name }} {{ room.patient.patient.last_name }}</dt>
-                                <dt>อาการ: {$ room.patient.symptom }}</dt>
-                                <dt>หมอ: {{ room.patient.doctor_r.value }}</dt>
+                                <dt>อาการ: {{ room.patient.symptom }}</dt>
+                                <dt>หมอ: {{ room.patient.doctor }}</dt>
                                 <dt>EDD: {{ room.patient.edd }}</dt>
                             </dl>
                             <a class="btn-sm infobutton" ng-click="bedCtrl.movePatient(room, true)">ย้าย</a>
                             <a class="btn-sm infobutton" ng-click="bedCtrl.movePatient(room,false)" data-toggle="modal" data-target="#confirmToDelete">ลบ</a>
                         </div>
-                        <div ng-if="room.status_r.key === 'AV'" id ="patient" class="hidden-box popup">
+                        <div ng-if="room.status === 'available'" id ="patient" class="hidden-box popup">
                             <dl class="detail-list">
                                 <dt>ห้อง: {{ room.number }}</dt>
                                 <dt>สถานะ: ว่าง</dt>
@@ -80,7 +80,7 @@
                         <h4 class="modal-title">Select From Queues</h4>
                     </div>
                     <!-- Modal content-->
-                    <div id="queues" ng-include="'templates/queue/queue.html'"></div>
+                    <div id="queues" ng-include="'templates/queues/queues.html'"></div>
                 </div>
             </div>
             <!-- modal for add patient from queue table -->

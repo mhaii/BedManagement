@@ -1,28 +1,21 @@
 class AdmitsController < ApplicationController
   before_action :set_admit, only: [:show, :edit, :update, :destroy]
+  before_action :get_wards, only: [:index]
 
-  # GET /admits
-  # GET /admits.json
-  def index
-    @admits = Admit.all
+  def queue
+    @admits = Admit.where status: %w(pending, confirmed)
+    render 'admits/all'
   end
 
-  # GET /admits/1
-  # GET /admits/1.json
-  def show
+  def today
+    @admits = Admit.where status: 'currentlyAdmit', admitted_date: Date.today
+    render 'admits/all'
   end
 
-  # GET /admits/new
   def new
     @admit = Admit.new
   end
 
-  # GET /admits/1/edit
-  def edit
-  end
-
-  # POST /admits
-  # POST /admits.json
   def create
     @admit = Admit.new(admit_params)
 
@@ -37,8 +30,6 @@ class AdmitsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /admits/1
-  # PATCH/PUT /admits/1.json
   def update
     respond_to do |format|
       if @admit.update(admit_params)
@@ -51,8 +42,6 @@ class AdmitsController < ApplicationController
     end
   end
 
-  # DELETE /admits/1
-  # DELETE /admits/1.json
   def destroy
     @admit.destroy
     respond_to do |format|
@@ -62,12 +51,14 @@ class AdmitsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_admit
       @admit = Admit.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
+    def get_wards
+      @wards = Ward.all
+    end
+
     def admit_params
       params.fetch(:admit, {})
     end

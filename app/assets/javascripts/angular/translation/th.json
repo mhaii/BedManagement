@@ -1,0 +1,18 @@
+{
+  "HOME": "หน้าหลัก",
+  "QUEUES": "คิวทั้งหมด",
+  "ADD_QUEUE": "เพิ่มคิว",
+  "STATUS": "สถานะเตียง",
+  "STATISTICS": "สถิติ",
+  "CHECK_OUT": "แจ้งออก",
+  "LANG": "English",
+
+  "NAME": "ชื่อ",
+  "ROOM_NUMBER": "เลขห้อง",
+
+  "AVAILABLE": "ห้องว่าง",
+  "AVAILABLE_SOON": "ห้องใกล้ว่าง",
+  "OCCUPIED": "ห้องไม่ว่าง",
+  "RESERVED": "ห้องถูกจอง",
+  "DISABLED": "ปิดการใช้งาน"
+}

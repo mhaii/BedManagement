@@ -1,0 +1,50 @@
+#bed-status-all
+  .containerStatus
+    position: relative
+    margin-top: 7%
+    margin-left: 5%
+    margin-right: 5%
+
+  a
+    cursor: pointer
+
+  .popup
+    display: none
+    border: 2px solid black
+    position: absolute
+    background-color: whitesmoke
+    &#queues
+      margin-left: -100%
+      div
+        margin: 0 !important
+    &#patient
+      padding: 14px
+  .detail-list
+    margin-left: 7%
+    margin-top: 10px
+  table
+    &#legends
+      margin: 15px 0
+      td
+        width: 100px !important
+        padding: 10px 0
+
+    td
+      color: black
+      a:hover #queues.popup
+        display: block
+      &:hover #patient.popup
+        display: block
+        color: black
+      &.room-available
+        background-color: mediumspringgreen
+      &.room-availableSoon
+        background-color: #ffff4c
+      &.room-occupied
+        background-color: #ff3333
+        color: white
+      &.room-reserved
+        background-color: #2b65ec
+        color: white
+      &.room-disabled
+        background-color: #cdc9c9

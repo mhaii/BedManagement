@@ -13,13 +13,17 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap
+//= require bootstrap-material-design
 
 //= require angular
-//= require angular-translate
-//= require angular-ui-router
-//= require angular-resource
-//= require angular-route
 //= require angular-rails-templates
+//= require angular-resource
+//= require angular-translate
+//= require angular-translate-loader-static-files
+//= require angular-ui-router
+
+//= require_tree ./angular/templates
+
 //= require_tree .
 
 $.material.init();
