@@ -1,1 +1,1 @@
-json.extract! @admit
+json.merge! @admit.as_json

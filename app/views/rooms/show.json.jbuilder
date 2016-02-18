@@ -1,1 +1,1 @@
-json.extract! @room
+json.merge! @room.as_json

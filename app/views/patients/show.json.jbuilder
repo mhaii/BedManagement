@@ -1,1 +1,1 @@
-json.extract! @patient
+json.merge! @patient.as_json
