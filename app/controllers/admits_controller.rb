@@ -1,5 +1,5 @@
 class AdmitsController < ApplicationController
-  before_action :set_admit, only: [:show, :edit, :update, :destroy]
+  before_action :set_admit, only: [:show, :update, :destroy]
   before_action :get_admits, only: [:index]
 
   def queue
@@ -12,19 +12,13 @@ class AdmitsController < ApplicationController
     render 'admits/all'
   end
 
-  def new
-    @admit = Admit.new
-  end
-
   def create
     @admit = Admit.new(admit_params)
 
     respond_to do |format|
       if @admit.save
-        format.html { redirect_to @admit, notice: 'Admit was successfully created.' }
         format.json { render :show, status: :created, location: @admit }
       else
-        format.html { render :new }
         format.json { render json: @admit.errors, status: :unprocessable_entity }
       end
     end
@@ -33,10 +27,8 @@ class AdmitsController < ApplicationController
   def update
     respond_to do |format|
       if @admit.update(admit_params)
-        format.html { redirect_to @admit, notice: 'Admit was successfully updated.' }
         format.json { render :show, status: :ok, location: @admit }
       else
-        format.html { render :edit }
         format.json { render json: @admit.errors, status: :unprocessable_entity }
       end
     end
@@ -45,7 +37,6 @@ class AdmitsController < ApplicationController
   def destroy
     @admit.destroy
     respond_to do |format|
-      format.html { redirect_to admits_url, notice: 'Admit was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
