@@ -41,10 +41,11 @@ class PatientsController < ApplicationController
   end
 
   private
-    def get_patients
-      @patients = Patient.all
-    end
     def set_patient
       @patient = Patient.find(params[:id])
     end
+    def get_patients
+      @patients = Patient.all
+    end
+
 end
