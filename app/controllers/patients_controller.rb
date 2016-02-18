@@ -33,9 +33,8 @@ class PatientsController < ApplicationController
 
   private
     def set_patient
-      if Patient.exists?(params[:id])
-        @patient = Patient.find(params[:id])
-      else
+      @patient = Patient.find_by(id: params[:id])
+      unless @patient
         render json: { error: 'not found' }
       end
     end

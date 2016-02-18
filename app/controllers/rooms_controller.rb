@@ -33,10 +33,9 @@ class RoomsController < ApplicationController
 
   private
     def set_room
-      if Room.exists?(params[:id])
-        @room = Room.find(params[:id])
-      else
-        render json: { error: 'not found' }
+      @room = Room.find_by_id(params[:id])
+      unless @room
+        render json: { error: params[:id] }
       end
     end
 
