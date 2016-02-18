@@ -6,8 +6,8 @@ angular.module('app').config ($stateProvider, $urlRouterProvider, $httpProvider)
       controller: 'currentStatisticsCtrl as statCtrl'
       templateUrl: 'templates/home/home.html'
   })
-  $stateProvider.state('queues',{
-      url: '/queues',
+  $stateProvider.state('queue',{
+      url: '/queue',
       controller: 'queueController as qCtrl'
       templateUrl: 'templates/queues/queues.html'
   })
