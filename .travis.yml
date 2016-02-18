@@ -4,23 +4,9 @@ notifications:
       - baantak:LtnT2T5a5AbrxUpM4FlUUuyl#codeeeeeeeeeeeee
       - egci492:6E7WBO5v99TplnGk0pZFsv8A#bed-management-g
 
-language: python
-python:
-  - 3.4
-  - 3.5
+language: ruby
+rvm:
+  - 2.2.1
 
 services:
   - mysql
-
-install:
-  - python scripts/install_requirement.py
-  - python scripts/mysql_init.py
-  - python scripts/npm.py
-
-before_script:
-  - python scripts/bower.py
-  - python scripts/make_and_migrate.py
-  - python scripts/collect_static.py
-  - python scripts/import_fixture.py
-
-script: python manage.py test
