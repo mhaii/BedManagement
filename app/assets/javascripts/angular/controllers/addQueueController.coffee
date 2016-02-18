@@ -4,13 +4,12 @@ addQueuesCtrl = ($http,searchService,$window)->
   vm.isNotSearch = true
   vm.isNotFoundPatient = false
   vm.admitInfo = {
-    doctor: '',
+    doctor_id: null,
     status: 0,
-    admit_date: '',
-    edd: null,
-    symptom: ''
-    patient: ''
-    room: null
+    admitted_date: '',
+    diagnosis: ''
+    patient_id: 0
+    room_id: null
   }
 
   vm.search = ()->
@@ -19,10 +18,11 @@ addQueuesCtrl = ($http,searchService,$window)->
       first_name: '',
       last_name: '',
       phone: '',
+      sex:'',
     }
     searchService.get({id: vm.patientInfo.hn}).$promise.then((user)->
       vm.isNotSearch = false
-      if user.detail
+      if user.error
         console.log(user)
         vm.isNotFoundPatient = true
       else
@@ -31,14 +31,16 @@ addQueuesCtrl = ($http,searchService,$window)->
         vm.patientInfo.first_name = user.first_name
         vm.patientInfo.last_name = user.last_name
         vm.patientInfo.phone = user.phone
-        vm.admitInfo.patient = vm.patientInfo.hn
+        vm.admitInfo.patient_id = parseInt(vm.patientInfo.hn)
         vm.isNotFoundPatient = false
     )
     return
 
   vm.addToQueue = ()->
     if patient
-      vm.admitInfo.admit_date = vm.admitInfo.admit_date+'T00:00'
+      vm.admitInfo.admitted_date = vm.admitInfo.admitted_date+'T00:00:00.00Z'
+      vm.admitInfo.doctor_id = parseInt(vm.admitInfo.doctor_id)
+      console.log(vm.admitInfo)
       $http(
         method: 'POST',
         url: '/resources/admits.json',
@@ -52,11 +54,13 @@ addQueuesCtrl = ($http,searchService,$window)->
       console.log(vm.patientInfo)
       $http(
         method: 'POST',
-        url: '/resources/admits.json'
-        data: vm.patientInfo
+        url: '/resources/patients.json'
+        data: vm.patientInfo.patient
       ).then(->
-        vm.admitInfo.patient = vm.patientInfo.hn
-        vm.admitInfo.admit_date = vm.admitInfo.admit_date+'T00:00'
+        vm.admitInfo.patient_id = parseInt(vm.patientInfo.hn)
+        vm.admitInfo.admitted_date = vm.admitInfo.admitted_date+'T00:00:00.00Z'
+        vm.admitInfo.doctor_id = parseInt(vm.admitInfo.doctor_id)
+        console.log(vm.admitInfo)
         $http(
           method: 'POST',
           url: '/resources/admits.json',
