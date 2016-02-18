@@ -5,5 +5,14 @@
   "STATUS": "Bed Status",
   "STATISTICS": "Statistics",
   "CHECK_OUT": "Check Out",
-  "LANG": "ภาษาไทย"
+  "LANG": "ภาษาไทย",
+
+  "NAME": "Name",
+  "ROOM_NUMBER": "Room Number",
+
+  "AVAILABLE": "Available",
+  "AVAILABLE_SOON": "Available Soon",
+  "OCCUPIED": "Occupied",
+  "RESERVED": "Reserved",
+  "DISABLED": "Disabled"
 }

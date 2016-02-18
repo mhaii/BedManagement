@@ -1,5 +1,5 @@
 wardService = ($resource)->
-  $resource('ward-with-rooms')
+  $resource('resources/wards/rooms')
 
 wardService
   .$inject = ['$resource']

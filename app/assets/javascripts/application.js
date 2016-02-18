@@ -22,6 +22,8 @@
 //= require angular-translate-loader-static-files
 //= require angular-ui-router
 
+//= require_tree ./angular/templates
+
 //= require_tree .
 
 $.material.init();
