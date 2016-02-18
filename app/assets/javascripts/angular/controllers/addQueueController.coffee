@@ -41,29 +41,29 @@ addQueuesCtrl = ($http,searchService,$window)->
       vm.admitInfo.admit_date = vm.admitInfo.admit_date+'T00:00'
       $http(
         method: 'POST',
-        url: '/api/admits/',
+        url: '/resources/admits.json',
         data: vm.admitInfo
       ).then((data)->
         console.log('done')
-        window.location.href = 'http://127.0.0.1:8000/queues'
+        window.location.href = '/queues'
         return
       )
     else
       console.log(vm.patientInfo)
       $http(
         method: 'POST',
-        url: '/api/patients/'
+        url: '/resources/admits.json'
         data: vm.patientInfo
       ).then(->
         vm.admitInfo.patient = vm.patientInfo.hn
         vm.admitInfo.admit_date = vm.admitInfo.admit_date+'T00:00'
         $http(
           method: 'POST',
-          url: '/api/admits/',
+          url: '/resources/admits.json',
           data: vm.admitInfo
         ).then((data)->
           console.log('done')
-          window.location.href = 'http://127.0.0.1:8000/queues'
+          window.location.href = '/queues'
           return
         )
       )
