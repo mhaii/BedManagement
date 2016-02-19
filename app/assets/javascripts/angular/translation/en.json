@@ -35,10 +35,14 @@
 
   "pending": "Pending",
   "confirmed": "Confirmed",
+  "currentlyAdmit": "Currently Admit",
+  "preDischarged": "Pre-Discharged",
+  "discharged": "Discharged",
 
   "CONFIRM": "Confirm",
   "CHOOSE": "Choose",
   "DELETE": "Delete",
+  "CANCLE": "Cancle",
   "CLOSE": "Close",
   "RESERVE": "Reserve",
 

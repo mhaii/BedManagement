@@ -35,10 +35,14 @@
 
   "pending": "รอการยืนยัน",
   "confirmed": "ยืนยันการนัด",
+  "currentlyAdmit": "กำลังเข้ารักษา",
+  "preDischarged": "เตรียมจ่ายออก",
+  "discharged": "จ่ายแบ้ว",
 
   "CONFIRM": "ยืนยัน",
   "CHOOSE": "เลือกห้อง",
-  "DELETE": "ยกเลิก",
+  "DELETE": "ลบ",
+  "CANCLE": "ยกเลิก",
   "CLOSE": "ปิดหน้านี้",
   "RESERVE": "จอง",
 
