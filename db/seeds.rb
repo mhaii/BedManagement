@@ -1,5 +1,35 @@
 # ruby encoding: utf-8
 
+longago   = Patient.find_by_first_name 'Longago'
+yesterday = Patient.find_by_first_name 'Yesterday'
+today     = Patient.find_by_first_name 'Today'
+tomorrow  = Patient.find_by_first_name 'Tomorrow'
+longahead = Patient.find_by_first_name 'Longahead'
+
+unless longago
+  longago   = Patient.create(first_name: 'Longago', last_name: 'nah', hn: 100000, sex: 0, age: 50, phone: "789")
+end
+unless yesterday
+  yesterday = Patient.create(first_name: 'Today', last_name: 'nah', hn: 3457, sex: 1, age: 69, phone: "7378855")
+end
+unless today
+  today     = Patient.create(first_name: 'Today', last_name: 'nah', hn: 28764, sex: 1, age: 37, phone: "123547")
+end
+unless tomorrow
+  tomorrow  = Patient.create(first_name: 'Tomorrow', last_name: 'nah', hn: 3476, sex: 0, age: 99, phone: "0123")
+end
+unless longahead
+  longahead = Patient.create(first_name: 'Longahead', last_name: 'nah', hn: 8652, sex: 0, age: 77, phone: "043")
+end
+
+Admit.create(patient: longago, diagnosis: 'sth', admitted_date: 1.month.ago)
+Admit.create(patient: yesterday, diagnosis: 'sth', admitted_date: 1.day.ago)
+Admit.create(patient: today, diagnosis: 'sth', admitted_date: DateTime.now)
+Admit.create(patient: tomorrow, diagnosis: 'sth', admitted_date: 1.day.from_now)
+Admit.create(patient: longahead, diagnosis: 'sth', admitted_date: 1.month.from_now)
+
+################################################################################################
+
 m = Department.find_by_name 'medical'
 o = Department.find_by_name 'orthopedics'
 s = Department.find_by_name 'surgery'
@@ -13,6 +43,8 @@ end
 unless s
   s = Department.create(name: 'surgery', abbreviation: 'surg')
 end
+
+################################################################################################
 
 unless Ward.find_by_phone '7238-9'
   w = Ward.create(name: '84/4', remark: 'west', phone: '7238-9', departments: [o])
