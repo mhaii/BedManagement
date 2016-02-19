@@ -19,6 +19,24 @@
   "QUEUE": "คิว",
   "WARD": "วอร์ด",
 
+  "HN_NUMBER": "เลขคนไข้",
+  "PATIENT": "ผู้ป่วย",
+  "FIRST_NAME": "ชื่อ",
+  "LAST_NAME": "นา่มสกุล",
+  "APPOINTMENT": "วัน-เวลานัด",
+  "DIAGNOSIS": "การวินิจฉัย",
+  "DOCTOR": "แพทย์",
+  "REMARK": "อื่นๆ",
+  "PHONE": "เบอร์ติดต่อ",
+
+  "CONFIRM_DELETE": "ยืนยันการยกเลิกนัด?",
+
+  "pending": "รอการยืนยัน",
+
+  "CONFIRM": "ยืนยัน",
+  "DELETE": "ยกเลิก",
+  "CLOSE": "ปิดหน้านี้",
+
   "AVAILABLE": "ห้องว่าง",
   "AVAILABLE_SOON": "ห้องใกล้ว่าง",
   "OCCUPIED": "ห้องไม่ว่าง",

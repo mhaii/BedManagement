@@ -19,6 +19,23 @@
   "QUEUE": "Queue",
   "WARD": "Ward",
 
+  "HN_NUMBER": "HN-Number",
+  "PATIENT": "Patient",
+  "FIRST_NAME": "First Name",
+  "LAST_NAME": "Last Name",
+  "APPOINTMENT": "Appointment",
+  "DIAGNOSIS": "Diagnosis",
+  "DOCTOR": "Doctor",
+  "REMARK": "Remark",
+  "PHONE": "Phone",
+
+  "CONFIRM_DELETE": "Confirm delete appointment?",
+
+  "pending": "Pending",
+
+  "CONFIRM": "Confirm",
+  "DELETE": "Delete",
+  "CLOSE": "Close",
 
   "AVAILABLE": "Available",
   "AVAILABLE_SOON": "Available Soon",

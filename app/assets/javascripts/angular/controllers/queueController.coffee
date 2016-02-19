@@ -10,7 +10,7 @@ queueController = ($http, patientService, $location, $scope)->
     vm.isQueue = false
 
   vm.getQueues = ()->
-    $http.get('/resources/admits.json').success((data)->
+    $http.get('/resources/admits/queue.json').success((data)->
       console.log(data)
       vm.qData = data
     )

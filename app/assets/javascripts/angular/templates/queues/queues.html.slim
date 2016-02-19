@@ -1,0 +1,51 @@
+.table-responsive(style="margin-top: 2%;")
+  table.table.table-striped.table-bordered.table-hover
+    thead
+      tr
+        th(translate) HN_NUMBER
+        th(translate) FIRST_NAME
+        th(translate) LAST_NAME
+        th(translate) APPOINTMENT
+        th(translate) DIAGNOSIS
+        th(translate) DOCTOR
+        th(translate) PHONE
+        th(translate) STATUS
+        th
+        th(ng-show="qCtrl.isQueue")
+    tbody
+      tr(ng-repeat="admit in qCtrl.qData")
+        td {{ admit.patient.hn }}
+        td {{ admit.patient.first_name }}
+        td {{ admit.patient.last_name }}
+        td {{ admit.admitted_date }}
+        td {{ admit.symptom }}
+        td {{ admit.doctor.name }}
+        td {{ admit.patient.phone }}
+        td {{ admit.status | translate }}
+        td
+          a.fake-link(ng-if="admit.status === 'pending'" ng-click="qCtrl.changeStatus(admit)" translate) CONFIRM
+          div(ng-show="qCtrl.isQueue")
+            a.fake-link(ui-sref="choose-bed" ng-if="admit.status === 'confirmed'" ng-click="qCtrl.choose(admit)" translate) CHOOSE
+          div(ng-hide="qCtrl.isQueue")
+            a.fake-link(ng-if="admit.status === 'confirmed'" data-toggle="modal" data-target="#confirmModal" data-dismiss="modal" ng-mouseover="qCtrl.prepareData(admit) translate") CHOOSE
+        td(ng-show="qCtrl.isQueue")
+          a.fake-link(ng-if="admit.status === 'pending'" data-toggle="modal" data-target="#deleteQueueModal" ng-click="qCtrl.deleteQueue(admit)" translate) DELETE
+          a.fake-link(ng-if="admit.status === 'confirmed'" ng-click="qCtrl.backToPending(admit)" translate) CANCLE
+
+    / confirm delete
+    #deleteQueueModal.modal.fade.in
+      .modal-dialog
+        / modal content
+        .modal-content
+          .modal-header
+            button.close(type="button" data-dismiss="modal")&times;
+            h4.modal-title(translate) CONFIRM_DELETE
+          dl.detail-list
+            dt(translate) PATIENT
+            dt {{ "FIRST_NAME" | translate }}: {{ qCtrl.prepareDelete.first_name }}
+            dt {{ "LAST_NAME" | translate }}: {{ qCtrl.prepareDelete.last_name }}
+            dt {{ "DIAGNOSIS" | translate }}: {{ qCtrl.prepareDelete.symptom }}
+            dt {{ "DOCTOR" | translate }}: {{ qCtrl.prepareDelete.doctor }}
+            | <dt>{{ "REMARK" | translate }}: <input type="text"/></dt>
+          button.btn.btn-warning(type="button" data-dismiss="modal" ng-click="qCtrl.getQueues()" translate) CLOSE
+          button.btn.btn-primary(type="button" data-dismiss="modal" ng-click="qCtrl.delete()" translate) CONFIRM
