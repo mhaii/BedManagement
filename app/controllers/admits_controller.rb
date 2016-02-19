@@ -30,8 +30,24 @@ class AdmitsController < ApplicationController
   end
 
   def update
+    update_params = get_request_body
+    if @admit.status != update_params.status
+      if update_params.status == 3
+        @admit.room.update status: :availableSoon
+      elsif update_params.status == 4
+        update_params.room_id = nil
+      end
+    end
+    if update_params.room_id
+      if @admit.room
+        @admit.room.update status: :available
+      end
+      Room.find(update_params.room_id).update status: :occupied
+    else
+      @admit.room.update status: :available
+    end
     respond_to do |format|
-      if @admit.update(get_request_body)
+      if @admit.update(update_params)
         format.json { render :show, status: :ok, location: @admit }
       else
         format.json { render json: @admit.errors, status: :unprocessable_entity }
