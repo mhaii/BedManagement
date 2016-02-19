@@ -4,12 +4,17 @@ class AdmitsController < ApplicationController
 
   def queue
     @admits = Admit.where status: %w(pending, confirmed)
-    render 'admits/all'
+    render 'detail'
   end
 
   def today
     @admits = Admit.where status: 'currentlyAdmit', admitted_date: Date.today
-    render 'admits/all'
+    render 'detail'
+  end
+
+  def out_soon
+    @admits = Admit.where status: 'preDischarged'
+    render 'detail'
   end
 
   def create

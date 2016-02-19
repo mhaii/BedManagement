@@ -1,1 +1,0 @@
-json.merge! @patients.as_json
