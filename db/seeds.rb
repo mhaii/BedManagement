@@ -1,5 +1,12 @@
 # ruby encoding: utf-8
 
+doc = Doctor.find_by_name 'euei'
+unless doc
+  doc = Doctor.create(name: 'euei')
+end
+
+################################################################################################
+
 longago   = Patient.find_by_first_name 'Longago'
 yesterday = Patient.find_by_first_name 'Yesterday'
 today     = Patient.find_by_first_name 'Today'
@@ -22,11 +29,13 @@ unless longahead
   longahead = Patient.create(first_name: 'Longahead', last_name: 'nah', hn: 8652, sex: 0, age: 77, phone: "043")
 end
 
-Admit.create(patient: longago, diagnosis: 'sth', admitted_date: 1.month.ago)
-Admit.create(patient: yesterday, diagnosis: 'sth', admitted_date: 1.day.ago)
-Admit.create(patient: today, diagnosis: 'sth', admitted_date: DateTime.now)
-Admit.create(patient: tomorrow, diagnosis: 'sth', admitted_date: 1.day.from_now)
-Admit.create(patient: longahead, diagnosis: 'sth', admitted_date: 1.month.from_now)
+(0..4).each {|i|
+  Admit.create(patient: longago, status: i, diagnosis: 'sth', admitted_date: 1.month.ago, edd:1.month.ago, doctor: doc)
+  Admit.create(patient: yesterday, status: i, diagnosis: 'sth', admitted_date: 1.day.ago, edd:1.day.ago, doctor: doc)
+  Admit.create(patient: today, status: i, diagnosis: 'sth', admitted_date: DateTime.now, edd:DateTime.now, doctor: doc)
+  Admit.create(patient: tomorrow, status: i, diagnosis: 'sth', admitted_date: 1.day.from_now, edd:1.day.from_now, doctor: doc)
+  Admit.create(patient: longahead, status: i, diagnosis: 'sth', admitted_date: 1.month.from_now, edd:1.month.from_now, doctor: doc)
+}
 
 ################################################################################################
 
