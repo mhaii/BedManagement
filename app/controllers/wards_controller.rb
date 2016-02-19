@@ -1,3 +1,4 @@
+require 'json'
 class WardsController < ApplicationController
   before_action :set_ward, only: [:show, :update, :destroy, :ward_index]
   before_action :get_wards, only: [:index, :wards_index]
@@ -7,7 +8,7 @@ class WardsController < ApplicationController
   end
 
   def create
-    @ward = Ward.new(ward_params)
+    @ward = Ward.new(get_request_body)
 
     respond_to do |format|
       if @ward.save
@@ -20,7 +21,7 @@ class WardsController < ApplicationController
 
   def update
     respond_to do |format|
-      if @ward.update(ward_params)
+      if @ward.update(get_request_body)
         format.json { render :show, status: :ok, location: @ward }
       else
         format.json { render json: @ward.errors, status: :unprocessable_entity }
@@ -47,7 +48,7 @@ class WardsController < ApplicationController
       @wards = Ward.all
     end
 
-    def ward_params
-      params.fetch(:ward, {})
+    def get_request_body
+      JSON.parse(request.body.string)
     end
 end

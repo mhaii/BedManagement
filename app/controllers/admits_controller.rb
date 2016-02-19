@@ -1,3 +1,4 @@
+require 'json'
 class AdmitsController < ApplicationController
   before_action :set_admit, only: [:show, :update, :destroy]
   before_action :get_admits, only: [:index]
@@ -18,8 +19,7 @@ class AdmitsController < ApplicationController
   end
 
   def create
-    @admit = Admit.new(admit_params)
-
+    @admit = Admit.new(get_request_body)
     respond_to do |format|
       if @admit.save
         format.json { render :show, status: :created, location: @admit }
@@ -31,7 +31,7 @@ class AdmitsController < ApplicationController
 
   def update
     respond_to do |format|
-      if @admit.update(admit_params)
+      if @admit.update(get_request_body)
         format.json { render :show, status: :ok, location: @admit }
       else
         format.json { render json: @admit.errors, status: :unprocessable_entity }
@@ -58,7 +58,7 @@ class AdmitsController < ApplicationController
       @admits = Admit.all
     end
 
-    def admit_params
-      params.fetch(:admit, {})
+    def get_request_body
+      JSON.parse(request.body.string)
     end
 end

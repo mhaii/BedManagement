@@ -1,9 +1,10 @@
+require 'json'
 class PatientsController < ApplicationController
   before_action :set_patient, only: [:show, :update, :destroy]
   before_action :get_patients, only: [:index]
 
   def create
-    @patient = Patient.new(patient_params)
+    @patient = Patient.new(get_request_body)
 
     respond_to do |format|
       if @patient.save
@@ -16,7 +17,7 @@ class PatientsController < ApplicationController
 
   def update
     respond_to do |format|
-      if @patient.update(patient_params)
+      if @patient.update(get_request_body)
         format.json { render :show, status: :ok, location: @patient }
       else
         format.json { render json: @patient.errors, status: :unprocessable_entity }
@@ -43,8 +44,8 @@ class PatientsController < ApplicationController
       @patients = Patient.all
     end
 
-    def patient_params
-      params.fetch(:patient, {})
+    def get_request_body
+      JSON.parse(request.body.string)
     end
 end
 

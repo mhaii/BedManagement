@@ -1,9 +1,10 @@
+require 'json'
 class RoomsController < ApplicationController
   before_action :set_room, only: [:show, :update, :destroy]
   before_action :get_rooms, only: [:index]
 
   def create
-    @room = Room.new(room_params)
+    @room = Room.new(get_request_body)
 
     respond_to do |format|
       if @room.save
@@ -16,7 +17,7 @@ class RoomsController < ApplicationController
 
   def update
     respond_to do |format|
-      if @room.update(room_params)
+      if @room.update(get_request_body)
         format.json { render :show, status: :ok, location: @room }
       else
         format.json { render json: @room.errors, status: :unprocessable_entity }
@@ -43,7 +44,7 @@ class RoomsController < ApplicationController
       @rooms = Room.all
     end
 
-    def room_params
-      params.fetch(:room, {})
+    def get_request_body
+      JSON.parse(request.body.string)
     end
 end
