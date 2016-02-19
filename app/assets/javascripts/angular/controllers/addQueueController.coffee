@@ -1,4 +1,4 @@
-addQueuesCtrl = ($http,searchService,$window)->
+addQueuesCtrl = ($http,searchService,$window,$state)->
   vm = @
   patient = false
   vm.isNotSearch = true
@@ -14,11 +14,12 @@ addQueuesCtrl = ($http,searchService,$window)->
 
   vm.search = ()->
     vm.patientInfo = {
-      hn : vm.patientInfo.hn
+      hn : parseInt(vm.patientInfo.hn)
       first_name: '',
       last_name: '',
       phone: '',
-      sex:'',
+      sex:0,
+      age:'',
     }
     searchService.get({id: vm.patientInfo.hn}).$promise.then((user)->
       vm.isNotSearch = false
@@ -40,22 +41,19 @@ addQueuesCtrl = ($http,searchService,$window)->
     if patient
       vm.admitInfo.admitted_date = vm.admitInfo.admitted_date+'T00:00:00.00Z'
       vm.admitInfo.doctor_id = parseInt(vm.admitInfo.doctor_id)
-      console.log(vm.admitInfo)
       $http(
         method: 'POST',
         url: '/resources/admits.json',
         data: vm.admitInfo
       ).then((data)->
-        console.log('done')
-        window.location.href = '/queues'
+        $state.go('queue')
         return
       )
     else
-      console.log(vm.patientInfo)
       $http(
         method: 'POST',
         url: '/resources/patients.json'
-        data: vm.patientInfo.patient
+        data: vm.patientInfo
       ).then(->
         vm.admitInfo.patient_id = parseInt(vm.patientInfo.hn)
         vm.admitInfo.admitted_date = vm.admitInfo.admitted_date+'T00:00:00.00Z'
@@ -66,8 +64,7 @@ addQueuesCtrl = ($http,searchService,$window)->
           url: '/resources/admits.json',
           data: vm.admitInfo
         ).then((data)->
-          console.log('done')
-          window.location.href = '/queues'
+          $state.go('queue')
           return
         )
       )
@@ -75,6 +72,6 @@ addQueuesCtrl = ($http,searchService,$window)->
   return
 
 addQueuesCtrl
-  .$inject = ['$http','searchService','$window']
+  .$inject = ['$http','searchService','$window','$state']
 
 angular.module('app').controller('addQueuesCtrl', addQueuesCtrl)
