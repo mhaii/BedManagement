@@ -4,6 +4,7 @@ class CreateBaseModels < ActiveRecord::Migration
       t.integer   :status, default: 0
       t.datetime  :admitted_date
       t.string    :diagnosis
+      t.date      :edd, null: true
     end
 
     create_table :departments do |t|
@@ -19,9 +20,9 @@ class CreateBaseModels < ActiveRecord::Migration
       t.integer   :hn
       t.string    :first_name
       t.string    :last_name
-      t.string    :phone
+      t.string    :phone,   null: true
       t.integer   :sex
-      t.integer   :age
+      t.integer   :age,     null: true
     end
 
     create_table :rooms do |t|
@@ -32,7 +33,7 @@ class CreateBaseModels < ActiveRecord::Migration
 
     create_table :wards do |t|
       t.string    :name
-      t.string    :remark
+      t.string    :remark,  null: true
       t.integer   :phone
     end
   end

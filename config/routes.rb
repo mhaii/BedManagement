@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   scope 'resources' do
     resources :admits,    except: [:new, :edit] do
       collection do
+        get 'out_soon'
         get 'today'
         get 'queue'
       end
@@ -13,12 +14,12 @@ Rails.application.routes.draw do
     resources :rooms,     except: [:new, :edit]
 
     resources :wards,     except: [:new, :edit]  do
-      collection do
-        get 'free',                 to: :free
-        get 'rooms',                to: :ward_index
-      end
+      get 'rooms',    on: :member,  action: :ward_index
 
-      get 'rooms',    on: :member,  to: :wards_index
+      collection do
+        get 'rooms',                action: :wards_index
+        get 'free',                 action: :free
+      end
     end
 
   end

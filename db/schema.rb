@@ -17,8 +17,9 @@ ActiveRecord::Schema.define(version: 20160213082417) do
     t.integer  "status",        limit: 4,   default: 0
     t.datetime "admitted_date"
     t.string   "diagnosis",     limit: 255
-    t.integer  "doctor_id",     limit: 4
+    t.date     "edd"
     t.integer  "patient_id",    limit: 4
+    t.integer  "doctor_id",     limit: 4
     t.integer  "room_id",       limit: 4
   end
 
