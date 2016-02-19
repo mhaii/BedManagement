@@ -3,6 +3,7 @@ class CreateBaseModels < ActiveRecord::Migration
     create_table :admits do |t|
       t.integer   :status, default: 0
       t.datetime  :admitted_date
+      t.string    :remark
       t.string    :diagnosis
       t.date      :edd, null: true
     end
