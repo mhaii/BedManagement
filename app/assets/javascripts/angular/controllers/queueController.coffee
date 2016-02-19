@@ -28,7 +28,7 @@ queueController = ($http, patientService, $location, $scope)->
   vm.prepareData = (item)->
     vm.addRoomData.wardName = patientService.listWard()[0].name
     vm.addRoomData.roomName = patientService.listRoom()[0].number
-    vm.addRoomData.doctor = item.doctor_r.key
+    vm.addRoomData.doctor = item.doctor_id
     vm.addRoomData.patient = item.patient.hn
     vm.addRoomData.admit_date = (new Date).toISOString()
     vm.addRoomData.edd = null
@@ -37,14 +37,14 @@ queueController = ($http, patientService, $location, $scope)->
     vm.addRoomData.id = item.id
     vm.addRoomData.first_name = item.patient.first_name
     vm.addRoomData.last_name = item.patient.last_name
-    vm.addRoomData.doctor_value = item.doctor_r.value
+    vm.addRoomData.doctor_value = item.doctor_id
     vm.addRoomData.symptom = item.symptom
     return
 
   vm.confirm = ()->
     $http(
       method: 'PUT',
-      url: '/api/admits/'+vm.addRoomData.id+'/',
+      url: '/api/admits/'+vm.addRoomData.id+'.json',
       data: vm.addRoomData
     ).then(()->
       $scope.$broadcast('refreshStatusTable')
@@ -62,12 +62,14 @@ queueController = ($http, patientService, $location, $scope)->
     console.log(dateItem)
 
   vm.changeStatus = (item)->
-    item.status = (parseInt(item.status_r.key)+1).toString()
-    item.doctor = item.doctor_r.key
-    item.patient = item.patient.hn
+    item.status = 1
+    item.id = parseInt(item.id)
+    item.doctor_id = item.doctor_id
+    item.patient_id = parseInt(item.patient.hn)
+    delete item.patient
     $http(
       method: 'PUT',
-      url: '/api/admits/'+item.id+'/'
+      url: '/resources/admits/'+item.id+'.json'
       data: item
     ).then(->
       vm.getQueues()
@@ -77,20 +79,22 @@ queueController = ($http, patientService, $location, $scope)->
   vm.deleteQueue = (item)->
     vm.prepareDelete = item
     vm.prepareDelete.status = 0
-    vm.prepareDelete.doctor = item.doctor_r.key
+    vm.prepareDelete.doctor = item.doctor_id
     vm.prepareDelete.first_name = item.patient.first_name
     vm.prepareDelete.last_name = item.patient.last_name
-    vm.prepareDelete.symptom = item.symptom
+    vm.prepareDelete.symptom = item.diagnosis
     vm.prepareDelete.patient = item.patient.hn
     return
 
   vm.backToPending = (item)->
     item.status = 0
-    item.doctor = item.doctor_r.key
-    item.patient = item.patient.hn
+    item.id = parseInt(item.id)
+    item.doctor_id = item.doctor_id
+    item.patient_id = parseInt(item.patient.hn)
+    delete item.patient
     $http(
       method: 'PUT',
-      url: '/api/admits/'+item.id+'/'
+      url: '/resources/admits/'+item.id+'.json'
       data: item
     ).success((data)->
       vm.getQueues()
@@ -100,7 +104,7 @@ queueController = ($http, patientService, $location, $scope)->
   vm.delete = ()->
     $http(
       method: 'DELETE',
-      url: '/api/admits/'+vm.prepareDelete.id+'/',
+      url: '/resources/admits/'+vm.prepareDelete.id+'.json',
     ).success((data)->
       vm.getQueues()
     )
