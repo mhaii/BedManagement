@@ -2,7 +2,7 @@
   "HOME": "หน้าหลัก",
   "QUEUES": "คิวทั้งหมด",
   "ADD_QUEUE": "เพิ่มคิว",
-  "STATUS": "สถานะเตียง",
+  "BED_STATUS": "สถานะเตียง",
   "STATISTICS": "สถิติ",
   "CHECK_OUT": "แจ้งออก",
   "LANG": "English",
@@ -19,10 +19,12 @@
   "QUEUE": "คิว",
   "WARD": "วอร์ด",
 
+  "STATUS": "สถานะ",
+
   "HN_NUMBER": "เลขคนไข้",
   "PATIENT": "ผู้ป่วย",
   "FIRST_NAME": "ชื่อ",
-  "LAST_NAME": "นา่มสกุล",
+  "LAST_NAME": "นามสกุล",
   "APPOINTMENT": "วัน-เวลานัด",
   "DIAGNOSIS": "การวินิจฉัย",
   "DOCTOR": "แพทย์",
@@ -32,14 +34,21 @@
   "CONFIRM_DELETE": "ยืนยันการยกเลิกนัด?",
 
   "pending": "รอการยืนยัน",
+  "confirmed": "ยืนยันการนัด",
 
   "CONFIRM": "ยืนยัน",
+  "CHOOSE": "เลือกห้อง",
   "DELETE": "ยกเลิก",
   "CLOSE": "ปิดหน้านี้",
+  "RESERVE": "จอง",
 
   "AVAILABLE": "ห้องว่าง",
   "AVAILABLE_SOON": "ห้องใกล้ว่าง",
   "OCCUPIED": "ห้องไม่ว่าง",
   "RESERVED": "ห้องถูกจอง",
-  "DISABLED": "ปิดการใช้งาน"
+  "DISABLED": "ปิดการใช้งาน",
+
+  "TEL": "โทร",
+  "east": "อ",
+  "west": "ต"
 }

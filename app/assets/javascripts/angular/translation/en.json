@@ -2,7 +2,7 @@
   "HOME": "Home",
   "QUEUES": "Queues",
   "ADD_QUEUE": "Add Queue",
-  "STATUS": "Bed Status",
+  "BED_STATUS": "Bed Status",
   "STATISTICS": "Statistics",
   "CHECK_OUT": "Check Out",
   "LANG": "ภาษาไทย",
@@ -19,6 +19,8 @@
   "QUEUE": "Queue",
   "WARD": "Ward",
 
+  "STATUS": "Status",
+
   "HN_NUMBER": "HN-Number",
   "PATIENT": "Patient",
   "FIRST_NAME": "First Name",
@@ -32,14 +34,22 @@
   "CONFIRM_DELETE": "Confirm delete appointment?",
 
   "pending": "Pending",
+  "confirmed": "Confirmed",
 
   "CONFIRM": "Confirm",
+  "CHOOSE": "Choose",
   "DELETE": "Delete",
   "CLOSE": "Close",
+  "RESERVE": "Reserve",
 
   "AVAILABLE": "Available",
   "AVAILABLE_SOON": "Available Soon",
   "OCCUPIED": "Occupied",
   "RESERVED": "Reserved",
-  "DISABLED": "Disabled"
+  "DISABLED": "Disabled",
+
+  "TEL": "Tel",
+  "east": "E",
+  "west": "W"
+
 }
