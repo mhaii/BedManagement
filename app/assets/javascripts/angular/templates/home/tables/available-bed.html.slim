@@ -1,0 +1,10 @@
+.table-responsive
+  table.table.table-striped.table-bordered.table-hover
+    thead
+      tr
+        th(translate) WARD
+        th(translate) NO_BED
+    tbody
+      tr(ng-repeat="ward in statCtrl.wards")
+        td {{ ward.name }}
+        td {{ ward.count }}

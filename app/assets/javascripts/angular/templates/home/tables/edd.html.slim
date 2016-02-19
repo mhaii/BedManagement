@@ -1,0 +1,10 @@
+.table-responsive.queue-table
+  table.table.table-striped.table-bordered.table-hover
+    thead
+      tr
+        th(translate) NAME
+        th(translate) DATE
+    tbody
+      tr(ng-repeat="admit in statCtrl.dcSoon")
+        td {{ admit.patient.first_name }} {{ admit.patient.last_name }}
+        td {{ admit.edd }}
