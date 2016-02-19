@@ -4,10 +4,10 @@ queueController = ($http, patientService, $location, $scope)->
   vm.prepareDelete = {}
   vm.preparePending = {}
 
-  if $location.path() == '/'
-    vm.isQueue = true
-  else
+  if $location.path() == '/status'
     vm.isQueue = false
+  else
+    vm.isQueue = true
 
   vm.getQueues = ()->
     $http.get('/resources/admits/queue.json').success((data)->
