@@ -7,8 +7,17 @@
   "CHECK_OUT": "แจ้งออก",
   "LANG": "English",
 
+  "AVAILABLE_BEDS": "จำนวนเตียงว่าง",
+  "EXPECTED_DISCHARGE": "คาดว่าจะแจ้งออก",
+  "PEOPLE_ADMITTED_TODAY": "คนไข้เข้าพักในวันนี้",
+
+  "DATE": "วันที่",
   "NAME": "ชื่อ",
+  "NO_BED": "จำนวนเตียง",
+  "ROOM": "ห้อง",
   "ROOM_NUMBER": "เลขห้อง",
+  "QUEUE": "คิว",
+  "WARD": "วอร์ด",
 
   "AVAILABLE": "ห้องว่าง",
   "AVAILABLE_SOON": "ห้องใกล้ว่าง",

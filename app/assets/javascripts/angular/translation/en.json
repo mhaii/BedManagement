@@ -7,8 +7,18 @@
   "CHECK_OUT": "Check Out",
   "LANG": "ภาษาไทย",
 
+  "AVAILABLE_BEDS": "Available Beds",
+  "EXPECTED_DISCHARGE": "Expected Discharge",
+  "PEOPLE_ADMITTED_TODAY": "People Admitted Today",
+
+  "DATE": "Date",
   "NAME": "Name",
+  "NO_BED": "No. Bed",
+  "ROOM": "Room",
   "ROOM_NUMBER": "Room Number",
+  "QUEUE": "Queue",
+  "WARD": "Ward",
+
 
   "AVAILABLE": "Available",
   "AVAILABLE_SOON": "Available Soon",
