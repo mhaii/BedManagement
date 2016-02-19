@@ -1,5 +1,5 @@
 searchService = ($resource)->
-  $resource('/resources/patients/:id.json',{id:'@id'})
+  $resource('/resources/patients/:id.json', {id:'@id'})
 
 searchService
   .$inject = ['$resource']

@@ -1,8 +1,8 @@
 CurrentStatService = ($resource) ->
   {
-    freeRooms : $resource('ward-room')
-    dischargedSoon : $resource('admits')
-    admittedToday :$resource('admits')
+    freeRooms : $resource('/resources/wards/free.json')
+    dischargedSoon : $resource('/resources/admits/out_soon.json')
+    admittedToday :$resource('/resources/admits/today.json')
   }
 
 CurrentStatService
