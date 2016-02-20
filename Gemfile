@@ -23,6 +23,7 @@ source 'https://rails-assets.org' do
 end
 # Allow angular to access templates from Rails pipeline
 gem 'angular-rails-templates'
+gem 'angular_rails_csrf'
 
 gem 'jquery-rails'
 gem 'bootstrap', '>= 4.0.0.alpha3'
@@ -31,10 +32,6 @@ gem 'font-awesome-sass'
 gem 'jbuilder', '~> 2.0'
 
 # gem 'unicorn'
-gem 'capistrano-rails', group: :development
-
-# Use for rails angular csrf
-gem 'angular_rails_csrf'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -43,9 +40,8 @@ end
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
-  gem 'web-console', '~> 2.0'
-
-  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
+  gem 'capistrano-rails'
   gem 'spring'
+  gem 'web-console', '~> 2.0'
 end
 
