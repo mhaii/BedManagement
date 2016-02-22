@@ -4,17 +4,17 @@ class AdmitsController < ApplicationController
   before_action :get_admits, only: [:index]
 
   def queue
-    @admits = Admit.where status: [0, 1]
+    @admits = Admit.where(status: [0, 1]).order :admitted_date
     render :detail
   end
 
   def today
-    @admits = Admit.where status: 1,        admitted_date: Date.today.beginning_of_day..Date.today.end_of_day
+    @admits = Admit.where(status: 1, admitted_date: Date.today.beginning_of_day..Date.today.end_of_day).order :admitted_date
     render :detail
   end
 
   def out_soon
-    @admits = Admit.where status: [2, 3],   edd: 1.month.ago..3.days.from_now
+    @admits = Admit.where(status: [2, 3], edd: 1.month.ago..3.days.from_now).order :edd
     render :detail
   end
 
