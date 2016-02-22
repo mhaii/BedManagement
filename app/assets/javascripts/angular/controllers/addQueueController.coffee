@@ -1,9 +1,10 @@
-addQueuesCtrl = ($http,searchService,$window,$state)->
+addQueuesCtrl = ($http,searchService,$window,$state, patientService)->
   vm = @
   patient = false
   vm.isNotSearch = true
   vm.isNotFoundPatient = false
   vm.admitInfo = {
+    id: null,
     doctor_id: null,
     status: 0,
     admitted_date: '',
@@ -11,6 +12,29 @@ addQueuesCtrl = ($http,searchService,$window,$state)->
     patient_id: 0
     room_id: null
   }
+
+  if patientService.list()[0]
+    vm.patientInfo = {
+      hn : null,
+      first_name: '',
+      last_name: '',
+      phone: '',
+      sex:0,
+      age:'',
+    }
+    patient = true
+    vm.isNotSearch = false
+    vm.patientInfo.hn = patientService.list()[0].patient.hn
+    vm.patientInfo.first_name = patientService.list()[0].patient.first_name
+    vm.patientInfo.last_name = patientService.list()[0].patient.last_name
+    vm.admitInfo.diagnosis = patientService.list()[0].diagnosis
+    vm.patientInfo.age = patientService.list()[0].patient.age
+    vm.patientInfo.phone = patientService.list()[0].patient.phone
+    vm.admitInfo.doctor_id = patientService.list()[0].doctor_id
+    vm.admitInfo.admitted_date = patientService.list()[0].admitted_date
+    vm.admitInfo.id = patientService.list()[0].id
+    vm.admitInfo.patient_id = patientService.list()[0].patient.hn
+    vm.isNotFoundPatient = false
 
   vm.search = ()->
     vm.patientInfo = {
@@ -39,16 +63,28 @@ addQueuesCtrl = ($http,searchService,$window,$state)->
 
   vm.addToQueue = ()->
     if patient
-      vm.admitInfo.admitted_date = vm.admitInfo.admitted_date+'T00:00:00.00Z'
-      vm.admitInfo.doctor_id = parseInt(vm.admitInfo.doctor_id)
-      $http(
-        method: 'POST',
-        url: '/resources/admits.json',
-        data: vm.admitInfo
-      ).then((data)->
-        $state.go('queue')
-        return
-      )
+      if vm.admitInfo.id
+        vm.admitInfo.admitted_date = vm.admitInfo.admitted_date
+        $http(
+          method: 'PUT',
+          url: '/resources/admits/'+vm.admitInfo.id+'.json',
+          data: vm.admitInfo
+        ).then((data)->
+          $state.go('queue')
+          return
+        )
+      else
+        delete vm.admitInfo.id
+        vm.admitInfo.admitted_date = vm.admitInfo.admitted_date+'T00:00:00.00Z'
+        vm.admitInfo.doctor_id = parseInt(vm.admitInfo.doctor_id)
+        $http(
+          method: 'POST',
+          url: '/resources/admits.json',
+          data: vm.admitInfo
+        ).then((data)->
+          $state.go('queue')
+          return
+        )
     else
       $http(
         method: 'POST',
@@ -72,6 +108,6 @@ addQueuesCtrl = ($http,searchService,$window,$state)->
   return
 
 addQueuesCtrl
-  .$inject = ['$http','searchService','$window','$state']
+  .$inject = ['$http','searchService','$window','$state', 'patientService']
 
 angular.module('app').controller('addQueuesCtrl', addQueuesCtrl)
