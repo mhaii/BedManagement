@@ -70,6 +70,7 @@ addQueuesCtrl = ($http,searchService,$window,$state, patientService)->
           url: '/resources/admits/'+vm.admitInfo.id+'.json',
           data: vm.admitInfo
         ).then((data)->
+          patientService.clear()
           $state.go('queue')
           return
         )
