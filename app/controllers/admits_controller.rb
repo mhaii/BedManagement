@@ -5,17 +5,17 @@ class AdmitsController < ApplicationController
 
   def queue
     @admits = Admit.where status: [0, 1]
-    render 'detail'
+    render :detail
   end
 
   def today
     @admits = Admit.where status: 1,        admitted_date: Date.today.beginning_of_day..Date.today.end_of_day
-    render 'detail'
+    render :detail
   end
 
   def out_soon
     @admits = Admit.where status: [2, 3],   edd: 1.month.ago..3.days.from_now
-    render 'detail'
+    render :detail
   end
 
   def create
