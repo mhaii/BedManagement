@@ -27,9 +27,9 @@
                         <div ng-if="room.status === 'occupied'" id="patient" class="hidden-box popup">
                             <dl class="detail-list">
                                 <dt>{{ "ROOM" | translate }}: {{ room.number }}</dt>
-                                <dt>{{ "NAME" | translate }}: {{ room.patient.patient.first_name }} {{ room.patient.patient.last_name }}</dt>
-                                <dt>{{ "DIAGNOSIS" | translate}}: {{ room.patient.symptom }}</dt>
-                                <dt>{{ "DOCTOR" | translate }}: {{ room.patient.doctor }}</dt>
+                                <dt>{{ "NAME" | translate }}: {{ room.patient.first_name }} {{ room.patient.last_name }}</dt>
+                                <dt>{{ "DIAGNOSIS" | translate}}: {{ room.patient.diagnosis }}</dt>
+                                <dt>{{ "DOCTOR" | translate }}: {{ room.patient.doctor_id }}</dt>
                                 <dt>{{ "EDD" | translate }}: {{ room.patient.edd }}</dt>
                             </dl>
                             <a class="btn-sm infobutton" ng-click="bedCtrl.movePatient(room, true)" translate>TRANSFER</a>
@@ -97,7 +97,7 @@
                             <dt>First name: {{ qCtrl.addRoomData.first_name }}</dt>
                             <dt>Last name: {{ qCtrl.addRoomData.last_name }}</dt>
                             <dt>Diagnosis: {{ qCtrl.addRoomData.symptom }}</dt>
-                            <dt>Doctor: {{ qCtrl.addRoomData.doctor_value }}</dt>
+                            <dt>Doctor: {{ qCtrl.addRoomData.doctor }}</dt>
                         </dl>
                         <button type="button" class="btn btn-warning" data-dismiss="modal" translate>CLOSE</button>
                         <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="qCtrl.confirm()" translate>CONFIRM</button>
