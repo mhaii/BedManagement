@@ -9,7 +9,7 @@
   pk: 2
   fields:
     number: 520
-    status: OC
+    status: AV
     ward: 1
     price: 2500
 - model: dashboard.room
@@ -30,7 +30,7 @@
   pk: 5
   fields:
     number: 523
-    status: OC
+    status: AV
     ward: 1
     price: 2500
 - model: dashboard.room
@@ -65,14 +65,14 @@
   pk: 10
   fields:
     number: 528
-    status: OC
+    status: AV
     ward: 1
     price: 2500
 - model: dashboard.room
   pk: 11
   fields:
     number: 529
-    status: OC
+    status: AV
     ward: 1
     price: 2500
 - model: dashboard.room
@@ -100,7 +100,7 @@
   pk: 15
   fields:
     number: 533
-    status: OC
+    status: AV
     ward: 1
     price: 2500
 - model: dashboard.room
@@ -121,7 +121,7 @@
   pk: 18
   fields:
     number: 502
-    status: OC
+    status: AV
     ward: 2
     price: 2000
 - model: dashboard.room
@@ -142,7 +142,7 @@
   pk: 21
   fields:
     number: 505
-    status: OC
+    status: AV
     ward: 2
     price: 2000
 - model: dashboard.room
@@ -163,7 +163,7 @@
   pk: 24
   fields:
     number: 508
-    status: OC
+    status: AV
     ward: 2
     price: 2000
 - model: dashboard.room
@@ -268,7 +268,7 @@
   pk: 39
   fields:
     number: 312
-    status: OC
+    status: AV
     ward: 11
     price: 2000
 - model: dashboard.room
@@ -282,7 +282,7 @@
   pk: 41
   fields:
     number: 314
-    status: OC
+    status: AV
     ward: 11
     price: 2000
 - model: dashboard.room
@@ -310,21 +310,21 @@
   pk: 45
   fields:
     number: 318
-    status: OC
+    status: AV
     ward: 11
     price: 2000
 - model: dashboard.room
   pk: 46
   fields:
     number: 319
-    status: OC
+    status: AV
     ward: 11
     price: 2000
 - model: dashboard.room
   pk: 47
   fields:
     number: 320
-    status: OC
+    status: AV
     ward: 11
     price: 2000
 - model: dashboard.room
@@ -345,7 +345,7 @@
   pk: 50
   fields:
     number: 620
-    status: OC
+    status: AV
     ward: 3
     price: 3000
 - model: dashboard.room
@@ -359,7 +359,7 @@
   pk: 52
   fields:
     number: 622
-    status: OC
+    status: AV
     ward: 3
     price: 3000
 - model: dashboard.room
@@ -485,49 +485,49 @@
   pk: 70
   fields:
     number: 604
-    status: OC
+    status: AV
     ward: 4
     price: 3000
 - model: dashboard.room
   pk: 71
   fields:
     number: 605
-    status: OC
+    status: AV
     ward: 4
     price: 3000
 - model: dashboard.room
   pk: 72
   fields:
     number: 606
-    status: OC
+    status: AV
     ward: 4
     price: 3000
 - model: dashboard.room
   pk: 73
   fields:
     number: 607
-    status: OC
+    status: AV
     ward: 4
     price: 3000
 - model: dashboard.room
   pk: 74
   fields:
     number: 608
-    status: OC
+    status: AV
     ward: 4
     price: 3000
 - model: dashboard.room
   pk: 75
   fields:
     number: 609
-    status: OC
+    status: AV
     ward: 4
     price: 3000
 - model: dashboard.room
   pk: 76
   fields:
     number: 610
-    status: OC
+    status: AV
     ward: 4
     price: 3000
 - model: dashboard.room
@@ -548,7 +548,7 @@
   pk: 79
   fields:
     number: 613
-    status: OC
+    status: AV
     ward: 4
     price: 3000
 - model: dashboard.room
@@ -576,7 +576,7 @@
   pk: 83
   fields:
     number: 617
-    status: OC
+    status: AV
     ward: 4
     price: 3000
 - model: dashboard.room
@@ -590,14 +590,14 @@
   pk: 85
   fields:
     number: 919
-    status: OC
+    status: AV
     ward: 7
     price: 2500
 - model: dashboard.room
   pk: 86
   fields:
     number: 920
-    status: OC
+    status: AV
     ward: 7
     price: 2500
 - model: dashboard.room
@@ -611,21 +611,21 @@
   pk: 88
   fields:
     number: 922
-    status: OC
+    status: AV
     ward: 7
     price: 2500
 - model: dashboard.room
   pk: 89
   fields:
     number: 923
-    status: OC
+    status: AV
     ward: 7
     price: 2500
 - model: dashboard.room
   pk: 90
   fields:
     number: 924
-    status: OC
+    status: AV
     ward: 7
     price: 2500
 - model: dashboard.room
@@ -653,28 +653,28 @@
   pk: 94
   fields:
     number: 928
-    status: OC
+    status: AV
     ward: 7
     price: 2500
 - model: dashboard.room
   pk: 95
   fields:
     number: 929
-    status: OC
+    status: AV
     ward: 7
     price: 2500
 - model: dashboard.room
   pk: 96
   fields:
     number: 930
-    status: OC
+    status: AV
     ward: 7
     price: 2500
 - model: dashboard.room
   pk: 97
   fields:
     number: 931
-    status: OC
+    status: AV
     ward: 7
     price: 2500
 - model: dashboard.room
@@ -737,7 +737,7 @@
   pk: 106
   fields:
     number: 704
-    status: OC
+    status: AV
     ward: 6
     price: 3000
 - model: dashboard.room
@@ -758,28 +758,28 @@
   pk: 109
   fields:
     number: 707
-    status: OC
+    status: AV
     ward: 6
     price: 3000
 - model: dashboard.room
   pk: 110
   fields:
     number: 708
-    status: OC
+    status: AV
     ward: 6
     price: 3000
 - model: dashboard.room
   pk: 111
   fields:
     number: 709
-    status: OC
+    status: AV
     ward: 6
     price: 3000
 - model: dashboard.room
   pk: 112
   fields:
     number: 710
-    status: OC
+    status: AV
     ward: 6
     price: 3000
 - model: dashboard.room
@@ -898,28 +898,28 @@
   pk: 129
   fields:
     number: 727
-    status: OC
+    status: AV
     ward: 5
     price: 3000
 - model: dashboard.room
   pk: 130
   fields:
     number: 728
-    status: OC
+    status: AV
     ward: 5
     price: 3000
 - model: dashboard.room
   pk: 131
   fields:
     number: 729
-    status: OC
+    status: AV
     ward: 5
     price: 3000
 - model: dashboard.room
   pk: 132
   fields:
     number: 730
-    status: OC
+    status: AV
     ward: 5
     price: 3000
 - model: dashboard.room
@@ -940,7 +940,7 @@
   pk: 135
   fields:
     number: 733
-    status: OC
+    status: AV
     ward: 5
     price: 3000
 - model: dashboard.room
@@ -982,7 +982,7 @@
   pk: 141
   fields:
     number: 1003
-    status: OC
+    status: AV
     ward: 8
     price: 2500
 - model: dashboard.room
@@ -1017,7 +1017,7 @@
   pk: 146
   fields:
     number: 1008
-    status: OC
+    status: AV
     ward: 8
     price: 2500
 - model: dashboard.room
@@ -1038,28 +1038,28 @@
   pk: 149
   fields:
     number: 1011
-    status: OC
+    status: AV
     ward: 8
     price: 2500
 - model: dashboard.room
   pk: 150
   fields:
     number: 1012
-    status: OC
+    status: AV
     ward: 8
     price: 2500
 - model: dashboard.room
   pk: 151
   fields:
     number: 1013
-    status: OC
+    status: AV
     ward: 8
     price: 2500
 - model: dashboard.room
   pk: 152
   fields:
     number: 1014
-    status: OC
+    status: AV
     ward: 8
     price: 2500
 - model: dashboard.room
@@ -1073,21 +1073,21 @@
   pk: 154
   fields:
     number: 1016
-    status: OC
+    status: AV
     ward: 8
     price: 2500
 - model: dashboard.room
   pk: 155
   fields:
     number: 1017
-    status: OC
+    status: AV
     ward: 8
     price: 2500
 - model: dashboard.room
   pk: 156
   fields:
     number: 1018
-    status: OC
+    status: AV
     ward: 8
     price: 2500
 - model: dashboard.room
@@ -1150,7 +1150,7 @@
   pk: 165
   fields:
     number: 1027
-    status: OC
+    status: AV
     ward: 9
     price: 2500
 - model: dashboard.room
@@ -1171,7 +1171,7 @@
   pk: 168
   fields:
     number: 1030
-    status: OC
+    status: AV
     ward: 9
     price: 2500
 - model: dashboard.room
@@ -1192,7 +1192,7 @@
   pk: 171
   fields:
     number: 1033
-    status: OC
+    status: AV
     ward: 9
     price: 2500
 - model: dashboard.room
@@ -1213,7 +1213,7 @@
   pk: 174
   fields:
     number: 1036
-    status: OC
+    status: AV
     ward: 9
     price: 2500
 - model: dashboard.room
@@ -1227,7 +1227,7 @@
   pk: 176
   fields:
     number: 9/2
-    status: OC
+    status: AV
     ward: 12
     price: 800
 - model: dashboard.room
@@ -1241,6 +1241,6 @@
   pk: 178
   fields:
     number: 9/4
-    status: OC
+    status: AV
     ward: 12
     price: 800

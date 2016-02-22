@@ -4,13 +4,12 @@
 {% block title %}Add Queue{% endblock %}
 
 {% block css %}
-        <link rel="stylesheet" type="text/x-sass" href="{% static 'dashboard/css/book-queue.sass' %}">
-{%  endblock %}
+{% endblock %}
 
 {% block content %}
-    <div id="check-in" class="container">
+    <div id="add-queue" class="container container-hover container-slim" ng-app="addQueueApp" ng-controller="addQueuesCtrl as addCtrl">
         <h1>Booking</h1>
-        <div class="bs-docs-section">
+        <div class="form center-block">
             <p class="explain">*หน้าเพิ่มข้อมูลคนไข้เข้าสู่ระบบ หรือ ใส่ HN number เพื่อที่จะดึงข้อมูลคนไข้ที่มีอยู่ในระบบอยู่แล้วอัตโนมัติ<br> จากนั้นให้ใส่วันที่ที่นัดไว้แล้วกด "confirm" เพื่อยืนยันการนัดหมาย ชื่อของคนไข้จะขึ้นในหน้า Queues</p>
             <div class="row">
                 <div class="col-md-4 col-md-offset-1">
@@ -19,30 +18,38 @@
                             <label class="control-label" for="addon1">Put in HN number to search</label>
                             <div class="input-group">
                                 <span class="input-group-addon">HN:</span>
-                                <input type="text" class="form-control" id="addon1">
+                                <input type="text" class="form-control" id="addon1" ng-model="addCtrl.patientInfo.hn">
                                 <span class="input-group-btn">
-                                    <button class="btn btn-primary" type="button">
+                                    <button class="btn btn-primary" type="button" ng-click="addCtrl.search()">
                                         Search
                                         <div class="ripple-container"></div>
                                     </button>
                                 </span>
                             </div>
+                            <div ng-show="addCtrl.isNotSearch" class="alert alert-dismissible alert-info">
+                                <button type="button" class="close" data-dismiss="alert">×</button>
+                                <strong>Put in HN Number</strong>
+                            </div>
+                            <div ng-show="addCtrl.isNotFoundPatient" class="alert alert-dismissible alert-danger">
+                                <button type="button" class="close" data-dismiss="alert">×</button>
+                                <strong>Patient Not Found! Please Fill In Form Below</strong>
+                            </div>
                         </div>
                     </form>
                 </div>
             </div>
-            <div class="form-horizontal">
+            <form class="form-horizontal" name="form">
                 <div class="form-group">
                     <label class="control-label col-md-2" for="inputFirstName">First name :</label>
                     <div class="col-md-10">
-                        <input class="form-control" type="text" id="inputFirstName">
+                        <input class="form-control" type="text" id="inputFirstName" ng-model="addCtrl.patientInfo.first_name" ng-disabled="addCtrl.isNotSearch">
                     </div>
                     <span class="material-input"></span>
                 </div>
                 <div class="form-group">
                     <label class="control-label col-md-2" for="inputLastName">Last name :</label>
                     <div class="col-md-10">
-                        <input class="form-control" type="text" id="inputLastName">
+                        <input class="form-control" type="text" id="inputLastName" ng-model="addCtrl.patientInfo.last_name" ng-disabled="addCtrl.isNotSearch">
                     </div>
                     <span class="material-input"> </span>
                 </div>
@@ -51,7 +58,7 @@
                     <div class="col-md-10">
                         <div class="radio radio-primary">
                             <label>
-                                <input type="radio" name="optionsRadios" id="optionsRadio1" value="option1">
+                                <input type="radio" name="sex" id="male" ng-model="addCtrl.patientInfo.sex" ng-value="name" ng-disabled="addCtrl.isNotSearch">
                                 <span class="circle"></span>
                                 <span class="check"></span>
                                 Male
@@ -59,7 +66,7 @@
                         </div>
                         <div class="radio radio-primary">
                             <label>
-                                <input type="radio" name="optionsRadios" id="optionsRadio2" value="option2">
+                                <input type="radio" name="sex" id="female" ng-model="addCtrl.patientInfo.sex" ng-value="name" ng-disabled="addCtrl.isNotSearch">
                                 <span class="circle"></span>
                                 <span class="check"></span>
                                 Female
@@ -70,39 +77,53 @@
                 <div class="form-group">
                     <label class="control-label col-md-2" for="inputAge">Age :</label>
                     <div class="col-md-10">
-                        <input class="form-control" type="text" id="inputAge">
+                        <input class="form-control" type="text" id="inputAge" ng-model="addCtrl.patientInfo.age" ng-disabled="addCtrl.isNotSearch">
                     </div>
                     <span class="material-input"> </span>
                 </div>
                 <div class="form-group">
+                    <label class="control-label col-md-2" for="inputPhoneNumber">Phone number:</label>
+                    <div class="col-md-10">
+                        <input class="form-control" type="text" id="inputPhoneNumber" ng-model="addCtrl.patientInfo.phone" ng-disabled="addCtrl.isNotSearch">
+                    </div>
+                    <span class="material-input"></span>
+                </div>
+                <div class="form-group">
                     <label class="control-label col-md-2" for="inputSyndrome">Symptom :</label>
                     <div class="col-md-10">
-                        <input class="form-control" type="text" id="inputSyndrome">
+                        <input class="form-control" type="text" name="symptomCheck" id="inputSyndrome" ng-model="addCtrl.admitInfo.symptom" ng-disabled="addCtrl.isNotSearch" required>
+                        <span class="has-warning" ng-show="form.symptomCheck.$error.required">This field is required.</span>
                     </div>
                     <span class="material-input"> </span>
                 </div>
                 <div class="form-group">
                     <label class="control-label col-md-2" for="inputDoctor">Doctor :</label>
                     <div class="col-md-10">
-                        <input class="form-control" type="text" id="inputDoctor">
+                        <input class="form-control" name="doctorCheck" type="text" id="inputDoctor" ng-model="addCtrl.admitInfo.doctor" ng-disabled="addCtrl.isNotSearch" required>
+                        <span class="has-warning" ng-show="form.doctorCheck.$error.required">This field is required.</span>
                     </div>
                     <span class="material-input"> </span>
                 </div>
                 <div class="form-group">
                     <label class="control-label col-md-2" for="inputBookingDate">Booking Date:</label>
                     <div class="col-md-10">
-                        <input class="form-control" type="text" id="inputBookingDate">
+                        <input class="form-control" name="bookingDate" type="text" id="inputBookingDate" ng-model="addCtrl.admitInfo.admit_date" ng-disabled="addCtrl.isNotSearch" placeholder="yyyy-mm-dd" required>
+                        <span class="has-warning" ng-show="form.bookingDate.$error.date">This is not a valid date format please use YYYY-MM-DD.</span>
+                        <span class="has-warning" ng-show="form.bookingDate.$error.required">This field is required.</span>
                     </div>
                     <span class="material-input"></span>
                 </div>
                 <div class="form-group">
                     <div class="col-md-10 col-md-offset-2">
-                        <a class="btn btn-primary" href="{% url 'queues' %}">Confirm</a>
+                        <a class="btn btn-primary" href="" ng-click="addCtrl.addToQueue()" ng-disabled="!form.$valid">Confirm</a>
                         <!--<button class="btn btn-primary" type="submit">Assign Room</button>-->
                     </div>
                 </div>
-            </div>
             </form>
         </div>
     </div>
+{% endblock %}
+
+{% block js %}
+    <script type="text/coffeescript" src="{% static 'dashboard/js/add-queue-controller.coffee' %}"></script>
 {% endblock %}

@@ -1,7 +1,8 @@
 from django.db.models import Model, ForeignKey, OneToOneField, ManyToManyField, CASCADE, \
-    CharField, PositiveSmallIntegerField, IntegerField, DateField
+    CharField, PositiveSmallIntegerField, IntegerField, DateField, DateTimeField
 
 from django.utils.translation import ugettext_lazy as _
+from django.utils import timezone
 
 
 class WardType(Model):
@@ -71,6 +72,7 @@ class Patient(Model):
     hn = CharField(_("Patient's HN number"), max_length=14, unique=True, primary_key=True)
     first_name = CharField(_('First name'), max_length=20)
     last_name = CharField(_('Last name'), max_length=20)
+    phone = CharField(_('Phone no.'), max_length=15, blank=True, default='')
 
     class Meta:
         verbose_name = _('Patient')
@@ -104,7 +106,7 @@ class Admit(Model):
     doctor = ForeignKey(Doctor, verbose_name=_('Primary Doctor'), related_name='patients')
     status = PositiveSmallIntegerField(_('Patient Status'), choices=enum_status, default=0)
     room = OneToOneField(Room, verbose_name=_('Room'), related_name='patient', blank=True, null=True)
-    admit_date = DateField(_('Admitted Date'), default=None)
+    admit_date = DateTimeField(_('Admitted Date'), default=timezone.now)
     edd = DateField(_('Estimated date to be discharged'), default=None, blank=True, null=True)
     symptom = CharField(_('Symptom'), max_length=30)
 

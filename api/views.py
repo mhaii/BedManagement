@@ -1,10 +1,11 @@
 from django.contrib.auth.decorators import login_required
 from django.utils.translation import LANGUAGE_SESSION_KEY
+from django.db.models import Count
 from django.shortcuts import redirect
 
 from rest_framework.decorators import detail_route, list_route
 from rest_framework.permissions import IsAuthenticated
-from rest_framework.viewsets import ModelViewSet
+from rest_framework.viewsets import ModelViewSet, ReadOnlyModelViewSet
 from rest_framework.response import Response
 
 from datetime import date, timedelta
@@ -21,25 +22,35 @@ def switch_lang(request):
     request.session[LANGUAGE_SESSION_KEY] = 'en' if lang == 'th' else 'th'
     return redirect(request.META.get('HTTP_REFERER', '/'))
 
+
+def data(obj, queryset):
+    page = obj.paginate_queryset(queryset)
+    if page is not None:
+        serializer = obj.get_serializer(page, many=True)
+        return obj.get_paginated_response(serializer.data)
+
+    serializer = obj.get_serializer(queryset, many=True)
+    return Response(serializer.data)
+
 ###############################################################################
 
 
-class WardAPI(ModelViewSet):
+class WardAPI(ReadOnlyModelViewSet):
     queryset = Ward.objects.all()
     serializer_class = WardSerializer
     permission_classes = [IsAuthenticated]
 
+    @list_route(serializer_class=WardCountSerializer)
+    def free_count(self, request, *args, **kwargs):
+        return data(self, Ward.objects.filter(rooms__status='AV').annotate(free_count=Count('rooms')))
+
+    @list_route(serializer_class=WardRoomSerializer)
+    def with_rooms(self, request, *args, **kwargs):
+        return self.list(request, *args, **kwargs)
+
     @detail_route(serializer_class=RoomSerializer)
     def rooms(self, request, pk, *args, **kwargs):
-        rooms = Ward.objects.get(pk=pk).rooms.all()
-
-        page = self.paginate_queryset(rooms)
-        if page is not None:
-            serializer = self.get_serializer(page, many=True)
-            return self.get_paginated_response(serializer.data)
-
-        serializer = self.get_serializer(rooms, many=True)
-        return Response(serializer.data)
+        return data(self, Ward.objects.get(pk=pk).rooms.all())
 
 ###############################################################################
 
@@ -57,17 +68,16 @@ class PatientAPI(ModelViewSet):
     serializer_class = PatientSerializer
     permission_classes = [IsAuthenticated]
 
-    @list_route()
+    @list_route(serializer_class=PatientAdmitSerializer)
     def current(self, request, *args, **kwargs):
-        patients = Patient.objects.filter(admits__status__lt=3)
+        return data(self, Patient.objects.filter(admits__status__gt=1))
 
-        page = self.paginate_queryset(patients)
-        if page is not None:
-            serializer = self.get_serializer(page, many=True)
-            return self.get_paginated_response(serializer.data)
+    @detail_route()
+    def check(self, request, pk, *args, **kwargs):
+        return self.retrieve(request, pk, **kwargs) \
+            if Patient.objects.filter(hn=pk).count()\
+            else Response({"detail": "Not found."})
 
-        serializer = self.get_serializer(patients, many=True)
-        return Response(serializer.data)
 
 ###############################################################################
 
@@ -81,31 +91,26 @@ class AdmitAPI(ModelViewSet):
     def queue(self, request, *args, **kwargs):
         days = request.GET.get('days', None)
 
-        queues = Admit.objects.filter(status__lt=2)
         if days is None:
-            queues = queues.filter(admit_date__gte=date.today())
+            queues = Admit.objects.filter(status__lt=2)
         else:
-            queues = queues.filter(admit_date__range=[date.today(), date.today() + timedelta(int(days))])
+            queues = Admit.objects.filter(status__lt=2,
+                                          admit_date__range=[date.today(), date.today() + timedelta(int(days))])
+        return data(self, queues)
 
-        page = self.paginate_queryset(queues)
-        if page is not None:
-            serializer = self.get_serializer(page, many=True)
-            return self.get_paginated_response(serializer.data)
+    @list_route(serializer_class=AdmitDetailedSerializer)
+    def queue_detail(self, request, *args, **kwargs):
+        return self.queue(request, *args, **kwargs)
 
-        serializer = self.get_serializer(queues, many=True)
-        return Response(serializer.data)
-
-    @list_route()
+    @list_route(serializer_class=AdmitDetailedSerializer)
     def today(self, request, *args, **kwargs):
-        admitted = Admit.objects.filter(admit_date__exact=date.today(), status__gte=2)
+        return data(self, Admit.objects.filter(admit_date__exact=date.today(), status__exact=2))
 
-        page = self.paginate_queryset(admitted)
-        if page is not None:
-            serializer = self.get_serializer(page, many=True)
-            return self.get_paginated_response(serializer.data)
-
-        serializer = self.get_serializer(admitted, many=True)
-        return Response(serializer.data)
+    @list_route(serializer_class=AdmitDetailedSerializer)
+    def discharged_soon(self, request, *args, **kwargs):
+        return data(self, Admit.objects
+                    .filter(edd__lte=date.today() + timedelta(1), status__exact=2)
+                    .order_by('edd'))
 
 ###############################################################################
 

@@ -7,17 +7,9 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>คนไข้4</td>
-                <td>84/9 อ 925</td>
-            </tr>
-            <tr>
-                <td>คนไข้ทดลอง2ที่ชื่อยาวกว่า โดยเด็กมหิดล</td>
-                <td>84/10 ต 1005</td>
-            </tr>
-            <tr>
-                <td>คนไข้6 </td>
-                <td>วธ.3 302 </td>
+            <tr ng-repeat="admit in statCtrl.admitTd">
+                <td>{$ admit.patient.first_name $} {$ admit.patient.last_name $}</td>
+                <td>{$ admit.room.number $}, {$ admit.room.ward.name $} {$ admit.room.ward.remark $}</td>
             </tr>
         </tbody>
     </table>

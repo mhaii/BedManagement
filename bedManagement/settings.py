@@ -163,7 +163,8 @@ BOWER_INSTALLED_APPS = [
     'bootstrap-material-design#~0.5.7',
     'highcharts#~4.2.1',
     'angular-ui-router#~0.2.0',
-    'angular-resource#~1.4.9'
+    'angular-resource#~1.4.9',
+    'angularjs-humanize#~0.0.1'
 ]
 BOWER_COMPONENTS_ROOT = BASE_DIR
 
@@ -172,3 +173,11 @@ BOWER_COMPONENTS_ROOT = BASE_DIR
 
 MIDDLEWARE_CLASSES.insert(0, 'djangular.middleware.DjangularUrlMiddleware')
 STATICFILES_DIRS += [os.path.join(BASE_DIR, 'dashboard/templates')]
+
+# Django REST Framework
+# http://www.django-rest-framework.org/api-guide/settings/
+
+REST_FRAMEWORK = {
+    # Return in character or escape value
+    # 'UNICODE_JSON': False,
+}

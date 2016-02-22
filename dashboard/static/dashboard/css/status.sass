@@ -4,65 +4,46 @@
   margin-left: 5%
   margin-right: 5%
 
-#patientpopup
-  display: none
+a
+  cursor: pointer
 
-#queuespopup
+.popup
   display: none
-  .disabled
-    display: none
-
-.patientinfo
   border: 2px solid black
+  position: absolute
   background-color: whitesmoke
-
-.detailPatient
-  margin-top: 2%
-  margin-left: 2%
-
+  &#queues
+    margin-left: -100%
+    div
+      margin: 0 !important
+  &#patient
+    padding: 14px
+.detail-list
+  margin-left: 7%
+  margin-top: 10px
 table
-  tr
+  &#legends
+    margin: 15px 0
     td
-      &:hover #patientpopup
-        position: absolute
-        width: 5cm
-        height: 5cm
-        border: 2px solid black
-        background-color: whitesmoke
-        display: block
-      &.room-AV
-        background-color: mediumspringgreen
-      &.room-AS
-        background-color: #ffff4c
-      &.room-OC
-        background-color: #ff3333
-        color: white
-      &.room-RE
-        background-color: #2b65ec
-        color: white
-      &.room-DI
-        background-color: #cdc9c9
-        color: black
-      div
-        text-align: left
-        dl
-          &.detaillist
-            margin-top: 5%
-            margin-left: 6%
-            text-align: left
-            color: black
-        a
-          &.infobutton
-            width: 30px
-            margin-left: 5%
-          &:hover #queuespopup
-            position: absolute
-            overflow: auto
-            left: -100%
-            top: 50px
-            width: 530%
-            height: 5cm
-            border: 2px solid black
-            background-color: whitesmoke
-            text-align: left
-            display: block
+      width: 100px !important
+      padding: 10px 0
+
+  td
+    color: black
+    a:hover #queues.popup
+      display: block
+    &:hover #patient.popup
+      display: block
+      color: black
+    &.room-AV
+      background-color: mediumspringgreen
+    &.room-AS
+      background-color: #ffff4c
+    &.room-OC
+      background-color: #ff3333
+      color: white
+    &.room-RE
+      background-color: #2b65ec
+      color: white
+    &.room-DI
+      background-color: #cdc9c9
