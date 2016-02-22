@@ -27,7 +27,7 @@ queueController = ($http, patientService, $location, $scope)->
     retur
 
   vm.prepareData = (item)->
-    vm.addRoomData.wardName = patientService.listWard()[0].number
+    vm.addRoomData.wardName = patientService.listWard()[0].name
     vm.addRoomData.roomName = patientService.listRoom()[0].id
     vm.addRoomData.doctor = item.doctor_id
 #    vm.addRoomData.edd = null
