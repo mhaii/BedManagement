@@ -61,7 +61,6 @@ BedStatusController = ($scope, $http, patientService, wardService)->
       else
         patientService.list()[0].patient_id = patientService.list()[0].patient.hn
         delete patientService.list()[0].patient
-        patientService.list()[0].edd = null
         patientService.list()[0].admitted_date = (new Date).toISOString()
         patientService.list()[0].room_id = patientService.listRoom()[0].id
         patientService.list()[0].status = 2
