@@ -10,3 +10,10 @@ rvm:
 
 services:
   - mysql
+
+before_script:
+  - mysql -uroot -e 'CREATE DATABASE BedManagement_test'
+  - bundle exec rake db:migrate RAILS_ENV=test
+
+script:
+  rspec spec/
