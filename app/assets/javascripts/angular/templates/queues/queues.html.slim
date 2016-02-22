@@ -12,6 +12,7 @@
         th(translate) STATUS
         th
         th(ng-show="qCtrl.isQueue")
+        th(ng-show="qCtrl.isQueue")
     tbody
       tr(ng-repeat="admit in qCtrl.qData")
         td {{ admit.patient.hn }}
@@ -31,7 +32,8 @@
         td(ng-show="qCtrl.isQueue")
           a.fake-link(ng-if="admit.status === 'pending'" data-toggle="modal" data-target="#deleteQueueModal" ng-click="qCtrl.deleteQueue(admit)" translate) DELETE
           a.fake-link(ng-if="admit.status === 'confirmed'" ng-click="qCtrl.backToPending(admit)" translate) CANCLE
-
+        td(ng-show="qCtrl.isQueue")
+          a.fake-link(ng-click="qCtrl.choose(admit)") EDIT
     / confirm delete
     #deleteQueueModal.modal.fade.in
       .modal-dialog

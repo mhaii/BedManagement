@@ -4,7 +4,7 @@ queueController = ($http, patientService, $location, $scope)->
   vm.prepareDelete = {}
   vm.prepareToAdd = {}
   vm.preparePending = {}
-
+  vm.isEdit = false
   if $location.path() == '/status'
     vm.isQueue = false
   else
@@ -24,7 +24,7 @@ queueController = ($http, patientService, $location, $scope)->
     if vm.isQueue
       patientService.clear()
       patientService.add(item)
-    retur
+    return
 
   vm.prepareData = (item)->
     vm.addRoomData.wardName = patientService.listWard()[0].name
@@ -111,7 +111,6 @@ queueController = ($http, patientService, $location, $scope)->
       vm.getQueues()
     )
     return
-
   return
 
 queueController
