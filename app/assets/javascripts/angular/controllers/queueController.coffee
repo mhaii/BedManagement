@@ -2,6 +2,7 @@ queueController = ($http, patientService, $location, $scope)->
   vm = @
   vm.addRoomData = {}
   vm.prepareDelete = {}
+  vm.prepareToAdd = {}
   vm.preparePending = {}
 
   if $location.path() == '/status'
@@ -23,29 +24,30 @@ queueController = ($http, patientService, $location, $scope)->
     if vm.isQueue
       patientService.clear()
       patientService.add(item)
-    return
+    retur
 
   vm.prepareData = (item)->
-    vm.addRoomData.wardName = patientService.listWard()[0].name
-    vm.addRoomData.roomName = patientService.listRoom()[0].number
+    vm.addRoomData.wardName = patientService.listWard()[0].number
+    vm.addRoomData.roomName = patientService.listRoom()[0].id
     vm.addRoomData.doctor = item.doctor_id
-    vm.addRoomData.patient = item.patient.hn
-    vm.addRoomData.admit_date = (new Date).toISOString()
-    vm.addRoomData.edd = null
+#    vm.addRoomData.edd = null
     vm.addRoomData.room = patientService.listRoom()[0].id
-    vm.addRoomData.status = 2
-    vm.addRoomData.id = item.id
     vm.addRoomData.first_name = item.patient.first_name
     vm.addRoomData.last_name = item.patient.last_name
-    vm.addRoomData.doctor_value = item.doctor_id
-    vm.addRoomData.symptom = item.symptom
+#    vm.addRoomData.doctor_value = item.doctor_id
+    vm.addRoomData.symptom = item.diagnosis
+    vm.prepareToAdd.patient_id = item.patient.hn
+    vm.prepareToAdd.id = item.id
+    vm.prepareToAdd.admitted_date = (new Date).toISOString()
+    vm.prepareToAdd.status = 2
+    vm.prepareToAdd.room_id = patientService.listRoom()[0].id
     return
 
   vm.confirm = ()->
     $http(
       method: 'PUT',
-      url: '/api/admits/'+vm.addRoomData.id+'.json',
-      data: vm.addRoomData
+      url: '/resources/admits/'+vm.prepareToAdd.id+'.json',
+      data: vm.prepareToAdd
     ).then(()->
       $scope.$broadcast('refreshStatusTable')
       vm.getQueues()
