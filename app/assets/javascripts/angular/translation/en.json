@@ -52,6 +52,11 @@
   "RESERVED": "Reserved",
   "DISABLED": "Disabled",
 
+  "USERNAME": "Username",
+  "PASSWORD": "Password",
+  "REMEMBER_ME": "Remember me",
+  "LOGIN": "Login",
+
   "TEL": "Tel",
   "east": "E",
   "west": "W"

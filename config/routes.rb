@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
   root 'application#index'
 
+  controller :sessions do
+    post    'login',  action: :create
+    delete  'logout', action: :destroy
+  end
+
   scope 'resources' do
     resources :admits,    except: [:new, :edit] do
       collection do
@@ -13,6 +18,7 @@ Rails.application.routes.draw do
 
     resources :patients,  except: [:new, :edit]
     resources :rooms,     except: [:new, :edit]
+
 
     resources :wards,     except: [:new, :edit]  do
       get 'rooms',    on: :member,  action: :ward_index

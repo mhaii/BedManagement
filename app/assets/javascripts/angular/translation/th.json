@@ -52,6 +52,11 @@
   "RESERVED": "ห้องถูกจอง",
   "DISABLED": "ปิดการใช้งาน",
 
+  "USERNAME": "ชื่อผู้ใช้",
+  "PASSWORD": "รหัสผ่าน",
+  "REMEMBER_ME": "จดจำ",
+  "LOGIN": "เข้าใช้งาน",
+
   "TEL": "โทร",
   "east": "อ",
   "west": "ต"
