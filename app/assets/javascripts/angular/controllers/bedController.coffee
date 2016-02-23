@@ -1,7 +1,8 @@
-BedStatusController = ($scope, $http, patientService, wardService)->
+BedStatusController = ($rootScope, $http, patientService, wardService)->
   vm = @
 
   vm.onHover = (item,ward)->
+    console.log(item)
     patientService.clearRoom()
     patientService.addRoom(item)
     patientService.clearWard()
@@ -39,7 +40,8 @@ BedStatusController = ($scope, $http, patientService, wardService)->
     )
     return
 
-  $scope.$on('refreshStatusTable', ()->
+  $rootScope.$on('refreshStatusTable', ()->
+    console.log('bedCtrl')
     vm.getWards()
     return
   )
@@ -47,13 +49,21 @@ BedStatusController = ($scope, $http, patientService, wardService)->
   vm.addToRoom = ()->
     if vm.isPatientData
       if patientService.list()[0].move
-        patientService.list()[0].room_id = patientService.listRoom()[0].id
-        patientService.list()[0].status = 2
+        data = {
+          id: patientService.list()[0].id,
+          patient_id: patientService.list()[0].patient_id
+          room_id: patientService.listRoom()[0].id,
+          doctor_id: patientService.list()[0].doctor_id,
+          diagnosis: patientService.list()[0].diagnosis,
+          admitted_date: patientService.list()[0].admitted_date,
+          status: 2
+        }
+        console.log(data)
         $http(
           method: 'PUT',
-            url: '/resources/admits/'+patientService.list()[0].admitId+'.json',
-          data: patientService.list()[0]
-        ).then((data)->
+          url: '/resources/admits/'+data.id+'.json',
+          data: data
+        ).then(()->
           vm.isPatientData = false
           patientService.clear()
           vm.getWards()
@@ -72,23 +82,19 @@ BedStatusController = ($scope, $http, patientService, wardService)->
         ).then((data)->
           patientService.clear()
           vm.checkPatientData()
+          vm.getWards()
         )
     return
 
   vm.movePatient = (room, move) ->
     patientService.clear()
-    patientService.add(room)
-    patientService.list()[0].admitId = room.patient.id
-    patientService.list()[0].first_name = room.patient.patient.first_name
-    patientService.list()[0].last_name = room.patient.patient.last_name
-    patientService.list()[0].doctor_id = room.patient.doctor_id
-    patientService.list()[0].diagnosis = room.patient.diagnosis
-    patientService.list()[0].doctor = room.patient.doctor_id
-    patientService.list()[0].patient = room.patient.patient.hn
-    patientService.list()[0].edd = null
+    patientService.add(room.admit)
+    patientService.list()[0].first_name = room.patient.first_name
+    patientService.list()[0].last_name = room.patient.last_name
+#    patientService.list()[0].edd = null
     patientService.list()[0].admitted_date = (new Date).toISOString()
     patientService.list()[0].room_id = null
-    patientService.list()[0].status = 1
+#    patientService.list()[0].status = 1
     if move
       vm.isPatientData = true
       patientService.list()[0].move = true
@@ -108,13 +114,13 @@ BedStatusController = ($scope, $http, patientService, wardService)->
       url: '/resources/admits/'+patientService.list()[0].admitId+'.json',
       data: patientService.list()[0]
     ).then((data)->
-      $scope.$emit('refreshQueueTable')
+      $rootScope.$broadcast('refreshQueueTable')
     )
 
 
   return
 
 BedStatusController
-  .$inject = ['$scope','$http','patientService', 'wardService']
+  .$inject = ['$rootScope','$http','patientService', 'wardService']
 
 angular.module('app').controller('BedStatusController',BedStatusController)

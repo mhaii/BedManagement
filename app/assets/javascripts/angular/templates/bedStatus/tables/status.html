@@ -28,9 +28,9 @@
                             <dl class="detail-list">
                                 <dt>{{ "ROOM" | translate }}: {{ room.number }}</dt>
                                 <dt>{{ "NAME" | translate }}: {{ room.patient.first_name }} {{ room.patient.last_name }}</dt>
-                                <dt>{{ "DIAGNOSIS" | translate}}: {{ room.patient.diagnosis }}</dt>
+                                <dt>{{ "DIAGNOSIS" | translate}}: {{ room.admit.diagnosis }}</dt>
                                 <dt>{{ "DOCTOR" | translate }}: {{ room.patient.doctor_id }}</dt>
-                                <dt>{{ "EDD" | translate }}: {{ room.patient.edd }}</dt>
+                                <dt>{{ "EDD" | translate }}: {{ room.admit.edd }}</dt>
                             </dl>
                             <a class="btn-sm infobutton" ng-click="bedCtrl.movePatient(room, true)" translate>TRANSFER</a>
                             <a class="btn-sm infobutton" ng-click="bedCtrl.movePatient(room, false)" data-toggle="modal" data-target="#confirmToDelete" translate>REMOVE</a>

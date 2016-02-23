@@ -1,4 +1,4 @@
-queueController = ($http, patientService, $location, $scope)->
+queueController = ($http, patientService, $location, $rootScope)->
   vm = @
   vm.addRoomData = {}
   vm.prepareDelete = {}
@@ -28,7 +28,7 @@ queueController = ($http, patientService, $location, $scope)->
 
   vm.prepareData = (item)->
     vm.addRoomData.wardName = patientService.listWard()[0].name
-    vm.addRoomData.roomName = patientService.listRoom()[0].id
+    vm.addRoomData.roomName = patientService.listRoom()[0].number
     vm.addRoomData.doctor = item.doctor_id
 #    vm.addRoomData.edd = null
     vm.addRoomData.room = patientService.listRoom()[0].id
@@ -49,14 +49,14 @@ queueController = ($http, patientService, $location, $scope)->
       url: '/resources/admits/'+vm.prepareToAdd.id+'.json',
       data: vm.prepareToAdd
     ).then(()->
-      $scope.$broadcast('refreshStatusTable')
+      $rootScope.$emit('refreshStatusTable')
       vm.getQueues()
     )
     return
 
-  $scope.$on('refreshQueueTable', ()->
+  $rootScope.$on('refreshQueueTable', ()->
     vm.getQueues()
-    $scope.$broadcast('refreshStatusTable')
+    $rootScope.$emit('refreshStatusTable')
     return
   )
 
@@ -114,6 +114,6 @@ queueController = ($http, patientService, $location, $scope)->
   return
 
 queueController
-  .$inject = ['$http','patientService','$location','$scope']
+  .$inject = ['$http','patientService','$location','$rootScope']
 
 angular.module('app').controller('queueController', queueController)
