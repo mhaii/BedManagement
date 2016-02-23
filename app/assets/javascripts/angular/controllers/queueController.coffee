@@ -12,7 +12,6 @@ queueController = ($http, patientService, $location, $rootScope)->
 
   vm.getQueues = ()->
     $http.get('/resources/admits/queue.json').success((data)->
-      console.log(data)
       vm.qData = data
     )
     return
@@ -59,9 +58,6 @@ queueController = ($http, patientService, $location, $rootScope)->
     $rootScope.$emit('refreshStatusTable')
     return
   )
-
-  vm.toReadAble = (dateItem)->
-    console.log(dateItem)
 
   vm.changeStatus = (item)->
     item.status = 1
