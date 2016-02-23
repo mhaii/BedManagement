@@ -2,7 +2,6 @@ BedStatusController = ($rootScope, $http, patientService, wardService)->
   vm = @
 
   vm.onHover = (item,ward)->
-    console.log(item)
     patientService.clearRoom()
     patientService.addRoom(item)
     patientService.clearWard()
@@ -34,14 +33,12 @@ BedStatusController = ($rootScope, $http, patientService, wardService)->
 
   vm.getWards = ()->
     wardService.query().$promise.then((data)->
-      console.log(data)
       vm.wards = data
       return
     )
     return
 
   $rootScope.$on('refreshStatusTable', ()->
-    console.log('bedCtrl')
     vm.getWards()
     return
   )
@@ -58,7 +55,6 @@ BedStatusController = ($rootScope, $http, patientService, wardService)->
           admitted_date: patientService.list()[0].admitted_date,
           status: 2
         }
-        console.log(data)
         $http(
           method: 'PUT',
           url: '/resources/admits/'+data.id+'.json',
@@ -74,7 +70,6 @@ BedStatusController = ($rootScope, $http, patientService, wardService)->
         patientService.list()[0].admitted_date = (new Date).toISOString()
         patientService.list()[0].room_id = patientService.listRoom()[0].id
         patientService.list()[0].status = 2
-        console.log(patientService.list()[0])
         $http(
           method: 'PUT',
           url: '/resources/admits/'+patientService.list()[0].id+'.json',
@@ -94,7 +89,6 @@ BedStatusController = ($rootScope, $http, patientService, wardService)->
 #    patientService.list()[0].edd = null
     patientService.list()[0].admitted_date = (new Date).toISOString()
     patientService.list()[0].room_id = null
-#    patientService.list()[0].status = 1
     if move
       vm.isPatientData = true
       patientService.list()[0].move = true
@@ -106,14 +100,18 @@ BedStatusController = ($rootScope, $http, patientService, wardService)->
       vm.doctor = patientService.list()[0].doctor_id
       vm.wardName = patientService.listWard()[0].name
       vm.roomName = patientService.listRoom()[0].number
+      patientService.list()[0].status = 1
     return
 
   vm.deletePatient = ()->
+    delete patientService.list()[0].first_name
+    delete patientService.list()[0].last_name
     $http(
       method: 'PUT',
-      url: '/resources/admits/'+patientService.list()[0].admitId+'.json',
+      url: '/resources/admits/'+patientService.list()[0].id+'.json',
       data: patientService.list()[0]
     ).then((data)->
+      patientService.clear()
       $rootScope.$broadcast('refreshQueueTable')
     )
 
