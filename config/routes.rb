@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   scope 'resources' do
     resources :admits,    except: [:new, :edit] do
       collection do
+        get 'in_icu'
         get 'out_soon'
         get 'today'
         get 'queue'

@@ -3,6 +3,11 @@ class AdmitsController < ApplicationController
   before_action :set_admit, only: [:show, :update, :destroy]
   before_action :get_admits, only: [:index]
 
+  def in_icu
+    @admits = Admit.where(status: -1)
+    render :detail
+  end
+
   def queue
     @admits = Admit.where(status: [0, 1]).order :admitted_date
     render :detail

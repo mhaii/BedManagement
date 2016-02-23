@@ -1,6 +1,5 @@
 class Admit < ActiveRecord::Base
-
-  enum status: [:pending, :confirmed, :currentlyAdmit, :preDischarged, :discharged]
+  enum status: {inICU: -1, pending: 0, confirmed: 1, currentlyAdmit: 2, preDischarged: 3, discharged: 4}
   belongs_to  :patient
   belongs_to  :room
   belongs_to  :doctor
@@ -12,9 +11,9 @@ class Admit < ActiveRecord::Base
 
   private
     def check_status
-      case self.status
+      case status
         when 'preDischarged'
-          self.room.availableSoon! unless room.availableSoon? # :availableSoon
+          room.availableSoon! unless room.availableSoon? # :availableSoon
         when 'discharged'
           self.room = nil
       end if status_changed?
