@@ -1,5 +1,19 @@
 BedStatusController = ($rootScope, $http, patientService, wardService)->
   vm = @
+  vm.icuPatients = {}
+  vm.wards = wardService.query()
+
+  vm.getIcuPatient = ()->
+    $http(
+      method: 'GET',
+      url: '/resources/admits/in_icu.json'
+    ).then((data)->
+      console.log(data)
+      vm.icuPatients = data.data
+    )
+    return
+
+  vm.getIcuPatient()
 
   vm.onHover = (item,ward)->
     patientService.clearRoom()
@@ -28,7 +42,6 @@ BedStatusController = ($rootScope, $http, patientService, wardService)->
         vm.symptom = patientService.list()[0].diagnosis
         vm.doctor = patientService.list()[0].doctor_id
 
-  vm.wards = wardService.query()
   vm.checkPatientData()
 
   vm.getWards = ()->

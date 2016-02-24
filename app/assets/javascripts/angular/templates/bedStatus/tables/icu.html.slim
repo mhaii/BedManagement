@@ -1,0 +1,20 @@
+div ICU
+.table-responsive(style="margin-top: 2%;")
+  table.table.table-striped.table-bordered.table-hover
+    thead
+      tr
+        th(translate) HN_NUMBER
+        th(translate) FIRST_NAME
+        th(translate) LAST_NAME
+        th(translate) DIAGNOSIS
+        th(translate) DOCTOR
+        th(translate) PHONE
+    tbody
+      tr(ng-repeat="patient in bedCtrl.icuPatients")
+        td {{ patient.patient.hn }}
+        td {{ patient.patient.first_name }}
+        td {{ patient.patient.last_name }}
+        td {{ patient.symptom }}
+        td {{ patient.doctor.name }}
+        td {{ patient.patient.phone }}
+        td {{ patient.status | translate }}
