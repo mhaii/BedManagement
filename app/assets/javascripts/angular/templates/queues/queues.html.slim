@@ -31,9 +31,9 @@
             a.fake-link(ng-if="admit.status === 'confirmed'" data-toggle="modal" data-target="#confirmModal" data-dismiss="modal" ng-mouseover="qCtrl.prepareData(admit)" translate) CHOOSE
         td(ng-show="qCtrl.isQueue")
           a.fake-link(ng-if="admit.status === 'pending'" data-toggle="modal" data-target="#deleteQueueModal" ng-click="qCtrl.deleteQueue(admit)" translate) DELETE
-          a.fake-link(ng-if="admit.status === 'confirmed'" ng-click="qCtrl.backToPending(admit)" translate) CANCLE
+          a.fake-link(ng-if="admit.status === 'confirmed'" ng-click="qCtrl.backToPending(admit)" translate) CANCEL
         td(ng-show="qCtrl.isQueue")
-          a.fake-link(ng-click="qCtrl.choose(admit)" ui-sref="add-queue") EDIT
+          a.fake-link(ng-click="qCtrl.choose(admit)" ui-sref="add-queue" translate) EDIT
     / confirm delete
     #deleteQueueModal.modal.fade.in
       .modal-dialog

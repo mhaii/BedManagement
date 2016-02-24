@@ -42,9 +42,10 @@
   "CONFIRM": "ยืนยัน",
   "CHOOSE": "เลือกห้อง",
   "DELETE": "ลบ",
-  "CANCLE": "ยกเลิก",
+  "CANCEL": "ยกเลิก",
   "CLOSE": "ปิดหน้านี้",
   "RESERVE": "จอง",
+  "EDIT": "แก้ไข",
 
   "AVAILABLE": "ห้องว่าง",
   "AVAILABLE_SOON": "ห้องใกล้ว่าง",

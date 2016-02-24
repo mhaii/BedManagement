@@ -42,9 +42,10 @@
   "CONFIRM": "Confirm",
   "CHOOSE": "Choose",
   "DELETE": "Delete",
-  "CANCLE": "Cancle",
+  "CANCEL": "Cancel",
   "CLOSE": "Close",
-  "RESERVE": "Reserve",
+  "RESERVE": "Reserve"
+  "EDIT": "Edit",
 
   "AVAILABLE": "Available",
   "AVAILABLE_SOON": "Available Soon",
