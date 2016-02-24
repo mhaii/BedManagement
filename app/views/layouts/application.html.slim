@@ -5,9 +5,15 @@ html(ng-app="app")
     meta[charset="UTF-8"]
     = javascript_include_tag  'application'
     = stylesheet_link_tag     'application'
+    = csrf_meta_tags
   body
     #header(ng-controller="translationController")
       include header
     #content.container
-      ui-view
+      - flash.each do |message_type, message|
+        | <div class="alert alert-<%= message_type %>"><%= message %></div>
+      - if @current_user
+        ui-view
+      - else
+        include ../sessions/login
     include footer

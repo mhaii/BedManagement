@@ -13,7 +13,7 @@ class Admit < ActiveRecord::Base
     def check_status
       case status
         when 'preDischarged'
-          room.availableSoon! unless room.availableSoon? # :availableSoon
+          room.availableSoon! unless self.room.nil? or room.availableSoon? # :availableSoon
         when 'discharged'
           self.room = nil
       end if status_changed?

@@ -42,15 +42,22 @@
   "CONFIRM": "ยืนยัน",
   "CHOOSE": "เลือกห้อง",
   "DELETE": "ลบ",
-  "CANCLE": "ยกเลิก",
+  "CANCEL": "ยกเลิก",
   "CLOSE": "ปิดหน้านี้",
   "RESERVE": "จอง",
+  "EDIT": "แก้ไข",
 
   "AVAILABLE": "ห้องว่าง",
   "AVAILABLE_SOON": "ห้องใกล้ว่าง",
   "OCCUPIED": "ห้องไม่ว่าง",
   "RESERVED": "ห้องถูกจอง",
   "DISABLED": "ปิดการใช้งาน",
+
+  "USERNAME": "ชื่อผู้ใช้",
+  "PASSWORD": "รหัสผ่าน",
+  "REMEMBER_ME": "จดจำ",
+  "LOGIN": "เข้าใช้งาน",
+  "LOGOUT": "ออกจากระบบ",
 
   "TEL": "โทร",
   "east": "อ",

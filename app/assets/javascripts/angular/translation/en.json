@@ -42,15 +42,22 @@
   "CONFIRM": "Confirm",
   "CHOOSE": "Choose",
   "DELETE": "Delete",
-  "CANCLE": "Cancle",
+  "CANCEL": "Cancel",
   "CLOSE": "Close",
   "RESERVE": "Reserve",
+  "EDIT": "Edit",
 
   "AVAILABLE": "Available",
   "AVAILABLE_SOON": "Available Soon",
   "OCCUPIED": "Occupied",
   "RESERVED": "Reserved",
   "DISABLED": "Disabled",
+
+  "USERNAME": "Username",
+  "PASSWORD": "Password",
+  "REMEMBER_ME": "Remember me",
+  "LOGIN": "Login",
+  "LOGOUT": "Logout",
 
   "TEL": "Tel",
   "east": "E",

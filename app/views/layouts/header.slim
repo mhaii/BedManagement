@@ -9,27 +9,28 @@ nav.navbar.navbar-default.navbar-fixed-top
         span.icon-bar
     #navcol-1.collapse.navbar-collapse
       ul.nav.navbar-nav
-        li(role="presentation" ng-class="{active: current == 'home'}")
-          a(ui-sref="home" translate) HOME
-        li(role="presentation" ng-class="{active: current == 'queues'}")
-          a(ui-sref="queue" translate) QUEUES
-        li(role="presentation" ng-class="{active: current == 'add-queue'}")
-          a(ui-sref="add-queue" translate) ADD_QUEUE
-        li(role="presentation" ng-class="$scope.current")
-          a(ui-sref="status" translate) BED_STATUS
-        li(role="presentation" ng-class="{active: current == 'statistics'}")
-          a(href="#" translate) STATISTICS
-        li(role="presentation" ng-class="{active: current == 'check-out'}")
-          a(href="#" translate) CHECK_OUT
+        - if @current_user
+          li(role="presentation" ng-class="{active: current == 'home'}")
+            a(ui-sref="home" translate) HOME
+          li(role="presentation" ng-class="{active: current == 'queues'}")
+            a(ui-sref="queue" translate) QUEUES
+          li(role="presentation" ng-class="{active: current == 'add-queue'}")
+            a(ui-sref="add-queue" translate) ADD_QUEUE
+          li(role="presentation" ng-class="$scope.current")
+            a(ui-sref="status" translate) BED_STATUS
+          li(role="presentation" ng-class="{active: current == 'statistics'}")
+            a(href="#" translate) STATISTICS
+          li(role="presentation" ng-class="{active: current == 'check-out'}")
+            a(href="#" translate) CHECK_OUT
       ul.nav.navbar-nav.navbar-right
         li.fake-link
           a(ng-if="getLanguage() != 'th'" ng-click="changeLanguage('th')" translate) LANG
           a(ng-if="getLanguage() != 'en'" ng-click="changeLanguage('en')" translate) LANG
-        li.dropdown
-          a.dropdown-toggle(href="#" data-target="#" data-toggle="dropdown")
-            b.caret
+        - if @current_user
+          li.dropdown
+            a.dropdown-toggle(href="#" data-target="#" data-toggle="dropdown")
+              = @current_user.username
+              b.caret
             ul.dropdown-menu
               li
-                a(href="#" translate) -MENUS-
-        li.active(role="presentation")
-          a(href="#" translate) -USERNAME-
+                = link_to "{{ 'LOGOUT' | translate }}", logout_path, method: :delete
