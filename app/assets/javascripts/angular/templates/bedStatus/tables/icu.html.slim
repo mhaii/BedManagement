@@ -9,6 +9,7 @@ div ICU
         th(translate) DIAGNOSIS
         th(translate) DOCTOR
         th(translate) PHONE
+        th
     tbody
       tr(ng-repeat="patient in bedCtrl.icuPatients")
         td {{ patient.patient.hn }}
@@ -18,3 +19,6 @@ div ICU
         td {{ patient.doctor.name }}
         td {{ patient.patient.phone }}
         td {{ patient.status | translate }}
+        td
+          a(ng-if="patient.room_id == null" ng-click="") CHOOSE
+          a(ng-if="patient.room_id != null") RETURN
