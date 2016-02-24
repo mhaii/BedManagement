@@ -2,27 +2,32 @@
 
 doc = Doctor.find_or_create_by(name: 'euei')
 
+User.find_or_create_by(id: 1, username: 'mhaii', password_digest: '$2a$10$QqV8dQk8MLP67Kq9CGXF7.jKiFxx2B8V.pl6s3BC/7dBga.D28Pn2')
+User.find_or_create_by(id: 2, username: 'noey',  password_digest: '$2a$10$f4Jc4hFDe6bVxSdUSv4tG.YmIH5eeQ4OPwx1ZcjWS0aBDGV4MT6li')
+User.find_or_create_by(id: 3, username: 'boss',  password_digest: '$2a$10$2YXfH/Afzq252H1gv9wUTeAWNRoIc0YX1xn6jbs3v825Oi9wx3kC2')
+
+
 ################################################################################################
 
-longago   = Patient.find_or_create_by(first_name: 'Longago', last_name: 'nah', hn: 100000, sex: 0, age: 50, phone: "789")
-yesterday = Patient.find_or_create_by(first_name: 'Today', last_name: 'nah', hn: 3457, sex: 1, age: 69, phone: "7378855")
-today     = Patient.find_or_create_by(first_name: 'Today', last_name: 'nah', hn: 28764, sex: 1, age: 37, phone: "123547")
-tomorrow  = Patient.find_or_create_by(first_name: 'Tomorrow', last_name: 'nah', hn: 3476, sex: 0, age: 99, phone: "0123")
-longahead = Patient.find_or_create_by(first_name: 'Longahead', last_name: 'nah', hn: 8652, sex: 0, age: 77, phone: "043")
+longago   = Patient.find_or_create_by(first_name: 'Longago',    last_name: 'nah', hn: 100000, sex: 0, age: 50, phone: "789")
+yesterday = Patient.find_or_create_by(first_name: 'Today',      last_name: 'nah', hn: 3457,   sex: 1, age: 69, phone: "7378855")
+today     = Patient.find_or_create_by(first_name: 'Today',      last_name: 'nah', hn: 28764,  sex: 1, age: 37, phone: "123547")
+tomorrow  = Patient.find_or_create_by(first_name: 'Tomorrow',   last_name: 'nah', hn: 3476,   sex: 0, age: 99, phone: "0123")
+longahead = Patient.find_or_create_by(first_name: 'Longahead',  last_name: 'nah', hn: 8652,   sex: 0, age: 77, phone: "043")
 
 (0..4).each {|i|
-  Admit.find_or_create_by(patient: longago, status: i, diagnosis: 'sth', admitted_date: 1.month.ago, edd:1.month.ago, doctor: doc)
-  Admit.find_or_create_by(patient: yesterday, status: i, diagnosis: 'sth', admitted_date: 1.day.ago, edd:1.day.ago, doctor: doc)
-  Admit.find_or_create_by(patient: today, status: i, diagnosis: 'sth', admitted_date: DateTime.now, edd:DateTime.now, doctor: doc)
-  Admit.find_or_create_by(patient: tomorrow, status: i, diagnosis: 'sth', admitted_date: 1.day.from_now, edd:1.day.from_now, doctor: doc)
+  Admit.find_or_create_by(patient: longago,   status: i, diagnosis: 'sth', admitted_date: 1.month.ago,      edd:1.month.ago,      doctor: doc)
+  Admit.find_or_create_by(patient: yesterday, status: i, diagnosis: 'sth', admitted_date: 1.day.ago,        edd:1.day.ago,        doctor: doc)
+  Admit.find_or_create_by(patient: today,     status: i, diagnosis: 'sth', admitted_date: DateTime.now,     edd:DateTime.now,     doctor: doc)
+  Admit.find_or_create_by(patient: tomorrow,  status: i, diagnosis: 'sth', admitted_date: 1.day.from_now,   edd:1.day.from_now,   doctor: doc)
   Admit.find_or_create_by(patient: longahead, status: i, diagnosis: 'sth', admitted_date: 1.month.from_now, edd:1.month.from_now, doctor: doc)
 }
 
 ################################################################################################
 
-m = Department.find_or_create_by(name: 'medical', abbreviation: 'med')
+m = Department.find_or_create_by(name: 'medical',     abbreviation: 'med')
 o = Department.find_or_create_by(name: 'orthopedics', abbreviation: 'ortho')
-s = Department.find_or_create_by(name: 'surgery', abbreviation: 'surg')
+s = Department.find_or_create_by(name: 'surgery',     abbreviation: 'surg')
 
 ################################################################################################
 
