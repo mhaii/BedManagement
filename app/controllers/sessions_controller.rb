@@ -1,9 +1,11 @@
 class SessionsController < ApplicationController
+  include SessionsHelper
   def create
     user = User.find_by(username: params[:sessions][:username])
     if user
       if user.authenticate(params[:sessions][:password])
-        session[:user_id] = user.id
+        log_in user
+        params[:sessions][:remember_me] == '1' ? remember(user) : forget(user)
       else
         flash.now[:danger] = 'Incorrect password'
       end
@@ -14,8 +16,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    session.delete(:user_id)
-    @current_user = nil
+    log_out if logged_in?
     redirect_to root_url
   end
 end
