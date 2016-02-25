@@ -33,8 +33,6 @@ BedStatusController = ($rootScope, $http, patientService, wardService, $location
         vm.lastName = patientService.list()[0].last_name
         vm.symptom = patientService.list()[0].diagnosis
         vm.doctor = patientService.list()[0].doctor_id
-#        vm.wardName = patientService.listWard()[0].name
-        vm.roomName = patientService.listRoom()[0].number
       else
         vm.firstName = patientService.list()[0].patient.first_name
         vm.lastName = patientService.list()[0].patient.last_name
@@ -122,7 +120,6 @@ BedStatusController = ($rootScope, $http, patientService, wardService, $location
         vm.roomName = patientService.listRoom()[0].number
         if type == 'icu'
           patientService.list()[0].status = -1
-          patientService.listRoom()[0].status = -1
         else
           patientService.list()[0].status = 1
           patientService.list()[0].room_id = null
@@ -131,7 +128,6 @@ BedStatusController = ($rootScope, $http, patientService, wardService, $location
       patientService.add(room)
       patientService.list()[0].first_name = room.patient.first_name
       patientService.list()[0].last_name = room.patient.last_name
-      #    patientService.list()[0].edd = null
       patientService.list()[0].admitted_date = (new Date).toISOString()
       vm.firstName = patientService.list()[0].first_name
       vm.lastName = patientService.list()[0].last_name
@@ -180,6 +176,8 @@ BedStatusController = ($rootScope, $http, patientService, wardService, $location
     if vm.check
       delete patientService.list()[0].first_name
       delete patientService.list()[0].last_name
+      patientService.listRoom()[0].status = -1
+
       $http(
         method: 'PUT',
         url: '/resources/admits/'+patientService.list()[0].id+'.json',
@@ -244,6 +242,8 @@ BedStatusController = ($rootScope, $http, patientService, wardService, $location
           patientService.clear()
           vm.getIcuPatient()
           $rootScope.$broadcast('refreshQueueTable')
+          $location.hash('bed-status-all')
+          $anchorScroll()
         )
       )
 
