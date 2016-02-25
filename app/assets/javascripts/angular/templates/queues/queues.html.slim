@@ -1,25 +1,60 @@
+div.input-group-addon
+  i.fa.fa-search
+  input.form-control(type="text" placeholder="Search patient" ng-model="qCtrl.searchPatient")
 .table-responsive(style="margin-top: 2%;")
   table.table.table-striped.table-bordered.table-hover
     thead
       tr
-        th(translate) HN_NUMBER
-        th(translate) FIRST_NAME
-        th(translate) LAST_NAME
-        th(translate) APPOINTMENT
-        th(translate) DIAGNOSIS
-        th(translate) DOCTOR
-        th(translate) PHONE
-        th(translate) STATUS
+        th
+          a(href="" ng-click="qCtrl.sortType = 'patient.hn'; qCtrl.sortReverse = !qCtrl.sortReverse;")
+            span(translate) HN_NUMBER
+            span.fa.fa-caret-down(ng-show="qCtrl.sortType == 'patient.hn' && !qCtrl.sortReverse")
+            span.fa.fa-caret-up(ng-show="qCtrl.sortType == 'patient.hn' && qCtrl.sortReverse")
+        th
+          a(href="" ng-click="qCtrl.sortType = 'patient.first_name'; qCtrl.sortReverse = !qCtrl.sortReverse;")
+            span(translate) FIRST_NAME
+            span.fa.fa-caret-down(ng-show="qCtrl.sortType == 'patient.first_name' && !qCtrl.sortReverse")
+            span.fa.fa-caret-up(ng-show="qCtrl.sortType == 'patient.first_name' && qCtrl.sortReverse")
+        th
+          a(href="" ng-click="qCtrl.sortType = 'patient.last_name'; qCtrl.sortReverse = !qCtrl.sortReverse;")
+            span(translate) LAST_NAME
+            span.fa.fa-caret-down(ng-show="qCtrl.sortType == 'patient.last_name' && !qCtrl.sortReverse")
+            span.fa.fa-caret-up(ng-show="qCtrl.sortType == 'patient.last_name' && qCtrl.sortReverse")
+        th
+          a(href="" ng-click="qCtrl.sortType = 'admitted_date'; qCtrl.sortReverse = !qCtrl.sortReverse;")
+            span(translate) APPOINTMENT
+            span.fa.fa-caret-down(ng-show="qCtrl.sortType == 'admitted_date' && !qCtrl.sortReverse")
+            span.fa.fa-caret-up(ng-show="qCtrl.sortType == 'admitted_date' && qCtrl.sortReverse")
+        th
+          a(href="" ng-click="qCtrl.sortType = 'diagnosis'; qCtrl.sortReverse = !qCtrl.sortReverse;")
+            span(translate) DIAGNOSIS
+            span.fa.fa-caret-down(ng-show="qCtrl.sortType == 'diagnosis' && !qCtrl.sortReverse")
+            span.fa.fa-caret-up(ng-show="qCtrl.sortType == 'diagnosis' && qCtrl.sortReverse")
+        th
+          a(href="" ng-click="qCtrl.sortType = 'doctor.name'; qCtrl.sortReverse = !qCtrl.sortReverse;")
+            span(translate) DOCTOR
+            span.fa.fa-caret-down(ng-show="qCtrl.sortType == 'doctor.name' && !qCtrl.sortReverse")
+            span.fa.fa-caret-up(ng-show="qCtrl.sortType == 'doctor.name' && qCtrl.sortReverse")
+        th
+          a(href="" ng-click="qCtrl.sortType = 'patient.phone'; qCtrl.sortReverse = !qCtrl.sortReverse;")
+            span(translate) PHONE
+            span.fa.fa-caret-down(ng-show="qCtrl.sortType == 'patient.phone' && !qCtrl.sortReverse")
+            span.fa.fa-caret-up(ng-show="qCtrl.sortType == 'patient.phone' && qCtrl.sortReverse")
+        th
+          a(href="" ng-click="qCtrl.sortType = 'status'; qCtrl.sortReverse = !qCtrl.sortReverse;")
+            span(translate) STATUS
+            span.fa.fa-caret-down(ng-show="qCtrl.sortType == 'status' && !qCtrl.sortReverse")
+            span.fa.fa-caret-up(ng-show="qCtrl.sortType == 'status' && qCtrl.sortReverse")
         th
         th(ng-show="qCtrl.isQueue")
         th(ng-show="qCtrl.isQueue")
     tbody
-      tr(ng-repeat="admit in qCtrl.qData")
+      tr(ng-repeat="admit in qCtrl.qData | orderBy:qCtrl.sortType:qCtrl.sortReverse | filter:qCtrl.searchPatient")
         td {{ admit.patient.hn }}
         td {{ admit.patient.first_name }}
         td {{ admit.patient.last_name }}
         td {{ admit.admitted_date }}
-        td {{ admit.symptom }}
+        td {{ admit.diagnosis }}
         td {{ admit.doctor.name }}
         td {{ admit.patient.phone }}
         td {{ admit.status | translate }}

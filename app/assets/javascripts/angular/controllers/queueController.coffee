@@ -5,6 +5,10 @@ queueController = ($http, patientService, $location, $rootScope)->
   vm.prepareToAdd = {}
   vm.preparePending = {}
   vm.isEdit = false
+
+  vm.sortType = 'admitted_date'
+  vm.sortReverse = false
+
   if $location.path() == '/status'
     vm.isQueue = false
   else
