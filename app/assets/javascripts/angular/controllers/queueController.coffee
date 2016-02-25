@@ -8,6 +8,10 @@ queueController = ($http, patientService, $location, $rootScope)->
 
   vm.sortType = 'admitted_date'
   vm.sortReverse = false
+  vm.sortTable = (column)->
+    return (if vm.sortReverse then 'fa-caret-up' else 'fa-caret-down') unless column?
+    vm.sortType = column
+    vm.sortReverse = !vm.sortReverse
 
   if $location.path() == '/status'
     vm.isQueue = false
