@@ -1,4 +1,5 @@
 #bed-status-all
+  margin: 1% auto
   .containerStatus
     position: relative
     margin-top: 7%
@@ -22,15 +23,18 @@
   .detail-list
     margin-left: 7%
     margin-top: 10px
-  table
-    &#legends
-      margin: 15px 0
-      td
-        width: 100px !important
-        padding: 10px 0
 
+  table#legends td
+    width: 100px !important
+    padding: 10px 0
+
+  tbody
     td
       color: black
+
+      &:first-child:not(.text-center)
+        white-space: nowrap
+
       a:hover #queues.popup
         display: block
       &:hover #patient.popup
