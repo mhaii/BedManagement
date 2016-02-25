@@ -30,7 +30,7 @@ nav.navbar.navbar-default.navbar-fixed-top
           li.dropdown
             a.dropdown-toggle(href="#" data-target="#" data-toggle="dropdown")
               = @current_user.username
-              b.caret
+              span.fa.fa-caret-down
             ul.dropdown-menu
               li
                 = link_to "{{ 'LOGOUT' | translate }}", logout_path, method: :delete
