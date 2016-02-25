@@ -1,14 +1,13 @@
-BedStatusController = ($rootScope, $http, patientService, wardService)->
+BedStatusController = ($rootScope, $http, patientService, wardService, $location , $anchorScroll)->
   vm = @
   vm.icuPatients = {}
   vm.wards = wardService.query()
-
+  vm.check = false
   vm.getIcuPatient = ()->
     $http(
       method: 'GET',
       url: '/resources/admits/in_icu.json'
     ).then((data)->
-      console.log(data)
       vm.icuPatients = data.data
     )
     return
@@ -34,7 +33,7 @@ BedStatusController = ($rootScope, $http, patientService, wardService)->
         vm.lastName = patientService.list()[0].last_name
         vm.symptom = patientService.list()[0].diagnosis
         vm.doctor = patientService.list()[0].doctor_id
-        vm.wardName = patientService.listWard()[0].name
+#        vm.wardName = patientService.listWard()[0].name
         vm.roomName = patientService.listRoom()[0].number
       else
         vm.firstName = patientService.list()[0].patient.first_name
@@ -56,6 +55,12 @@ BedStatusController = ($rootScope, $http, patientService, wardService)->
     return
   )
 
+  vm.isChecked = ()->
+    if vm.check
+      vm.check = false
+    else
+      vm.check = true
+
   vm.addToRoom = ()->
     if vm.isPatientData
       if patientService.list()[0].move
@@ -75,6 +80,7 @@ BedStatusController = ($rootScope, $http, patientService, wardService)->
         ).then(()->
           vm.isPatientData = false
           patientService.clear()
+          vm.getIcuPatient()
           vm.getWards()
         )
       else
@@ -94,31 +100,68 @@ BedStatusController = ($rootScope, $http, patientService, wardService)->
         )
     return
 
-  vm.movePatient = (room, move, icu) ->
-    patientService.clear()
-    patientService.add(room.admit)
-    patientService.list()[0].first_name = room.patient.first_name
-    patientService.list()[0].last_name = room.patient.last_name
-#    patientService.list()[0].edd = null
-    patientService.list()[0].admitted_date = (new Date).toISOString()
-    if move
-      vm.isPatientData = true
-      patientService.list()[0].move = true
-      vm.checkPatientData()
-      patientService.list()[0].room_id = null
+  vm.movePatient = (room, type, dir) ->
+    if dir
+      patientService.clear()
+      patientService.add(room.admit)
+      patientService.list()[0].first_name = room.patient.first_name
+      patientService.list()[0].last_name = room.patient.last_name
+      #    patientService.list()[0].edd = null
+      patientService.list()[0].admitted_date = (new Date).toISOString()
+      if type == 'move'
+        vm.isPatientData = true
+        patientService.list()[0].move = true
+        vm.checkPatientData()
+        patientService.list()[0].room_id = null
+      else
+        vm.firstName = patientService.list()[0].first_name
+        vm.lastName = patientService.list()[0].last_name
+        vm.symptom = patientService.list()[0].diagnosis
+        vm.doctor = patientService.list()[0].doctor_id
+        vm.wardName = patientService.listWard()[0].name
+        vm.roomName = patientService.listRoom()[0].number
+        if type == 'icu'
+          patientService.list()[0].status = -1
+          patientService.listRoom()[0].status = -1
+        else
+          patientService.list()[0].status = 1
+          patientService.list()[0].room_id = null
     else
+      patientService.clear()
+      patientService.add(room)
+      patientService.list()[0].first_name = room.patient.first_name
+      patientService.list()[0].last_name = room.patient.last_name
+      #    patientService.list()[0].edd = null
+      patientService.list()[0].admitted_date = (new Date).toISOString()
       vm.firstName = patientService.list()[0].first_name
       vm.lastName = patientService.list()[0].last_name
       vm.symptom = patientService.list()[0].diagnosis
       vm.doctor = patientService.list()[0].doctor_id
-      vm.wardName = patientService.listWard()[0].name
-      vm.roomName = patientService.listRoom()[0].number
-      if icu
-        patientService.list()[0].status = -1
-        patientService.listRoom()[0].status = -1
+      if room.room_id != null
+        patientService.clearRoom()
+        patientService.addRoom(room.room)
+        patientService.listRoom()[0].status = 2
+        vm.roomName = patientService.listRoom()[0].number
+        $http(
+          method: 'GET',
+          url:'/resources/wards/'+patientService.listRoom()[0].ward_id+'.json'
+        ).success((data)->
+          vm.ward = data.name
+          patientService.clearWard()
+          patientService.addWard(data.data)
+        )
       else
-        patientService.list()[0].status = 1
-        patientService.list()[0].room_id = null
+        patientService.clear()
+        patientService.add(room)
+        patientService.list()[0].first_name = room.patient.first_name
+        patientService.list()[0].last_name = room.patient.last_name
+        #    patientService.list()[0].edd = null
+        patientService.list()[0].admitted_date = (new Date).toISOString()
+        vm.isPatientData = true
+        patientService.list()[0].move = true
+        vm.checkPatientData()
+        $location.hash('bed-status-all')
+        $anchorScroll()
     return
 
   vm.deletePatient = ()->
@@ -134,30 +177,80 @@ BedStatusController = ($rootScope, $http, patientService, wardService)->
     )
 
   vm.toICU = ()->
-    delete patientService.list()[0].first_name
-    delete patientService.list()[0].last_name
-    $http(
-      method: 'PUT',
-      url: '/resources/admits/'+patientService.list()[0].id+'.json',
-      data: patientService.list()[0]
-    ).then((data)->
-      patientService.clear()
-      console.log(patientService.listRoom()[0])
-      delete patientService.listRoom()[0].patient
-      delete patientService.listRoom()[0].admit
+    if vm.check
+      delete patientService.list()[0].first_name
+      delete patientService.list()[0].last_name
       $http(
         method: 'PUT',
-        url: '/resources/rooms/'+patientService.listRoom()[0].id+'.json',
-        data: patientService.listRoom()[0]
+        url: '/resources/admits/'+patientService.list()[0].id+'.json',
+        data: patientService.list()[0]
       ).then((data)->
         patientService.clear()
-        $rootScope.$broadcast('refreshQueueTable')
+        delete patientService.listRoom()[0].admit
+        delete patientService.listRoom()[0].patient
+        $http(
+          method: 'PUT',
+          url: '/resources/rooms/'+patientService.listRoom()[0].id+'.json',
+          data: patientService.listRoom()[0]
+        ).then((data)->
+          patientService.clear()
+          vm.getIcuPatient()
+          $rootScope.$broadcast('refreshQueueTable')
+        )
       )
-    )
+    else
+      delete patientService.list()[0].first_name
+      delete patientService.list()[0].last_name
+      patientService.list()[0].room_id = null
+      $http(
+        method: 'PUT',
+        url: '/resources/admits/'+patientService.list()[0].id+'.json',
+        data: patientService.list()[0]
+      ).then((data)->
+        patientService.clear()
+        patientService.listRoom()[0].status = 0
+        delete patientService.listRoom()[0].admit
+        delete patientService.listRoom()[0].patient
+        $http(
+          method: 'PUT',
+          url: '/resources/rooms/'+patientService.listRoom()[0].id+'.json',
+          data: patientService.listRoom()[0]
+        ).then((data)->
+          patientService.clear()
+          vm.getIcuPatient()
+          $rootScope.$broadcast('refreshQueueTable')
+        )
+      )
+  vm.backFromICU = ()->
+    if patientService.list()[0].room_id != null
+      delete patientService.list()[0].first_name
+      delete patientService.list()[0].last_name
+      delete patientService.list()[0].patient
+      delete patientService.list()[0].room
+      patientService.list()[0].status = 2
+      $http(
+        method: 'PUT',
+        url: '/resources/admits/'+patientService.list()[0].id+'.json',
+        data: patientService.list()[0]
+      ).then((data)->
+        patientService.clear()
+        delete patientService.listRoom()[0].patient
+        delete patientService.listRoom()[0].admit
+        $http(
+          method: 'PUT',
+          url: '/resources/rooms/'+patientService.listRoom()[0].id+'.json',
+          data: patientService.listRoom()[0]
+        ).then((data)->
+          patientService.clear()
+          vm.getIcuPatient()
+          $rootScope.$broadcast('refreshQueueTable')
+        )
+      )
 
   return
 
+
 BedStatusController
-  .$inject = ['$rootScope','$http','patientService', 'wardService']
+  .$inject = ['$rootScope','$http','patientService', 'wardService','$location','$anchorScroll']
 
 angular.module('app').controller('BedStatusController',BedStatusController)

@@ -32,9 +32,9 @@
                                 <dt>{{ "DOCTOR" | translate }}: {{ room.patient.doctor_id }}</dt>
                                 <dt>{{ "EDD" | translate }}: {{ room.admit.edd }}</dt>
                             </dl>
-                            <a class="btn-sm infobutton" ng-click="bedCtrl.movePatient(room, true, false)" translate>TRANSFER</a>
-                            <a class="btn-sm infobutton" ng-click="bedCtrl.movePatient(room, false, false)" data-toggle="modal" data-target="#confirmToDelete" translate>REMOVE</a>
-                            <a class="btn-sm infobutton" ng-click="bedCtrl.movePatient(room, false, true)" data-toggle="modal" data-target="#confirmMoveICU" translate>MOVE_ICU</a>
+                            <a class="btn-sm infobutton" ng-click="bedCtrl.movePatient(room, 'move', true)" translate>TRANSFER</a>
+                            <a class="btn-sm infobutton" ng-click="bedCtrl.movePatient(room, 'delete', true)" data-toggle="modal" data-target="#confirmToDelete" translate>REMOVE</a>
+                            <a class="btn-sm infobutton" ng-click="bedCtrl.movePatient(room, 'icu', true)" data-toggle="modal" data-target="#confirmMoveICU" translate>MOVE_ICU</a>
                         </div>
                         <div ng-if="room.status === 'available'" id="patient" class="hidden-box popup">
                             <dl class="detail-list">
@@ -145,9 +145,38 @@
                             <dt>Last name: {{ bedCtrl.lastName }}</dt>
                             <dt>Diagnosis: {{ bedCtrl.symptom }}</dt>
                             <dt>Doctor: {{ bedCtrl.doctor }}</dt>
+                            <dt>
+                                <div>
+                                    reserve room?
+                                    <input type="checkbox" ng-click="bedCtrl.isChecked()">
+                                </div>
+                            </dt>
                         </dl>
                         <button type="button" class="btn btn-warning" data-dismiss="modal" translate>CLOSE</button>
                         <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="bedCtrl.toICU()" translate>CONFIRM</button>
+                    </div>
+                </div>
+            </div>
+            <!-- modal for move patient back from icu (status page) -->
+            <div id="confirmMoveBack" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Confirm to move this patient to this Room?</h4>
+                        </div>
+                        <dl class="detail-list">
+                            <dt>Ward: {{ bedCtrl.wardName }}</dt>
+                            <dt>Room: {{ bedCtrl.roomName }}</dt>
+                            <dt>Patient</dt>
+                            <dt>First name: {{ bedCtrl.firstName }}</dt>
+                            <dt>Last name: {{ bedCtrl.lastName }}</dt>
+                            <dt>Diagnosis: {{ bedCtrl.symptom }}</dt>
+                            <dt>Doctor: {{ bedCtrl.doctor }}</dt>
+                        </dl>
+                        <button type="button" class="btn btn-warning" data-dismiss="modal" translate>CLOSE</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="bedCtrl.backFromICU()" translate>CONFIRM</button>
                     </div>
                 </div>
             </div>
