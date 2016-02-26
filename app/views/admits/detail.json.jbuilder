@@ -5,9 +5,9 @@ json.array! @admits do |admit|
   json.doctor   admit.doctor if admit.doctor
 
   if admit.room
+    json.wards  admit.room.ward if admit.room.ward
     json.room do
       json.merge! admit.room
-      #json.ward   admit.room.ward
     end
   end
 end
