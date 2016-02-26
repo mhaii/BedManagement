@@ -5,38 +5,10 @@
   table.table.table-striped.table-bordered.table-hover
     thead
       tr
-        th
-          a(href="" ng-click="qCtrl.sortTable('patient.hn')")
-            span(translate) HN_NUMBER
-            span.fa(ng-show="qCtrl.sortType == 'patient.hn'" ng-class="qCtrl.sortTable()")
-        th
-          a(href="" ng-click="qCtrl.sortTable('patient.first_name')")
-            span(translate) FIRST_NAME
-            span.fa(ng-show="qCtrl.sortType == 'patient.first_name'" ng-class="qCtrl.sortTable()")
-        th
-          a(href="" ng-click="qCtrl.sortTable('patient.last_name')")
-            span(translate) LAST_NAME
-            span.fa(ng-show="qCtrl.sortType == 'patient.last_name'" ng-class="qCtrl.sortTable()")
-        th
-          a(href="" ng-click="qCtrl.sortTable('admitted_date')")
-            span(translate) APPOINTMENT
-            span.fa(ng-show="qCtrl.sortType == 'admitted_date'" ng-class="qCtrl.sortTable()")
-        th
-          a(href="" ng-click="qCtrl.sortTable('diagnosis')")
-            span(translate) DIAGNOSIS
-            span.fa(ng-show="qCtrl.sortType == 'diagnosis'" ng-class="qCtrl.sortTable()")
-        th
-          a(href="" ng-click="qCtrl.sortTable('doctor.name')")
-            span(translate) DOCTOR
-            span.fa(ng-show="qCtrl.sortType == 'doctor.name'" ng-class="qCtrl.sortTable()")
-        th
-          a(href="" ng-click="qCtrl.sortTable('patient.phone')")
-            span(translate) PHONE
-            span.fa(ng-show="qCtrl.sortType == 'patient.phone'" ng-class="qCtrl.sortTable()")
-        th
-          a(href="" ng-click="qCtrl.sortTable('status')")
-            span(translate) STATUS
-            span.fa(ng-show="qCtrl.sortType == 'status'" ng-class="qCtrl.sortTable()")
+        th(ng-repeat="(text, element) in qCtrl.tableColumns")
+          a(href="" ng-click="qCtrl.sortTable(element)")
+            span(translate) {{ text }}
+            span.fa(ng-show="qCtrl.sortType == element" ng-class="qCtrl.sortTable()")
         th
         th(ng-show="qCtrl.isQueue")
         th(ng-show="qCtrl.isQueue")
