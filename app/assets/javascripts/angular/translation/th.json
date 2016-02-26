@@ -1,65 +1,72 @@
 {
-  "HOME": "หน้าหลัก",
-  "QUEUES": "คิวทั้งหมด",
   "ADD_QUEUE": "เพิ่มคิว",
-  "BED_STATUS": "สถานะเตียง",
-  "STATISTICS": "สถิติ",
-  "CHECK_OUT": "แจ้งออก",
-  "LANG": "English",
-
-  "AVAILABLE_BEDS": "จำนวนเตียงว่าง",
-  "EXPECTED_DISCHARGE": "คาดว่าจะแจ้งออก",
-  "PEOPLE_ADMITTED_TODAY": "คนไข้เข้าพักในวันนี้",
-
-  "DATE": "วันที่",
-  "NAME": "ชื่อ",
-  "NO_BED": "จำนวนเตียง",
-  "ROOM": "ห้อง",
-  "ROOM_NUMBER": "เลขห้อง",
-  "QUEUE": "คิว",
-  "WARD": "วอร์ด",
-
-  "STATUS": "สถานะ",
-
-  "HN_NUMBER": "เลขคนไข้",
-  "PATIENT": "ผู้ป่วย",
-  "FIRST_NAME": "ชื่อ",
-  "LAST_NAME": "นามสกุล",
   "APPOINTMENT": "วัน-เวลานัด",
-  "DIAGNOSIS": "การวินิจฉัย",
-  "DOCTOR": "แพทย์",
-  "REMARK": "อื่นๆ",
-  "PHONE": "เบอร์ติดต่อ",
+  "AVAILABLE": "ห้องว่าง",
+  "AVAILABLE_BEDS": "จำนวนเตียงว่าง",
+  "AVAILABLE_SOON": "ห้องใกล้ว่าง",
 
+  "BED_STATUS": "สถานะเตียง",
+
+  "CANCEL": "ยกเลิก",
+  "CHECK_OUT": "แจ้งออก",
+  "CHOOSE": "เลือกห้อง",
+  "CLOSE": "ปิดหน้านี้",
+  "CONFIRM": "ยืนยัน",
   "CONFIRM_DELETE": "ยืนยันการยกเลิกนัด?",
 
-  "pending": "รอการยืนยัน",
-  "confirmed": "ยืนยันการนัด",
-  "currentlyAdmit": "กำลังเข้ารักษา",
-  "preDischarged": "เตรียมจ่ายออก",
-  "discharged": "จ่ายแบ้ว",
-
-  "CONFIRM": "ยืนยัน",
-  "CHOOSE": "เลือกห้อง",
+  "DATE": "วันที่",
   "DELETE": "ลบ",
-  "CANCEL": "ยกเลิก",
-  "CLOSE": "ปิดหน้านี้",
-  "RESERVE": "จอง",
-  "EDIT": "แก้ไข",
-
-  "AVAILABLE": "ห้องว่าง",
-  "AVAILABLE_SOON": "ห้องใกล้ว่าง",
-  "OCCUPIED": "ห้องไม่ว่าง",
-  "RESERVED": "ห้องถูกจอง",
+  "DIAGNOSIS": "การวินิจฉัย",
   "DISABLED": "ปิดการใช้งาน",
+  "DOCTOR": "แพทย์",
 
-  "USERNAME": "ชื่อผู้ใช้",
-  "PASSWORD": "รหัสผ่าน",
-  "REMEMBER_ME": "จดจำ",
+  "EDIT": "แก้ไข",
+  "EXPECTED_DISCHARGE": "คาดว่าจะแจ้งออก",
+
+  "FIRST_NAME": "ชื่อ",
+
+  "HN_NUMBER": "เลขคนไข้",
+  "HOME": "หน้าหลัก",
+
+  "LANG": "English",
+  "LAST_NAME": "นามสกุล",
   "LOGIN": "เข้าใช้งาน",
   "LOGOUT": "ออกจากระบบ",
 
+  "NAME": "ชื่อ",
+  "NO_BED": "จำนวนเตียง",
+
+  "OCCUPIED": "ห้องไม่ว่าง",
+
+  "PASSWORD": "รหัสผ่าน",
+  "PATIENT": "ผู้ป่วย",
+  "PEOPLE_ADMITTED_TODAY": "คนไข้เข้าพักในวันนี้",
+  "PHONE": "เบอร์ติดต่อ",
+
+  "QUEUE": "คิว",
+  "QUEUES": "คิวทั้งหมด",
+
+  "REMARK": "อื่นๆ",
+  "REMEMBER_ME": "จดจำ",
+  "RESERVE": "จอง",
+  "RESERVED": "ห้องถูกจอง",
+  "ROOM": "ห้อง",
+  "ROOM_NUMBER": "เลขห้อง",
+
+  "STATISTICS": "สถิติ",
+  "STATUS": "สถานะ",
+
   "TEL": "โทร",
+
+  "USERNAME": "ชื่อผู้ใช้",
+
+  "WARD": "วอร์ด",
+
+  "confirmed": "ยืนยันการนัด",
+  "currentlyAdmit": "กำลังเข้ารักษา",
+  "discharged": "จ่ายแบ้ว",
   "east": "อ",
+  "pending": "รอการยืนยัน",
+  "preDischarged": "เตรียมจ่ายออก",
   "west": "ต"
 }

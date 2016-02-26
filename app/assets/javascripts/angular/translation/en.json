@@ -1,66 +1,72 @@
 {
-  "HOME": "Home",
-  "QUEUES": "Queues",
   "ADD_QUEUE": "Add Queue",
-  "BED_STATUS": "Bed Status",
-  "STATISTICS": "Statistics",
-  "CHECK_OUT": "Check Out",
-  "LANG": "ภาษาไทย",
-
-  "AVAILABLE_BEDS": "Available Beds",
-  "EXPECTED_DISCHARGE": "Expected Discharge",
-  "PEOPLE_ADMITTED_TODAY": "People Admitted Today",
-
-  "DATE": "Date",
-  "NAME": "Name",
-  "NO_BED": "No. Bed",
-  "ROOM": "Room",
-  "ROOM_NUMBER": "Room Number",
-  "QUEUE": "Queue",
-  "WARD": "Ward",
-
-  "STATUS": "Status",
-
-  "HN_NUMBER": "HN-Number",
-  "PATIENT": "Patient",
-  "FIRST_NAME": "First Name",
-  "LAST_NAME": "Last Name",
   "APPOINTMENT": "Appointment",
-  "DIAGNOSIS": "Diagnosis",
-  "DOCTOR": "Doctor",
-  "REMARK": "Remark",
-  "PHONE": "Phone",
+  "AVAILABLE": "Available",
+  "AVAILABLE_BEDS": "Available Beds",
+  "AVAILABLE_SOON": "Available Soon",
 
+  "BED_STATUS": "Bed Status",
+
+  "CANCEL": "Cancel",
+  "CHECK_OUT": "Check Out",
+  "CHOOSE": "Choose",
+  "CLOSE": "Close",
+  "CONFIRM": "Confirm",
   "CONFIRM_DELETE": "Confirm delete appointment?",
 
-  "pending": "Pending",
-  "confirmed": "Confirmed",
-  "currentlyAdmit": "Currently Admit",
-  "preDischarged": "Pre-Discharged",
-  "discharged": "Discharged",
-
-  "CONFIRM": "Confirm",
-  "CHOOSE": "Choose",
+  "DATE": "Date",
   "DELETE": "Delete",
-  "CANCEL": "Cancel",
-  "CLOSE": "Close",
-  "RESERVE": "Reserve",
-  "EDIT": "Edit",
-
-  "AVAILABLE": "Available",
-  "AVAILABLE_SOON": "Available Soon",
-  "OCCUPIED": "Occupied",
-  "RESERVED": "Reserved",
+  "DIAGNOSIS": "Diagnosis",
   "DISABLED": "Disabled",
+  "DOCTOR": "Doctor",
 
-  "USERNAME": "Username",
-  "PASSWORD": "Password",
-  "REMEMBER_ME": "Remember me",
+  "EDIT": "Edit",
+  "EXPECTED_DISCHARGE": "Expected Discharge",
+
+  "FIRST_NAME": "First Name",
+
+  "HN_NUMBER": "HN-Number",
+  "HOME": "Home",
+
+  "LANG": "ภาษาไทย",
+  "LAST_NAME": "Last Name",
   "LOGIN": "Login",
   "LOGOUT": "Logout",
 
-  "TEL": "Tel",
-  "east": "E",
-  "west": "W"
+  "NAME": "Name",
+  "NO_BED": "No. Bed",
 
+  "OCCUPIED": "Occupied",
+
+  "PASSWORD": "Password",
+  "PATIENT": "Patient",
+  "PEOPLE_ADMITTED_TODAY": "People Admitted Today",
+  "PHONE": "Phone",
+
+  "QUEUE": "Queue",
+  "QUEUES": "Queues",
+
+  "REMARK": "Remark",
+  "REMEMBER_ME": "Remember me",
+  "RESERVE": "Reserve",
+  "RESERVED": "Reserved",
+  "ROOM": "Room",
+  "ROOM_NUMBER": "Room Number",
+
+  "STATISTICS": "Statistics",
+  "STATUS": "Status",
+
+  "TEL": "Tel",
+
+  "USERNAME": "Username",
+
+  "WARD": "Ward",
+
+  "confirmed": "Confirmed",
+  "currentlyAdmit": "Currently Admit",
+  "discharged": "Discharged",
+  "east": "E",
+  "pending": "Pending",
+  "preDischarged": "Pre-Discharged",
+  "west": "W"
 }
