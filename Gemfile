@@ -33,6 +33,7 @@ gem 'jbuilder', '~> 2.0'
 
 gem 'bcrypt', '~> 3.1.7'
 # gem 'unicorn'
+gem 'puma'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -43,6 +44,7 @@ end
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'capistrano-rails'
+  gem 'capistrano-rvm'
   gem 'spring'
   gem 'web-console', '~> 2.0'
 end
