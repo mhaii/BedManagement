@@ -21,4 +21,4 @@ div ICU
         td {{ patient.status | translate }}
         td
           a(ng-if="patient.room_id == null" ng-click="bedCtrl.movePatient(patient, 'icu', false)") CHOOSE
-          a(ng-if="patient.room_id != null" ng-click="bedCtrl.movePatient(patient,'icu', false)" data-toggle="modal" data-target="#confirmMoveBack") RETURN_TO_ROOM
+          a(ng-if="patient.room_id != null" ng-click="bedCtrl.movePatient(patient, 'icu', false)" data-toggle="modal" data-target="#confirmMoveBack") RETURN_TO_ROOM
