@@ -1,5 +1,6 @@
 require 'json'
 class WardsController < ApplicationController
+  before_action { render text: 'Loading API in HTML is prohibited', status: 405 if params[:format].nil? }
   before_action :set_ward, only: [:show, :update, :destroy, :ward_index]
   before_action :get_wards, only: [:index, :wards_index]
 

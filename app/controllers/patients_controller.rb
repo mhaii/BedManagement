@@ -1,5 +1,6 @@
 require 'json'
 class PatientsController < ApplicationController
+  before_action { render text: 'Loading API in HTML is prohibited', status: 405 if params[:format].nil? }
   before_action :set_patient, only: [:show, :update, :destroy]
   before_action :get_patients, only: [:index]
 
