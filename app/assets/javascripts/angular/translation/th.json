@@ -15,6 +15,8 @@
   "CONFIRM_DELETE": "ยืนยันการยกเลิกนัด?",
 
   "DATE": "วันที่",
+  "DAY_TO_TIL": "1 วัน",
+  "DAYS_TO_TIL": "{{days}} วัน",
   "DELETE": "ลบ",
   "DIAGNOSIS": "การวินิจฉัย",
   "DISABLED": "ปิดการใช้งาน",
@@ -27,11 +29,17 @@
 
   "HN_NUMBER": "เลขคนไข้",
   "HOME": "หน้าหลัก",
+  "HOUR_TO_TIL": "1 ชั่วโมง",
+  "HOURS_TO_TIL": "{{hours}} ชั่วโมง",
 
   "LANG": "English",
   "LAST_NAME": "นามสกุล",
+  "LESS_THAN_A_MINUTE": "น้อยกว่านาที",
   "LOGIN": "เข้าใช้งาน",
   "LOGOUT": "ออกจากระบบ",
+
+  "MINUTE_TO_TIL": "1 นาที",
+  "MINUTES_TO_TIL": "{{minutes}} นาที",
 
   "NAME": "ชื่อ",
   "NO_BED": "จำนวนเตียง",
@@ -42,6 +50,8 @@
   "PATIENT": "ผู้ป่วย",
   "PEOPLE_ADMITTED_TODAY": "คนไข้เข้าพักในวันนี้",
   "PHONE": "เบอร์ติดต่อ",
+  "PREFIX_AGO": "เมื่อ",
+  "PREFIX_FROM_NOW": "ในอีก",
 
   "QUEUE": "คิว",
   "QUEUES": "คิวทั้งหมด",
@@ -55,6 +65,8 @@
 
   "STATISTICS": "สถิติ",
   "STATUS": "สถานะ",
+  "SUFFIX_AGO": "ที่ผ่านมา",
+  "SUFFIX_FROM_NOW": "ข้างหน้า",
 
   "TEL": "โทร",
 

@@ -15,6 +15,8 @@
   "CONFIRM_DELETE": "Confirm delete appointment?",
 
   "DATE": "Date",
+  "DAY_TO_TIL": "1 day",
+  "DAYS_TO_TIL": "{{days}} days",
   "DELETE": "Delete",
   "DIAGNOSIS": "Diagnosis",
   "DISABLED": "Disabled",
@@ -27,11 +29,17 @@
 
   "HN_NUMBER": "HN-Number",
   "HOME": "Home",
+  "HOUR_TO_TIL": "1 hour",
+  "HOURS_TO_TIL": "{{hours}} hours",
 
   "LANG": "ภาษาไทย",
   "LAST_NAME": "Last Name",
+  "LESS_THAN_A_MINUTE": "Less than a minute",
   "LOGIN": "Login",
   "LOGOUT": "Logout",
+
+  "MINUTE_TO_TIL": "1 minute",
+  "MINUTES_TO_TIL": "{{minutes}} minutes",
 
   "NAME": "Name",
   "NO_BED": "No. Bed",
@@ -42,6 +50,8 @@
   "PATIENT": "Patient",
   "PEOPLE_ADMITTED_TODAY": "People Admitted Today",
   "PHONE": "Phone",
+  "PREFIX_AGO": "",
+  "PREFIX_FROM_NOW": "",
 
   "QUEUE": "Queue",
   "QUEUES": "Queues",
@@ -55,6 +65,8 @@
 
   "STATISTICS": "Statistics",
   "STATUS": "Status",
+  "SUFFIX_AGO": "ago",
+  "SUFFIX_FROM_NOW": "from now",
 
   "TEL": "Tel",
 

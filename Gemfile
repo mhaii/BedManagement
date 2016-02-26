@@ -18,7 +18,6 @@ source 'https://rails-assets.org' do
   gem 'rails-assets-angular-translate'
   gem 'rails-assets-angular-translate-loader-static-files'
   gem 'rails-assets-angular-ui-router'
-  gem 'rails-assets-angularjs-humanize'
   gem 'rails-assets-bootstrap-material-design'
 end
 # Allow angular to access templates from Rails pipeline

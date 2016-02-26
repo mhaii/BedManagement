@@ -1,1 +1,1 @@
-angular.module('app',['templates', 'ui.router', 'ngResource','pascalprecht.translate', 'angular-humanize'])
+angular.module('app',['templates', 'ui.router', 'ngResource','pascalprecht.translate'])

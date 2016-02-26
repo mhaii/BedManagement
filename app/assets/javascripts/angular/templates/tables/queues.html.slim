@@ -18,7 +18,7 @@
           td {{ admit.patient.hn }}
           td {{ admit.patient.first_name }}
           td {{ admit.patient.last_name }}
-          td {{ admit.admitted_date }}
+          td {{ admit.admitted_date | dateTimeHumanize }}
           td {{ admit.diagnosis }}
           td {{ admit.doctor.name }}
           td {{ admit.patient.phone }}
