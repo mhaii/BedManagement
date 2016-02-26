@@ -15,6 +15,7 @@ queueController = ($http, patientService, $location, $rootScope)->
     vm.sortReverse = !vm.sortReverse
 
   vm.isQueue = $location.path() != '/status'
+  vm.isAlone = $location.path() == '/queue'
 
   vm.getQueues = ()->
     $http.get('/resources/admits/queue.json').success((data)->
