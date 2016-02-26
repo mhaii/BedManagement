@@ -11,8 +11,6 @@
               span(translate) {{ text }}
               span.fa(ng-show="qCtrl.sortType == element" ng-class="qCtrl.sortTable()")
           th
-          th(ng-show="qCtrl.isQueue")
-          th(ng-show="qCtrl.isQueue")
       tbody
         tr(ng-repeat="admit in qCtrl.qData | orderBy:qCtrl.sortType:qCtrl.sortReverse | filter:qCtrl.searchPatient")
           td {{ admit.patient.hn }}
@@ -23,17 +21,19 @@
           td {{ admit.doctor.name }}
           td {{ admit.patient.phone }}
           td {{ admit.status | translate }}
-          td
+          td.dropdown
             a.fake-link(ng-if="admit.status === 'pending'" ng-click="qCtrl.changeStatus(admit)" translate) CONFIRM
-            div(ng-show="qCtrl.isQueue")
-              a.fake-link(ui-sref="status" ng-if="admit.status === 'confirmed'" ng-click="qCtrl.choose(admit)" translate) CHOOSE
-            div(ng-if="!qCtrl.isQueue")
-              a.fake-link(ng-if="admit.status === 'confirmed'" data-toggle="modal" data-target="#confirmModal" data-dismiss="modal" ng-mouseover="qCtrl.prepareData(admit)" translate) CHOOSE
-          td(ng-show="qCtrl.isQueue")
-            a.fake-link(ng-if="admit.status === 'pending'" data-toggle="modal" data-target="#deleteQueueModal" ng-click="qCtrl.deleteQueue(admit)" translate) DELETE
-            a.fake-link(ng-if="admit.status === 'confirmed'" ng-click="qCtrl.backToPending(admit)" translate) CANCEL
-          td(ng-show="qCtrl.isQueue")
-            a.fake-link(ng-click="qCtrl.choose(admit)" ui-sref="add-queue" translate) EDIT
+            span(ng-show="admit.status === 'confirmed'")
+              a.fake-link(ng-if="qCtrl.isQueue" ui-sref="status" ng-click="qCtrl.choose(admit)" translate) CHOOSE
+              a.fake-link(ng-if="!qCtrl.isQueue" data-toggle="modal" data-target="#confirmModal" data-dismiss="modal" ng-mouseover="qCtrl.prepareData(admit)" translate) CHOOSE
+            a.dropdown-toggle.fake-link.pull-right(data-target="#" data-toggle="dropdown")
+              span.fa.fa-caret-down
+            ul.dropdown-menu
+              li(ng-show="qCtrl.isQueue")
+                a.fake-link(ng-if="admit.status === 'pending'" data-toggle="modal" data-target="#deleteQueueModal" ng-click="qCtrl.deleteQueue(admit)" translate) DELETE
+                a.fake-link(ng-if="admit.status === 'confirmed'" ng-click="qCtrl.backToPending(admit)" translate) CANCEL
+              li(ng-show="qCtrl.isQueue")
+                a.fake-link(ng-click="qCtrl.choose(admit)" ui-sref="add-queue" translate) EDIT
       / confirm delete
       #deleteQueueModal.modal.fade.in
         .modal-dialog
@@ -47,7 +47,9 @@
               dt {{ "FIRST_NAME" | translate }}: {{ qCtrl.prepareDelete.first_name }}
               dt {{ "LAST_NAME" | translate }}: {{ qCtrl.prepareDelete.last_name }}
               dt {{ "DIAGNOSIS" | translate }}: {{ qCtrl.prepareDelete.symptom }}
-              dt {{ "DOCTOR" | translate }}: {{ qCtrl.prepareDelete.doctor }}
+              dt {{ "DOCTOR" | translate }}: {{ qCtrl.prepareDelete.doctor.name }}
+              dt {{ "REMARK" | translate }}:
+                input(type="text")
               | <dt>{{ "REMARK" | translate }}: <input type="text"/></dt>
             button.btn.btn-warning(type="button" data-dismiss="modal" ng-click="qCtrl.getQueues()" translate) CLOSE
             button.btn.btn-primary(type="button" data-dismiss="modal" ng-click="qCtrl.delete()" translate) CONFIRM

@@ -28,7 +28,7 @@ nav.navbar.navbar-default.navbar-fixed-top
           a(ng-if="getLanguage() != 'en'" ng-click="changeLanguage('en')" translate) LANG
         - if @current_user
           li.dropdown
-            a.dropdown-toggle(href="#" data-target="#" data-toggle="dropdown")
+            a.dropdown-toggle.fake-link(data-target="#" data-toggle="dropdown")
               = @current_user.username
               span.fa.fa-caret-down
             ul.dropdown-menu
