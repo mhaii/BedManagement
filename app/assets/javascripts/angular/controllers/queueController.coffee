@@ -71,7 +71,6 @@ queueController = ($http, patientService, $location, $rootScope)->
     item.id = parseInt(item.id)
     item.doctor_id = item.doctor_id
     item.patient_id = parseInt(item.patient.hn)
-    delete item.patient
     $http(
       method: 'PUT',
       url: '/resources/admits/'+item.id+'.json'
@@ -96,7 +95,6 @@ queueController = ($http, patientService, $location, $rootScope)->
     item.id = parseInt(item.id)
     item.doctor_id = item.doctor_id
     item.patient_id = parseInt(item.patient.hn)
-    delete item.patient
     $http(
       method: 'PUT',
       url: '/resources/admits/'+item.id+'.json'

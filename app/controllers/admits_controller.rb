@@ -58,6 +58,6 @@ class AdmitsController < ApplicationController
     end
 
     def get_request_body
-      JSON.parse(request.body.string)
+      JSON.parse(request.body.string).except('doctor', 'patient', 'room')
     end
 end

@@ -75,7 +75,6 @@ addQueuesCtrl = ($http,searchService,$window,$state, patientService)->
           return
         )
       else
-        delete vm.admitInfo.id
         vm.admitInfo.admitted_date = vm.admitInfo.admitted_date+'T00:00:00.00Z'
         vm.admitInfo.doctor_id = parseInt(vm.admitInfo.doctor_id)
         $http(

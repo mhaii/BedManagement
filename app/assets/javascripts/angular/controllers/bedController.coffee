@@ -83,7 +83,6 @@ BedStatusController = ($rootScope, $http, patientService, wardService, $location
         )
       else
         patientService.list()[0].patient_id = patientService.list()[0].patient.hn
-        delete patientService.list()[0].patient
         patientService.list()[0].admitted_date = (new Date).toISOString()
         patientService.list()[0].room_id = patientService.listRoom()[0].id
         patientService.list()[0].status = 2
@@ -161,8 +160,6 @@ BedStatusController = ($rootScope, $http, patientService, wardService, $location
     return
 
   vm.deletePatient = ()->
-    delete patientService.list()[0].first_name
-    delete patientService.list()[0].last_name
     $http(
       method: 'PUT',
       url: '/resources/admits/'+patientService.list()[0].id+'.json',
@@ -174,8 +171,6 @@ BedStatusController = ($rootScope, $http, patientService, wardService, $location
 
   vm.toICU = ()->
     if vm.check
-      delete patientService.list()[0].first_name
-      delete patientService.list()[0].last_name
       patientService.listRoom()[0].status = -1
 
       $http(
@@ -184,8 +179,6 @@ BedStatusController = ($rootScope, $http, patientService, wardService, $location
         data: patientService.list()[0]
       ).then((data)->
         patientService.clear()
-        delete patientService.listRoom()[0].admit
-        delete patientService.listRoom()[0].patient
         $http(
           method: 'PUT',
           url: '/resources/rooms/'+patientService.listRoom()[0].id+'.json',
@@ -197,8 +190,6 @@ BedStatusController = ($rootScope, $http, patientService, wardService, $location
         )
       )
     else
-      delete patientService.list()[0].first_name
-      delete patientService.list()[0].last_name
       patientService.list()[0].room_id = null
       $http(
         method: 'PUT',
@@ -207,8 +198,6 @@ BedStatusController = ($rootScope, $http, patientService, wardService, $location
       ).then((data)->
         patientService.clear()
         patientService.listRoom()[0].status = 0
-        delete patientService.listRoom()[0].admit
-        delete patientService.listRoom()[0].patient
         $http(
           method: 'PUT',
           url: '/resources/rooms/'+patientService.listRoom()[0].id+'.json',
@@ -221,10 +210,6 @@ BedStatusController = ($rootScope, $http, patientService, wardService, $location
       )
   vm.backFromICU = ()->
     if patientService.list()[0].room_id != null
-      delete patientService.list()[0].first_name
-      delete patientService.list()[0].last_name
-      delete patientService.list()[0].patient
-      delete patientService.list()[0].room
       patientService.list()[0].status = 2
       $http(
         method: 'PUT',
@@ -232,8 +217,6 @@ BedStatusController = ($rootScope, $http, patientService, wardService, $location
         data: patientService.list()[0]
       ).then((data)->
         patientService.clear()
-        delete patientService.listRoom()[0].patient
-        delete patientService.listRoom()[0].admit
         $http(
           method: 'PUT',
           url: '/resources/rooms/'+patientService.listRoom()[0].id+'.json',
