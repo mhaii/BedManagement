@@ -18,4 +18,9 @@ class SessionsController < ApplicationController
     log_out if logged_in?
     redirect_to root_url
   end
+
+  def current
+    current_user
+    render json: @current_user ? {username: @current_user.username, role: @current_user.role} : {}
+  end
 end
