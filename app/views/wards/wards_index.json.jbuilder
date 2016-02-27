@@ -1,10 +1,5 @@
-json.array! @wards  do |ward|
-  json.merge! ward.as_json
-  json.rooms  ward.rooms do |room|
-    json.merge! room.as_json
-    if room.admit
-      json.admit room.admit
-      json.patient room.admit.patient
-    end
-  end
+#json.partial! 'wards/ward_index', collection: @wards, as: :ward
+
+json.array! @wards do |ward|
+  json.partial! 'wards/ward_index', ward: ward
 end

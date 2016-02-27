@@ -4,8 +4,8 @@ json.array! @admits do |admit|
 
   if admit.room
     json.room do
-      json.merge! admit.room
-      #json.ward   admit.room.ward
+      json.merge! admit.room.as_json
+      json.ward   admit.room.ward
     end
   end
 end

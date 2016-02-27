@@ -5,22 +5,22 @@ class AdmitsController < ApplicationController
   before_action :get_admits, only: [:index]
 
   def in_icu
-    @admits = Admit.where(status: -1)
+    @admits = query.where(status: -1)
     render :detail
   end
 
   def queue
-    @admits = Admit.where(status: [0, 1]).order :admitted_date
+    @admits = query.where(status: [0, 1]).order :admitted_date
     render :detail
   end
 
   def today
-    @admits = Admit.where(status: 1, admitted_date: Date.today.beginning_of_day..Date.today.end_of_day).order :admitted_date
+    @admits = query.where(status: 1, admitted_date: Date.today.beginning_of_day..Date.today.end_of_day).order :admitted_date
     render :detail
   end
 
   def out_soon
-    @admits = Admit.where(status: [2, 3], edd: 1.month.ago..3.days.from_now).order :edd
+    @admits = query.where(status: [2, 3], edd: 1.month.ago..3.days.from_now).order :edd
     render :detail
   end
 
@@ -55,7 +55,11 @@ class AdmitsController < ApplicationController
     end
 
     def get_admits
-      @admits = Admit.all
+      @admits = Admit
+    end
+
+    def query
+      Admit.includes([:patient, room: :ward])
     end
 
     def get_request_body

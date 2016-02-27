@@ -9,4 +9,9 @@ class ApplicationController < ActionController::Base
   def index
     render 'layouts/application' unless params[:format]
   end
+
+  protected
+    def json_only
+      render text: 'Loading API in HTML is prohibited', status: 405 if params[:format].nil?
+    end
 end

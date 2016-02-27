@@ -1,11 +1,24 @@
 require 'json'
 class WardsController < ApplicationController
-  before_action { render text: 'Loading API in HTML is prohibited', status: 405 if params[:format].nil? }
+  before_action :json_only
   before_action :set_ward, only: [:show, :update, :destroy, :ward_index]
-  before_action :get_wards, only: [:index, :wards_index]
+  before_action :get_wards, only: [:index]
+
+  def ward_index
+    @ward = Ward.includes(rooms: [admit: :patient]).find_by(id: params[:id])
+    unless @ward
+      render json: { error: 'not found' }
+    end
+    render '_ward_index'
+  end
+
+  def wards_index
+    @wards = Ward.includes(rooms: [admit: :patient])
+  end
 
   def free
-    @wards = Ward.select(:id, :name, :remark)
+    @wards = Ward.joins(:rooms).where('rooms.status= 0').group(:ward_id).pluck :name, :remark, 'count(*)'
+    render 'index'
   end
 
   def create
