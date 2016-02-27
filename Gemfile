@@ -31,7 +31,10 @@ gem 'font-awesome-sass'
 gem 'jbuilder', '~> 2.0'
 
 gem 'bcrypt', '~> 3.1.7'
-# gem 'unicorn'
+
+# newer faye-websocket is presented with breaking bug
+gem 'faye-websocket', '0.10.0'
+gem 'websocket-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

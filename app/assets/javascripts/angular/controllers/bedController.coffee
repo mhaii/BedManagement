@@ -229,8 +229,10 @@ BedStatusController = ($rootScope, $http, patientService, wardService, $location
           $anchorScroll()
         )
       )
-  source = new EventSource('/bed_refresh')
-  source.addEventListener('message', vm.getWards(), false)
+
+  channel = new WebSocketRails(location.host + '/websocket').subscribe('admits');
+  channel.bind 'updated', (admit)->
+    vm.getWards()
   return
 
 

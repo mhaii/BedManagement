@@ -22,8 +22,11 @@
 //= require angular-translate-loader-static-files
 //= require angular-ui-router
 
+//= require websocket_rails/main
+
 //= require_tree ./angular/templates
 
 //= require_tree .
 
 $.material.init();
+
