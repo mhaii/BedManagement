@@ -14,10 +14,9 @@
       tbody
         tr(ng-repeat="admit in qCtrl.qData | orderBy:qCtrl.sortType:qCtrl.sortReverse | filter:qCtrl.searchPatient")
           td {{ admit.patient.hn }}
-          td {{ admit.patient.first_name }}
-          td {{ admit.patient.last_name }}
-          td {{ admit.admitted_date | dateTimeHumanize }}
+          td {{ admit.patient.first_name }} {{ admit.patient.last_name }}
           td {{ admit.diagnosis }}
+          td {{ admit.admitted_date | dateTimeHumanize }}
           td {{ admit.doctor.name }}
           td {{ admit.patient.phone }}
           td {{ admit.status | translate }}

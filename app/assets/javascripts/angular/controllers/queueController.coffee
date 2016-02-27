@@ -6,7 +6,7 @@ queueController = ($http, patientService, $location, $rootScope)->
   vm.preparePending = {}
   vm.isEdit = false
 
-  vm.tableColumns = { HN_NUMBER: 'patient.hn', FIRST_NAME: 'patient.first_name', LAST_NAME: 'patient.last_name', APPOINTMENT: 'admitted_date', DIAGNOSIS: 'diagnosis', DOCTOR: 'doctor.name', PHONE: 'patient.phone', STATUS: 'status' }
+  vm.tableColumns = { HN_NUMBER: 'patient.hn', NAME: 'patient.first_name', DIAGNOSIS: 'diagnosis', APPOINTMENT: 'admitted_date', DOCTOR: 'doctor.name', PHONE: 'patient.phone', STATUS: 'status' }
   vm.sortType = 'admitted_date'
   vm.sortReverse = false
   vm.sortTable = (column)->
