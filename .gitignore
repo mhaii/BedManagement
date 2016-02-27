@@ -10,7 +10,6 @@
 # Auto-generated jibberish
 .DS_Store
 .idea/
-Gemfile.lock
 
 # Ignore all logfiles and tempfiles.
 /log/*
