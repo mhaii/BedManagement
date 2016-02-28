@@ -20,7 +20,7 @@
                 </thead>
                 <tbody>
                 <tr ng-repeat="ward in bedCtrl.wards">
-                    <td>{{ ward.name }} {{ ward.remark }} {{ "TEL" | translate }}. {{ ward.phone }} ({{ ward.rooms[0].price }})</td>
+                    <td>{{ ward.name }} {{ ward.remark | splitAndTranslate }} {{ "TEL" | translate }}. {{ ward.phone }} ({{ ward.rooms[0].price }})</td>
                     <td ng-repeat="room in ward.rooms" id="{{ ward.id }}-{{ room.number }}" class="room room-{{ room.status }}" ng-mouseenter="bedCtrl.onHover(room,ward)">
                         {{ room.number }}
 
@@ -64,7 +64,7 @@
                             <dt>First name: {{ bedCtrl.firstName }}</dt>
                             <dt>Last name: {{ bedCtrl.lastName }}</dt>
                             <dt>Diagnosis: {{ bedCtrl.symptom }}</dt>
-                            <dt>Doctor: {{ bedCtrl.doctor }}</dt>
+                            <dt>Doctor: {{ bedCtrl.doctor.name }}</dt>
                         </dl>
                         <button type="button" class="btn btn-warning" data-dismiss="modal" translate>CLOSE</button>
                         <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="bedCtrl.addToRoom()" translate>CONFIRM</button>

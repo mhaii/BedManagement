@@ -59,7 +59,7 @@ class AdmitsController < ApplicationController
     end
 
     def query
-      Admit.includes([:patient, room: :ward])
+      Admit.includes([:patient, :doctor, room: :ward])
     end
 
     def get_request_body

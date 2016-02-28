@@ -15,3 +15,7 @@ angular.module('app').filter 'dateTimeHumanize', ($filter)->
             hours < 42    and $filter('translate')('DAY_TO_TIL') or
             days < 3      and $filter('translate')('DAYS_TO_TIL', {days: Math.round days})
     $.trim [date.toLocaleDateString(), date.toLocaleTimeString()].concat(words and ['(', prefix, words, suffix, ')'] or []).join ' '
+
+angular.module('app').filter 'splitAndTranslate', ($filter)->
+  (input) ->
+    input.split(' ').map((word)-> $filter('translate')(word.replace /^\s+|\s+$/g, "")).join ' ' if input?

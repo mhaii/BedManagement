@@ -6,10 +6,10 @@
     table.table.table-striped.table-bordered.table-hover
       thead
         tr
-          th(ng-repeat="(text, element) in qCtrl.tableColumns")
-            a(href="" ng-click="qCtrl.sortTable(element)")
-              span(translate) {{ text }}
-              span.fa(ng-show="qCtrl.sortType == element" ng-class="qCtrl.sortTable()")
+          th(ng-repeat="object in qCtrl.tableColumns")
+            a(href="" ng-click="qCtrl.sortTable(object[1])")
+              span(translate) {{ object[0] }}
+              span.fa(ng-show="qCtrl.sortType == object[1]" ng-class="qCtrl.sortTable()")
           th
       tbody
         tr(ng-repeat="admit in qCtrl.qData | orderBy:qCtrl.sortType:qCtrl.sortReverse | filter:qCtrl.searchPatient")
