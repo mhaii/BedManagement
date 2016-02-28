@@ -9,7 +9,6 @@ class WardsController < ApplicationController
     unless @ward
       render json: { error: 'not found' }
     end
-    render '_ward_index'
   end
 
   def wards_index
