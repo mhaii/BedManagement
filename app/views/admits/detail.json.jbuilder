@@ -2,7 +2,6 @@ json.array! @admits do |admit|
   json.merge!         admit.as_json
   json.patient        admit.patient
   json.doctor         admit.doctor if admit.doctor
-  json.admitted_date  admit.admitted_date.to_f * 1000
 
   if admit.room
     json.room do
