@@ -1,5 +1,8 @@
 wardService = ($resource)->
-  $resource('resources/wards/rooms.json')
+  {
+    all   : $resource('resources/wards/rooms.json')
+    free  : $resource('/resources/wards/free.json')
+  }
 
 wardService
   .$inject = ['$resource']
