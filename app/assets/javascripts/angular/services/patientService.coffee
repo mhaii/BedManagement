@@ -4,7 +4,8 @@ patientService = ($resource)->
     room:   null
     ward:   null
 
-    patient: $resource('/resources/patients/:id.json', {id:'@id'})
+    patient : $resource('/resources/patients/:id.json', {id:'@id'})
+    patients: $resource('/resources/patients.json')
   }
 
 patientService
