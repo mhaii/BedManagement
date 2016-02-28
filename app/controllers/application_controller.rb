@@ -12,6 +12,6 @@ class ApplicationController < ActionController::Base
 
   protected
     def json_only
-      render text: 'Loading API in HTML is prohibited', status: 405 if params[:format].nil?
+      render text: 'Access Prohibited', status: 405 unless params[:format] == 'json'
     end
 end
