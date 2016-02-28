@@ -55,7 +55,7 @@ class AdmitsController < ApplicationController
     end
 
     def get_admits
-      @admits = Admit
+      @admits = Admit.all
     end
 
     def query
