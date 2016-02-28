@@ -58,25 +58,25 @@
       .form-group
         label.control-label.col-md-2(for="input-diagnosis" translate) DIAGNOSIS
         .col-md-10
-          input#input-diagnosis.form-control(type="text" required ng-model="addCtrl.patientInfo.diagnosis")
+          input#input-diagnosis.form-control(type="text" required ng-model="addCtrl.admitInfo.diagnosis")
           span.has-warning(ng-show="form.diagnosisCheck.$error.required" translate) FIELD_REQUIRED
         span.material-input
 
       .form-group
         label.control-label.col-md-2(for="input-doctor" translate) DOCTOR
         .col-md-10
-          input#input-doctor.form-control(type="text" required ng-model="addCtrl.patientInfo.doctor_id")
+          input#input-doctor.form-control(type="text" required ng-model="addCtrl.admitInfo.doctor_id")
           span.has-warning(ng-show="form.doctorCheck.$error.required" translate) FIELD_REQUIRED
         span.material-input
 
       .form-group
         label.control-label.col-md-2(for="input-booking-date" translate) BOOKING_DATE
         .col-md-10
-          input#input-booking-date.form-control(type="text" required ng-model="addCtrl.patientInfo.last_name" placeholder="yyyy-mm-dd")
+          input#input-booking-date.form-control(type="text" required ng-model="addCtrl.admitInfo.admitted_date" placeholder="yyyy-mm-dd")
           span.has-warning(ng-show="form.bookingDate.$error.date" translate) INVALID_FORMAT
           span.has-warning(ng-show="form.bookingDate.$error.required" translate) FIELD_REQUIRED
         span.material-input
 
       .form-group
         .col-md-10.col.md-offset-2
-          a.btn.btn-primary.fake-link(ng-click="addCtrl.addToQueue()" ng-disabled="!form.$valid" translate) CONFIRM
+          a.btn.btn-primary.fake-link(ng-click="addCtrl.submit()" ng-disabled="!form.$valid" translate) CONFIRM
