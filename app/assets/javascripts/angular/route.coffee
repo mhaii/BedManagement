@@ -3,7 +3,7 @@ angular.module('app').config ($stateProvider, $urlRouterProvider, $httpProvider)
 
   $stateProvider.state('home',{
       url: '/',
-      controller: 'currentStatisticsCtrl as statCtrl'
+      controller: 'homeController as homeCtrl'
       templateUrl: 'templates/home.html'
   })
   $stateProvider.state('queue',{
