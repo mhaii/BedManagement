@@ -1,5 +1,6 @@
 {
   "ADD_QUEUE": "เพิ่มคิว",
+  "AGE": "อายุ",
   "APPOINTMENT": "วัน-เวลานัด",
   "AVAILABLE": "ห้องว่าง",
   "AVAILABLE_BEDS": "จำนวนเตียงว่าง",
@@ -25,9 +26,12 @@
   "EDIT": "แก้ไข",
   "EXPECTED_DISCHARGE": "คาดว่าจะแจ้งออก",
 
+  "FEMALE": "หญิง",
   "FIRST_NAME": "ชื่อ",
 
-  "HN_NUMBER": "เลขคนไข้",
+  "GENDER": "เพศ",
+
+  "HN_NUMBER": "เลขประจำตัวผู้ป่วย",
   "HOME": "หน้าหลัก",
   "HOUR_TO_TIL": "1 ชั่วโมง",
   "HOURS_TO_TIL": "{{hours}} ชั่วโมง",
@@ -38,6 +42,7 @@
   "LOGIN": "เข้าใช้งาน",
   "LOGOUT": "ออกจากระบบ",
 
+  "MALE": "ชาย",
   "MINUTE_TO_TIL": "1 นาที",
   "MINUTES_TO_TIL": "{{minutes}} นาที",
 
@@ -80,5 +85,7 @@
   "east": "อ",
   "pending": "รอการยืนยัน",
   "preDischarged": "เตรียมจ่ายออก",
-  "west": "ต"
+  "west": "ต",
+
+  "PUT_IN_HN_NUMBER_TO_SEARCH": "กรอกเลขประจำตัวผู้ป่วยเพื่อค้นหา"
 }

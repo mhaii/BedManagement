@@ -1,5 +1,6 @@
 {
   "ADD_QUEUE": "Add Queue",
+  "AGE": "Age",
   "APPOINTMENT": "Appointment",
   "AVAILABLE": "Available",
   "AVAILABLE_BEDS": "Available Beds",
@@ -25,9 +26,12 @@
   "EDIT": "Edit",
   "EXPECTED_DISCHARGE": "Expected Discharge",
 
+  "FEMALE": "Female",
   "FIRST_NAME": "First Name",
 
-  "HN_NUMBER": "HN-Number",
+  "GENDER": "Gender",
+
+  "HN_NUMBER": "HN Number",
   "HOME": "Home",
   "HOUR_TO_TIL": "1 hour",
   "HOURS_TO_TIL": "{{hours}} hours",
@@ -38,6 +42,7 @@
   "LOGIN": "Login",
   "LOGOUT": "Logout",
 
+  "MALE": "Male",
   "MINUTE_TO_TIL": "1 minute",
   "MINUTES_TO_TIL": "{{minutes}} minutes",
 
@@ -80,5 +85,7 @@
   "east": "E",
   "pending": "Pending",
   "preDischarged": "Pre-Discharged",
-  "west": "W"
+  "west": "W",
+
+  "PUT_IN_HN_NUMBER_TO_SEARCH": "Put in HN number to search"
 }
