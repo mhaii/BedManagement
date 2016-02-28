@@ -18,7 +18,6 @@ source 'https://rails-assets.org' do
   gem 'rails-assets-angular-translate'
   gem 'rails-assets-angular-translate-loader-static-files'
   gem 'rails-assets-angular-ui-router'
-  gem 'rails-assets-angularjs-humanize'
   gem 'rails-assets-bootstrap-material-design'
 end
 # Allow angular to access templates from Rails pipeline
@@ -32,13 +31,16 @@ gem 'font-awesome-sass'
 gem 'jbuilder', '~> 2.0'
 
 gem 'bcrypt', '~> 3.1.7'
-# gem 'unicorn'
-gem 'puma'
+
+# newer faye-websocket is presented with breaking bug
+gem 'faye-websocket', '0.10.0'
+gem 'websocket-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
   gem 'rspec-rails', '~> 3.0'
+  gem 'jasmine'
 end
 
 group :development do

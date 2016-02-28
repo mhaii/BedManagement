@@ -5,10 +5,17 @@ queueController = ($http, patientService, $location, $rootScope)->
   vm.prepareToAdd = {}
   vm.preparePending = {}
   vm.isEdit = false
-  if $location.path() == '/status'
-    vm.isQueue = false
-  else
-    vm.isQueue = true
+
+  vm.tableColumns = { HN_NUMBER: 'patient.hn', NAME: 'patient.first_name', DIAGNOSIS: 'diagnosis', APPOINTMENT: 'admitted_date', DOCTOR: 'doctor.name', PHONE: 'patient.phone', STATUS: 'status' }
+  vm.sortType = 'admitted_date'
+  vm.sortReverse = false
+  vm.sortTable = (column)->
+    return (if vm.sortReverse then 'fa-caret-up' else 'fa-caret-down') unless column?
+    vm.sortType = column
+    vm.sortReverse = !vm.sortReverse
+
+  vm.isQueue = $location.path() != '/status'
+  vm.isAlone = $location.path() == '/queue'
 
   vm.getQueues = ()->
     $http.get('/resources/admits/queue.json').success((data)->
@@ -28,7 +35,7 @@ queueController = ($http, patientService, $location, $rootScope)->
   vm.prepareData = (item)->
     vm.addRoomData.wardName = patientService.listWard()[0].name
     vm.addRoomData.roomName = patientService.listRoom()[0].number
-    vm.addRoomData.doctor = item.doctor_id
+    vm.addRoomData.doctor = item.doctor
 #    vm.addRoomData.edd = null
     vm.addRoomData.room = patientService.listRoom()[0].id
     vm.addRoomData.first_name = item.patient.first_name
@@ -64,7 +71,6 @@ queueController = ($http, patientService, $location, $rootScope)->
     item.id = parseInt(item.id)
     item.doctor_id = item.doctor_id
     item.patient_id = parseInt(item.patient.hn)
-    delete item.patient
     $http(
       method: 'PUT',
       url: '/resources/admits/'+item.id+'.json'
@@ -77,7 +83,7 @@ queueController = ($http, patientService, $location, $rootScope)->
   vm.deleteQueue = (item)->
     vm.prepareDelete = item
     vm.prepareDelete.status = 0
-    vm.prepareDelete.doctor = item.doctor_id
+    vm.prepareDelete.doctor = item.doctor
     vm.prepareDelete.first_name = item.patient.first_name
     vm.prepareDelete.last_name = item.patient.last_name
     vm.prepareDelete.symptom = item.diagnosis
@@ -89,7 +95,6 @@ queueController = ($http, patientService, $location, $rootScope)->
     item.id = parseInt(item.id)
     item.doctor_id = item.doctor_id
     item.patient_id = parseInt(item.patient.hn)
-    delete item.patient
     $http(
       method: 'PUT',
       url: '/resources/admits/'+item.id+'.json'

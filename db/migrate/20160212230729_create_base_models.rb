@@ -24,6 +24,7 @@ class CreateBaseModels < ActiveRecord::Migration
       t.string    :phone,   null: true
       t.integer   :sex
       t.integer   :age,     null: true
+      t.string    :social_security
     end
 
     create_table :rooms do |t|

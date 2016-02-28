@@ -1,0 +1,23 @@
+div ICU
+.table-responsive(style="margin-top: 2%;")
+  table.table.table-striped.table-bordered.table-hover
+    thead
+      tr
+        th(translate) HN_NUMBER
+        th(translate) FIRST_NAME
+        th(translate) LAST_NAME
+        th(translate) DIAGNOSIS
+        th(translate) DOCTOR
+        th(translate) PHONE
+        th(translate)
+    tbody
+      tr(ng-repeat="patient in bedCtrl.icuPatients")
+        td {{ patient.patient.hn }}
+        td {{ patient.patient.first_name }}
+        td {{ patient.patient.last_name }}
+        td {{ patient.symptom }}
+        td {{ patient.doctor.name }}
+        td {{ patient.patient.phone }}
+        td
+          a(ng-if="patient.room_id == null" ng-click="bedCtrl.movePatient(patient, 'icu', false)" translate) CHOOSE
+          a(ng-if="patient.room_id != null" ng-click="bedCtrl.movePatient(patient, 'icu', false)" data-toggle="modal" data-target="#confirmMoveBack" translate) RETURN_TO_ROOM

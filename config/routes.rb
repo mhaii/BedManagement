@@ -2,8 +2,9 @@ Rails.application.routes.draw do
   root 'application#index'
 
   controller :sessions do
-    post    'login',  action: :create
-    delete  'logout', action: :destroy
+    get     'current_user', action: :current
+    post    'login',        action: :create
+    delete  'logout',       action: :destroy
   end
 
   scope 'resources' do

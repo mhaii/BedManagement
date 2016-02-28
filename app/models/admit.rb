@@ -6,10 +6,15 @@ class Admit < ActiveRecord::Base
 
   before_save :check_status
   before_save :check_room
+  after_save  :trigger_event
   # use non-callback method to avoid infinite loop
   # http://guides.rubyonrails.org/v3.2.13/active_record_validations_callbacks.html#skipping-callbacks
 
   private
+    def trigger_event
+      WebsocketRails[:admits].trigger 'updated', self
+    end
+
     def check_status
       case status
         when 'preDischarged'

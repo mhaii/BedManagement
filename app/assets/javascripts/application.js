@@ -15,18 +15,18 @@
 //= require bootstrap
 //= require bootstrap-material-design
 
-//= require humanize
-
 //= require angular
 //= require angular-rails-templates
 //= require angular-resource
 //= require angular-translate
 //= require angular-translate-loader-static-files
 //= require angular-ui-router
-//= require angularjs-humanize
+
+//= require websocket_rails/main
 
 //= require_tree ./angular/templates
 
 //= require_tree .
 
 $.material.init();
+

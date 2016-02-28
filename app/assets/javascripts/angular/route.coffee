@@ -4,22 +4,22 @@ angular.module('app').config ($stateProvider, $urlRouterProvider, $httpProvider)
   $stateProvider.state('home',{
       url: '/',
       controller: 'currentStatisticsCtrl as statCtrl'
-      templateUrl: 'templates/home/home.html'
+      templateUrl: 'templates/home.html'
   })
   $stateProvider.state('queue',{
       url: '/queue',
       controller: 'queueController as qCtrl'
-      templateUrl: 'templates/queues/queues.html'
+      templateUrl: 'templates/tables/queues.html'
   })
   $stateProvider.state('add-queue',{
       url: '/add-queue',
       controller: 'addQueuesCtrl as addCtrl'
-      templateUrl: 'templates/addQueue/add-queue.html'
+      templateUrl: 'templates/add-queue.html'
   })
   $stateProvider.state('status',{
       url: '/status',
       controller: 'BedStatusController as bedCtrl'
-      templateUrl: 'templates/bedStatus/bedstatus.html'
+      templateUrl: 'templates/bed-status.html'
   })
   $urlRouterProvider.otherwise('/')
 

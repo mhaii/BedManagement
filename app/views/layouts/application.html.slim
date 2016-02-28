@@ -9,7 +9,7 @@ html(ng-app="app")
   body
     #header(ng-controller="translationController")
       include header
-    #content.container
+    #content
       - flash.each do |message_type, message|
         | <div class="alert alert-<%= message_type %>"><%= message %></div>
       - if @current_user

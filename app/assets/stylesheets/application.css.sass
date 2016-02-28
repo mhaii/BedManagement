@@ -5,6 +5,9 @@
 
 @import 'bed-status'
 
+[class*='fa-caret-']
+  margin-left: 6px
+
 .disabled
   display: none
 
@@ -31,8 +34,19 @@
       display: block
       margin-top: 0
 
-.explain
-  color: orangered
+#search-box
+  border: 1px solid #ccc
+  border-radius: 4px
+  position: relative
+  .fa-search
+    color: #999
+    position: absolute
+    left: 15px
+    top:  18px
+  input
+    padding-left: 30px
+    margin-bottom: 0
+
 
 //= small piece of code here
 body
