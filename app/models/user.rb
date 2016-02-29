@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  enum role: [:cashier, :nurseAssistance, :nurse, :admission, :administrator]
+  enum role: [:cashier, :nurseAssistance, :nurse, :admission, :administrator, :op]
   validates :username, presence: true, length: { maximum: 20 }
   validate :password_input
 
