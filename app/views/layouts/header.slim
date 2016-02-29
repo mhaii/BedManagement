@@ -10,17 +10,17 @@ nav.navbar.navbar-default.navbar-fixed-top
     #navcol-1.collapse.navbar-collapse
       ul.nav.navbar-nav
         - if @current_user
-          li(role="presentation" ng-class="{active: current == 'home'}")
-            a(ui-sref="home" translate) HOME
-          li(role="presentation" ng-class="{active: current == 'queues'}")
+          li(ui-sref-active="active")
+            a(href ui-sref="home" translate) HOME
+          li(ui-sref-active="active")
             a(ui-sref="queue" translate) QUEUES
-          li(role="presentation" ng-class="{active: current == 'add-queue'}")
+          li(ui-sref-active="active")
             a(ui-sref="add-queue" translate) ADD_QUEUE
-          li(role="presentation" ng-class="$scope.current")
+          li(ui-sref-active="active")
             a(ui-sref="status" translate) BED_STATUS
-          li(role="presentation" ng-class="{active: current == 'statistics'}")
+          li(ui-sref-active="active")
             a(href="#" translate) STATISTICS
-          li(role="presentation" ng-class="{active: current == 'check-out'}")
+          li(ui-sref-active="active")
             a(href="#" translate) CHECK_OUT
       ul.nav.navbar-nav.navbar-right
         li.fake-link
