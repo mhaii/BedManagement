@@ -7,7 +7,7 @@ html(ng-app="app")
     = stylesheet_link_tag     'application'
     = csrf_meta_tags
   body
-    #header(ng-controller="translationController")
+    #header(ng-controller="globalController")
       include header
     #content
       - flash.each do |message_type, message|
