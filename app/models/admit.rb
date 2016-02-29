@@ -4,15 +4,20 @@ class Admit < ActiveRecord::Base
   belongs_to  :room
   belongs_to  :doctor
 
-  before_save :check_status
-  before_save :check_room
-  after_save  :trigger_event
+  before_save   :check_status
+  before_save   :check_room
+  after_save    :trigger_update_event
+  after_destroy :trigger_destroy_event
   # use non-callback method to avoid infinite loop
   # http://guides.rubyonrails.org/v3.2.13/active_record_validations_callbacks.html#skipping-callbacks
 
   private
-    def trigger_event
+    def trigger_update_event
       WebsocketRails[:admits].trigger 'updated', self
+    end
+
+    def trigger_destroy_event
+      WebsocketRails[:admits].trigger 'destroyed'
     end
 
     def check_status
