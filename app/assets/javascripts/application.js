@@ -20,6 +20,7 @@
 //= require angular-resource
 //= require angular-translate
 //= require angular-translate-loader-static-files
+//= require angular-ui-bootstrap-bower/ui-bootstrap-tpls
 //= require angular-ui-router
 
 //= require websocket_rails/main

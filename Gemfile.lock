@@ -138,10 +138,12 @@ GEM
     rails-assets-angular (1.5.0)
     rails-assets-angular-resource (1.5.0)
       rails-assets-angular (= 1.5.0)
-    rails-assets-angular-translate (2.9.2)
+    rails-assets-angular-translate (2.10.0)
       rails-assets-angular (>= 1.2.26, < 1.6)
-    rails-assets-angular-translate-loader-static-files (2.9.2)
-      rails-assets-angular-translate (~> 2.9.2)
+    rails-assets-angular-translate-loader-static-files (2.10.0)
+      rails-assets-angular-translate (~> 2.10.0)
+    rails-assets-angular-ui-bootstrap-bower (1.2.1)
+      rails-assets-angular (>= 1.4.0)
     rails-assets-angular-ui-router (0.2.18)
       rails-assets-angular (>= 1.0.8, < 2)
     rails-assets-bootstrap (3.3.6)
@@ -273,6 +275,7 @@ DEPENDENCIES
   rails-assets-angular-resource!
   rails-assets-angular-translate!
   rails-assets-angular-translate-loader-static-files!
+  rails-assets-angular-ui-bootstrap-bower!
   rails-assets-angular-ui-router!
   rails-assets-bootstrap-material-design!
   rake (= 10.5.0)
