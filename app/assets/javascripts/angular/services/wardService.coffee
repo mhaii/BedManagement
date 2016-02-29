@@ -1,6 +1,6 @@
 wardService = ($resource)->
   {
-    all   : $resource('resources/wards/rooms.json')
+    all   : $resource('/resources/wards/rooms.json')
     free  : $resource('/resources/wards/free.json')
   }
 

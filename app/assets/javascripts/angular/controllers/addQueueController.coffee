@@ -2,7 +2,7 @@ addQueuesCtrl = ($state, $http, $window, admitService, patientService)->
   vm = @
 
   # if editing, set as searched and found
-  if vm.searched    = vm.patientFound   = !!vm.patientInfo == patientService.admit
+  if vm.searched    = vm.patientFound   = !!vm.patientInfo = patientService.admit
     vm.admitInfo    = patientService.admit
     vm.patientInfo  = patientService.admit.patient
 
