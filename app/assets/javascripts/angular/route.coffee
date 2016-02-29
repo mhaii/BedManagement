@@ -4,22 +4,41 @@ angular.module('app').config ($stateProvider, $urlRouterProvider, $httpProvider)
   $stateProvider.state('home',{
       url: '/',
       controller: 'homeController as homeCtrl'
-      templateUrl: 'templates/home.html'
+      templateUrl: 'templates/home.html',
+      data: {
+        access: ['op', 'admin', 'admission']
+      }
   })
   $stateProvider.state('queue',{
       url: '/queue',
       controller: 'queueController as queueCtrl'
       templateUrl: 'templates/tables/queues.html'
+      data: {
+        access: ['op', 'admin', 'admission']
+      }
   })
   $stateProvider.state('add-queue',{
       url: '/add-queue',
       controller: 'addQueuesCtrl as addQueueCtrl'
       templateUrl: 'templates/add-queue.html'
+      data: {
+        access: ['op', 'admin', 'admission']
+      }
   })
   $stateProvider.state('status',{
       url: '/status',
       controller: 'BedStatusController as bedCtrl'
       templateUrl: 'templates/bed-status.html'
+      data: {
+        access: ['op', 'admin', 'admission', 'nurse', 'nurseAssistance']
+      }
+  })
+  $stateProvider.state('check-out',{
+    url: '/check-out',
+    templateUrl: 'templates/check-out.html'
+    data: {
+      access: ['op', 'admin', 'admission', 'nurse', 'nurseAssistance', 'cashier']
+    }
   })
   $urlRouterProvider.otherwise('/')
 
