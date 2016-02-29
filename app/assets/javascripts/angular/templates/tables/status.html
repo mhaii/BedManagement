@@ -1,12 +1,12 @@
 <div id="beds-table" class="bs-docs-section">
     <div class="row">
         <div>
-            <div class="patient-info" ng-show="bedCtrl.isPatientData">
+            <div class="patient-info" ng-show="patientService.admit">
                 <dl class="detailPatient">
-                    <dt>{{ "FIRST_NAME" | translate }}: {{ bedCtrl.firstName }}</dt>
-                    <dt>{{ "LAST_NAME" | translate }}: {{ bedCtrl.lastName }}</dt>
-                    <dt>{{ "DIAGNOSIS" | translate}}: {{ bedCtrl.symptom }}</dt>
-                    <dt>{{ "DOCTOR" | translate }}: {{ bedCtrl.doctor }}</dt>
+                    <dt>{{ "FIRST_NAME" | translate }}: {{ bedCtrl.first_name }}</dt>
+                    <dt>{{ "LAST_NAME" | translate }}: {{ bedCtrl.last_name }}</dt>
+                    <dt>{{ "DIAGNOSIS" | translate}}: {{ bedCtrl.diagnosis }}</dt>
+                    <dt>{{ "DOCTOR" | translate }}: {{ bedCtrl.doctor.name }}</dt>
                 </dl>
             </div>
         </div>
@@ -34,7 +34,7 @@
                             </dl>
                             <a class="btn-sm infobutton" ng-click="bedCtrl.movePatient(room, 'move', true)" translate>TRANSFER</a>
                             <a class="btn-sm infobutton" ng-click="bedCtrl.movePatient(room, 'delete', true)" data-toggle="modal" data-target="#confirmToDelete" translate>REMOVE</a>
-                            <a class="btn-sm infobutton" ng-click="bedCtrl.movePatient(room, 'icu', true)" data-toggle="modal" data-target="#confirmMoveICU" translate>MOVE_ICU</a>
+                            <a class="btn-sm infobutton" ng-click="bedCtrl.movePatient(room, 'to_icu', true)" data-toggle="modal" data-target="#confirmMoveICU" translate>TO_ICU</a>
                         </div>
                         <div ng-if="room.status === 'available'" id="patient" class="hidden-box popup">
                             <dl class="detail-list">
@@ -61,9 +61,9 @@
                             <dt>Ward: {{ bedCtrl.wardName }}</dt>
                             <dt>Room: {{ bedCtrl.roomName }}</dt>
                             <dt>Patient</dt>
-                            <dt>First name: {{ bedCtrl.firstName }}</dt>
-                            <dt>Last name: {{ bedCtrl.lastName }}</dt>
-                            <dt>Diagnosis: {{ bedCtrl.symptom }}</dt>
+                            <dt>First name: {{ bedCtrl.first_name }}</dt>
+                            <dt>Last name: {{ bedCtrl.last_name }}</dt>
+                            <dt>Diagnosis: {{ bedCtrl.diagnosis }}</dt>
                             <dt>Doctor: {{ bedCtrl.doctor.name }}</dt>
                         </dl>
                         <button type="button" class="btn btn-warning" data-dismiss="modal" translate>CLOSE</button>
@@ -92,16 +92,16 @@
                             <h4 class="modal-title">Confirm to Add patient to this room?</h4>
                         </div>
                         <dl class="detail-list">
-                            <dt>Ward: {{ qCtrl.addRoomData.wardName }}</dt>
-                            <dt>Room: {{ qCtrl.addRoomData.roomName }}</dt>
+                            <dt>Ward: {{ queueCtrl.addRoomData.wardName }}</dt>
+                            <dt>Room: {{ queueCtrl.addRoomData.roomName }}</dt>
                             <dt>Patient</dt>
-                            <dt>First name: {{ qCtrl.addRoomData.first_name }}</dt>
-                            <dt>Last name: {{ qCtrl.addRoomData.last_name }}</dt>
-                            <dt>Diagnosis: {{ qCtrl.addRoomData.symptom }}</dt>
-                            <dt>Doctor: {{ qCtrl.addRoomData.doctor }}</dt>
+                            <dt>First name: {{ queueCtrl.addRoomData.first_name }}</dt>
+                            <dt>Last name: {{ queueCtrl.addRoomData.last_name }}</dt>
+                            <dt>Diagnosis: {{ queueCtrl.addRoomData.diagnosis }}</dt>
+                            <dt>Doctor: {{ queueCtrl.addRoomData.doctor.name }}</dt>
                         </dl>
                         <button type="button" class="btn btn-warning" data-dismiss="modal" translate>CLOSE</button>
-                        <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="qCtrl.confirm()" translate>CONFIRM</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="queueCtrl.confirm()" translate>CONFIRM</button>
                     </div>
                 </div>
             </div>
@@ -118,10 +118,10 @@
                             <dt>Ward: {{ bedCtrl.wardName }}</dt>
                             <dt>Room: {{ bedCtrl.roomName }}</dt>
                             <dt>Patient</dt>
-                            <dt>First name: {{ bedCtrl.firstName }}</dt>
-                            <dt>Last name: {{ bedCtrl.lastName }}</dt>
-                            <dt>Diagnosis: {{ bedCtrl.symptom }}</dt>
-                            <dt>Doctor: {{ bedCtrl.doctor }}</dt>
+                            <dt>First name: {{ bedCtrl.first_name }}</dt>
+                            <dt>Last name: {{ bedCtrl.last_name }}</dt>
+                            <dt>Diagnosis: {{ bedCtrl.diagnosis }}</dt>
+                            <dt>Doctor: {{ bedCtrl.doctor.name }}</dt>
                         </dl>
                         <button type="button" class="btn btn-warning" data-dismiss="modal" translate>CLOSE</button>
                         <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="bedCtrl.deletePatient()" translate>CONFIRM</button>
@@ -141,14 +141,14 @@
                             <dt>Ward: {{ bedCtrl.wardName }}</dt>
                             <dt>Room: {{ bedCtrl.roomName }}</dt>
                             <dt>Patient</dt>
-                            <dt>First name: {{ bedCtrl.firstName }}</dt>
-                            <dt>Last name: {{ bedCtrl.lastName }}</dt>
-                            <dt>Diagnosis: {{ bedCtrl.symptom }}</dt>
-                            <dt>Doctor: {{ bedCtrl.doctor }}</dt>
+                            <dt>First name: {{ bedCtrl.first_name }}</dt>
+                            <dt>Last name: {{ bedCtrl.last_name }}</dt>
+                            <dt>Diagnosis: {{ bedCtrl.diagnosis }}</dt>
+                            <dt>Doctor: {{ bedCtrl.doctor.name }}</dt>
                             <dt>
                                 <div>
                                     reserve room?
-                                    <input type="checkbox" ng-click="bedCtrl.isChecked()">
+                                    <input type="checkbox" ng-click="bedCtrl.check = !bedCtrl.check">
                                 </div>
                             </dt>
                         </dl>
@@ -170,10 +170,10 @@
                             <dt>Ward: {{ bedCtrl.wardName }}</dt>
                             <dt>Room: {{ bedCtrl.roomName }}</dt>
                             <dt>Patient</dt>
-                            <dt>First name: {{ bedCtrl.firstName }}</dt>
-                            <dt>Last name: {{ bedCtrl.lastName }}</dt>
-                            <dt>Diagnosis: {{ bedCtrl.symptom }}</dt>
-                            <dt>Doctor: {{ bedCtrl.doctor }}</dt>
+                            <dt>First name: {{ bedCtrl.first_name }}</dt>
+                            <dt>Last name: {{ bedCtrl.last_name }}</dt>
+                            <dt>Diagnosis: {{ bedCtrl.diagnosis }}</dt>
+                            <dt>Doctor: {{ bedCtrl.doctor.name }}</dt>
                         </dl>
                         <button type="button" class="btn btn-warning" data-dismiss="modal" translate>CLOSE</button>
                         <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="bedCtrl.backFromICU()" translate>CONFIRM</button>

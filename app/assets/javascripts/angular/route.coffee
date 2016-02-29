@@ -8,12 +8,12 @@ angular.module('app').config ($stateProvider, $urlRouterProvider, $httpProvider)
   })
   $stateProvider.state('queue',{
       url: '/queue',
-      controller: 'queueController as qCtrl'
+      controller: 'queueController as queueCtrl'
       templateUrl: 'templates/tables/queues.html'
   })
   $stateProvider.state('add-queue',{
       url: '/add-queue',
-      controller: 'addQueuesCtrl as addCtrl'
+      controller: 'addQueuesCtrl as addQueueCtrl'
       templateUrl: 'templates/add-queue.html'
   })
   $stateProvider.state('status',{
