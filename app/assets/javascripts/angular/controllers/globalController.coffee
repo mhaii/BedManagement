@@ -2,7 +2,7 @@ globalController = ($resource, $rootScope, $scope, $translate, $state, $location
   user = {}
   redirect = (data, toState)->
     user = data
-    if toState.data.access.indexOf(user.role) > 0
+    if toState.data.access.indexOf(user.role) > -1
       $state.go(toState.name)
     else
       switch
