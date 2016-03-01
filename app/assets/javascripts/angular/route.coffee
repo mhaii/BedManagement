@@ -6,7 +6,7 @@ angular.module('app').config ($stateProvider, $urlRouterProvider, $httpProvider)
       controller: 'homeController as homeCtrl'
       templateUrl: 'templates/home.html',
       data: {
-        access: ['op', 'admin', 'admission']
+        access: ['op', 'admission']
       }
   })
   $stateProvider.state('queue',{
@@ -14,7 +14,7 @@ angular.module('app').config ($stateProvider, $urlRouterProvider, $httpProvider)
       controller: 'queueController as queueCtrl'
       templateUrl: 'templates/tables/queues.html'
       data: {
-        access: ['op', 'admin', 'admission']
+        access: ['op', 'admission']
       }
   })
   $stateProvider.state('add-queue',{
@@ -22,7 +22,7 @@ angular.module('app').config ($stateProvider, $urlRouterProvider, $httpProvider)
       controller: 'addQueuesCtrl as addQueueCtrl'
       templateUrl: 'templates/add-queue.html'
       data: {
-        access: ['op', 'admin', 'admission']
+        access: ['op', 'admission']
       }
   })
   $stateProvider.state('status',{
@@ -30,14 +30,21 @@ angular.module('app').config ($stateProvider, $urlRouterProvider, $httpProvider)
       controller: 'BedStatusController as bedCtrl'
       templateUrl: 'templates/bed-status.html'
       data: {
-        access: ['op', 'admin', 'admission', 'nurse', 'nurseAssistance']
+        access: ['op', 'admission', 'nurse', 'nurseAssistance']
       }
   })
   $stateProvider.state('check-out',{
     url: '/check-out',
     templateUrl: 'templates/check-out.html'
     data: {
-      access: ['op', 'admin', 'admission', 'nurse', 'nurseAssistance', 'cashier']
+      access: ['op', 'nurse', 'nurseAssistance', 'cashier']
+    }
+  })
+  $stateProvider.state('statistic',{
+    url: '/statistic',
+    templateUrl: 'templates/statistic.html'
+    data: {
+      access: ['administrator']
     }
   })
   $urlRouterProvider.otherwise('/')
