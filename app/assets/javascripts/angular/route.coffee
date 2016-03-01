@@ -44,7 +44,7 @@ angular.module('app').config ($stateProvider, $urlRouterProvider, $httpProvider)
     url: '/statistic',
     templateUrl: 'templates/statistic.html'
     data: {
-      access: ['administrator']
+      access: ['administrator','op']
     }
   })
   $urlRouterProvider.otherwise('/')
