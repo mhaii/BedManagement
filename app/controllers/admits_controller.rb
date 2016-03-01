@@ -24,6 +24,10 @@ class AdmitsController < ApplicationController
     render :detail
   end
 
+  def check_out
+    @admits = query.where(status: 3)
+  end
+
   def create
     @admit = Admit.new(get_request_body)
     if @admit.save
@@ -49,9 +53,7 @@ class AdmitsController < ApplicationController
   private
     def set_admit
       @admit = Admit.find_by(id: params[:id])
-      unless @admit
-        render json: { error: 'not found' }
-      end
+      error_not_found unless @admit
     end
 
     def get_admits

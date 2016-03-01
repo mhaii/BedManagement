@@ -52,9 +52,7 @@ class WardsController < ApplicationController
   private
     def set_ward
       @ward = Ward.find_by(id: params[:id])
-      unless @ward
-        render json: { error: 'not found' }
-      end
+      error_not_found unless @ward
     end
 
     def get_wards
