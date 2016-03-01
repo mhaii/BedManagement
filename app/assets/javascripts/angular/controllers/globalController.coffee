@@ -8,7 +8,8 @@ globalController = ($resource, $rootScope, $scope, $translate, $state, $location
       switch
         when user.role is 'cashier' then $state.go('check-out')
         when user.role is 'nurseAssistance' or user.role is 'nurse' then $state.go('status')
-        when user.role is 'admission' or user.role is 'administrator' or user.role is 'op' then $state.go('home')
+        when user.role is 'admission' or user.role is 'op' then $state.go('home')
+        when user.role is 'administrator' then $state.go('statistic')
     return
 
   $scope.changeLanguage = (lang) ->

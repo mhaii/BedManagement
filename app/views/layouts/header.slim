@@ -22,7 +22,7 @@ nav.navbar.navbar-default.navbar-fixed-top
               a(ui-sref="status" translate) BED_STATUS
           - if @current_user.role == 'op'
             li(ui-sref-active="active")
-              a(href="#" translate) STATISTICS
+              a(ui-sref="statistic" translate) STATISTICS
           - unless %w(cashier admission administrator).include? @current_user.role
             li(ui-sref-active="active")
               a(ui-sref="check-out" translate) CHECK_OUT
