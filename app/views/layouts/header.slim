@@ -10,18 +10,22 @@ nav.navbar.navbar-default.navbar-fixed-top
     #navcol-1.collapse.navbar-collapse
       ul.nav.navbar-nav
         - if @current_user
-          li(ui-sref-active="active")
-            a(href ui-sref="home" translate) HOME
-          li(ui-sref-active="active")
-            a(ui-sref="queue" translate) QUEUES
-          li(ui-sref-active="active")
-            a(ui-sref="add-queue" translate) ADD_QUEUE
-          li(ui-sref-active="active")
-            a(ui-sref="status" translate) BED_STATUS
-          li(ui-sref-active="active")
-            a(href="#" translate) STATISTICS
-          li(ui-sref-active="active")
-            a(ui-sref="check-out" translate) CHECK_OUT
+          - if %w(admission op).include? @current_user.role
+            li(ui-sref-active="active")
+              a(href ui-sref="home" translate) HOME
+            li(ui-sref-active="active")
+              a(ui-sref="queue" translate) QUEUES
+            li(ui-sref-active="active")
+              a(ui-sref="add-queue" translate) ADD_QUEUE
+          - unless %w(cashier administrator).include? @current_user.role
+            li(ui-sref-active="active")
+              a(ui-sref="status" translate) BED_STATUS
+          - if @current_user.role == 'op'
+            li(ui-sref-active="active")
+              a(href="#" translate) STATISTICS
+          - unless %w(cashier admission administrator).include? @current_user.role
+            li(ui-sref-active="active")
+              a(ui-sref="check-out" translate) CHECK_OUT
       ul.nav.navbar-nav.navbar-right
         li.fake-link
           a(ng-if="getLanguage() != 'th'" ng-click="changeLanguage('th')" translate) LANG
