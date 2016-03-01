@@ -3,6 +3,7 @@ class Admit < ActiveRecord::Base
   belongs_to  :patient
   belongs_to  :room
   belongs_to  :doctor
+  has_many    :check_out_steps
 
   before_save   :check_status
   before_save   :check_room
