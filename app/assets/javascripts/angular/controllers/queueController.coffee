@@ -21,7 +21,7 @@ queueController = ($http, patientService, $location, $rootScope)->
 
   vm.getQueues = ()->
     $http.get('/resources/admits/queue.json').success((data)->
-      vm.qData = data
+      vm.queues = data
     )
     return
 
