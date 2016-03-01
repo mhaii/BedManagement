@@ -30,6 +30,14 @@ Rails.application.routes.draw do
       end
     end
 
+    resources :check_out, controller: :check_out_steps, only: [:show], path: 'check_out' do
+      member do
+        put    'stop'
+        delete 'reset'
+      end
+
+      post 'start',   on: :collection
+    end
   end
 
   # The priority is based upon order of creation: first created -> highest priority.
