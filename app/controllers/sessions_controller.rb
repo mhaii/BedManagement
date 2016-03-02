@@ -1,15 +1,17 @@
 class SessionsController < ApplicationController
   include SessionsHelper
+  before_action :json_only, only: :current
+
   def create
     if (user = User.find_by(username: params[:sessions][:username]))
       if user.authenticate(params[:sessions][:password])
         log_in user
         params[:sessions][:remember_me] == '1' ? remember(user) : forget(user)
       else
-        flash.now[:danger] = 'Incorrect password'
+        flash[:danger] = 'INCORRECT_PASSWORD'
       end
     else
-      flash.now[:danger] = 'Incorrect username'
+      flash[:danger] = 'INCORRECT_USERNAME'
     end
     redirect_to root_url
   end

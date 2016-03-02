@@ -36,6 +36,9 @@
   "HOUR_TO_TIL": "1 hour",
   "HOURS_TO_TIL": "{{hours}} hours",
 
+  "INCORRECT_PASSWORD": "Incorrect password",
+  "INCORRECT_USERNAME": "Incorrect username",
+
   "LANG": "ภาษาไทย",
   "LAST_NAME": "Last Name",
   "LESS_THAN_A_MINUTE": "Less than a minute",
