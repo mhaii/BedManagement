@@ -1,4 +1,3 @@
-require 'slim/include'
 class ApplicationController < ActionController::Base
   include SessionsHelper
   # Prevent CSRF attacks by raising an exception.
@@ -7,7 +6,7 @@ class ApplicationController < ActionController::Base
   before_action { current_user }
 
   def index
-    render 'layouts/application' unless params[:format]
+    render 'layouts/application'
   end
 
   protected

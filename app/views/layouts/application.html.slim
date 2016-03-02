@@ -8,12 +8,10 @@ html(ng-app="app")
     = csrf_meta_tags
   body
     #header(ng-controller="globalController")
-      include header
+      = render 'layouts/header'
     #content
-      - flash.each do |message_type, message|
-        | <div class="alert alert-<%= message_type %>"><%= message %></div>
       - if @current_user
         ui-view
       - else
-        include ../sessions/login
-    include footer
+        = render 'sessions/login'
+    = render 'layouts/footer'
