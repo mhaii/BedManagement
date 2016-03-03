@@ -22,7 +22,7 @@ class Admit < ActiveRecord::Base
     end
 
     def check_status
-      if status_change.include? 'inICU'
+      if [status_was, status].include? 'inICU'
         WebsocketRails[:admits].trigger 'icu'
       end
       case status
