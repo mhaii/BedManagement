@@ -35,6 +35,7 @@ angular.module('app').config ($stateProvider, $urlRouterProvider, $httpProvider)
   })
   $stateProvider.state('check-out',{
     url: '/check-out',
+    controller: 'checkOutController as checkOutCtrl'
     templateUrl: 'templates/check-out.html'
     data: {
       access: ['op', 'nurse', 'nurseAssistance', 'cashier']
