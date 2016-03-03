@@ -87,5 +87,18 @@
   "preDischarged": "Pre-Discharged",
   "west": "W",
 
-  "PUT_IN_HN_NUMBER_TO_SEARCH": "Put in HN number to search"
+  "PUT_IN_HN_NUMBER_TO_SEARCH": "Put in HN number to search",
+
+  "INFORMATION": "Information",
+  "CHECK_OUT_DC": "Takes D/C order",
+  "CHECK_OUT_APPOINTMENT": "Makes an appointment",
+  "CHECK_OUT_GET_MED": "Gets medicines",
+  "CHECK_OUT_RETURN_MED": "Returns medicines",
+  "CHECK_OUT_CONTACT_FAM": "Contact family",
+  "CHECK_OUT_BILLING": "Billing",
+  "CHECK_OUT_NOTIFY_FINANCE": "Notify finance",
+  "CHECK_OUT_INFORM_BILLING": "Inform billing",
+  "CHECK_OUT_PAYMENT": "Payment",
+  "CHECK_OUT_CONTACT_TRANS": "Contact transfer unit",
+  "CHECK_OUT_PATIENT_LEAVE": "Patient leaved"
 }

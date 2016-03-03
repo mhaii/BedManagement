@@ -87,5 +87,18 @@
   "preDischarged": "เตรียมจ่ายออก",
   "west": "ต",
 
-  "PUT_IN_HN_NUMBER_TO_SEARCH": "กรอกเลขประจำตัวผู้ป่วยเพื่อค้นหา"
+  "PUT_IN_HN_NUMBER_TO_SEARCH": "กรอกเลขประจำตัวผู้ป่วยเพื่อค้นหา",
+
+  "INFORMATION": "รายละเอียด",
+  "CHECK_OUT_DC": "รับคำสั่ง D/C",
+  "CHECK_OUT_APPOINTMENT": "ออกใบนัด-ได้รับใบนัด",
+  "CHECK_OUT_GET_MED": "ส่งใบเบิกยา-รับยา HM",
+  "CHECK_OUT_RETURN_MED": "คืนยากลับบ้าน",
+  "CHECK_OUT_CONTACT_FAM": "ติดต่อญาติ-ญาติมารับผู้ป่วย",
+  "CHECK_OUT_BILLING": "คิดค่าใช้จ่าย",
+  "CHECK_OUT_NOTIFY_FINANCE": "แจ้งการเงิน",
+  "CHECK_OUT_INFORM_BILLING": "แจ้งค่าใช้จ่าย",
+  "CHECK_OUT_PAYMENT": "ญาติชำระเงิน",
+  "CHECK_OUT_CONTACT_TRANS": "ติดต่อหน่วยเคลื่อนย้าย",
+  "CHECK_OUT_PATIENT_LEAVE": "ผู้ป่วยกลับบ้าน"
 }
