@@ -1,6 +1,6 @@
 roomService = ($resource) ->
   {
-    room: $resource('/resources/room/:id.json', {id: '@id'}, {'update': {method: 'PUT'}})
+    room: $resource('/resources/rooms/:id.json', {id: '@id'}, {'update': {method: 'PUT'}})
   }
 
 roomService
