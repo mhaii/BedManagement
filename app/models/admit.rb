@@ -27,7 +27,7 @@ class Admit < ActiveRecord::Base
       end
       case status
         when 'preDischarged'
-          room.availableSoon! unless self.room.nil? or room.availableSoon? # :availableSoon
+          room.availableSoon! unless self.room.nil? or room.availableSoon?
         when 'discharged'
           self.room = nil
       end if status_changed?
@@ -36,7 +36,9 @@ class Admit < ActiveRecord::Base
     def check_room
       if room_id_changed?
         Room.find(self.room_id_was).available!  unless room_id_was.nil?
-        room.update_column :status, 2 unless room_id.nil? or room.occupied? # :occupied
+        room.update_column :status, 2 unless room_id.nil? or room.occupied?
+      elsif status_was == 'inICU'
+        room.update_column :status, 2 unless room_id.nil? or room.occupied?
       end
     end
 end
