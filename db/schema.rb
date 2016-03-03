@@ -67,6 +67,7 @@ ActiveRecord::Schema.define(version: 20160301153524) do
     t.integer "role",            limit: 4
     t.string  "password_digest", limit: 255
     t.string  "remember_digest", limit: 255
+    t.integer "ward_id",         limit: 4
   end
 
   create_table "wards", force: :cascade do |t|
