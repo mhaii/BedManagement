@@ -20,13 +20,13 @@ Rails.application.routes.draw do
     resources :patients,  except: [:new, :edit]
     resources :rooms,     except: [:new, :edit]
 
-
     resources :wards,     except: [:new, :edit]  do
       get 'rooms',    on: :member,  action: :ward_index
 
       collection do
         get 'rooms',                action: :wards_index
-        get 'free',                 action: :free
+        get 'free'
+        get 'check_out'
       end
     end
 

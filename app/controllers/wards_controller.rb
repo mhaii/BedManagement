@@ -6,13 +6,15 @@ class WardsController < ApplicationController
 
   def ward_index
     @ward = Ward.includes(rooms: [admit: :patient]).find_by(id: params[:id])
-    unless @ward
-      render json: { error: 'not found' }
-    end
+    error_not_found unless @ward
   end
 
   def wards_index
     @wards = Ward.includes(rooms: [admit: :patient])
+  end
+
+  def check_out
+    @wards = (@current_user.role != :op ? @current_user.ward : Ward).includes rooms: [admit: [:patient, :check_out_step]] if @current_user
   end
 
   def free
