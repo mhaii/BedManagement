@@ -13,10 +13,6 @@ class WardsController < ApplicationController
     @wards = Ward.includes(rooms: [admit: :patient])
   end
 
-  def check_out
-    @wards = (@current_user.role != :op ? @current_user.ward : Ward).includes rooms: [admit: [:patient, :check_out_step]] if @current_user
-  end
-
   def free
     @wards = Ward.joins(:rooms).where('rooms.status= 0').group(:ward_id).pluck :name, :remark, 'count(*)'
     render 'index'

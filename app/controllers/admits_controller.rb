@@ -28,6 +28,17 @@ class AdmitsController < ApplicationController
     @admits = query.where(status: 3)
   end
 
+  def check_out_list
+    if @current_user
+      query = Admit.includes([:patient, :doctor, :check_out_steps, room: :ward])
+      if @current_user.ward_id
+        @admits = query.joins(:room).where "admits.status = 4 AND rooms.ward_id = #{@current_user.ward_id}"
+      else
+        @admits = query.where status: 4
+      end
+    end
+  end
+
   def create
     @admit = Admit.new(get_request_body)
     if @admit.save

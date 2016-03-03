@@ -14,6 +14,7 @@ Rails.application.routes.draw do
         get 'out_soon'
         get 'today'
         get 'queue'
+        get 'check_out_list'
       end
     end
 
@@ -26,7 +27,6 @@ Rails.application.routes.draw do
       collection do
         get 'rooms',                action: :wards_index
         get 'free'
-        get 'check_out'
       end
     end
 
