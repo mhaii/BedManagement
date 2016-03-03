@@ -22,6 +22,9 @@ class Admit < ActiveRecord::Base
     end
 
     def check_status
+      if status_change.include? 'inICU'
+        WebsocketRails[:admits].trigger 'icu'
+      end
       case status
         when 'preDischarged'
           room.availableSoon! unless self.room.nil? or room.availableSoon? # :availableSoon
