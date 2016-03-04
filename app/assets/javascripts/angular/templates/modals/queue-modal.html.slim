@@ -8,9 +8,9 @@
     dt {{ "LAST_NAME" | translate }}: {{ data.patient.last_name }}
     dt {{ "DIAGNOSIS" | translate }}: {{ data.diagnosis }}
     dt {{ "DOCTOR" | translate }}: {{ data.doctor.name }}
-    dt
+    dt(ng-if="remarkOption")
       span {{ "REMARK" | translate}}: {{ euei }}
       input(type="text")
 .modal-footer
-  button.btn.btn-warning(type="button" ng-click="close()" translate) CLOSE
-  button.btn.btn-primary(type="button" ng-click="confirm()" translate) CONFIRM
+  button.btn.btn-warning(type="button" ng-click="close()" translate="CLOSE")
+  button.btn.btn-primary(type="button" ng-click="confirm()" translate="CONFIRM")
