@@ -14,6 +14,6 @@ div.container
           td
             div
               div {{ "NAME" | translate }}: {{ admit.patient.first_name }} {{ admit.patient.last_name }} {{ "AGE" | translate }}: {{ admit.patient.age }} {{ "DIAGNOSIS" | translate }}: {{ admit.diagnosis }} {{ "DOCTOR" | translate}}: {{ admit.doctor.name }}
-              div staus status status status
+              span(ng-repeat="process in checkOutCtrl.processes")
           td
             a.fake-link(ng-click="checkOutCtrl.updateModal(admit)" ) UPDATE
