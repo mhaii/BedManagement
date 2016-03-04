@@ -58,8 +58,8 @@
   "PATIENT": "ผู้ป่วย",
   "PEOPLE_ADMITTED_TODAY": "คนไข้เข้าพักในวันนี้",
   "PHONE": "เบอร์ติดต่อ",
-  "PREFIX_AGO": "เมื่อ",
-  "PREFIX_FROM_NOW": "ในอีก",
+  "PREFIX_AGO": "",
+  "PREFIX_FROM_NOW": "",
 
   "QUEUE": "คิว",
   "QUEUES": "คิวทั้งหมด",
@@ -68,6 +68,7 @@
   "REMEMBER_ME": "จดจำ",
   "RESERVE": "จอง",
   "RESERVED": "ห้องถูกจอง",
+  "RETURN_TO_ROOM": "ย้ายผู้ป่วยกลับห้อง",
   "ROOM": "ห้อง",
   "ROOM_NUMBER": "เลขห้อง",
 
@@ -77,10 +78,16 @@
   "SUFFIX_FROM_NOW": "ข้างหน้า",
 
   "TEL": "โทร",
+  "TODAY": "วันนี้",
+  "TOMORROW": "พรุ่งนี้",
+  "TO_ICU": "ไปไอซียู",
+  "TRANSFER": "ย้าย",
 
   "USERNAME": "ชื่อผู้ใช้",
 
   "WARD": "วอร์ด",
+
+  "YESTERDAY": "เมื่อวาน",
 
   "confirmed": "ยืนยันการนัด",
   "currentlyAdmit": "กำลังเข้ารักษา",

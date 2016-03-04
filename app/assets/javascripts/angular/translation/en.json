@@ -68,6 +68,7 @@
   "REMEMBER_ME": "Remember me",
   "RESERVE": "Reserve",
   "RESERVED": "Reserved",
+  "RETURN_TO_ROOM": "Return patient to room",
   "ROOM": "Room",
   "ROOM_NUMBER": "Room Number",
 
@@ -77,10 +78,16 @@
   "SUFFIX_FROM_NOW": "from now",
 
   "TEL": "Tel",
+  "TODAY": "Today",
+  "TOMORROW": "Tomorrow",
+  "TO_ICU": "To ICU",
+  "TRANSFER": "Transfer",
 
   "USERNAME": "Username",
 
   "WARD": "Ward",
+
+  "YESTERDAY": "Yesterday",
 
   "confirmed": "Confirmed",
   "currentlyAdmit": "Currently Admit",
