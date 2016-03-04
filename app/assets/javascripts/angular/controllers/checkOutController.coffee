@@ -1,7 +1,7 @@
 checkOutController = (checkOutService, $uibModal, admitService)->
   vm        = @
 
-  processes = ["CHECK_OUT_DC","CHECK_OUT_APPOINTMENT","CHECK_OUT_GET_MED","CHECK_OUT_RETURN_MED","CHECK_OUT_CONTACT_FAM","CHECK_OUT_BILLING","CHECK_OUT_NOTIFY_FINANCE","CHECK_OUT_INFORM_BILLING","CHECK_OUT_PAYMENT","CHECK_OUT_CONTACT_TRANS","CHECK_OUT_PATIENT_LEAVE"]
+  vm.processes = ["CHECK_OUT_DC","CHECK_OUT_APPOINTMENT","CHECK_OUT_GET_MED","CHECK_OUT_RETURN_MED","CHECK_OUT_CONTACT_FAM","CHECK_OUT_BILLING","CHECK_OUT_NOTIFY_FINANCE","CHECK_OUT_INFORM_BILLING","CHECK_OUT_PAYMENT","CHECK_OUT_CONTACT_TRANS","CHECK_OUT_PATIENT_LEAVE"]
 
   vm.getList   = ()->
     checkOutService.list.query().$promise.then (patient)->
@@ -18,7 +18,7 @@ checkOutController = (checkOutService, $uibModal, admitService)->
       size        : "lg",
       resolve     : {
         header    : ()-> 'PROCESS'
-        data      : ()->  [data , processes]
+        data      : ()->  [data , vm.processes]
       }
     }
 
