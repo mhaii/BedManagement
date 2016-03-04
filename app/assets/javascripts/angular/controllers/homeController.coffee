@@ -1,4 +1,4 @@
-homeController = ($http, admitService, wardService) ->
+homeController = (admitService, wardService) ->
   vm = @
   vm.update = ()->
     wardService.free.query().$promise.then    (data)-> vm.wards   = data
@@ -13,7 +13,7 @@ homeController = ($http, admitService, wardService) ->
   return
 
 homeController
-  .$inject = ['$http', 'admitService', 'wardService']
+  .$inject = ['admitService', 'wardService']
 
 angular
   .module('app')

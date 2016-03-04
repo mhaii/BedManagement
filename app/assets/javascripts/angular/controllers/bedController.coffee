@@ -1,4 +1,4 @@
-BedStatusController = ($rootScope, $http, $location, $uibModal, $anchorScroll, admitService, patientService, roomService, wardService)->
+BedStatusController = ($uibModal, $anchorScroll, admitService, patientService, roomService, wardService)->
   vm = @
 
   if patientService.admit
@@ -28,20 +28,19 @@ BedStatusController = ($rootScope, $http, $location, $uibModal, $anchorScroll, a
         vm.queue = null
     else
       $uibModal.open({
-        templateUrl : 'templates/tables/queues.html',
-        controller  : 'queueController as queueCtrl',
+        templateUrl : 'templates/tables/queues.html'
+        controller  : 'queueController as queueCtrl'
         size        : 'lg'
-      }).result.then ()->
-        admitService.admit.update({id: patientService.admit.id}, {room_id: room.id, status: 2})
-        patientService.admit = null
+      }).result.then (queue)->
+        admitService.admit.update({id: queue.id}, {room_id: room.id, status: 2})
 
   vm.remove = (room)->
     admitService.admit.update({id: room.admit.id}, {status: 1, room_id: null})
 
   vm.toICU = (room)->
     $uibModal.open({
-      templateUrl : 'templates/modals/bed-status-modal.html',
-      controller  : 'modalController as modalCtrl',
+      templateUrl : 'templates/modals/bed-status-modal.html'
+      controller  : 'modalController as modalCtrl'
       resolve     : {
         header    : ()-> 'CONFIRM_TO_ICU'
         data      : ()-> room
@@ -71,6 +70,6 @@ BedStatusController = ($rootScope, $http, $location, $uibModal, $anchorScroll, a
 
 
 BedStatusController
-  .$inject = ['$rootScope', '$http', '$location', '$uibModal', '$anchorScroll', 'admitService', 'patientService', 'roomService', 'wardService']
+  .$inject = ['$uibModal', '$anchorScroll', 'admitService', 'patientService', 'roomService', 'wardService']
 
 angular.module('app').controller('BedStatusController', BedStatusController)
