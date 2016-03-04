@@ -1,0 +1,26 @@
+.modal-header
+  span.fa.fa-times.close(ng-click="close()")
+  h4.modal-title(translate) {{ header | translate }}
+  .modal-body
+    div {{ "NAME" | translate }}: {{ data.patient.first_name }} {{ data.patient.last_name }} {{ "AGE" | translate }}: {{ data.patient.age }} {{ "DIAGNOSIS" | translate }}: {{ data.diagnosis }} {{ "DOCTOR" | translate}}: {{ data.doctor.name }}
+    .table-responsive(style="margin-top: 2%;")
+      table.table.table-striped.table-bordered.table-hover
+        thead
+          tr
+            th(translate) PROCESS
+            th(translate) START_TIME
+            th(translate) END_TIME
+            th
+        tbody
+          tr(ng-repeat="process in processes track by $index")
+            td(translate) {{ process }}
+            td {{ data.check_out_steps[$index].time_started | dateTimeHumanize }}
+            td {{ data.check_out_steps[$index].time_ended   | dateTimeHumanize }}
+            td
+              a.fake-link(ng-click="startProcess($index)" ng-hide="data.check_out_steps[$index].time_ended") START
+              a.fake-link(ng-click="endProcess($index)" ng-show="data.check_out_steps[$index].time_started && !data.check_out_steps[$index].time_ended") END
+              div(ng-show="data.check_out_steps[$index].time_started && data.check_out_steps[$index].time_ended") DONE
+
+.modal-footers
+  button.btn.btn-warning(type="button" ng-click="close()" translate="CLOSE")
+  button.btn.btn-primary(type="button" ng-click="confirm()" translate="CONFIRM")
