@@ -16,16 +16,16 @@
           td {{ queue.patient.hn }}
           td {{ queue.patient.first_name }} {{ queue.patient.last_name }}
           td {{ queue.diagnosis }}
-          td {{ queue.admitted_date | dateTimeHumanize }}
+          td {{ queue.admitted_date | dateHumanize }}
           td {{ queue.doctor.name }}
           td {{ queue.patient.phone }}
           td(translate) {{ queue.status }}
           td.dropdown
             a.fake-link(ng-if="queue.status === 'pending'" ng-click="queueCtrl.toConfirmed(queue)" translate) CONFIRM
             span(ng-show="queue.status === 'confirmed'")
-              a.fake-link(ng-if="queueCtrl.referred" ui-sref="status" ng-click="patientService.admit = queue" translate) CHOOSE
-              a.fake-link(ng-if="!queueCtrl.referred" ng-click="queueCtrl.confirmRoom()" translate) CHOOSE
-            a.dropdown-toggle.fake-link.pull-right(data-target="#" data-toggle="dropdown" ng-if="queueCtrl.referred")
+              a.fake-link(ng-if="!queueCtrl.referred" ui-sref="status" ng-click="queueCtrl.choose(queue)" translate) CHOOSE
+              a.fake-link(ng-if="queueCtrl.referred" ng-click="queueCtrl.confirmRoom(queue)" translate) CHOOSE
+            a.dropdown-toggle.fake-link.pull-right(data-target="#" data-toggle="dropdown" ng-if="!queueCtrl.referred")
               span.fa.fa-caret-down
             ul.dropdown-menu
               li

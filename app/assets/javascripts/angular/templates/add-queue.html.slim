@@ -2,16 +2,16 @@
   h1(translate) BOOKING
   .form.center-block
     .row
-      .col-md-4.col-md-offset-1
+      .col-md-7.col-md-offset-1.col-lg-5
         form.bs-component
           .bs-component
             .form-group
               label.control-label(for="add-on-1" translate) PUT_IN_HN_NUMBER_TO_SEARCH
               .input-group
                 span.input-group-addon(translate) HN_NUMBER
-                input#add-on-1.form-control(type="text" ng-model="addQueueCtrl.admit.patient.hn")
+                input#add-on-1.form-control(type="text" ng-model="addQueueCtrl.admit.patient.hn" ng-disabled="addQueueCtrl.editing")
                   span.input-group-btn
-                    button.btn.btn-primary(type="button" ng-click="addQueueCtrl.search()")
+                    button.btn.btn-primary(type="button" ng-click="addQueueCtrl.search()" ng-hide="addQueueCtrl.editing")
                       span(translate) SEARCH
                       .ripple-container
               .alert.alert-dismissible(ng-hide="addQueueCtrl.searched && addQueueCtrl.patientFound" ng-class="addQueueCtrl.searched ? 'alert-danger': 'alert-info'")
@@ -36,9 +36,9 @@
       .form-group(style="margin-top: 0")
         label.control-label.col-md-2.short-word(translate) GENDER
         .col-md-10
-          .radio.radio-primary(ng-repeat="obj in ['MALE', 'FEMALE']")
+          .radio.radio-primary(ng-repeat="obj in ['MALE', 'FEMALE']" ng-disabled="addQueueCtrl.patientFound")
             label
-              input(type="radio" name="sex" ng-attr-id="'obj'" ng-value="obj.toLowerCase()" ng-model="addQueueCtrl.admit.patient.sex" ng-disabled="addQueueCtrl.patientFound")
+              input(type="radio" name="sex" ng-attr-id="'obj'" ng-value="obj.toLowerCase()" ng-model="addQueueCtrl.admit.patient.sex")
               span.circle
               span.check
               span(style="margin-left: 20px") {{ obj | translate }}
@@ -72,7 +72,7 @@
       .form-group
         label.control-label.col-md-2(for="input-booking-date" translate) BOOKING_DATE
         .col-md-10
-          button.btn.btn-default(type="button" ng-click="addQueueCtrl.openDateTime()")
+          button.btn.btn-default(type="button" ng-click="bedCtrl.opened = true")
             i.glyphicon.glyphicon-calendar
           input#input-booking-date.form-control(type="text" uib-datepicker-popup="yyyy-MM-dd" ng-model="addQueueCtrl.admit.admitted_date" is-open="addQueueCtrl.opened" datepicker-options="addQueueCtrl.dateOptions" ng-required="true" close-text="Close")
           /span.has-warning(ng-show="form.bookingDate.$error.date" translate) INVALID_FORMAT
