@@ -14,13 +14,14 @@
         tbody
           tr(ng-repeat="process in processes track by $index")
             td(translate) {{ process }}
-            td {{ data.check_out_steps[$index].time_started | dateTimeHumanize }}
-            td {{ data.check_out_steps[$index].time_ended   | dateTimeHumanize }}
+            td {{ data.check_out_steps[$index].time_started }}
+            td {{ data.check_out_steps[$index].time_ended   }}
             td
-              a.fake-link(ng-click="startProcess($index)" ng-hide="data.check_out_steps[$index].time_ended") START
+              a.fake-link(ng-click="startProcess($index)" ng-hide="data.check_out_steps[$index].time_ended === null || (data.check_out_steps[$index].time_started && data.check_out_steps[$index].time_ended)") START
               a.fake-link(ng-click="endProcess($index)" ng-show="data.check_out_steps[$index].time_started && !data.check_out_steps[$index].time_ended") END
-              div(ng-show="data.check_out_steps[$index].time_started && data.check_out_steps[$index].time_ended") DONE
-
+              div(ng-show="data.check_out_steps[$index].time_started && data.check_out_steps[$index].time_ended")
+                span DONE
+                i.fa.fa-undo(ng-click="resetProcess($index)")
 .modal-footers
   button.btn.btn-warning(type="button" ng-click="close()" translate="CLOSE")
   button.btn.btn-primary(type="button" ng-click="confirm()" translate="CONFIRM")

@@ -21,6 +21,7 @@ modalController = ($scope, $uibModalInstance, patientService, header, data, chec
     checkOutService.start.save(send)
 
   $scope.resetProcess = (process)->
+    checkOutService.reset.delete({id:$scope.data.check_out_steps[process].id})
 
   $scope.endProcess = (process)->
     checkOutService.stop.update({id:$scope.data.check_out_steps[process].id})
