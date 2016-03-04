@@ -1,4 +1,4 @@
-queueController = ($injector, $location, $uibModal, admitService, patientService)->
+queueController = ($injector, $scope, $location, admitService, patientService)->
   vm = @
 
   vm.tableColumns   = [['HN_NUMBER', 'patient.hn'], ['NAME', 'patient.first_name'], ['DIAGNOSIS', 'diagnosis'],
@@ -9,8 +9,23 @@ queueController = ($injector, $location, $uibModal, admitService, patientService
     vm.sortType     = column or 'admitted_date'
     vm.sortReversed = !vm.sortReversed or false
 
-  vm.referred       = $location.path() == '/status'
-  vm.isAlone        = $location.path() == '/queue'
+  vm.isAlone            = $location.path() == '/queue'
+  if vm.referred        = $location.path() == '/status'
+    $uibModalInstance   = $injector.get '$uibModalInstance'
+    vm.confirmRoom      = (queue)->
+      $uibModalInstance.close(queue)
+  else
+    $uibModal           = $injector.get '$uibModal'
+    vm.openDeleteModal  = (queue)->
+      $uibModal.open({
+        templateUrl : 'templates/modals/queue-modal.html',
+        controller  : 'modalController as modalCtrl',
+        resolve     : {
+          header  : ()-> 'CONFIRM_DELETE'
+          data    : ()-> queue
+        }
+      }).result.then ()->
+        admitService.admit.delete({id: queue.id})
 
   vm.update = ()->
     admitService.queue.query().$promise.then (data)-> vm.queues = data
@@ -18,24 +33,12 @@ queueController = ($injector, $location, $uibModal, admitService, patientService
 
   vm.choose = (queue)->
     patientService.admit = queue
-    $uibModalInstance.close('confirmed') if vm.referred
 
   vm.toPending = (admit)->
     admitService.admit.update({id: admit.id}, {status: 0})
 
   vm.toConfirmed = (admit)->
     admitService.admit.update({id: admit.id}, {status: 1})
-
-  vm.openDeleteModal = (queue)->
-    $uibModal.open({
-      templateUrl : 'templates/modals/queue-modal.html',
-      controller  : 'modalController as modalCtrl',
-      resolve     : {
-        header  : ()-> 'CONFIRM_DELETE'
-        data    : ()-> queue
-      }
-    }).result.then ()->
-      admitService.admit.delete({id: queue.id})
 
   admitService.websocket.bind 'updated', (admit)->
     vm.update()
@@ -46,6 +49,6 @@ queueController = ($injector, $location, $uibModal, admitService, patientService
   return
 
 queueController
-  .$inject = ['$injector', '$location', '$uibModal', 'admitService','patientService']
+  .$inject = ['$injector', '$scope', '$location', 'admitService','patientService']
 
 angular.module('app').controller('queueController', queueController)
