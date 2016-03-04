@@ -1,15 +1,16 @@
-modalController = ($scope, $uibModalInstance, patientService, header)->
-  $scope.data   = patientService.admit
-  $scope.header = header
+modalController = ($scope, $uibModalInstance, patientService, header, data)->
+  $scope.header   = header
+  $scope.data     = data
 
   $scope.confirm  = ()->
-    $uibModalInstance.close('confirmed');
+    confirm = $scope.checkbox and 'reserve' or null
+    $uibModalInstance.close(confirm or 'confirmed')
 
   $scope.close    = ()->
     $uibModalInstance.dismiss('cancel')
 
 
 modalController
-  .$inject = ['$scope', '$uibModalInstance', 'patientService', 'header']
+  .$inject = ['$scope', '$uibModalInstance', 'patientService', 'header', 'data']
 
 angular.module('app').controller('modalController', modalController)
