@@ -1,35 +1,38 @@
 #beds-table.bs-docs-section
   div class="row"
-    div
-      div.patient-info(ng-show="patientService.admit")
-        dl.detailPatient
-          dt {{ "FIRST_NAME" | translate }}: {{ bedCtrl.first_name }}
-          dt {{ "LAST_NAME" | translate }}: {{ bedCtrl.last_name }}
-          dt {{ "DIAGNOSIS" | translate}}: {{ bedCtrl.diagnosis }}
-          dt{{ "DOCTOR" | translate }}: {{ bedCtrl.doctor.name }}
-    div.bs-component"
+    div.patient-info(ng-show="bedCtrl.queue")
+      span.fa.fa-times.close(ng-click="bedCtrl.clear()")
+      table
+        tr
+          td
+            b(translate) CURRENTLY_SELECTED
+          td {{ "FIRST_NAME" | translate }}: {{ bedCtrl.queue.patient.first_name }}
+          td {{ "LAST_NAME" | translate }}: {{ bedCtrl.queue.patient.last_name }}
+          td {{ "DIAGNOSIS" | translate}}: {{ bedCtrl.queue.diagnosis }}
+          td {{ "DOCTOR" | translate }}: {{ bedCtrl.queue.doctor.name }}
+    div.bs-component
       table.table.table-bordered.table-striped.table-hover
         thead
-        tr
-          th(translate) NAME
-          th(colspan="20") {{ ROOM_NUMBER | translate }}
+          tr
+            th(translate) NAME
+            th(colspan="20" translate) ROOM_NUMBER
         tbody
-        tr(ng-repeat="ward in bedCtrl.wards")
-          td {{ ward.name }} {{ ward.remark | splitAndTranslate }} {{ "TEL" | translate }}. {{ ward.phone }} ({{ ward.rooms[0].price }})
-          td(ng-repeat="room in ward.rooms" ng-attr-id="{{ ward.id }}-{{ room.number }}" ng-class="room room-{{ room.status }}" ng-mouseenter="bedCtrl.onHover(room,ward)") {{ room.number }}
-            div(ng-if="room.status === 'occupied'" ng-attr-id="patient" ng-class="hidden-box popup")
-              dl.detail-list
-                dt {{ "ROOM" | translate }}: {{ room.number }}
-                dt {{ "NAME" | translate }}: {{ room.patient.first_name }} {{ room.patient.last_name }}
-                dt {{ "DIAGNOSIS" | translate}}: {{ room.admit.diagnosis }}
-                dt {{ "DOCTOR" | translate }}: {{ room.patient.doctor_id }}
-                dt {{ "EDD" | translate }}: {{ room.admit.edd }}
-              a.btn-sm.infobutton(ng-click="bedCtrl.movePatient(room, 'move', true)") {{ TRANSFER | translate }}
-              a.btn-sm.infobutton(ng-click="bedCtrl.movePatient(room, 'delete', true)" data-toggle="modal" data-target="#confirmToDelete") {{ REMOVE | translate }}
-              a.btn-sm.infobutton(ng-click="bedCtrl.movePatient(room, 'to_icu', true)" data-toggle="modal" data-target="#confirmMoveICU") {{ TO_ICU | translate }}
-            div(ng-if="room.status === 'available'" ng-attr-id="patient" ng-class="hidden-box popup")
-              dl.detail-list
-                dt {{ "ROOM" | translate }}: {{ room.number }}
-                dt {{ "STATUS" | translate }}: {{ "AVAILABLE" | translate }}
-              a.btn-sm.info-button(ng-hide="bedCtrl.isPatientData" data-toggle="modal" data-target="#queueModal") {{ RESERVE | translate }}
-              a.btn-sm.info-button(ng-show="bedCtrl.isPatientData"" data-toggle="modal" data-target="#myModal") {{ RESERVE |  translate }}
+          tr(ng-repeat="ward in bedCtrl.wards")
+            td {{ ward.name }} {{ ward.remark | splitAndTranslate }} {{ "TEL" | translate }}. {{ ward.phone }} ({{ ward.rooms[0].price }})
+            td.room(ng-repeat="room in ward.rooms" ng-attr-id="{{ ward.id }}-{{ room.number }}" ng-class="'room-' + room.status")
+              span {{ room.number }}
+              #patient.hidden-box.popup(ng-if="room.status === 'occupied'")
+                dl.detail-list
+                  dt {{ "ROOM" | translate }}: {{ room.number }}
+                  dt {{ "NAME" | translate }}: {{ room.patient.first_name }} {{ room.patient.last_name }}
+                  dt {{ "DIAGNOSIS" | translate}}: {{ room.admit.diagnosis }}
+                  dt {{ "DOCTOR" | translate }}: {{ room.doctor.name }}
+                  dt {{ "EDD" | translate }}: {{ room.admit.edd }}
+                a.btn-sm.info-button(ng-click="bedCtrl.move(room)" translate) TRANSFER
+                a.btn-sm.info-button(ng-click="bedCtrl.remove(room)" translate) CANCLE
+                a.btn-sm.info-button(ng-click="bedCtrl.toICU(room)" translate) TO_ICU
+
+              #patient.hidden-box.popup(ng-if="room.status === 'available'")
+                dl.detail-list
+                  dt {{ "ROOM" | translate }}: {{ room.number }}
+                a.btn-sm.info-button(ng-click="bedCtrl.choose(room)" translate) RESERVE
