@@ -1,4 +1,4 @@
-addQueuesCtrl = ($state, $http, $window, $filter, admitService, patientService)->
+addQueuesCtrl = ($state, $filter, admitService, patientService)->
   vm = @
   vm.dateOptions = {
     dateDisabled: null,
@@ -35,6 +35,6 @@ addQueuesCtrl = ($state, $http, $window, $filter, admitService, patientService)-
   return
 
 addQueuesCtrl
-  .$inject = ['$state', '$http', '$window', '$filter', 'admitService', 'patientService']
+  .$inject = ['$state', '$filter', 'admitService', 'patientService']
 
 angular.module('app').controller('addQueuesCtrl', addQueuesCtrl)

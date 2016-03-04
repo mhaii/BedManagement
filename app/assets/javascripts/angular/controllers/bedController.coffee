@@ -1,4 +1,4 @@
-BedStatusController = ($rootScope, $http, $location, $uibModal, $anchorScroll, admitService, patientService, roomService, wardService)->
+BedStatusController = ($uibModal, $anchorScroll, admitService, patientService, roomService, wardService)->
   vm = @
 
   if patientService.admit
@@ -71,6 +71,6 @@ BedStatusController = ($rootScope, $http, $location, $uibModal, $anchorScroll, a
 
 
 BedStatusController
-  .$inject = ['$rootScope', '$http', '$location', '$uibModal', '$anchorScroll', 'admitService', 'patientService', 'roomService', 'wardService']
+  .$inject = ['$uibModal', '$anchorScroll', 'admitService', 'patientService', 'roomService', 'wardService']
 
 angular.module('app').controller('BedStatusController', BedStatusController)

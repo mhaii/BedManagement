@@ -1,4 +1,4 @@
-queueController = ($rootScope, $scope, $http, $location, $uibModal, admitService, patientService)->
+queueController = ($injector, $location, $uibModal, admitService, patientService)->
   vm = @
 
   vm.tableColumns   = [['HN_NUMBER', 'patient.hn'], ['NAME', 'patient.first_name'], ['DIAGNOSIS', 'diagnosis'],
@@ -46,6 +46,6 @@ queueController = ($rootScope, $scope, $http, $location, $uibModal, admitService
   return
 
 queueController
-  .$inject = ['$rootScope', '$scope', '$http', '$location', '$uibModal', 'admitService','patientService']
+  .$inject = ['$injector', '$location', '$uibModal', 'admitService','patientService']
 
 angular.module('app').controller('queueController', queueController)

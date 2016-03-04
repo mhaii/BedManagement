@@ -1,4 +1,4 @@
-globalController = ($resource, $rootScope, $scope, $translate, $state, $location) ->
+globalController = ($resource, $rootScope, $scope, $translate, $state) ->
   user = {}
   redirect = (data, toState)->
     user = data
@@ -30,6 +30,6 @@ globalController = ($resource, $rootScope, $scope, $translate, $state, $location
 
 
 globalController
-  .$inject = ['$resource', '$rootScope', '$scope', '$translate', '$state', '$location']
+  .$inject = ['$resource', '$rootScope', '$scope', '$translate', '$state']
 
 angular.module('app').controller('globalController', globalController)
