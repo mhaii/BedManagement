@@ -10,10 +10,10 @@ div.container
           th(translate) INFORMATION
           th(translate) UPDATE_STATUS
       tbody
-        tr(ng-repeat="admit in checkOutCtrl.patients")
+        tr(ng-repeat="admit in checkOutCtrl.patients track by $index")
           td
             div
               div {{ "NAME" | translate }}: {{ admit.patient.first_name }} {{ admit.patient.last_name }} {{ "AGE" | translate }}: {{ admit.patient.age }} {{ "DIAGNOSIS" | translate }}: {{ admit.diagnosis }} {{ "DOCTOR" | translate}}: {{ admit.doctor.name }}
               span(ng-repeat="process in checkOutCtrl.processes") {{ process | translate }}
           td
-            a.fake-link(ng-click="checkOutCtrl.updateModal(admit)" ) UPDATE
+            a.fake-link(ng-click="checkOutCtrl.updateModal($index)" ) UPDATE

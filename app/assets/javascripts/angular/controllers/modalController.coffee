@@ -4,12 +4,12 @@ modalController = ($scope, $uibModalInstance, patientService, header, data, chec
   #if this one is needed when the data can update
   $scope.refreshData = ()->
     $scope.data.check_out_steps.forEach (element, index, value)->
-      sortedStep[element.step] = element
+      $scope.sortedStep[element.step] = element
 
   if header is 'PROCESS'
     $scope.processes = data[1]
     $scope.data = data[0]
-    sortedStep = new Array($scope.processes.length)
+    $scope.sortedStep = new Array($scope.processes.length)
     $scope.refreshData()
   else
     $scope.data = data
@@ -27,10 +27,6 @@ modalController = ($scope, $uibModalInstance, patientService, header, data, chec
       "admit_id": $scope.data.id
     }
     checkOutService.start.save(send)
-
-  $scope.getStartTime = (index)->
-    console.log(sortedStep)
-    return sortedStep[index]
 
   $scope.resetProcess = (process)->
     checkOutService.reset.delete({id:$scope.data.check_out_steps[process].id})

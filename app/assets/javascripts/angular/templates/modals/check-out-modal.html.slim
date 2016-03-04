@@ -14,8 +14,8 @@
         tbody
           tr(ng-repeat="process in processes track by $index")
             td(translate) {{ process }}
-            td {{ getStartTime($index).time_started }}
-            td {{ getStartTime($index).time_ended   }}
+            td {{ sortedStep[$index].time_started }}
+            td {{ sortedStep[$index].time_ended   }}
             td
               a.fake-link(ng-click="startProcess($index)" ng-hide="getStartTime($index).time_started") START
               a.fake-link(ng-click="endProcess($index)" ng-show="getStartTime($index).time_started && !getStartTime($index).time_ended") END
