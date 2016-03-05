@@ -1,6 +1,5 @@
 class SessionsController < ApplicationController
-  include SessionsHelper
-  before_action :json_only, only: :current
+  before_action :json_only, only: :show
 
   def create
     if (user = User.find_by(username: params[:sessions][:username]))
@@ -11,7 +10,7 @@ class SessionsController < ApplicationController
         flash[:danger] = 'INCORRECT_PASSWORD'
       end
     else
-      flash[:danger] = 'INCORRECT_USERNAME'
+      flash[:danger]   = 'INCORRECT_USERNAME'
     end
     redirect_to root_url
   end
@@ -21,8 +20,7 @@ class SessionsController < ApplicationController
     redirect_to root_url
   end
 
-  def current
-    current_user
+  def show
     render json: @current_user ? {username: @current_user.username, role: @current_user.role} : {}
   end
 end
