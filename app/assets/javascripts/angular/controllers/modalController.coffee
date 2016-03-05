@@ -1,4 +1,4 @@
-modalController = ($scope, $uibModalInstance, patientService, header, data, checkOutService)->
+modalController = ($scope, $uibModalInstance, checkOutService, patientService, header, data)->
   $scope.header    = header
 
   #if this one is needed when the data can update
@@ -34,7 +34,10 @@ modalController = ($scope, $uibModalInstance, patientService, header, data, chec
   $scope.endProcess = (process)->
     checkOutService.stop.update({id:$scope.data.check_out_steps[process].id})
 
+  return
+
+
 modalController
-  .$inject = ['$scope', '$uibModalInstance', 'patientService', 'header', 'data', 'checkOutService']
+  .$inject = ['$scope', '$uibModalInstance', 'checkOutService', 'patientService', 'header', 'data']
 
 angular.module('app').controller('modalController', modalController)

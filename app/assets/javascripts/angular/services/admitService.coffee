@@ -6,11 +6,8 @@ admitService = ($resource) ->
     in_icu  : $resource('/resources/admits/in_icu.json')
     queue   : $resource('/resources/admits/queue.json')
     today   : $resource('/resources/admits/today.json')
-
-    websocket : new WebSocketRails(location.host + '/websocket').subscribe('admits')
   }
 
-admitService
-  .$inject = ['$resource']
+admitService.$inject = ['$resource']
 
 angular.module('app').factory('admitService', admitService)

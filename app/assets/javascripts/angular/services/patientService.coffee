@@ -4,7 +4,6 @@ patientService = ($resource)->
     patients: $resource('/resources/patients.json')
   }
 
-patientService
-  .$inject = ['$resource']
+patientService.$inject = ['$resource']
 
 angular.module("app").factory('patientService', patientService)

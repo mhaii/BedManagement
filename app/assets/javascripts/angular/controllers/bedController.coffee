@@ -1,33 +1,22 @@
-BedStatusController = ($uibModal, $anchorScroll, admitService, patientService, roomService, wardService, userService, checkOutService)->
-  vm = @
+BedStatusController = ($uibModal, $anchorScroll, admitService, checkOutService, patientService, roomService, wardService, sessionService)->
+  @session = sessionService
 
-  vm.user = userService.user
-
+  ############ Preassign variable if its referred #############
   if patientService.admit
-    vm.queue = patientService.admit
+    @queue = patientService.admit
     patientService.admit = null
 
-  vm.clear = ()->
-    vm.queue = null
+  ############## Methods for interact with Rails ##############
+  @clear = =>
+    @queue = null
 
-  vm.getWards = ()->
-    wardService.all.query().$promise.then (data)->
-      vm.wards = data
+  @move = (room)=>
+    @queue = room.admit
 
-  vm.getIcuPatient = ()->
-    admitService.in_icu.query().$promise.then (data)->
-      vm.icuPatients = data
-
-  vm.getWards()
-  vm.getIcuPatient()
-
-  vm.move = (room)->
-    vm.queue = room.admit
-
-  vm.choose = (room)->
-    if vm.queue
-      admitService.admit.update({id: vm.queue.id}, {room_id: room.id, status: 2}).$promise.then ()->
-        vm.queue = null
+  @choose = (room)=>
+    if @queue
+      admitService.admit.update({id: @queue.id}, {room_id: room.id, status: 2}).$promise.then =>
+        @queue = null
     else
       $uibModal.open({
         templateUrl : 'templates/tables/queues.html'
@@ -36,10 +25,10 @@ BedStatusController = ($uibModal, $anchorScroll, admitService, patientService, r
       }).result.then (queue)->
         admitService.admit.update({id: queue.id}, {room_id: room.id, status: 2})
 
-  vm.remove = (room)->
+  @remove = (room)->
     admitService.admit.update({id: room.admit.id}, {status: 1, room_id: null})
 
-  vm.toICU = (room)->
+  @toICU = (room)->
     $uibModal.open({
       templateUrl : 'templates/modals/bed-status-modal.html'
       controller  : 'modalController as modalCtrl'
@@ -55,13 +44,13 @@ BedStatusController = ($uibModal, $anchorScroll, admitService, patientService, r
       else
         admitService.admit.update({id: room.admit.id}, {status: -1, room_id: null})
 
-  vm.backFromICU = (admit)->
+  @backFromICU = (admit)=>
     if admit.room_id?
       admitService.admit.update({id: admit.id}, {status: 2})
     else
-      vm.queue = admit
+      @queue = admit
 
-  vm.checkOutModal = (room)->
+  @checkOutModal = (room)->
     $uibModal.open({
       templateUrl : 'templates/modals/bed-status-modal.html'
       controller  : 'modalController as modalCtrl'
@@ -72,16 +61,9 @@ BedStatusController = ($uibModal, $anchorScroll, admitService, patientService, r
     }).result.then (queue)->
       admitService.admit.update({id: room.admit.id}, {status: 4})
 
-  admitService.websocket.bind 'updated', (admit)->
-    vm.getWards()
-
-  admitService.websocket.bind 'icu', (admit)->
-    vm.getIcuPatient()
-
   return
 
 
-BedStatusController
-  .$inject = ['$uibModal', '$anchorScroll', 'admitService', 'patientService', 'roomService', 'wardService', 'userService', 'checkOutService']
+BedStatusController.$inject = ['$uibModal', '$anchorScroll', 'admitService', 'checkOutService', 'patientService', 'roomService', 'wardService', 'sessionService']
 
 angular.module('app').controller('BedStatusController', BedStatusController)

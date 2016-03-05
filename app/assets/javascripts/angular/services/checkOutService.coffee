@@ -6,7 +6,6 @@ checkOutService = ($resource) ->
     reset   : $resource('/resources/check_out/:id/reset.json',  { id:'@id' })
   }
 
-checkOutService
-  .$inject = ['$resource']
+checkOutService.$inject = ['$resource']
 
 angular.module('app').factory('checkOutService', checkOutService)

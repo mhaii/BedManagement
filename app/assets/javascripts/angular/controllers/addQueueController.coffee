@@ -1,35 +1,33 @@
 addQueuesCtrl = ($state, $filter, admitService, patientService)->
-  vm = @
-  vm.dateOptions = {
-    dateDisabled: null,
-    minDate: new Date(),
-    startingDay: 1
+  @dateOptions = {
+    minDate:      new Date()
+    startingDay:  1
+    dateDisabled: null
   }
 
   # if editing, set as searched and found
-  if vm.searched    = vm.patientFound  = vm.editing = !!vm.patientInfo = patientService.admit
-    vm.admit        = patientService.admit
+  if @searched = @patientFound  = @editing = patientService.admit
+    @admit     = patientService.admit
     patientService.admit = null
 
-  vm.search = ()->
-    vm.searched = true
-    patientService.patient.get({id: vm.admit.patient.hn}).$promise.then (patient)->
-      vm.admit = { patient: if vm.patientFound = !patient.error then patient else null }
+  @search = =>
+    @searched  = true
+    patientService.patient.get({id: @admit.patient.hn}).$promise.then (patient)=>
+      @admit   = { patient: if @patientFound = !patient.error then patient else null }
 
-  vm.submit = ()->
-    vm.admit.admitted_date = $filter('date')(vm.admit.admitted_date, 'yyyy-MM-dd')
+  @submit = =>
+    @admit.admitted_date = $filter('date')(@admit.admitted_date, 'yyyy-MM-dd')
 
-    unless vm.patientFound
-      patientService.patients.save(vm.admit.patient).$promise.then ()->
-        vm.patientFound = true
+    unless @patientFound
+      patientService.patients.save(@admit.patient).$promise.then =>
+        @patientFound = true
 
-    if vm.patientFound
+    if @patientFound
       # create new if this page isn't referred for edit
-      admit = if vm.editing then admitService.admit.update({id: vm.admit.id}, vm.admit) else admitService.admits.save(vm.admit)
+      admit = if @editing then admitService.admit.update({id: @admit.id}, @admit) else admitService.admits.save(@admit)
 
-      admit.$promise.then (data)->
+      admit.$promise.then (data)=>
         $state.go('queue')
-        return
     return
 
   return

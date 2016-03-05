@@ -1,29 +1,26 @@
 checkOutController = (checkOutService, $uibModal, admitService)->
-  vm        = @
+  @processes = ['CHECK_OUT_DC', 'CHECK_OUT_APPOINTMENT', 'CHECK_OUT_GET_MED', 'CHECK_OUT_RETURN_MED',
+                'CHECK_OUT_CONTACT_FAM', 'CHECK_OUT_BILLING', 'CHECK_OUT_NOTIFY_FINANCE', 'CHECK_OUT_INFORM_BILLING',
+                'CHECK_OUT_PAYMENT', 'CHECK_OUT_CONTACT_TRANS', 'CHECK_OUT_PATIENT_LEAVE']
 
-  vm.processes = ["CHECK_OUT_DC","CHECK_OUT_APPOINTMENT","CHECK_OUT_GET_MED","CHECK_OUT_RETURN_MED","CHECK_OUT_CONTACT_FAM","CHECK_OUT_BILLING","CHECK_OUT_NOTIFY_FINANCE","CHECK_OUT_INFORM_BILLING","CHECK_OUT_PAYMENT","CHECK_OUT_CONTACT_TRANS","CHECK_OUT_PATIENT_LEAVE"]
-
-  vm.getList   = ()->
+  @getList   = ()=>
     checkOutService.list.query().$promise.then (patient)->
       console.log(patient)
-      vm.patients = patient
+      @patients = patient
 
-  vm.getList()
+  @getList()
 
-  vm.updateModal = (data)->
+  @updateModal = (data)=>
     $uibModal.open {
       animation   : true,
       templateUrl : 'templates/modals/check-out-modal.html',
       controller  : 'modalController as modalCtrl',
-      size        : "lg",
+      size        : 'lg',
       resolve     : {
         header    : ()-> 'PROCESS'
-        data      : ()->  [data , vm.processes]
+        data      : ()=> [data , @processes]
       }
     }
-
-  admitService.websocket.bind 'check_out', (admit)->
-    vm.getList()
 
   return
 

@@ -21,6 +21,6 @@ class SessionsController < ApplicationController
   end
 
   def show
-    render json: @current_user ? {username: @current_user.username, role: @current_user.role} : {}
+    render json: @current_user ? {username: @current_user.username, role: @current_user.role} : {username: 'guest', role: 'guest'}
   end
 end
