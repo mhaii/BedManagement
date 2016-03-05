@@ -1,5 +1,7 @@
-BedStatusController = ($uibModal, $anchorScroll, admitService, patientService, roomService, wardService)->
+BedStatusController = ($uibModal, $anchorScroll, admitService, patientService, roomService, wardService, userService, checkOutService)->
   vm = @
+
+  vm.user = userService.user
 
   if patientService.admit
     vm.queue = patientService.admit
@@ -59,6 +61,16 @@ BedStatusController = ($uibModal, $anchorScroll, admitService, patientService, r
     else
       vm.queue = admit
 
+  vm.checkOutModal = (room)->
+    $uibModal.open({
+      templateUrl : 'templates/modals/bed-status-modal.html'
+      controller  : 'modalController as modalCtrl'
+      resolve     : {
+        header    : ()-> 'CHECK_THIS_PATIENT_OUT'
+        data      : ()-> room
+      }
+    }).result.then (queue)->
+      admitService.admit.update({id: room.admit.id}, {status: 4})
 
   admitService.websocket.bind 'updated', (admit)->
     vm.getWards()
@@ -70,6 +82,6 @@ BedStatusController = ($uibModal, $anchorScroll, admitService, patientService, r
 
 
 BedStatusController
-  .$inject = ['$uibModal', '$anchorScroll', 'admitService', 'patientService', 'roomService', 'wardService']
+  .$inject = ['$uibModal', '$anchorScroll', 'admitService', 'patientService', 'roomService', 'wardService', 'userService', 'checkOutService']
 
 angular.module('app').controller('BedStatusController', BedStatusController)
