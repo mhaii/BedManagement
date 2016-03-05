@@ -17,9 +17,9 @@
             td {{ sortedStep[$index].time_started }}
             td {{ sortedStep[$index].time_ended   }}
             td
-              a.fake-link(ng-click="startProcess($index)" ng-hide="getStartTime($index).time_started") START
-              a.fake-link(ng-click="endProcess($index)" ng-show="getStartTime($index).time_started && !getStartTime($index).time_ended") END
-              div(ng-show="getStartTime($index).time_started && getStartTime($index).time_ended  ")
+              a.fake-link(ng-click="startProcess($index)" ng-hide="sortedStep[$index].time_started") START
+              a.fake-link(ng-click="endProcess($index)" ng-show="sortedStep[$index].time_started && !sortedStep[$index].time_ended") END
+              div(ng-show="sortedStep[$index].time_started && sortedStep[$index].time_ended  ")
                 span DONE
                 i.fa.fa-undo(ng-click="resetProcess($index)")
 .modal-footers
