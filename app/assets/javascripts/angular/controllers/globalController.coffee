@@ -1,7 +1,8 @@
-globalController = ($resource, $rootScope, $scope, $translate, $state) ->
+globalController = ($resource, $rootScope, $scope, $translate, $state, userService) ->
   user = {}
   redirect = (data, toState)->
     user = data
+    userService.user = data
     if toState.data.access.indexOf(user.role) > -1
       $state.go(toState.name)
     else
@@ -30,6 +31,6 @@ globalController = ($resource, $rootScope, $scope, $translate, $state) ->
 
 
 globalController
-  .$inject = ['$resource', '$rootScope', '$scope', '$translate', '$state']
+  .$inject = ['$resource', '$rootScope', '$scope', '$translate', '$state', 'userService']
 
 angular.module('app').controller('globalController', globalController)
