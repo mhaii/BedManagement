@@ -5,6 +5,6 @@
         th(translate) NAME
         th(translate) DATE
     tbody
-      tr(ng-repeat="admit in homeCtrl.dcSoon")
+      tr(ng-repeat="admit in session.dischargedSoon")
         td {{ admit.patient.first_name }} {{ admit.patient.last_name }}
         td {{ admit.edd }}

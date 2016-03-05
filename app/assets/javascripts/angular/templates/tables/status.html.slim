@@ -1,5 +1,5 @@
 #beds-table.bs-docs-section
-  div class="row"
+  .row
     div.patient-info(ng-show="bedCtrl.queue")
       span.fa.fa-times.close(ng-click="bedCtrl.clear()")
       table
@@ -17,7 +17,7 @@
             th(translate) NAME
             th(colspan="20" translate) ROOM_NUMBER
         tbody
-          tr(ng-repeat="ward in bedCtrl.wards")
+          tr(ng-repeat="ward in bedCtrl.session.wards")
             td {{ ward.name }} {{ ward.remark | splitAndTranslate }} {{ "TEL" | translate }}. {{ ward.phone }} ({{ ward.rooms[0].price }})
             td.room(ng-repeat="room in ward.rooms" ng-attr-id="{{ ward.id }}-{{ room.number }}" ng-class="'room-' + room.status")
               span {{ room.number }}
