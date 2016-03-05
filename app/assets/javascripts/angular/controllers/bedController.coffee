@@ -1,6 +1,5 @@
 BedStatusController = ($uibModal, $anchorScroll, admitService, checkOutService, patientService, roomService, wardService, sessionService)->
   @session = sessionService
-
   ############ Preassign variable if its referred #############
   if patientService.admit
     @queue = patientService.admit
@@ -59,7 +58,7 @@ BedStatusController = ($uibModal, $anchorScroll, admitService, checkOutService, 
         data      : ()-> room
       }
     }).result.then (queue)->
-      admitService.admit.update({id: room.admit.id}, {status: 4})
+      admitService.admit.update({id: room.admit.id}, {status: 3})
 
   return
 

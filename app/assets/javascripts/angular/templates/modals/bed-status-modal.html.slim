@@ -8,7 +8,7 @@
     dt {{ "LAST_NAME" | translate }}: {{ data.patient.last_name }}
     dt {{ "DIAGNOSIS" | translate }}: {{ data.admit.diagnosis }}
     dt {{ "DOCTOR" | translate }}: {{ data.doctor.name }}
-    dt
+    dt(ng-if="header === 'CONFIRM_TO_ICU'")
       span(translate) RESERVE_ROOM
       input(type="checkbox" ng-model="checkbox")
 

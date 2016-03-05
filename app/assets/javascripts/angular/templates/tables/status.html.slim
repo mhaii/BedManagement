@@ -14,7 +14,7 @@
       table.table.table-bordered.table-striped.table-hover
         thead
           tr
-            th(translate) NAME
+            th(translate) NAME {{ bedCtrl.session.isAuthorized(['op', 'admission']) }}
             th(colspan="20" translate) ROOM_NUMBER
         tbody
           tr(ng-repeat="ward in bedCtrl.session.wards")
@@ -29,11 +29,11 @@
                   dt {{ "DOCTOR" | translate }}: {{ room.doctor.name }}
                   dt {{ "EDD" | translate }}: {{ room.admit.edd }}
                 span(ng-if="room.status === 'occupied'")
-                  span(ng-if="bedCtrl.user.role === 'op' || bedCtrl.user.role === 'admission'")
+                  span(ng-if="bedCtrl.session.isAuthorized(['op', 'admission'])")
                     a.btn-sm.info-button(ng-click="bedCtrl.move(room)" translate) TRANSFER
                     a.btn-sm.info-button(ng-click="bedCtrl.remove(room)" translate) CANCLE
                     a.btn-sm.info-button(ng-click="bedCtrl.toICU(room)" translate) TO_ICU
-                  span(ng-hide="bedCtrl.user.role === 'op' || bedCtrl.user.role === 'admission'")
+                  span(ng-hide="bedCtrl.session.isAuthorized(['admission'])")
                     a.btn-sm.info-button(ng-click="bedCtrl.checkOutModal(room)") CHECK_OUT
                 span(ng-if="room.status === 'availableSoon'")
                   span(ng-repeat="process in room.check_out_steps | orderBy: 'step'")
@@ -49,9 +49,9 @@
                       i.fa.fa-credit-card(style="margin: 10px;")
                     span(ng-if="process.step === 10")
                       i.fa.fa-sign-out(style="margin: 10px;")
-                  span(ng-hide="bedCtrl.user.role === 'op' || bedCtrl.user.role === 'admission'")
+                  span(ng-hide="bedCtrl.session.isAuthorized(['op', 'admission'])")
                     a.btn-sm.info-button(ng-click="") DELAY_STAY
-              #patient.hidden-box.popup(ng-if="room.status === 'available' && (bedCtrl.user.role === 'op' || bedCtrl.user.role === 'admission')")
+              #patient.hidden-box.popup(ng-if="room.status === 'available' && bedCtrl.session.isAuthorized(['op', 'admission'])")
                 dl.detail-list
                   dt {{ "ROOM" | translate }}: {{ room.number }}
                 a.btn-sm.info-button(ng-click="bedCtrl.choose(room)" translate) RESERVE

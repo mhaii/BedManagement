@@ -1,4 +1,5 @@
-queueController = ($injector, $scope, $location, admitService, patientService)->
+queueController = ($injector, $location, admitService, patientService, sessionService)->
+  @session        = sessionService
   ############### Methods and values for table ################
   @tableColumns   = [['HN_NUMBER', 'patient.hn'], ['NAME', 'patient.first_name'], ['DIAGNOSIS', 'diagnosis'],
                      ['APPOINTMENT', 'admitted_date'], ['DOCTOR', 'doctor.name'], ['PHONE', 'patient.phone'], ['STATUS', 'status']]
@@ -37,8 +38,9 @@ queueController = ($injector, $scope, $location, admitService, patientService)->
   @toConfirmed = (admit)->
     admitService.admit.update({id: admit.id}, {status: 1})
 
+  return
 
-queueController
-  .$inject = ['$injector', '$scope', '$location', 'admitService','patientService']
+
+queueController.$inject = ['$injector', '$location', 'admitService','patientService', 'sessionService']
 
 angular.module('app').controller('queueController', queueController)

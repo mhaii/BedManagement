@@ -1,4 +1,4 @@
-#bed-status-all.center-block.container.container-slim(ng-app="QueuesApp")
+#bed-status-all.center-block.container.container-slim
   .row
     h1#table.col-xs-12.col-sm-6.col-md-8.col-lg-8.align-left(translate) Bed Status
     table#legends.col-xs-12.col-sm-6.col-md-4.col-lg-4.align-right.table-bordered.table-striped(border="1")
@@ -9,4 +9,4 @@
         td.room-reserved(translate) RESERVED
         td.room-disabled(translate) DISABLED
   div(ng-include="'templates/tables/status.html'")
-  div(ng-if="room.status === 'occupied' && (bedCtrl.user.role === 'op' || bedCtrl.user.role === 'admission')" ng-include="'templates/tables/icu.html'")
+  div(ng-if="bedCtrl.session.isAuthorized(['op', 'admission'])" ng-include="'templates/tables/icu.html'")

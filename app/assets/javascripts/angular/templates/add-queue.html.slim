@@ -6,7 +6,6 @@
         form.bs-component
           .bs-component
             .form-group
-              label.control-label(for="add-on-1" translate) PUT_IN_HN_NUMBER_TO_SEARCH
               .input-group
                 span.input-group-addon(translate) HN_NUMBER
                 input#add-on-1.form-control(type="text" ng-model="addQueueCtrl.admit.patient.hn" ng-disabled="addQueueCtrl.editing")
@@ -17,7 +16,7 @@
               .alert.alert-dismissible(ng-hide="addQueueCtrl.searched && addQueueCtrl.patientFound" ng-class="addQueueCtrl.searched ? 'alert-danger': 'alert-info'")
                 button.close(type="button" data-dismiss="alert")
                   span.fa.fa-times-circle
-                strong(ng-hide="addQueueCtrl.searched" translate) PUT_IN_HN
+                strong(ng-hide="addQueueCtrl.searched" translate) PUT_IN_HN_NUMBER_TO_SEARCH
                 strong(ng-show="addQueueCtrl.searched && !addQueueCtrl.patientFound" translate) PATIENT_NOT_FOUND
 
     form.form-horizontal(name="form")

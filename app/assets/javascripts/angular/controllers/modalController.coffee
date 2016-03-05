@@ -37,7 +37,6 @@ modalController = ($scope, $uibModalInstance, checkOutService, patientService, h
   return
 
 
-modalController
-  .$inject = ['$scope', '$uibModalInstance', 'checkOutService', 'patientService', 'header', 'data']
+modalController.$inject = ['$scope', '$uibModalInstance', 'checkOutService', 'patientService', 'header', 'data']
 
 angular.module('app').controller('modalController', modalController)

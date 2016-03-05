@@ -3,16 +3,15 @@
     - flash.each do |message_type, message|
       .alert class=("alert-#{message_type}") translate=(message)
   .col-xs-12.col-sm-8.col-sm-offset-2
-    = form_for :sessions, url: login_path do |f|
+    = form_for :sessions, url: sessions_path, html: {class: 'box-form'} do |f|
       = f.label :username, "{{ 'USERNAME' | translate }}"
       = f.text_field :username, class: 'form-control'
 
       = f.label :password, "{{ 'PASSWORD' | translate }}"
       = f.password_field :password, class: 'form-control'
 
-      .row
-        .form-inline
-          .remember
-            = f.check_box :remember_me, class: 'form-control'
-            = f.label :remember_me, "{{ 'REMEMBER_ME' | translate }}"
-          = f.submit "{{ 'LOGIN' | translate }}", class: 'btn btn-primary btn-raised pull-right'
+      .row.form-inline
+        .remember
+          = f.check_box :remember_me, class: 'form-control'
+          = f.label :remember_me, "{{ 'REMEMBER_ME' | translate }}"
+        = f.submit "{{ 'LOGIN' | translate }}", class: 'btn btn-primary btn-raised pull-right'

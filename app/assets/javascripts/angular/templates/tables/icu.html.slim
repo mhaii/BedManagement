@@ -11,7 +11,7 @@ div ICU
         th(translate) PHONE
         th(translate)
     tbody
-      tr(ng-repeat="admit in bedCtrl.icuPatients")
+      tr(ng-repeat="admit in bedCtrl.session.icuPatients")
         td {{ ::admit.patient.hn }}
         td {{ ::admit.patient.first_name }}
         td {{ ::admit.patient.last_name }}
