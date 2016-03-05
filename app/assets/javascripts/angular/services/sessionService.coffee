@@ -1,13 +1,15 @@
 sessionService = ($resource, admitService, wardService)->
+  @isAuthorized         = (array)=> array.indexOf(@currentUser.role) != -1
+  ################ Methods for refreshing data ################
+  updateAdmit           = => admitService.queue.query()  .$promise.then (data)=> @queues          = data
+  updateAdmittedToday   = => admitService.today.query()  .$promise.then (data)=> @admittedToday   = data
+  updateDischargedSoon  = => admitService.edd.query()    .$promise.then (data)=> @dischargedSoon  = data
+  updateFreeRoomCount   = => wardService.free.query()    .$promise.then (data)=> @freeRoomCount   = data
+  updateICU             = => admitService.in_icu.query() .$promise.then (data)=> @icuPatients     = data
+  updateWards           = => wardService.all.query()     .$promise.then (data)=> @wards           = data
+
   (@user = $resource('/sessions.json').get()).$promise.then (user)=>   # removing () would break stuff!
-    @currentUser          = user
-    ################ Methods for refreshing data ################
-    updateAdmit           = => admitService.queue.query()  .$promise.then (data)=> @queues          = data
-    updateAdmittedToday   = => admitService.today.query()  .$promise.then (data)=> @admittedToday   = data
-    updateDischargedSoon  = => admitService.edd.query()    .$promise.then (data)=> @dischargedSoon  = data
-    updateFreeRoomCount   = => wardService.free.query()    .$promise.then (data)=> @freeRoomCount   = data
-    updateICU             = => admitService.in_icu.query() .$promise.then (data)=> @icuPatients     = data
-    updateWards           = => wardService.all.query()     .$promise.then (data)=> @wards           = data
+    @currentUser        = user
 
     ############### Fetch data based on user role ###############
     updateAdmit()
