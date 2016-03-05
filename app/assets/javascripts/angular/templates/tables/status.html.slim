@@ -21,35 +21,24 @@
             td {{ ward.name }} {{ ward.remark | splitAndTranslate }} {{ "TEL" | translate }}. {{ ward.phone }} ({{ ward.rooms[0].price }})
             td.room(ng-repeat="room in ward.rooms" ng-attr-id="{{ ward.id }}-{{ room.number }}" ng-class="'room-' + room.status")
               span {{ room.number }}
-              span(ng-if="bedCtrl.user.role === 'op' || bedCtrl.user.role === 'admission'")
-                #patient.hidden-box.popup(ng-if="room.status === 'occupied'")
-                  dl.detail-list
-                    dt {{ "ROOM" | translate }}: {{ room.number }}
-                    dt {{ "NAME" | translate }}: {{ room.patient.first_name }} {{ room.patient.last_name }}
-                    dt {{ "DIAGNOSIS" | translate}}: {{ room.admit.diagnosis }}
-                    dt {{ "DOCTOR" | translate }}: {{ room.doctor.name }}
-                    dt {{ "EDD" | translate }}: {{ room.admit.edd }}
-                  a.btn-sm.info-button(ng-click="bedCtrl.move(room)" translate) TRANSFER
-                  a.btn-sm.info-button(ng-click="bedCtrl.remove(room)" translate) CANCLE
-                  a.btn-sm.info-button(ng-click="bedCtrl.toICU(room)" translate) TO_ICU
-                #patient.hidden-box.popup(ng-if="room.status === 'available'")
-                  dl.detail-list
-                    dt {{ "ROOM" | translate }}: {{ room.number }}
-                  a.btn-sm.info-button(ng-click="bedCtrl.choose(room)" translate) RESERVE
-              span(ng-if="bedCtrl.user.role !== 'op' || bedCtrl.user.role !== 'admission'")
-                #patient.hidden-box.popup(ng-if="room.status === 'availableSoon'")
-                  dl.detail-list
-                    dt {{ "ROOM" | translate }}: {{ room.number }}
-                    dt {{ "NAME" | translate }}: {{ room.patient.first_name }} {{ room.patient.last_name }}
-                    dt {{ "DIAGNOSIS" | translate}}: {{ room.admit.diagnosis }}
-                    dt {{ "DOCTOR" | translate }}: {{ room.doctor.name }}
-                    dt {{ "EDD" | translate }}: {{ room.admit.edd }}
-                  a.btn-sm.info-button(ng-click="") DELAY_STAY
-                #patient.hidden-box.popup(ng-if="room.status === 'occupied'")
-                  dl.detail-list
-                    dt {{ "ROOM" | translate }}: {{ room.number }}
-                    dt {{ "NAME" | translate }}: {{ room.patient.first_name }} {{ room.patient.last_name }}
-                    dt {{ "DIAGNOSIS" | translate}}: {{ room.admit.diagnosis }}
-                    dt {{ "DOCTOR" | translate }}: {{ room.doctor.name }}
-                    dt {{ "EDD" | translate }}: {{ room.admit.edd }}
-                  a.btn-sm.info-button(ng-click="bedCtrl.checkOutModal(room)") CHECK_OUT
+              #patient.hidden-box.popup(ng-if="room.status === 'occupied' || room.status === 'availableSoon'")
+                dl.detail-list
+                  dt {{ "ROOM" | translate }}: {{ room.number }}
+                  dt {{ "NAME" | translate }}: {{ room.patient.first_name }} {{ room.patient.last_name }}
+                  dt {{ "DIAGNOSIS" | translate}}: {{ room.admit.diagnosis }}
+                  dt {{ "DOCTOR" | translate }}: {{ room.doctor.name }}
+                  dt {{ "EDD" | translate }}: {{ room.admit.edd }}
+                span(ng-if="room.status === 'occupied'")
+                  span(ng-if="bedCtrl.user.role === 'op' || bedCtrl.user.role === 'admission'")
+                    a.btn-sm.info-button(ng-click="bedCtrl.move(room)" translate) TRANSFER
+                    a.btn-sm.info-button(ng-click="bedCtrl.remove(room)" translate) CANCLE
+                    a.btn-sm.info-button(ng-click="bedCtrl.toICU(room)" translate) TO_ICU
+                  span(ng-hide="bedCtrl.user.role === 'op' || bedCtrl.user.role === 'admission'")
+                    a.btn-sm.info-button(ng-click="bedCtrl.checkOutModal(room)") CHECK_OUT
+                span(ng-if="room.status === 'availableSoon'")
+                  span(ng-if="room.status === 'availableSoon'")
+                    a.btn-sm.info-button(ng-click="") DELAY_STAY
+              #patient.hidden-box.popup(ng-if="room.status === 'available' && (bedCtrl.user.role === 'op' || bedCtrl.user.role === 'admission')")
+                dl.detail-list
+                  dt {{ "ROOM" | translate }}: {{ room.number }}
+                a.btn-sm.info-button(ng-click="bedCtrl.choose(room)" translate) RESERVE
