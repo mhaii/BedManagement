@@ -1,5 +1,6 @@
 sessionService = ($resource, admitService, wardService)->
-  (@currentUser = $resource('/sessions.json').get()).$promise.then (user)=>   # removing () would break stuff!
+  (@user = $resource('/sessions.json').get()).$promise.then (user)=>   # removing () would break stuff!
+    @currentUser          = user
     ################ Methods for refreshing data ################
     updateAdmit           = => admitService.queue.query()  .$promise.then (data)=> @queues          = data
     updateAdmittedToday   = => admitService.today.query()  .$promise.then (data)=> @admittedToday   = data
