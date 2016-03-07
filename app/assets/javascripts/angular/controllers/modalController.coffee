@@ -1,4 +1,4 @@
-modalController = ($scope, $uibModalInstance, checkOutService, patientService, header, data)->
+modalController = ($scope, $uibModalInstance, checkOutService, header, data)->
   $scope.header    = header
 
   #if this one is needed when the data can update
@@ -21,6 +21,8 @@ modalController = ($scope, $uibModalInstance, checkOutService, patientService, h
   $scope.close     = ()->
     $uibModalInstance.dismiss('cancel')
 
+  ###### Check-out modal ######
+
   $scope.startProcess = (process)->
     send = {
       "step": process,
@@ -37,6 +39,6 @@ modalController = ($scope, $uibModalInstance, checkOutService, patientService, h
   return
 
 
-modalController.$inject = ['$scope', '$uibModalInstance', 'checkOutService', 'patientService', 'header', 'data']
+modalController.$inject = ['$scope', '$uibModalInstance', 'checkOutService', 'header', 'data']
 
 angular.module('app').controller('modalController', modalController)

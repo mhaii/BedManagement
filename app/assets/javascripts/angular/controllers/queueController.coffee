@@ -1,4 +1,4 @@
-queueController = ($injector, $location, admitService, patientService, sessionService)->
+queueController = ($injector, $location, admitService, sessionService)->
   @session        = sessionService
   ############### Methods and values for table ################
   @tableColumns   = [['HN_NUMBER', 'patient.hn'], ['NAME', 'patient.first_name'], ['DIAGNOSIS', 'diagnosis'],
@@ -30,7 +30,7 @@ queueController = ($injector, $location, admitService, patientService, sessionSe
 
   ############## Methods for interact with Rails ##############
   @choose = (queue)->
-    patientService.admit = queue
+    sessionService.admit = queue
 
   @toPending = (admit)->
     admitService.admit.update({id: admit.id}, {status: 0})
@@ -41,6 +41,6 @@ queueController = ($injector, $location, admitService, patientService, sessionSe
   return
 
 
-queueController.$inject = ['$injector', '$location', 'admitService','patientService', 'sessionService']
+queueController.$inject = ['$injector', '$location', 'admitService', 'sessionService']
 
 angular.module('app').controller('queueController', queueController)

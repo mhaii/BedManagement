@@ -1,4 +1,4 @@
-addQueuesCtrl = ($state, $filter, admitService, patientService)->
+addQueuesCtrl = ($state, $filter, admitService, patientService, sessionService)->
   @dateOptions = {
     minDate:      new Date()
     startingDay:  1
@@ -6,9 +6,9 @@ addQueuesCtrl = ($state, $filter, admitService, patientService)->
   }
 
   # if editing, set as searched and found
-  if @searched = @patientFound  = @editing = patientService.admit
-    @admit     = patientService.admit
-    patientService.admit = null
+  if @searched = @patientFound  = @editing = sessionService.admit
+    @admit     = sessionService.admit
+    sessionService.admit = null
 
   @search = =>
     @searched  = true
@@ -32,7 +32,6 @@ addQueuesCtrl = ($state, $filter, admitService, patientService)->
 
   return
 
-addQueuesCtrl
-  .$inject = ['$state', '$filter', 'admitService', 'patientService']
+addQueuesCtrl.$inject = ['$state', '$filter', 'admitService', 'patientService', 'sessionService']
 
 angular.module('app').controller('addQueuesCtrl', addQueuesCtrl)

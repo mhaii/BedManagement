@@ -1,6 +1,6 @@
 admitService = ($resource) ->
   {
-    admit   : $resource('/resources/admits/:id.json', { id:'@id' }, { 'update': { method: 'PUT' }})
+    admit   : $resource('/resources/admits/:id.json', {id:'@id'}, {'update': { method: 'PUT' }})
     admits  : $resource('/resources/admits.json')
     edd     : $resource('/resources/admits/out_soon.json')
     in_icu  : $resource('/resources/admits/in_icu.json')
