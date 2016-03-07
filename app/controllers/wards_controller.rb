@@ -10,7 +10,14 @@ class WardsController < ApplicationController
   end
 
   def wards_index
-    @wards = Ward.includes(rooms: [admit: [:patient, :check_out_steps]])
+    if @current_user
+      query = Ward.includes(rooms: [admit: [:patient, :check_out_steps]])
+      if @current_user.ward_id
+        @wards = query.where(id: @current_user.ward_id)
+      else
+        @wards = query
+      end
+    end
   end
 
   def free
