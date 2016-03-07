@@ -44,7 +44,8 @@ namespace :deploy do
   task :restart do
     on roles(:app), in: :sequence, wait: 5 do
       within release_path do
-        execute :bash, 'thin -C thin.yml restart'
+        execute :bash, 'rm Gemfile.lock'
+        invoke 'puma:restart'
       end
     end
   end
