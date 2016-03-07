@@ -1,4 +1,4 @@
-queueController = ($injector, $location, admitService, sessionService)->
+queueController = ($injector, $location, admitService, sessionService , $uibModal)->
   @session        = sessionService
   ############### Methods and values for table ################
   @tableColumns   = [['HN_NUMBER', 'patient.hn'], ['NAME', 'patient.first_name'], ['DIAGNOSIS', 'diagnosis'],
@@ -11,22 +11,17 @@ queueController = ($injector, $location, admitService, sessionService)->
 
   ####### Set condition for views and methods for modal #######
   @isAlone            = $location.path() == '/queue'
-  if @referred        = $location.path() == '/status'
-    $uibModalInstance = $injector.get '$uibModalInstance'
-    @confirmRoom      = (queue)->
-      $uibModalInstance.close(queue)
-  else
-    $uibModal         = $injector.get '$uibModal'
-    @openDeleteModal  = (queue)->
-      $uibModal.open({
-        templateUrl : 'templates/modals/queue-modal.html',
-        controller  : 'modalController as modalCtrl',
-        resolve     : {
-          header  : ()-> 'CONFIRM_DELETE'
-          data    : ()-> queue
-        }
-      }).result.then ()->
-        admitService.admit.delete({id: queue.id})
+  @referred        = $location.path() == '/status'
+  @openDeleteModal  = (queue)->
+    $uibModal.open({
+      templateUrl : 'templates/modals/queue-modal.html',
+      controller  : 'modalController as modalCtrl',
+      resolve     : {
+        header  : ()-> 'CONFIRM_DELETE'
+        data    : ()-> queue
+      }
+    }).result.then ()->
+      admitService.admit.delete({id: queue.id})
 
   ############## Methods for interact with Rails ##############
   @choose = (queue)->
@@ -41,6 +36,6 @@ queueController = ($injector, $location, admitService, sessionService)->
   return
 
 
-queueController.$inject = ['$injector', '$location', 'admitService', 'sessionService']
+queueController.$inject = ['$injector', '$location', 'admitService', 'sessionService', '$uibModal']
 
 angular.module('app').controller('queueController', queueController)

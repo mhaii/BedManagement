@@ -1,4 +1,4 @@
-BedStatusController = ($uibModal, $anchorScroll, admitService, checkOutService, roomService, sessionService)->
+BedStatusController = ($uibModal, $anchorScroll, admitService, checkOutService, roomService, sessionService, $rootScope)->
   @session = sessionService
   ########### Pre-assign variable if it's referred ############
   if sessionService.admit
@@ -19,8 +19,12 @@ BedStatusController = ($uibModal, $anchorScroll, admitService, checkOutService, 
     else
       $uibModal.open({
         templateUrl : 'templates/tables/queues.html'
-        controller  : 'queueController as queueCtrl'
+        controller  : 'modalController as queueCtrl'
         size        : 'lg'
+        resolve:{
+          header    : ()-> 'QUEUE'
+          data      : ()-> 'lolololol'
+        }
       }).result.then (queue)->
         admitService.admit.update({id: queue.id}, {room_id: room.id, status: 2})
 
@@ -63,6 +67,6 @@ BedStatusController = ($uibModal, $anchorScroll, admitService, checkOutService, 
   return
 
 
-BedStatusController.$inject = ['$uibModal', '$anchorScroll', 'admitService', 'checkOutService', 'roomService', 'sessionService']
+BedStatusController.$inject = ['$uibModal', '$anchorScroll', 'admitService', 'checkOutService', 'roomService', 'sessionService', '$rootScope']
 
 angular.module('app').controller('BedStatusController', BedStatusController)

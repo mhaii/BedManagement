@@ -19,7 +19,7 @@ today     = Patient.find_or_create_by(first_name: 'Today',      last_name: 'nah'
 tomorrow  = Patient.find_or_create_by(first_name: 'Tomorrow',   last_name: 'nah', hn: 3476,   sex: 0, age: 99, phone: '0123')
 longahead = Patient.find_or_create_by(first_name: 'Longahead',  last_name: 'nah', hn: 8652,   sex: 0, age: 77, phone: '043')
 
-(0..4).each {|i|
+(0..2).each {|i|
   Admit.find_or_create_by(patient: longago,   status: i, diagnosis: 'sth', admitted_date: 1.month.ago,      edd:1.month.ago,      doctor: doc)
   Admit.find_or_create_by(patient: yesterday, status: i, diagnosis: 'sth', admitted_date: 1.day.ago,        edd:1.day.ago,        doctor: doc)
   Admit.find_or_create_by(patient: today,     status: i, diagnosis: 'sth', admitted_date: DateTime.now,     edd:DateTime.now,     doctor: doc)
