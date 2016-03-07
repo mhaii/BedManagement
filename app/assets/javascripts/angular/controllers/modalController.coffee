@@ -3,6 +3,12 @@ modalController = ($scope, $uibModalInstance, checkOutService, sessionService, h
   $scope.data  = data
   $scope.session = sessionService
 
+  @dateOptions = {
+    minDate:      new Date()
+    startingDay:  1
+    dateDisabled: null
+  }
+
   switch header
     when 'PROCESS'
       console.log data
@@ -13,15 +19,20 @@ modalController = ($scope, $uibModalInstance, checkOutService, sessionService, h
       @referred      = true
       @tableColumns   = [['HN_NUMBER', 'patient.hn'], ['NAME', 'patient.first_name'], ['DIAGNOSIS', 'diagnosis'],
         ['APPOINTMENT', 'admitted_date'], ['DOCTOR', 'doctor.name'], ['PHONE', 'patient.phone'], ['STATUS', 'status']]
+    when 'CONFIRM_ROOM'
+      $scope.data.admit = data
     else
       'sth'
 
   @confirmRoom  = (queue)->
-    $uibModalInstance.close(queue)
+    data = queue or null
+    $uibModalInstance.close(data)
 
-  $scope.confirm   = ()->
+  $scope.confirm   = ()=>
     confirm = $scope.checkbox and 'reserve' or null
-    $uibModalInstance.close(confirm or 'confirmed')
+    edd     = @edd or null
+    console.log()
+    $uibModalInstance.close(confirm or edd or 'confirmed')
 
   $scope.close     = ()->
     $uibModalInstance.dismiss('cancel')
