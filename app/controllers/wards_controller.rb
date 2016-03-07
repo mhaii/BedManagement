@@ -5,12 +5,12 @@ class WardsController < ApplicationController
   before_action :get_wards, only: [:index]
 
   def ward_index
-    @ward = Ward.includes(rooms: [admit: :patient]).find_by(id: params[:id])
+    @ward  = Ward.includes(rooms: [admit: [:patient, :check_out_steps]]).find_by(id: params[:id])
     error_not_found unless @ward
   end
 
   def wards_index
-    @wards = Ward.includes(rooms: [admit: :patient])
+    @wards = Ward.includes(rooms: [admit: [:patient, :check_out_steps]])
   end
 
   def free

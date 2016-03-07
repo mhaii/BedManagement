@@ -24,9 +24,9 @@
               #patient.hidden-box.popup(ng-if="room.status === 'occupied' || room.status === 'availableSoon'")
                 dl.detail-list
                   dt {{ "ROOM" | translate }}: {{ room.number }}
-                  dt {{ "NAME" | translate }}: {{ room.patient.first_name }} {{ room.patient.last_name }}
+                  dt {{ "NAME" | translate }}: {{ room.admit.patient.first_name }} {{ room.admit.patient.last_name }}
                   dt {{ "DIAGNOSIS" | translate}}: {{ room.admit.diagnosis }}
-                  dt {{ "DOCTOR" | translate }}: {{ room.doctor.name }}
+                  dt {{ "DOCTOR" | translate }}: {{ room.admit.doctor.name }}
                   dt {{ "EDD" | translate }}: {{ room.admit.edd }}
                 span(ng-if="room.status === 'occupied'")
                   span(ng-if="bedCtrl.session.isAuthorized(['op', 'admission'])")
@@ -36,7 +36,7 @@
                   span(ng-hide="bedCtrl.session.isAuthorized(['admission'])")
                     a.btn-sm.info-button(ng-click="bedCtrl.checkOutModal(room)") CHECK_OUT
                 span(ng-if="room.status === 'availableSoon'")
-                  span(ng-repeat="step in admit.check_out_steps" ng-if="step.time_ended" style="margin-left: 5px")
+                  span(ng-repeat="step in room.admit.check_out_steps" ng-if="step.time_ended" style="margin-left: 5px")
                     i.fa.fa-sticky-note(ng-if="step.step === 'CHECK_OUT_DC'")
                     i.fa.fa-envelope-o(ng-if="step.step === 'CHECK_OUT_APPOINTMENT'")
                     i.fa.fa-medkit(ng-if="step.step === 'CHECK_OUT_RETURN_MED'")
