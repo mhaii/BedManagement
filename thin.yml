@@ -1,0 +1,17 @@
+---
+user: deploy
+group: deploy
+pid: ../shared/pids/thin.pid
+timeout: 30
+wait: 30
+log: ../shared/log/thin.log
+max_conns: 1024
+environment: production
+max_persistent_conns: 512
+servers: 1
+threaded: true
+no-epoll: true
+daemonize: true
+socket: ../shared/sockets/thin.sock
+chdir: /var/www/bed_management/current
+tag: a-name-to-show-up-in-ps aux
