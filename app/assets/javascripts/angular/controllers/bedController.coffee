@@ -1,6 +1,6 @@
-BedStatusController = ($uibModal, $anchorScroll, admitService, checkOutService, roomService, wardService, sessionService)->
+BedStatusController = ($uibModal, $anchorScroll, admitService, checkOutService, roomService, sessionService)->
   @session = sessionService
-  ############ Preassign variable if its referred #############
+  ########### Pre-assign variable if it's referred ############
   if sessionService.admit
     @queue = sessionService.admit
     sessionService.admit = null
@@ -63,6 +63,6 @@ BedStatusController = ($uibModal, $anchorScroll, admitService, checkOutService, 
   return
 
 
-BedStatusController.$inject = ['$uibModal', '$anchorScroll', 'admitService', 'checkOutService', 'roomService', 'wardService', 'sessionService']
+BedStatusController.$inject = ['$uibModal', '$anchorScroll', 'admitService', 'checkOutService', 'roomService', 'sessionService']
 
 angular.module('app').controller('BedStatusController', BedStatusController)

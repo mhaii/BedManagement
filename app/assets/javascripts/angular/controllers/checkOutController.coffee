@@ -4,8 +4,7 @@ checkOutController = (checkOutService, $uibModal, admitService)->
                 'CHECK_OUT_PAYMENT', 'CHECK_OUT_CONTACT_TRANS', 'CHECK_OUT_PATIENT_LEAVE']
 
   @getList   = ()=>
-    checkOutService.list.query().$promise.then (patient)->
-      console.log(patient)
+    checkOutService.list.query().$promise.then (patient)=>
       @patients = patient
 
   @getList()

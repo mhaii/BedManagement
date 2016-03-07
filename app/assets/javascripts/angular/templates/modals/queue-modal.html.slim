@@ -9,7 +9,7 @@
     dt {{ "DIAGNOSIS" | translate }}: {{ data.diagnosis }}
     dt {{ "DOCTOR" | translate }}: {{ data.doctor.name }}
     dt(ng-if="remarkOption")
-      span {{ "REMARK" | translate}}: {{ euei }}
+      span {{ "REMARK" | translate}}:
       input(type="text")
 .modal-footer
   button.btn.btn-warning(type="button" ng-click="close()" translate="CLOSE")
