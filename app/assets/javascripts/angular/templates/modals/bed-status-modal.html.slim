@@ -11,7 +11,17 @@
     dt(ng-if="header === 'CONFIRM_TO_ICU'")
       span(translate) RESERVE_ROOM
       input(type="checkbox" ng-model="checkbox")
-
+    span(ng-if="header === 'CONFIRM_ROOM'")
+      dt {{ "WARD" | translate }} : {{ ward }}
+      dt {{ "ROOM" | translate}}  : {{room}}
+      dt
+        span.control-label(translate) EDD_DATE :
+        div
+          p.input-group
+            input.form-control(type="text" uib-datepicker-popup="yyyy-MM-dd" ng-model="modalCtrl.edd" is-open="modalCtrl.opened" datepicker-options="modalCtrl.dateOptions" ng-required="true" close-text="Close")
+            span.input-group-btn
+              button.btn.btn-default(type="button" ng-click="modalCtrl.opened = true")
+                i.glyphicon.glyphicon-calendar
 .modal-footer
   button.btn.btn-warning(type="button" ng-click="close()" translate="CLOSE")
   button.btn.btn-primary(type="button" ng-click="confirm()" translate="CONFIRM")
