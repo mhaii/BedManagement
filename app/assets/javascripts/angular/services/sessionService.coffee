@@ -1,12 +1,13 @@
-sessionService = ($resource, admitService, wardService)->
+sessionService = ($resource, admitService, checkOutService, wardService)->
   @isAuthorized         = (array)=> array.indexOf(@currentUser.role) != -1
   ################ Methods for refreshing data ################
-  updateAdmit           = => admitService.queue.query()  .$promise.then (data)=> @queues          = data
-  updateAdmittedToday   = => admitService.today.query()  .$promise.then (data)=> @admittedToday   = data
-  updateDischargedSoon  = => admitService.edd.query()    .$promise.then (data)=> @dischargedSoon  = data
-  updateFreeRoomCount   = => wardService.free.query()    .$promise.then (data)=> @freeRoomCount   = data
-  updateICU             = => admitService.in_icu.query() .$promise.then (data)=> @icuPatients     = data
-  updateWards           = => wardService.all.query()     .$promise.then (data)=> @wards           = data
+  updateAdmit           = => admitService.queue.query()   .$promise.then (data)=> @queues          = data
+  updateAdmittedToday   = => admitService.today.query()   .$promise.then (data)=> @admittedToday   = data
+  updateCheckOut        = => checkOutService.list.query() .$promise.then (data)=> @checkouts       = data
+  updateDischargedSoon  = => admitService.edd.query()     .$promise.then (data)=> @dischargedSoon  = data
+  updateFreeRoomCount   = => wardService.free.query()     .$promise.then (data)=> @freeRoomCount   = data
+  updateICU             = => admitService.in_icu.query()  .$promise.then (data)=> @icuPatients     = data
+  updateWards           = => wardService.all.query()      .$promise.then (data)=> @wards           = data
 
   (@user = $resource('/sessions.json').get()).$promise.then (user)=>   # removing () would break stuff!
     @currentUser        = user
@@ -14,6 +15,7 @@ sessionService = ($resource, admitService, wardService)->
     ############### Fetch data based on user role ###############
     updateAdmit()
     updateAdmittedToday()
+    updateCheckOut()
     updateDischargedSoon()
     updateFreeRoomCount()
     updateICU()
@@ -29,6 +31,9 @@ sessionService = ($resource, admitService, wardService)->
       updateFreeRoomCount()
       updateWards()
 
+    @websocket.bind 'check_out', (step)->
+      updateCheckOut()
+
     @websocket.bind 'destroyed', ()->
       updateAdmit()
 
@@ -36,6 +41,6 @@ sessionService = ($resource, admitService, wardService)->
       updateICU()
   @
 
-sessionService.$inject = ['$resource', 'admitService', 'wardService']
+sessionService.$inject = ['$resource', 'admitService', 'checkOutService', 'wardService']
 
 angular.module('app').factory('sessionService', sessionService)
