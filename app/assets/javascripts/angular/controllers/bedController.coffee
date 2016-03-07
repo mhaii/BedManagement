@@ -12,10 +12,22 @@ BedStatusController = ($uibModal, $anchorScroll, admitService, checkOutService, 
   @move = (room)=>
     @queue = room.admit
 
+  confirmModal = (queue, header)->
+    $uibModal.open {
+      templateUrl : 'templates/modals/bed-status-modal.html'
+      controller  : 'modalController as modalCtrl'
+      size        : 'lg'
+      resolve:{
+        header    : ()-> header
+        data      : ()-> queue
+      }
+    }
+
   @choose = (room)=>
     if @queue
-      admitService.admit.update({id: @queue.id}, {room_id: room.id, status: 2}).$promise.then =>
-        @queue = null
+      confirmModal(@queue, 'CONFIRM_ROOM').result.then (edd)=>
+        admitService.admit.update({id: @queue.id}, {room_id: room.id, status: 2, edd: edd}).$promise.then =>
+          @queue = null
     else
       $uibModal.open({
         templateUrl : 'templates/tables/queues.html'
@@ -26,10 +38,13 @@ BedStatusController = ($uibModal, $anchorScroll, admitService, checkOutService, 
           data      : ()-> 'lolololol'
         }
       }).result.then (queue)->
-        admitService.admit.update({id: queue.id}, {room_id: room.id, status: 2})
+        confirmModal(queue, 'CONFIRM_ROOM').result.then (edd)=>
+          console.log(edd)
+          admitService.admit.update({id: queue.id}, {room_id: room.id, status: 2, edd: edd})
 
   @remove = (room)->
-    admitService.admit.update({id: room.admit.id}, {status: 1, room_id: null})
+    confirmModal(room, 'DELETE').result.then (eiei)=>
+      admitService.admit.update({id: room.admit.id}, {status: 1, room_id: null, edd: null})
 
   @toICU = (room)->
     $uibModal.open({
