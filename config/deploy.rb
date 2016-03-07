@@ -44,7 +44,7 @@ namespace :deploy do
   task :restart do
     on roles(:app), in: :sequence, wait: 5 do
       within release_path do
-        execute :bash, 'thin -c config.yml restart'
+        execute :bash, 'thin -C thin.yml restart'
       end
     end
   end
