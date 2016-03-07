@@ -1,18 +1,20 @@
 modalController = ($scope, $uibModalInstance, checkOutService, sessionService, header, data)->
   $scope.header  = header
+  $scope.data  = data
   $scope.session = sessionService
 
   switch header
     when 'PROCESS'
+      console.log data
       $scope.session.websocket.bind 'check_out', (steps)->
-        $scope.session.admit.check_out_steps = steps
+        $scope.data.check_out_steps = steps
     when 'QUEUE'
       @session       = sessionService
       @referred      = true
       @tableColumns   = [['HN_NUMBER', 'patient.hn'], ['NAME', 'patient.first_name'], ['DIAGNOSIS', 'diagnosis'],
         ['APPOINTMENT', 'admitted_date'], ['DOCTOR', 'doctor.name'], ['PHONE', 'patient.phone'], ['STATUS', 'status']]
     else
-      $scope.data  = data
+      'sth'
 
   @confirmRoom  = (queue)->
     $uibModalInstance.close(queue)

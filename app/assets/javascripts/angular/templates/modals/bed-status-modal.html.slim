@@ -4,10 +4,10 @@
 .modal-body
   dl.detail-list
     dt(translate) PATIENT
-    dt {{ "FIRST_NAME" | translate }}: {{ data.patient.first_name }}
-    dt {{ "LAST_NAME" | translate }}: {{ data.patient.last_name }}
+    dt {{ "FIRST_NAME" | translate }}: {{ data.admit.patient.first_name }}
+    dt {{ "LAST_NAME" | translate }}: {{ data.admit.patient.last_name }}
     dt {{ "DIAGNOSIS" | translate }}: {{ data.admit.diagnosis }}
-    dt {{ "DOCTOR" | translate }}: {{ data.doctor.name }}
+    dt {{ "DOCTOR" | translate }}: {{ data.admit.doctor.name }}
     dt(ng-if="header === 'CONFIRM_TO_ICU'")
       span(translate) RESERVE_ROOM
       input(type="checkbox" ng-model="checkbox")
