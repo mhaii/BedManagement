@@ -13,7 +13,7 @@ div.container
         tr(ng-repeat="admit in checkOutCtrl.session.checkouts")
           td
             div {{ "NAME" | translate }}: {{ admit.patient.first_name }} {{ admit.patient.last_name }} {{ "AGE" | translate }}: {{ admit.patient.age }} {{ "DIAGNOSIS" | translate }}: {{ admit.diagnosis }} {{ "DOCTOR" | translate}}: {{ admit.doctor.name }}
-            span(ng-repeat="step in admit.check_out_steps" ng-if="step.time_started" style="margin-left: 5px")
+            span(ng-repeat="step in admit.check_out_steps" ng-if="step.time_ended" style="margin-left: 5px")
               i.fa.fa-sticky-note(ng-if="step.step === 'CHECK_OUT_DC'")
               i.fa.fa-envelope-o(ng-if="step.step === 'CHECK_OUT_APPOINTMENT'")
               i.fa.fa-medkit(ng-if="step.step === 'CHECK_OUT_RETURN_MED'")
