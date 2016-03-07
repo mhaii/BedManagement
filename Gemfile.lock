@@ -264,6 +264,7 @@ DEPENDENCIES
   capistrano-rails
   capistrano-rvm
   coffee-rails (~> 4.1.0)
+  eventmachine
   faye-websocket (= 0.10.0)
   font-awesome-sass
   jasmine
