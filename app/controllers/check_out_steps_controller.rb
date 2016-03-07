@@ -1,22 +1,14 @@
 require 'json'
 class CheckOutStepsController < ApplicationController
-  before_action :get_steps, only: [:stop, :reset]
+  before_action :get_steps, only: [:start, :stop, :reset]
   before_action :set_steps, only: [:show]
 
   def start
-    json = get_request_body
-    @step = CheckOutStep.new({admit_id: json['admit_id'], step: json['step']})
-    respond_to do |format|
-      if @step.save
-        format.json { render :show, status: :created }
-      else
-        format.json { render json: @step.errors, status: :unprocessable_entity }
-      end
-    end
+    update time_started: DateTime.now
   end
 
   def stop
-    update time_ended: DateTime.now
+    update time_ended:   DateTime.now
   end
 
   def reset

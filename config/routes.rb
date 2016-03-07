@@ -1,8 +1,7 @@
 Rails.application.routes.draw do
   root 'application#index'
 
-  resource :sessions,  only: [:create, :show, :destroy] do
-  end
+  resource :sessions,  only: [:create, :show, :destroy]
 
   scope 'resources' do
     resources :admits,    except: [:new, :edit] do
@@ -29,11 +28,10 @@ Rails.application.routes.draw do
 
     resources :check_out, controller: :check_out_steps, only: [:show], path: 'check_out' do
       member do
+        put    'start'
         put    'stop'
         delete 'reset'
       end
-
-      post 'start',   on: :collection
     end
   end
 

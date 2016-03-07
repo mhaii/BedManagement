@@ -32,9 +32,9 @@ class AdmitsController < ApplicationController
     if @current_user
       query = Admit.includes([:patient, :doctor, :check_out_steps, room: :ward])
       if @current_user.ward_id
-        @admits = query.joins(:room).where "admits.status = 4 AND rooms.ward_id = #{@current_user.ward_id}"
+        @admits = query.joins(:room).where "admits.status = 3 AND rooms.ward_id = #{@current_user.ward_id}"
       else
-        @admits = query.where status: 4
+        @admits = query.where status: 3
       end
     end
   end
