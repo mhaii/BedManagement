@@ -1,18 +1,14 @@
-modalController = ($scope, $uibModalInstance, checkOutService, header, data)->
-  $scope.header    = header
+modalController = ($scope, $uibModalInstance, checkOutService, sessionService, header, data)->
+  $scope.header  = header
+  $scope.session = sessionService
+  console.log sessionService.admit
 
-  #if this one is needed when the data can update
-  $scope.refreshData = ()->
-    $scope.data.check_out_steps.forEach (element, index, value)->
-      $scope.sortedStep[element.step] = element
-
-  if header is 'PROCESS'
-    $scope.processes = data[1]
-    $scope.data = data[0]
-    $scope.sortedStep = new Array($scope.processes.length)
-    $scope.refreshData()
-  else
-    $scope.data = data
+  switch header
+    when 'PROCESS'
+      $scope.session.websocket.bind 'check_out', (steps)->
+        $scope.session.admit.check_out_steps = steps
+    else
+      $scope.data  = data
 
   $scope.confirm   = ()->
     confirm = $scope.checkbox and 'reserve' or null
@@ -22,23 +18,17 @@ modalController = ($scope, $uibModalInstance, checkOutService, header, data)->
     $uibModalInstance.dismiss('cancel')
 
   ###### Check-out modal ######
-
   $scope.startProcess = (process)->
-    send = {
-      "step": process,
-      "admit_id": $scope.data.id
-    }
-    checkOutService.start.save(send)
+    checkOutService.start.update({id:process.id})
+
+  $scope.endProcess   = (process)->
+    checkOutService.stop.update({id:process.id})
 
   $scope.resetProcess = (process)->
-    checkOutService.reset.delete({id:$scope.data.check_out_steps[process].id})
-
-  $scope.endProcess = (process)->
-    checkOutService.stop.update({id:$scope.data.check_out_steps[process].id})
-
+    checkOutService.reset.delete({id:process.id})
   return
 
 
-modalController.$inject = ['$scope', '$uibModalInstance', 'checkOutService', 'header', 'data']
+modalController.$inject = ['$scope', '$uibModalInstance', 'checkOutService', 'sessionService', 'header', 'data']
 
 angular.module('app').controller('modalController', modalController)

@@ -10,22 +10,15 @@ div.container
           th(translate) INFORMATION
           th(translate) UPDATE_STATUS
       tbody
-        tr(ng-repeat="admit in checkOutCtrl.patients track by $index")
+        tr(ng-repeat="admit in checkOutCtrl.session.checkouts")
           td
-            div
-              div {{ "NAME" | translate }}: {{ admit.patient.first_name }} {{ admit.patient.last_name }} {{ "AGE" | translate }}: {{ admit.patient.age }} {{ "DIAGNOSIS" | translate }}: {{ admit.diagnosis }} {{ "DOCTOR" | translate}}: {{ admit.doctor.name }}
-              span(ng-repeat="process in admit.check_out_steps | orderBy: 'step'")
-                span(ng-if="process.step === 0")
-                  i.fa.fa-sticky-note(style="margin: 10px;")
-                span(ng-if="process.step === 1")
-                  i.fa.fa-envelope-o(style="margin: 10px;")
-                span(ng-if="process.step === 3")
-                  i.fa.fa-medkit(style="margin: 10px;")
-                span(ng-if="process.step === 4")
-                  i.fa.fa-phone(style="margin: 10px;")
-                span(ng-if="process.step === 8")
-                  i.fa.fa-credit-card(style="margin: 10px;")
-                span(ng-if="process.step === 10")
-                  i.fa.fa-sign-out(style="margin: 10px;")
+            div {{ "NAME" | translate }}: {{ admit.patient.first_name }} {{ admit.patient.last_name }} {{ "AGE" | translate }}: {{ admit.patient.age }} {{ "DIAGNOSIS" | translate }}: {{ admit.diagnosis }} {{ "DOCTOR" | translate}}: {{ admit.doctor.name }}
+            span(ng-repeat="step in admit.check_out_steps" ng-if="step.time_started" style="margin-left: 5px")
+              i.fa.fa-sticky-note(ng-if="step.step === 'CHECK_OUT_DC'")
+              i.fa.fa-envelope-o(ng-if="step.step === 'CHECK_OUT_APPOINTMENT'")
+              i.fa.fa-medkit(ng-if="step.step === 'CHECK_OUT_RETURN_MED'")
+              i.fa.fa-phone(ng-if="step.step === 'CHECK_OUT_CONTACT_FAM'")
+              i.fa.fa-credit-card(ng-if="step.step === 'CHECK_OUT_PAYMENT'")
+              i.fa.fa-sign-out(ng-if="step.step === 'CHECK_OUT_PATIENT_LEAVE'")
           td
-            a.fake-link(ng-click="checkOutCtrl.updateModal(admit)" ) UPDATE
+            a.fake-link(ng-click="checkOutCtrl.updateModal(admit)") UPDATE
