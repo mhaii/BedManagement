@@ -18,16 +18,14 @@ angular.module('app').filter 'dateTimeHumanize', ($filter)->
 
 angular.module('app').filter 'dateHumanize', ($filter)->
   (input) ->
-    [nowTime, date] = [(new Date).getTime(), new Date(input)]
-    # TODO finish this
-    return date.toDateString()
+    date = new Date(input)
+    [today, target] = [Math.floor((new Date).getTime() / 86398505), Math.floor(date / 86398505)]
+    diff    = target - today
 
-    dateDifference = nowTime - date.getTime()
-    days = Math.abs(dateDifference) / 86400000
-    console.log days
-    day = days < 1 and $filter('translate')('TODAY') or
-          days < 2 and (dateDifference < 0 and $filter('translate')('TOMORROW') or $filter('translate')('YESTERDAY'))
-    $.trim [date.toLocaleDateString()].concat(day and [' (', day, ')'] or []).join ''
+    string  = !diff and $filter('translate')('TODAY') or
+              diff == 1  and $filter('translate')('TOMORROW') or
+              diff == -1 and $filter('translate')('YESTERDAY')
+    $.trim [date.toLocaleDateString()].concat(string and [' (', string, ')'] or []).join ''
 
 angular.module('app').filter 'splitAndTranslate', ($filter)->
   (input) ->
