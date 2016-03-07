@@ -54,4 +54,5 @@ end
 
 group :production do
   gem 'eventmachine'
+  gem 'puma'
 end
