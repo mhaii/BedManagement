@@ -3,17 +3,19 @@ html(ng-app="app")
   head
     title Hospital Bed Management
     meta[charset="UTF-8"]
+    meta[http-equiv="X-UA-Compatible" content="IE=edge"]
+    meta[name="mobile-web-app-capable" content="yes"]
+    meta[name="apple-mobile-web-app-capable" content="yes"]
+    meta[name="viewport" content="width=device-width, initial-scale=1"]
     = javascript_include_tag  'application'
     = stylesheet_link_tag     'application'
     = csrf_meta_tags
   body
-    #header(ng-controller="translationController")
-      include header
+    #header(ng-controller="globalController")
+      = render 'layouts/header'
     #content
-      - flash.each do |message_type, message|
-        | <div class="alert alert-<%= message_type %>"><%= message %></div>
       - if @current_user
         ui-view
       - else
-        include ../sessions/login
-    include footer
+        = render 'sessions/login'
+    = render 'layouts/footer'

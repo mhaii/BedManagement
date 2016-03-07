@@ -1,5 +1,6 @@
 {
   "ADD_QUEUE": "Add Queue",
+  "AGE": "Age",
   "APPOINTMENT": "Appointment",
   "AVAILABLE": "Available",
   "AVAILABLE_BEDS": "Available Beds",
@@ -25,12 +26,18 @@
   "EDIT": "Edit",
   "EXPECTED_DISCHARGE": "Expected Discharge",
 
+  "FEMALE": "Female",
   "FIRST_NAME": "First Name",
 
-  "HN_NUMBER": "HN-Number",
+  "GENDER": "Gender",
+
+  "HN_NUMBER": "HN Number",
   "HOME": "Home",
   "HOUR_TO_TIL": "1 hour",
   "HOURS_TO_TIL": "{{hours}} hours",
+
+  "INCORRECT_PASSWORD": "Incorrect password",
+  "INCORRECT_USERNAME": "Incorrect username",
 
   "LANG": "ภาษาไทย",
   "LAST_NAME": "Last Name",
@@ -38,6 +45,7 @@
   "LOGIN": "Login",
   "LOGOUT": "Logout",
 
+  "MALE": "Male",
   "MINUTE_TO_TIL": "1 minute",
   "MINUTES_TO_TIL": "{{minutes}} minutes",
 
@@ -60,6 +68,7 @@
   "REMEMBER_ME": "Remember me",
   "RESERVE": "Reserve",
   "RESERVED": "Reserved",
+  "RETURN_TO_ROOM": "Return patient to room",
   "ROOM": "Room",
   "ROOM_NUMBER": "Room Number",
 
@@ -69,10 +78,16 @@
   "SUFFIX_FROM_NOW": "from now",
 
   "TEL": "Tel",
+  "TODAY": "Today",
+  "TOMORROW": "Tomorrow",
+  "TO_ICU": "To ICU",
+  "TRANSFER": "Transfer",
 
   "USERNAME": "Username",
 
   "WARD": "Ward",
+
+  "YESTERDAY": "Yesterday",
 
   "confirmed": "Confirmed",
   "currentlyAdmit": "Currently Admit",
@@ -80,5 +95,20 @@
   "east": "E",
   "pending": "Pending",
   "preDischarged": "Pre-Discharged",
-  "west": "W"
+  "west": "W",
+
+  "PUT_IN_HN_NUMBER_TO_SEARCH": "Put in HN number to search",
+
+  "INFORMATION": "Information",
+  "CHECK_OUT_DC": "Takes D/C order",
+  "CHECK_OUT_APPOINTMENT": "Makes an appointment",
+  "CHECK_OUT_GET_MED": "Gets medicines",
+  "CHECK_OUT_RETURN_MED": "Returns medicines",
+  "CHECK_OUT_CONTACT_FAM": "Contact family",
+  "CHECK_OUT_BILLING": "Billing",
+  "CHECK_OUT_NOTIFY_FINANCE": "Notify finance",
+  "CHECK_OUT_INFORM_BILLING": "Inform billing",
+  "CHECK_OUT_PAYMENT": "Payment",
+  "CHECK_OUT_CONTACT_TRANS": "Contact transfer unit",
+  "CHECK_OUT_PATIENT_LEAVE": "Patient leaved"
 }

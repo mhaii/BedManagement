@@ -5,6 +5,6 @@
         th(translate) NAME
         th(translate) ROOM
     tbody
-      tr(ng-repeat="admit in statCtrl.admitTd")
+      tr(ng-repeat="admit in session.admittedToday")
         td {{ admit.patient.first_name }} {{ admit.patient.last_name }}
-        td {{ admit.room.number }}, {{ admit.room.ward.name }} {{ admit.room.ward.remark }}
+        td {{ admit.room.number }}, {{ admit.room.ward.name }} {{ admit.room.ward.remark | splitAndTranslate }}

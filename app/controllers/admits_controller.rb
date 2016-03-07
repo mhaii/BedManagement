@@ -1,6 +1,6 @@
 require 'json'
 class AdmitsController < ApplicationController
-  before_action { render text: 'Loading API in HTML is prohibited', status: 405 if params[:format].nil? }
+  before_action :json_only
   before_action :set_admit, only: [:show, :update, :destroy]
   before_action :get_admits, only: [:index]
 
@@ -22,6 +22,21 @@ class AdmitsController < ApplicationController
   def out_soon
     @admits = query.where(status: [2, 3], edd: 1.month.ago..3.days.from_now).order :edd
     render :detail
+  end
+
+  def check_out
+    @admits = query.where(status: 3)
+  end
+
+  def check_out_list
+    if @current_user
+      query = Admit.includes([:patient, :doctor, :check_out_steps, room: :ward])
+      if @current_user.ward_id
+        @admits = query.joins(:room).where "admits.status = 3 AND rooms.ward_id = #{@current_user.ward_id}"
+      else
+        @admits = query.where status: 3
+      end
+    end
   end
 
   def create
@@ -49,17 +64,15 @@ class AdmitsController < ApplicationController
   private
     def set_admit
       @admit = Admit.find_by(id: params[:id])
-      unless @admit
-        render json: { error: 'not found' }
-      end
+      error_not_found unless @admit
     end
 
     def get_admits
-      @admits = Admit
+      @admits = Admit.all
     end
 
     def query
-      Admit.includes([:patient, room: :ward])
+      Admit.includes([:patient, :doctor, room: :ward])
     end
 
     def get_request_body

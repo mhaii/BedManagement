@@ -1,0 +1,17 @@
+.modal-header
+  span.fa.fa-times.close(ng-click="close()")
+  h4.modal-title(translate) {{ header | translate }}
+.modal-body
+  dl.detail-list
+    dt(translate) PATIENT
+    dt {{ "FIRST_NAME" | translate }}: {{ data.admit.patient.first_name }}
+    dt {{ "LAST_NAME" | translate }}: {{ data.admit.patient.last_name }}
+    dt {{ "DIAGNOSIS" | translate }}: {{ data.admit.diagnosis }}
+    dt {{ "DOCTOR" | translate }}: {{ data.admit.doctor.name }}
+    dt(ng-if="header === 'CONFIRM_TO_ICU'")
+      span(translate) RESERVE_ROOM
+      input(type="checkbox" ng-model="checkbox")
+
+.modal-footer
+  button.btn.btn-warning(type="button" ng-click="close()" translate="CLOSE")
+  button.btn.btn-primary(type="button" ng-click="confirm()" translate="CONFIRM")

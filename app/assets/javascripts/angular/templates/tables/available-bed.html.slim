@@ -5,6 +5,6 @@
         th(translate) WARD
         th(translate) NO_BED
     tbody
-      tr(ng-repeat="ward in statCtrl.wards")
-        td {{ ward.name }}
-        td {{ ward.count }}
+      tr(ng-repeat="ward in session.freeRoomCount")
+        td {{ ward[0] + ' ' + ward[1] | splitAndTranslate }}
+        td {{ ward[2] }}

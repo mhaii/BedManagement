@@ -1,0 +1,1 @@
+json.merge! @step.as_json

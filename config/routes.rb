@@ -1,11 +1,7 @@
 Rails.application.routes.draw do
   root 'application#index'
 
-  controller :sessions do
-    get     'current_user', action: :current
-    post    'login',        action: :create
-    delete  'logout',       action: :destroy
-  end
+  resource :sessions,  only: [:create, :show, :destroy]
 
   scope 'resources' do
     resources :admits,    except: [:new, :edit] do
@@ -14,22 +10,29 @@ Rails.application.routes.draw do
         get 'out_soon'
         get 'today'
         get 'queue'
+        get 'check_out_list'
       end
     end
 
     resources :patients,  except: [:new, :edit]
     resources :rooms,     except: [:new, :edit]
 
-
     resources :wards,     except: [:new, :edit]  do
       get 'rooms',    on: :member,  action: :ward_index
 
       collection do
         get 'rooms',                action: :wards_index
-        get 'free',                 action: :free
+        get 'free'
       end
     end
 
+    resources :check_out, controller: :check_out_steps, only: [:show], path: 'check_out' do
+      member do
+        put    'start'
+        put    'stop'
+        delete 'reset'
+      end
+    end
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

@@ -17,6 +17,7 @@ source 'https://rails-assets.org' do
   gem 'rails-assets-angular-resource'
   gem 'rails-assets-angular-translate'
   gem 'rails-assets-angular-translate-loader-static-files'
+  gem 'rails-assets-angular-ui-bootstrap-bower'
   gem 'rails-assets-angular-ui-router'
   gem 'rails-assets-bootstrap-material-design'
 end

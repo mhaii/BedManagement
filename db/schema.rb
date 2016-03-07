@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160223191132) do
+ActiveRecord::Schema.define(version: 20160301153524) do
 
   create_table "admits", force: :cascade do |t|
     t.integer  "status",        limit: 4,   default: 0
@@ -22,6 +22,13 @@ ActiveRecord::Schema.define(version: 20160223191132) do
     t.integer  "patient_id",    limit: 4
     t.integer  "doctor_id",     limit: 4
     t.integer  "room_id",       limit: 4
+  end
+
+  create_table "check_out_steps", force: :cascade do |t|
+    t.integer  "admit_id",     limit: 4, null: false
+    t.integer  "step",         limit: 4, null: false
+    t.datetime "time_started"
+    t.datetime "time_ended"
   end
 
   create_table "departments", force: :cascade do |t|
@@ -39,12 +46,13 @@ ActiveRecord::Schema.define(version: 20160223191132) do
   end
 
   create_table "patients", id: false, force: :cascade do |t|
-    t.integer "hn",         limit: 4
-    t.string  "first_name", limit: 255
-    t.string  "last_name",  limit: 255
-    t.string  "phone",      limit: 255
-    t.integer "sex",        limit: 4
-    t.integer "age",        limit: 4
+    t.integer "hn",              limit: 4
+    t.string  "first_name",      limit: 255
+    t.string  "last_name",       limit: 255
+    t.string  "phone",           limit: 255
+    t.integer "sex",             limit: 4
+    t.integer "age",             limit: 4
+    t.string  "social_security", limit: 255
   end
 
   create_table "rooms", force: :cascade do |t|
@@ -59,6 +67,7 @@ ActiveRecord::Schema.define(version: 20160223191132) do
     t.integer "role",            limit: 4
     t.string  "password_digest", limit: 255
     t.string  "remember_digest", limit: 255
+    t.integer "ward_id",         limit: 4
   end
 
   create_table "wards", force: :cascade do |t|

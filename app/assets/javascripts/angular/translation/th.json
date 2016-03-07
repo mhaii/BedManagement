@@ -1,5 +1,6 @@
 {
   "ADD_QUEUE": "เพิ่มคิว",
+  "AGE": "อายุ",
   "APPOINTMENT": "วัน-เวลานัด",
   "AVAILABLE": "ห้องว่าง",
   "AVAILABLE_BEDS": "จำนวนเตียงว่าง",
@@ -25,12 +26,18 @@
   "EDIT": "แก้ไข",
   "EXPECTED_DISCHARGE": "คาดว่าจะแจ้งออก",
 
+  "FEMALE": "หญิง",
   "FIRST_NAME": "ชื่อ",
 
-  "HN_NUMBER": "เลขคนไข้",
+  "GENDER": "เพศ",
+
+  "HN_NUMBER": "เลขประจำตัวผู้ป่วย",
   "HOME": "หน้าหลัก",
   "HOUR_TO_TIL": "1 ชั่วโมง",
   "HOURS_TO_TIL": "{{hours}} ชั่วโมง",
+
+  "INCORRECT_PASSWORD": "รหัสผ่านไม่ถูกต้อง",
+  "INCORRECT_USERNAME": "ชิ่อผู้ใช้ไม่ถูกต้อง",
 
   "LANG": "English",
   "LAST_NAME": "นามสกุล",
@@ -38,6 +45,7 @@
   "LOGIN": "เข้าใช้งาน",
   "LOGOUT": "ออกจากระบบ",
 
+  "MALE": "ชาย",
   "MINUTE_TO_TIL": "1 นาที",
   "MINUTES_TO_TIL": "{{minutes}} นาที",
 
@@ -50,8 +58,8 @@
   "PATIENT": "ผู้ป่วย",
   "PEOPLE_ADMITTED_TODAY": "คนไข้เข้าพักในวันนี้",
   "PHONE": "เบอร์ติดต่อ",
-  "PREFIX_AGO": "เมื่อ",
-  "PREFIX_FROM_NOW": "ในอีก",
+  "PREFIX_AGO": "",
+  "PREFIX_FROM_NOW": "",
 
   "QUEUE": "คิว",
   "QUEUES": "คิวทั้งหมด",
@@ -60,6 +68,7 @@
   "REMEMBER_ME": "จดจำ",
   "RESERVE": "จอง",
   "RESERVED": "ห้องถูกจอง",
+  "RETURN_TO_ROOM": "ย้ายผู้ป่วยกลับห้อง",
   "ROOM": "ห้อง",
   "ROOM_NUMBER": "เลขห้อง",
 
@@ -69,10 +78,16 @@
   "SUFFIX_FROM_NOW": "ข้างหน้า",
 
   "TEL": "โทร",
+  "TODAY": "วันนี้",
+  "TOMORROW": "พรุ่งนี้",
+  "TO_ICU": "ไปไอซียู",
+  "TRANSFER": "ย้าย",
 
   "USERNAME": "ชื่อผู้ใช้",
 
   "WARD": "วอร์ด",
+
+  "YESTERDAY": "เมื่อวาน",
 
   "confirmed": "ยืนยันการนัด",
   "currentlyAdmit": "กำลังเข้ารักษา",
@@ -80,5 +95,20 @@
   "east": "อ",
   "pending": "รอการยืนยัน",
   "preDischarged": "เตรียมจ่ายออก",
-  "west": "ต"
+  "west": "ต",
+
+  "PUT_IN_HN_NUMBER_TO_SEARCH": "กรอกเลขประจำตัวผู้ป่วยเพื่อค้นหา",
+
+  "INFORMATION": "รายละเอียด",
+  "CHECK_OUT_DC": "รับคำสั่ง D/C",
+  "CHECK_OUT_APPOINTMENT": "ออกใบนัด-ได้รับใบนัด",
+  "CHECK_OUT_GET_MED": "ส่งใบเบิกยา-รับยา HM",
+  "CHECK_OUT_RETURN_MED": "คืนยากลับบ้าน",
+  "CHECK_OUT_CONTACT_FAM": "ติดต่อญาติ-ญาติมารับผู้ป่วย",
+  "CHECK_OUT_BILLING": "คิดค่าใช้จ่าย",
+  "CHECK_OUT_NOTIFY_FINANCE": "แจ้งการเงิน",
+  "CHECK_OUT_INFORM_BILLING": "แจ้งค่าใช้จ่าย",
+  "CHECK_OUT_PAYMENT": "ญาติชำระเงิน",
+  "CHECK_OUT_CONTACT_TRANS": "ติดต่อหน่วยเคลื่อนย้าย",
+  "CHECK_OUT_PATIENT_LEAVE": "ผู้ป่วยกลับบ้าน"
 }

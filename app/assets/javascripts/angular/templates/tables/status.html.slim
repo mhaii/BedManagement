@@ -1,0 +1,51 @@
+#beds-table.bs-docs-section
+  .row
+    div.patient-info(ng-show="bedCtrl.queue")
+      span.fa.fa-times.close(ng-click="bedCtrl.clear()")
+      table
+        tr
+          td
+            b(translate) CURRENTLY_SELECTED
+          td {{ "FIRST_NAME" | translate }}: {{ bedCtrl.queue.patient.first_name }}
+          td {{ "LAST_NAME" | translate }}: {{ bedCtrl.queue.patient.last_name }}
+          td {{ "DIAGNOSIS" | translate}}: {{ bedCtrl.queue.diagnosis }}
+          td {{ "DOCTOR" | translate }}: {{ bedCtrl.queue.doctor.name }}
+    div.bs-component
+      table.table.table-bordered.table-striped.table-hover
+        thead
+          tr
+            th(translate) WARD
+            th(colspan="20" translate) ROOM_NUMBER
+        tbody
+          tr(ng-repeat="ward in bedCtrl.session.wards")
+            td {{ ward.name }} {{ ward.remark | splitAndTranslate }} {{ "TEL" | translate }}. {{ ward.phone }} ({{ ward.rooms[0].price }})
+            td.room(ng-repeat="room in ward.rooms" ng-attr-id="{{ ward.id }}-{{ room.number }}" ng-class="'room-' + room.status")
+              span {{ room.number }}
+              #patient.hidden-box.popup(ng-if="room.status === 'occupied' || room.status === 'availableSoon'")
+                dl.detail-list
+                  dt {{ "ROOM" | translate }}: {{ room.number }}
+                  dt {{ "NAME" | translate }}: {{ room.admit.patient.first_name }} {{ room.admit.patient.last_name }}
+                  dt {{ "DIAGNOSIS" | translate}}: {{ room.admit.diagnosis }}
+                  dt {{ "DOCTOR" | translate }}: {{ room.admit.doctor.name }}
+                  dt {{ "EDD" | translate }}: {{ room.admit.edd }}
+                span(ng-if="room.status === 'occupied'")
+                  span(ng-if="bedCtrl.session.isAuthorized(['op', 'admission'])")
+                    a.btn-sm.info-button(ng-click="bedCtrl.move(room)" translate) TRANSFER
+                    a.btn-sm.info-button(ng-click="bedCtrl.remove(room)" translate) CANCLE
+                    a.btn-sm.info-button(ng-click="bedCtrl.toICU(room)" translate) TO_ICU
+                  span(ng-hide="bedCtrl.session.isAuthorized(['admission'])")
+                    a.btn-sm.info-button(ng-click="bedCtrl.checkOutModal(room)") CHECK_OUT
+                span(ng-if="room.status === 'availableSoon'")
+                  span(ng-repeat="step in room.admit.check_out_steps" ng-if="step.time_ended" style="margin-left: 5px")
+                    i.fa.fa-sticky-note(ng-if="step.step === 'CHECK_OUT_DC'")
+                    i.fa.fa-envelope-o(ng-if="step.step === 'CHECK_OUT_APPOINTMENT'")
+                    i.fa.fa-medkit(ng-if="step.step === 'CHECK_OUT_RETURN_MED'")
+                    i.fa.fa-phone(ng-if="step.step === 'CHECK_OUT_CONTACT_FAM'")
+                    i.fa.fa-credit-card(ng-if="step.step === 'CHECK_OUT_PAYMENT'")
+                    i.fa.fa-sign-out(ng-if="step.step === 'CHECK_OUT_PATIENT_LEAVE'")
+                  span(ng-hide="bedCtrl.session.isAuthorized(['op', 'admission'])")
+                    a.btn-sm.info-button(ng-click="") DELAY_STAY
+              #patient.hidden-box.popup(ng-if="room.status === 'available' && bedCtrl.session.isAuthorized(['op', 'admission'])")
+                dl.detail-list
+                  dt {{ "ROOM" | translate }}: {{ room.number }}
+                a.btn-sm.info-button(ng-click="bedCtrl.choose(room)" translate) RESERVE

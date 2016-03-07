@@ -11,13 +11,12 @@ div ICU
         th(translate) PHONE
         th(translate)
     tbody
-      tr(ng-repeat="patient in bedCtrl.icuPatients")
-        td {{ patient.patient.hn }}
-        td {{ patient.patient.first_name }}
-        td {{ patient.patient.last_name }}
-        td {{ patient.symptom }}
-        td {{ patient.doctor.name }}
-        td {{ patient.patient.phone }}
+      tr(ng-repeat="admit in bedCtrl.session.icuPatients")
+        td {{ ::admit.patient.hn }}
+        td {{ ::admit.patient.first_name }}
+        td {{ ::admit.patient.last_name }}
+        td {{ ::admit.diagnosis }}
+        td {{ ::admit.doctor.name }}
+        td {{ ::admit.patient.phone }}
         td
-          a(ng-if="patient.room_id == null" ng-click="bedCtrl.movePatient(patient, 'icu', false)" translate) CHOOSE
-          a(ng-if="patient.room_id != null" ng-click="bedCtrl.movePatient(patient, 'icu', false)" data-toggle="modal" data-target="#confirmMoveBack" translate) RETURN_TO_ROOM
+          a(ng-click="bedCtrl.backFromICU(admit)" translate) {{ ::admit.room_id == null ? 'CHOOSE' : 'RETURN_TO_ROOM' }}

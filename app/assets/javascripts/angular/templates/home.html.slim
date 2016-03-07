@@ -1,14 +1,10 @@
 #home.container
-  #CurrentStatistics
-    .col-md-3
-      label.lead.text-center.text-primary(translate) AVAILABLE_BEDS
-      div(ng-include="'templates/tables/available-bed.html'")
-    .col-md-4
-      label.lead.text-center.text-primary(translate) EXPECTED_DISCHARGE
-      div(ng-include="'templates/tables/expected-to-discharge.html'")
-    .col-md-5
-      label.lead.text-center.text-primary(translate) PEOPLE_ADMITTED_TODAY
-      div(ng-include="'templates/tables/admitted-today.html'")
-  .col-md-12.admit-table(ng-controller="queueController as qCtrl")
-    label.lead.text-center.text-primary(translate) QUEUE
-    div(ng-include="'templates/tables/queues.html'")
+  .col-md-3
+    label.lead.text-center.text-primary(translate) AVAILABLE_BEDS
+    div(ng-include="'templates/tables/available-bed.html'")
+  .col-md-4
+    label.lead.text-center.text-primary(translate) EXPECTED_DISCHARGE
+    div(ng-include="'templates/tables/expected-to-discharge.html'")
+  .col-md-5
+    label.lead.text-center.text-primary(translate) PEOPLE_ADMITTED_TODAY
+    div(ng-include="'templates/tables/admitted-today.html'")

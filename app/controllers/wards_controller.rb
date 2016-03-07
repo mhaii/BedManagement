@@ -5,15 +5,19 @@ class WardsController < ApplicationController
   before_action :get_wards, only: [:index]
 
   def ward_index
-    @ward = Ward.includes(rooms: [admit: :patient]).find_by(id: params[:id])
-    unless @ward
-      render json: { error: 'not found' }
-    end
-    render '_ward_index'
+    @ward  = Ward.includes(rooms: [admit: [:patient, :check_out_steps]]).find_by(id: params[:id])
+    error_not_found unless @ward
   end
 
   def wards_index
-    @wards = Ward.includes(rooms: [admit: :patient])
+    if @current_user
+      query = Ward.includes(rooms: [admit: [:patient, :check_out_steps]])
+      if @current_user.ward_id
+        @wards = query.where(id: @current_user.ward_id)
+      else
+        @wards = query
+      end
+    end
   end
 
   def free
@@ -53,9 +57,7 @@ class WardsController < ApplicationController
   private
     def set_ward
       @ward = Ward.find_by(id: params[:id])
-      unless @ward
-        render json: { error: 'not found' }
-      end
+      error_not_found unless @ward
     end
 
     def get_wards

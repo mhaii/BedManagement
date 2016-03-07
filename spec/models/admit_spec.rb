@@ -15,6 +15,15 @@ RSpec.describe Admit, type: :model do
     expect(@room.status).to eq 'occupied'
   end
 
+  it 'should occupy the room when patient is back from icu' do
+    admit = Admit.create({ patient: @patient, status: :inICU })
+    admit.update({ status: :currentlyAdmit, room: @room })
+
+    expect(admit.room).to eq @room
+    expect(admit.status).to eq 'currentlyAdmit'
+    expect(@room.status).to eq 'occupied'
+  end
+
   it 'should vacant the room when the patient is discharged' do
     admit = Admit.create({ status: :preDischarged, patient: @patient, room: @room })
     admit.discharged!
@@ -45,6 +54,7 @@ RSpec.describe Admit, type: :model do
     expect(admit.status).to eq 'preDischarged'
     expect(admit.room.status). to eq 'availableSoon'
   end
+
 
 
 end

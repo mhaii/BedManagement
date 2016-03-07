@@ -4,6 +4,7 @@
 @import 'font-awesome'
 
 @import 'bed-status'
+@import 'login'
 
 [class*='fa-caret-']
   margin-left: 6px
@@ -54,4 +55,12 @@ body
   #add-queue
     .form
       width: 80%
+      .form-control
+        margin-top: 10px
+      button.btn-default
+        position: absolute
+        @media (max-width: 991px)
+          margin-top: 0
+      #input-booking-date
+        padding-left: 76px
 

@@ -1,0 +1,83 @@
+#add-queue.container.container-hover.container-slim
+  h1(translate) BOOKING
+  .form.center-block
+    .row
+      .col-md-7.col-md-offset-1.col-lg-5
+        form.bs-component
+          .bs-component
+            .form-group
+              .input-group
+                span.input-group-addon(translate) HN_NUMBER
+                input#add-on-1.form-control(type="text" ng-model="addQueueCtrl.admit.patient.hn" ng-disabled="addQueueCtrl.editing")
+                  span.input-group-btn
+                    button.btn.btn-primary(type="button" ng-click="addQueueCtrl.search()" ng-hide="addQueueCtrl.editing")
+                      span(translate) SEARCH
+                      .ripple-container
+              .alert.alert-dismissible(ng-hide="addQueueCtrl.searched && addQueueCtrl.patientFound" ng-class="addQueueCtrl.searched ? 'alert-danger': 'alert-info'")
+                button.close(type="button" data-dismiss="alert")
+                  span.fa.fa-times-circle
+                strong(ng-hide="addQueueCtrl.searched" translate) PUT_IN_HN_NUMBER_TO_SEARCH
+                strong(ng-show="addQueueCtrl.searched && !addQueueCtrl.patientFound" translate) PATIENT_NOT_FOUND
+
+    form.form-horizontal(name="form")
+      .form-group
+        label.control-label.col-md-2(for="input-first-name" translate) FIRST_NAME
+        .col-md-10
+          input#input-first-name.form-control(type="text" ng-model="addQueueCtrl.admit.patient.first_name" ng-disabled="addQueueCtrl.patientFound")
+        span.material-input
+
+      .form-group
+        label.control-label.col-md-2(for="input-last-name" translate) LAST_NAME
+        .col-md-10
+          input#input-last-name.form-control(type="text" ng-model="addQueueCtrl.admit.patient.last_name" ng-disabled="addQueueCtrl.patientFound")
+        span.material-input
+
+      .form-group(style="margin-top: 0")
+        label.control-label.col-md-2.short-word(translate) GENDER
+        .col-md-10
+          .radio.radio-primary(ng-repeat="obj in ['MALE', 'FEMALE']" ng-disabled="addQueueCtrl.patientFound")
+            label
+              input(type="radio" name="sex" ng-attr-id="'obj'" ng-value="obj.toLowerCase()" ng-model="addQueueCtrl.admit.patient.sex")
+              span.circle
+              span.check
+              span(style="margin-left: 20px") {{ obj | translate }}
+
+      .form-group
+        label.control-label.col-md-2(for="input-age" translate) AGE
+        .col-md-10
+          input#input-age.form-control(type="text" ng-model="addQueueCtrl.admit.patient.age" ng-disabled="addQueueCtrl.patientFound")
+        span.material-input
+
+      .form-group
+        label.control-label.col-md-2(for="input-phone-number" translate) PHONE
+        .col-md-10
+          input#input-phone-number.form-control(type="text" ng-model="addQueueCtrl.admit.patient.phone" ng-disabled="addQueueCtrl.patientFound")
+        span.material-input
+
+      .form-group
+        label.control-label.col-md-2(for="input-diagnosis" translate) DIAGNOSIS
+        .col-md-10
+          input#input-diagnosis.form-control(type="text" required ng-model="addQueueCtrl.admit.diagnosis")
+          span.has-warning(ng-show="form.diagnosisCheck.$error.required" translate) FIELD_REQUIRED
+        span.material-input
+
+      .form-group
+        label.control-label.col-md-2(for="input-doctor" translate) DOCTOR
+        .col-md-10
+          input#input-doctor.form-control(type="text" required ng-model="addQueueCtrl.admit.doctor_id")
+          span.has-warning(ng-show="form.doctorCheck.$error.required" translate) FIELD_REQUIRED
+        span.material-input
+
+      .form-group
+        label.control-label.col-md-2(for="input-booking-date" translate) BOOKING_DATE
+        .col-md-10
+          button.btn.btn-default(type="button" ng-click="bedCtrl.opened = true")
+            i.glyphicon.glyphicon-calendar
+          input#input-booking-date.form-control(type="text" uib-datepicker-popup="yyyy-MM-dd" ng-model="addQueueCtrl.admit.admitted_date" is-open="addQueueCtrl.opened" datepicker-options="addQueueCtrl.dateOptions" ng-required="true" close-text="Close")
+          /span.has-warning(ng-show="form.bookingDate.$error.date" translate) INVALID_FORMAT
+          /span.has-warning(ng-show="form.bookingDate.$error.required" translate) FIELD_REQUIRED
+        span.material-input
+
+      .form-group
+        .col-md-10.col.md-offset-2
+          a.btn.btn-primary.fake-link(ng-click="addQueueCtrl.submit()" ng-disabled="!form.$valid" translate) CONFIRM

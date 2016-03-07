@@ -1,7 +1,9 @@
 wardService = ($resource)->
-  $resource('resources/wards/rooms.json')
+  {
+    all   : $resource('/resources/wards/rooms.json')
+    free  : $resource('/resources/wards/free.json')
+  }
 
-wardService
-  .$inject = ['$resource']
+wardService.$inject = ['$resource']
 
 angular.module('app').factory('wardService', wardService)

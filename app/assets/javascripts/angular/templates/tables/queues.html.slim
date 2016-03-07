@@ -1,54 +1,35 @@
-#queues-table(ng-class="{ container : qCtrl.isAlone }" style="" )
+#queues-table(ng-class="{ container : queueCtrl.isAlone }" style="" )
   #search-box.input-group-addon
     span.fa.fa-search
-    input.form-control(type="text" placeholder="Search patient" ng-model="qCtrl.searchPatient")
+    input.form-control(type="text" placeholder="Search patient" ng-model="queueCtrl.searchPatient")
   .table-responsive(style="margin-top: 2%;")
     table.table.table-striped.table-bordered.table-hover
       thead
         tr
-          th(ng-repeat="(text, element) in qCtrl.tableColumns")
-            a(href="" ng-click="qCtrl.sortTable(element)")
-              span(translate) {{ text }}
-              span.fa(ng-show="qCtrl.sortType == element" ng-class="qCtrl.sortTable()")
+          th(ng-repeat="object in queueCtrl.tableColumns")
+            a(href="" ng-click="queueCtrl.sortTable(object[1])")
+              span(translate) {{ object[0] }}
+              span.fa(ng-show="queueCtrl.sortType == object[1]" ng-class="queueCtrl.sortTable()")
           th
       tbody
-        tr(ng-repeat="admit in qCtrl.qData | orderBy:qCtrl.sortType:qCtrl.sortReverse | filter:qCtrl.searchPatient")
-          td {{ admit.patient.hn }}
-          td {{ admit.patient.first_name }} {{ admit.patient.last_name }}
-          td {{ admit.diagnosis }}
-          td {{ admit.admitted_date | dateTimeHumanize }}
-          td {{ admit.doctor.name }}
-          td {{ admit.patient.phone }}
-          td {{ admit.status | translate }}
+        tr(ng-repeat="queue in queueCtrl.session.queues | orderBy:queueCtrl.sortType:queueCtrl.sortReversed | filter:queueCtrl.searchPatient")
+          td {{ queue.patient.hn }}
+          td {{ queue.patient.first_name }} {{ queue.patient.last_name }}
+          td {{ queue.diagnosis }}
+          td {{ queue.admitted_date | date:'yyyy-MM-dd' }} {{ queue.admitted_date | dateHumanize | translate }}
+          td {{ queue.doctor.name }}
+          td {{ queue.patient.phone }}
+          td(translate) {{ queue.status }}
           td.dropdown
-            a.fake-link(ng-if="admit.status === 'pending'" ng-click="qCtrl.changeStatus(admit)" translate) CONFIRM
-            span(ng-show="admit.status === 'confirmed'")
-              a.fake-link(ng-if="qCtrl.isQueue" ui-sref="status" ng-click="qCtrl.choose(admit)" translate) CHOOSE
-              a.fake-link(ng-if="!qCtrl.isQueue" data-toggle="modal" data-target="#confirmModal" data-dismiss="modal" ng-mouseover="qCtrl.prepareData(admit)" translate) CHOOSE
-            a.dropdown-toggle.fake-link.pull-right(data-target="#" data-toggle="dropdown")
+            a.fake-link(ng-if="queue.status === 'pending'" ng-click="queueCtrl.toConfirmed(queue)" translate) CONFIRM
+            span(ng-show="queue.status === 'confirmed'")
+              a.fake-link(ng-if="!queueCtrl.referred" ui-sref="status" ng-click="queueCtrl.choose(queue)" translate) CHOOSE
+              a.fake-link(ng-if="queueCtrl.referred" ng-click="queueCtrl.confirmRoom(queue)" translate) CHOOSE
+            a.dropdown-toggle.fake-link.pull-right(data-target="#" data-toggle="dropdown" ng-if="!queueCtrl.referred")
               span.fa.fa-caret-down
             ul.dropdown-menu
-              li(ng-show="qCtrl.isQueue")
-                a.fake-link(ng-if="admit.status === 'pending'" data-toggle="modal" data-target="#deleteQueueModal" ng-click="qCtrl.deleteQueue(admit)" translate) DELETE
-                a.fake-link(ng-if="admit.status === 'confirmed'" ng-click="qCtrl.backToPending(admit)" translate) CANCEL
-              li(ng-show="qCtrl.isQueue")
-                a.fake-link(ng-click="qCtrl.choose(admit)" ui-sref="add-queue" translate) EDIT
-      / confirm delete
-      #deleteQueueModal.modal.fade.in
-        .modal-dialog
-          / modal content
-          .modal-content
-            .modal-header
-              button.close(type="button" data-dismiss="modal")&times;
-              h4.modal-title(translate) CONFIRM_DELETE
-            dl.detail-list
-              dt(translate) PATIENT
-              dt {{ "FIRST_NAME" | translate }}: {{ qCtrl.prepareDelete.first_name }}
-              dt {{ "LAST_NAME" | translate }}: {{ qCtrl.prepareDelete.last_name }}
-              dt {{ "DIAGNOSIS" | translate }}: {{ qCtrl.prepareDelete.symptom }}
-              dt {{ "DOCTOR" | translate }}: {{ qCtrl.prepareDelete.doctor.name }}
-              dt {{ "REMARK" | translate }}:
-                input(type="text")
-              | <dt>{{ "REMARK" | translate }}: <input type="text"/></dt>
-            button.btn.btn-warning(type="button" data-dismiss="modal" ng-click="qCtrl.getQueues()" translate) CLOSE
-            button.btn.btn-primary(type="button" data-dismiss="modal" ng-click="qCtrl.delete()" translate) CONFIRM
+              li
+                a.fake-link(ng-if="queue.status === 'pending'" ng-click="queueCtrl.openDeleteModal(queue)" translate) DELETE
+                a.fake-link(ng-if="queue.status === 'confirmed'" ng-click="queueCtrl.toPending(queue)" translate) CANCEL
+              li
+                a.fake-link(ng-click="queueCtrl.choose(queue)" ui-sref="add-queue" translate) EDIT

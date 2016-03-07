@@ -5,6 +5,7 @@ class CreateUsers < ActiveRecord::Migration
       t.integer   :role
       t.string    :password_digest
       t.string    :remember_digest
+      t.integer   :ward_id
     end
   end
 end

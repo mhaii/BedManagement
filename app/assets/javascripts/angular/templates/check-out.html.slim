@@ -1,0 +1,24 @@
+div.container
+  #checkOut-table
+  #search-box.input-group-addon
+    span.fa.fa-search
+    input.form-control(type="text" placeholder="Search patient" ng-model="checkOutCtrl.searchPatient")
+  .table-responsive(style="margin-top: 2%;")
+    table.table.table-striped.table-bordered.table-hover
+      thead
+        tr
+          th(translate) INFORMATION
+          th(translate) UPDATE_STATUS
+      tbody
+        tr(ng-repeat="admit in checkOutCtrl.session.checkouts")
+          td
+            div {{ "NAME" | translate }}: {{ admit.patient.first_name }} {{ admit.patient.last_name }} {{ "AGE" | translate }}: {{ admit.patient.age }} {{ "DIAGNOSIS" | translate }}: {{ admit.diagnosis }} {{ "DOCTOR" | translate}}: {{ admit.doctor.name }}
+            span(ng-repeat="step in admit.check_out_steps" ng-if="step.time_ended" style="margin-left: 5px")
+              i.fa.fa-sticky-note(ng-if="step.step === 'CHECK_OUT_DC'")
+              i.fa.fa-envelope-o(ng-if="step.step === 'CHECK_OUT_APPOINTMENT'")
+              i.fa.fa-medkit(ng-if="step.step === 'CHECK_OUT_RETURN_MED'")
+              i.fa.fa-phone(ng-if="step.step === 'CHECK_OUT_CONTACT_FAM'")
+              i.fa.fa-credit-card(ng-if="step.step === 'CHECK_OUT_PAYMENT'")
+              i.fa.fa-sign-out(ng-if="step.step === 'CHECK_OUT_PATIENT_LEAVE'")
+          td
+            a.fake-link(ng-click="checkOutCtrl.updateModal(admit)") UPDATE
