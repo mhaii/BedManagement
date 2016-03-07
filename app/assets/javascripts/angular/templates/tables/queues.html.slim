@@ -16,7 +16,7 @@
           td {{ queue.patient.hn }}
           td {{ queue.patient.first_name }} {{ queue.patient.last_name }}
           td {{ queue.diagnosis }}
-          td {{ queue.admitted_date | dateHumanize }}
+          td {{ queue.admitted_date | date:'yyyy-MM-dd' }} {{ queue.admitted_date | dateHumanize | translate }}
           td {{ queue.doctor.name }}
           td {{ queue.patient.phone }}
           td(translate) {{ queue.status }}

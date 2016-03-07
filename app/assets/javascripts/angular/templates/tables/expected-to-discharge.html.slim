@@ -7,4 +7,4 @@
     tbody
       tr(ng-repeat="admit in session.dischargedSoon")
         td {{ admit.patient.first_name }} {{ admit.patient.last_name }}
-        td {{ admit.edd }}
+        td {{ admit.edd | date:'yyyy-MM-dd' }} {{ admit.edd | dateHumanize | translate }}
