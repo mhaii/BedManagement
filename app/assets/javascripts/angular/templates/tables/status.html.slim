@@ -28,6 +28,14 @@
                   dt {{ "DIAGNOSIS" | translate}}: {{ room.admit.diagnosis }}
                   dt {{ "DOCTOR" | translate }}: {{ room.admit.doctor.name }}
                   dt {{ "EDD" | translate }}: {{ room.admit.edd }}
+                  span(ng-if="room.status === 'availableSoon'")
+                    span(ng-if="step.time_ended" ng-repeat="step in room.admit.check_out_steps")
+                      i.right-pad.fa.fa-sticky-note(ng-if="step.step === 'CHECK_OUT_DC'")
+                      i.right-pad.fa.fa-envelope-o(ng-if="step.step === 'CHECK_OUT_APPOINTMENT'")
+                      i.right-pad.fa.fa-medkit(ng-if="step.step === 'CHECK_OUT_RETURN_MED'")
+                      i.right-pad.fa.fa-phone(ng-if="step.step === 'CHECK_OUT_CONTACT_FAM'")
+                      i.right-pad.fa.fa-credit-card(ng-if="step.step === 'CHECK_OUT_PAYMENT'")
+                      i.right-pad.fa.fa-sign-out(ng-if="step.step === 'CHECK_OUT_PATIENT_LEAVE'")
                 span(ng-if="room.status === 'occupied'")
                   span(ng-if="bedCtrl.session.isAuthorized(['op', 'admission'])")
                     a.btn-sm.info-button(ng-click="bedCtrl.move(room)" translate) TRANSFER
@@ -36,14 +44,6 @@
                   span(ng-hide="bedCtrl.session.isAuthorized(['admission'])")
                     a.btn-sm.info-button(ng-click="bedCtrl.checkOutModal(room)") CHECK_OUT
                     a.btn-sm.info-button(ng-click="bedCtrl.delayStay(room)") DELAY_STAY
-                span(ng-if="room.status === 'availableSoon'")
-                  span(ng-if="step.time_ended" ng-repeat="step in room.admit.check_out_steps")
-                    i.right-pad.fa.fa-sticky-note(ng-if="step.step === 'CHECK_OUT_DC'")
-                    i.right-pad.fa.fa-envelope-o(ng-if="step.step === 'CHECK_OUT_APPOINTMENT'")
-                    i.right-pad.fa.fa-medkit(ng-if="step.step === 'CHECK_OUT_RETURN_MED'")
-                    i.right-pad.fa.fa-phone(ng-if="step.step === 'CHECK_OUT_CONTACT_FAM'")
-                    i.right-pad.fa.fa-credit-card(ng-if="step.step === 'CHECK_OUT_PAYMENT'")
-                    i.right-pad.fa.fa-sign-out(ng-if="step.step === 'CHECK_OUT_PATIENT_LEAVE'")
               #patient.hidden-box.popup(ng-if="room.status === 'available' && bedCtrl.session.isAuthorized(['op', 'admission'])")
                 dl.detail-list
                   dt {{ "ROOM" | translate }}: {{ room.number }}
