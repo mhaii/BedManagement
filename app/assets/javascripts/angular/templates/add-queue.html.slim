@@ -71,12 +71,14 @@
       .form-group
         label.control-label.col-md-2(for="input-booking-date" translate) BOOKING_DATE
         .col-md-10
-          button.btn.btn-default(type="button" ng-click="bedCtrl.opened = true")
-            i.glyphicon.glyphicon-calendar
-          input#input-booking-date.form-control(type="text" uib-datepicker-popup="yyyy-MM-dd" ng-model="addQueueCtrl.admit.admitted_date" is-open="addQueueCtrl.opened" datepicker-options="addQueueCtrl.dateOptions" ng-required="true" close-text="Close")
+          p.input-group
+            input.form-control(type="text" uib-datepicker-popup="yyyy-MM-dd" ng-model="addQueueCtrl.admit.admitted_date" is-open="addQueueCtrl.opened" datepicker-options="addQueueCtrl.dateOptions" ng-required="true" close-text="Close")
+            span.input-group-btn
+              button.btn.btn-default(type="button" ng-click="addQueueCtrl.opened = true")
+                i.glyphicon.glyphicon-calendar
           /span.has-warning(ng-show="form.bookingDate.$error.date" translate) INVALID_FORMAT
           /span.has-warning(ng-show="form.bookingDate.$error.required" translate) FIELD_REQUIRED
-        span.material-input
+          /span.material-input
 
       .form-group
         .col-md-10.col.md-offset-2
