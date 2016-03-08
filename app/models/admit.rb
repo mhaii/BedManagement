@@ -9,6 +9,7 @@ class Admit < ActiveRecord::Base
   before_save   :check_room
   after_save    :trigger_update_event
   after_destroy :trigger_destroy_event
+
   # use non-callback method to avoid infinite loop
   # http://guides.rubyonrails.org/v3.2.13/active_record_validations_callbacks.html#skipping-callbacks
 
@@ -28,7 +29,7 @@ class Admit < ActiveRecord::Base
       case status
         when 'preDischarged'
           room.availableSoon! unless self.room.nil? or room.availableSoon?
-          (0..11).each {|i| CheckOutStep.create({admit_id: self.id, step: i})} if check_out_steps.count == 0 and id
+          (0..11).each {|i| CheckOutStep.create(i!=0 ? {admit_id: self.id, step: i} : {admit_id: self.id, step: i, time_started: DateTime.now})}
         when 'discharged'
           self.room = nil
       end if status_changed?
