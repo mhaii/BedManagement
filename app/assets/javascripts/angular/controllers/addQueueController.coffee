@@ -22,9 +22,12 @@ addQueuesCtrl = ($state, $filter, admitService, patientService, sessionService)-
   @submit = =>
     @admit.admitted_date = $filter('date')(@admit.admitted_date, 'yyyy-MM-dd')
 
-    unless @patientFound
-      patientService.patients.save(@admit.patient).$promise.then =>
-        @patientFound = true
+    if @patientFound
+      @admit.patient_id   = @admit.patient.hn
+    else
+      patientService.patients.save(@admit.patient).$promise.then (patient)=>
+        @admit.patient_id = patient.hn
+        @patientFound     = true
 
     if @patientFound
       # create new if this page isn't referred for edit
