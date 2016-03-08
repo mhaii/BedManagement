@@ -79,6 +79,12 @@ BedStatusController = ($uibModal, $anchorScroll, admitService, checkOutService, 
     }).result.then (queue)->
       admitService.admit.update({id: room.admit.id}, {status: 3})
 
+  @delayStay = (room)->
+    confirmModal(room,'DELAY_STAY').result.then (remark)->
+      newDate = new Date(room.admit.edd)
+      newDate.setDate(newDate.getDate()+1)
+      admitService.admit.update({id: room.admit.id}, {status: 2, edd: newDate, remark: remark})
+
   return
 
 
