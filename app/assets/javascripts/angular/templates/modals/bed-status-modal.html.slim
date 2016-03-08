@@ -11,6 +11,9 @@
     dt(ng-if="header === 'CONFIRM_TO_ICU'")
       span(translate) RESERVE_ROOM
       input(type="checkbox" ng-model="checkbox")
+    dt(ng-if="header === 'DELAY_STAY'")
+      span(translate) REMARK
+      input(type="text" ng-model="modalCtrl.remark")
     span(ng-if="header === 'CONFIRM_ROOM'")
       dt {{ "WARD" | translate }} : {{ ward }}
       dt {{ "ROOM" | translate}}  : {{room}}
@@ -24,4 +27,4 @@
                 i.glyphicon.glyphicon-calendar
 .modal-footer
   button.btn.btn-warning(type="button" ng-click="close()" translate="CLOSE")
-  button.btn.btn-primary(type="button" ng-click="confirm()" translate="CONFIRM")
+  button.btn.btn-primary(type="button" ng-click="confirm()" translate="CONFIRM" ng-disabled="header === 'DELAY_STAY' && modalCtrl.remark == null")
