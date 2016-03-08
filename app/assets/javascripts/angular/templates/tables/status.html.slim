@@ -39,7 +39,7 @@
                 span(ng-if="room.status === 'availableSoon'")
                   span(ng-repeat="step in room.admit.check_out_steps" ng-if="step.time_ended" style="margin-left: 5px")
                     i.fa.fa-sticky-note(ng-if="step.step === 'CHECK_OUT_DC'")
-                    i.fa.fa-envelope-o(ng-if="step.step === 'CHECK_OUT_APPOINTMENT'")
+                    i.fa.fa-calendar-check-o(ng-if="step.step === 'CHECK_OUT_APPOINTMENT'")
                     i.fa.fa-medkit(ng-if="step.step === 'CHECK_OUT_RETURN_MED'")
                     i.fa.fa-phone(ng-if="step.step === 'CHECK_OUT_CONTACT_FAM'")
                     i.fa.fa-credit-card(ng-if="step.step === 'CHECK_OUT_PAYMENT'")
