@@ -10,10 +10,11 @@ Rails.application.routes.draw do
         get 'out_soon'
         get 'today'
         get 'queue'
-        get 'check_out_list'
+        get 'check_out'
       end
     end
 
+    resources :doctors,   only:   [:index]
     resources :patients,  except: [:new, :edit]
     resources :rooms,     except: [:new, :edit]
 
