@@ -13,11 +13,10 @@
                     button.btn.btn-primary(type="button" ng-click="addQueueCtrl.search()" ng-hide="addQueueCtrl.editing")
                       span(translate) SEARCH
                       .ripple-container
-              .alert.alert-dismissible(ng-hide="addQueueCtrl.searched && addQueueCtrl.patientFound" ng-class="addQueueCtrl.searched ? 'alert-danger': 'alert-info'")
-                button.close(type="button" data-dismiss="alert")
-                  span.fa.fa-times-circle
-                strong(ng-hide="addQueueCtrl.searched" translate) PUT_IN_HN_NUMBER_TO_SEARCH
-                strong(ng-show="addQueueCtrl.searched && !addQueueCtrl.patientFound" translate) PATIENT_NOT_FOUND
+              .alert.alert-info(ng-hide="addQueueCtrl.admit.patient.hn || addQueueCtrl.searched")
+                strong(translate) PUT_IN_HN_NUMBER_TO_SEARCH
+              .alert.alert-danger(ng-show="addQueueCtrl.searched && !addQueueCtrl.patientFound")
+                strong(translate) PATIENT_NOT_FOUND
 
     form.form-horizontal(name="form")
       .form-group
@@ -35,9 +34,9 @@
       .form-group(style="margin-top: 0")
         label.control-label.col-md-2.short-word(translate) GENDER
         .col-md-10
-          .radio.radio-primary(ng-repeat="obj in ['MALE', 'FEMALE']" ng-disabled="addQueueCtrl.patientFound")
+          .radio.radio-primary(ng-repeat="obj in ['MALE', 'FEMALE']")
             label
-              input(type="radio" name="sex" ng-attr-id="'obj'" ng-value="obj.toLowerCase()" ng-model="addQueueCtrl.admit.patient.sex")
+              input(type="radio" name="sex" ng-attr-id="'obj'" ng-value="obj.toLowerCase()" ng-model="addQueueCtrl.admit.patient.sex" ng-disabled="addQueueCtrl.patientFound")
               span.circle
               span.check
               span(style="margin-left: 20px") {{ obj | translate }}

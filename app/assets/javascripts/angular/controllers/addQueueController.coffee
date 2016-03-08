@@ -11,9 +11,11 @@ addQueuesCtrl = ($state, $filter, admitService, patientService, sessionService)-
     sessionService.admit = null
 
   @search = =>
-    @searched  = true
     patientService.patient.get({id: @admit.patient.hn}).$promise.then (patient)=>
       @admit   = { patient: if @patientFound = !patient.error then patient else null }
+      @searched  = true
+    , =>
+      @searched  = true
 
   @submit = =>
     @admit.admitted_date = $filter('date')(@admit.admitted_date, 'yyyy-MM-dd')
