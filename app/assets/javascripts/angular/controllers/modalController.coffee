@@ -16,8 +16,6 @@ modalController = ($scope, $uibModalInstance, checkOutService, sessionService, h
     when 'QUEUE'
       @session       = sessionService
       @referred      = true
-      @tableColumns   = [['HN_NUMBER', 'patient.hn'], ['NAME', 'patient.first_name'], ['DIAGNOSIS', 'diagnosis'],
-        ['APPOINTMENT', 'admitted_date'], ['DOCTOR', 'doctor.name'], ['PHONE', 'patient.phone'], ['STATUS', 'status']]
     when 'CONFIRM_ROOM'
       $scope.data.admit = data
     else
