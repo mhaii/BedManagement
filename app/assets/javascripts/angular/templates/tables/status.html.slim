@@ -35,7 +35,7 @@
                     a.btn-sm.info-button(ng-click="bedCtrl.toICU(room)" translate) TO_ICU
                   span(ng-hide="bedCtrl.session.isAuthorized(['admission'])")
                     a.btn-sm.info-button(ng-click="bedCtrl.checkOutModal(room)") CHECK_OUT
-                    a.btn-sm.info-button(ng-click="") DELAY_STAY
+                    a.btn-sm.info-button(ng-click="bedCtrl.delayStay(room)") DELAY_STAY
                 span(ng-if="room.status === 'availableSoon'")
                   span(ng-repeat="step in room.admit.check_out_steps" ng-if="step.time_ended" style="margin-left: 5px")
                     i.fa.fa-sticky-note(ng-if="step.step === 'CHECK_OUT_DC'")
