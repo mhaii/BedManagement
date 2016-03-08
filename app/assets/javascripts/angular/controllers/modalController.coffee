@@ -30,9 +30,10 @@ modalController = ($scope, $uibModalInstance, checkOutService, sessionService, h
 
   $scope.confirm   = ()=>
     confirm = $scope.checkbox and 'reserve' or null
+    remark  = @remark or null
     edd     = @edd or null
     console.log()
-    $uibModalInstance.close(confirm or edd or 'confirmed')
+    $uibModalInstance.close(confirm or edd or remark or 'confirmed')
 
   $scope.close     = ()->
     $uibModalInstance.dismiss('cancel')
