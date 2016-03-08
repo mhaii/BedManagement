@@ -35,6 +35,7 @@ sessionService = ($resource, admitService, checkOutService, doctorService, wardS
 
     @websocket.bind 'check_out', (step)->
       updateCheckOut()
+      updateWards()
 
     @websocket.bind 'destroyed', ()->
       updateAdmit()
