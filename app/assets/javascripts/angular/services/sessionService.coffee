@@ -1,4 +1,6 @@
 sessionService = ($resource, admitService, checkOutService, doctorService, wardService)->
+  ######################## Misc helpers #######################
+  @UTCDateTime          = (date)->  new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate(), date.getHours(), date.getMinutes(), date.getSeconds()))
   @isAuthorized         = (array)=> array.indexOf(@currentUser.role) != -1
   ################ Methods for refreshing data ################
   updateAdmit           = => admitService.queue.query()   .$promise.then (data)=> @queues          = data
