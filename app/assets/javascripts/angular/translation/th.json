@@ -110,5 +110,5 @@
   "CHECK_OUT_INFORM_BILLING": "แจ้งค่าใช้จ่าย",
   "CHECK_OUT_PAYMENT": "ญาติชำระเงิน",
   "CHECK_OUT_CONTACT_TRANS": "ติดต่อหน่วยเคลื่อนย้าย",
-  "CHECK_OUT_PATIENT_LEAVE": "ผู้ป่วยกลับบ้าน"
+  "CHECK_OUT_PATIENT_LEAVE": "รอผู้ป่วยคืนห้อง"
 }
