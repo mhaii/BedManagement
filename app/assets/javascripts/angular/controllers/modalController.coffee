@@ -11,7 +11,6 @@ modalController = ($scope, $uibModalInstance, checkOutService, sessionService, h
 
   switch header
     when 'PROCESS'
-      console.log data
       $scope.session.websocket.bind 'check_out', (steps)->
         $scope.data.check_out_steps = steps
     when 'QUEUE'
@@ -29,11 +28,8 @@ modalController = ($scope, $uibModalInstance, checkOutService, sessionService, h
     $uibModalInstance.close(data)
 
   $scope.confirm   = ()=>
-    confirm = $scope.checkbox and 'reserve' or null
-    remark  = @remark or null
-    edd     = @edd or null
-    console.log()
-    $uibModalInstance.close(confirm or edd or remark or 'confirmed')
+    confirm = @checkbox and 'reserve' or null
+    $uibModalInstance.close(confirm or @edd or @remark or 'confirmed')
 
   $scope.close     = ()->
     $uibModalInstance.dismiss('cancel')

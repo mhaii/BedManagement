@@ -11,7 +11,7 @@
       dt.v-center-dt {{ "DOCTOR" | translate }}: {{ data.admit.doctor.name }}
       dt.v-center-dt(ng-if="header === 'CONFIRM_TO_ICU'")
         span(translate) RESERVE_ROOM
-        input(type="checkbox" ng-model="checkbox")
+        input(type="checkbox" ng-model="modalCtrl.checkbox")
       dt.v-center-dt(ng-if="header === 'DELAY_STAY'")
         span(translate) REMARK
         input(type="text" ng-model="modalCtrl.remark")
