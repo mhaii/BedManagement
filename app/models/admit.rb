@@ -28,7 +28,7 @@ class Admit < ActiveRecord::Base
       case status
         when 'preDischarged'
           room.availableSoon! unless self.room.nil? or room.availableSoon?
-          (0..10).each {|i| CheckOutStep.create({admit_id: self.id, step: i})} if check_out_steps.count == 0 and id
+          (0..11).each {|i| CheckOutStep.create({admit_id: self.id, step: i})} if check_out_steps.count == 0 and id
         when 'discharged'
           self.room = nil
       end if status_changed?
