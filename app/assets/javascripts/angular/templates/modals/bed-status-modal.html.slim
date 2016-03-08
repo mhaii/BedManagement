@@ -3,28 +3,27 @@
   h4.modal-title(translate) {{ header | translate }}
 .modal-body
   dl.detail-list
-    dt(translate) PATIENT
-    dt {{ "FIRST_NAME" | translate }}: {{ data.admit.patient.first_name }}
-    dt {{ "LAST_NAME" | translate }}: {{ data.admit.patient.last_name }}
-    dt {{ "DIAGNOSIS" | translate }}: {{ data.admit.diagnosis }}
-    dt {{ "DOCTOR" | translate }}: {{ data.admit.doctor.name }}
-    dt(ng-if="header === 'CONFIRM_TO_ICU'")
+    dt.v-center-dt(translate) PATIENT
+    dt.v-center-dt {{ "FIRST_NAME" | translate }}: {{ data.admit.patient.first_name }}
+    dt.v-center-dt {{ "LAST_NAME" | translate }}: {{ data.admit.patient.last_name }}
+    dt.v-center-dt {{ "DIAGNOSIS" | translate }}: {{ data.admit.diagnosis }}
+    dt.v-center-dt {{ "DOCTOR" | translate }}: {{ data.admit.doctor.name }}
+    dt.v-center-dt(ng-if="header === 'CONFIRM_TO_ICU'")
       span(translate) RESERVE_ROOM
       input(type="checkbox" ng-model="checkbox")
-    dt(ng-if="header === 'DELAY_STAY'")
+    dt.v-center-dt(ng-if="header === 'DELAY_STAY'")
       span(translate) REMARK
       input(type="text" ng-model="modalCtrl.remark")
     span(ng-if="header === 'CONFIRM_ROOM'")
-      dt {{ "WARD" | translate }} : {{ ward }}
-      dt {{ "ROOM" | translate}}  : {{room}}
+      dt.v-center-dt {{ "WARD" | translate }} : {{ ward }}
+      dt.v-center-dt {{ "ROOM" | translate }} : {{ room }}
       dt
-        span.control-label(translate) EDD_DATE :
-        div
-          p.input-group
-            input.form-control(type="text" uib-datepicker-popup="yyyy-MM-dd" ng-model="modalCtrl.edd" is-open="modalCtrl.opened" datepicker-options="modalCtrl.dateOptions" ng-required="true" close-text="Close")
-            span.input-group-btn
-              button.btn.btn-default(type="button" ng-click="modalCtrl.opened = true")
-                i.glyphicon.glyphicon-calendar
+        span.v-center-dt.control-label(style="float: left") {{ "EXPECTED_DISCHARGE" | translate }} :
+        span.input-group.input-group-sm
+          input.form-control(type="text" uib-datepicker-popup="yyyy-MM-dd" ng-model="modalCtrl.edd" is-open="modalCtrl.opened" datepicker-options="modalCtrl.dateOptions" ng-required="true" close-text="Close")
+          span.input-group-btn
+            button.btn.btn-default(type="button" ng-click="modalCtrl.opened = true")
+              i.glyphicon.glyphicon-calendar
 .modal-footer
   button.btn.btn-warning(type="button" ng-click="close()" translate="CLOSE")
   button.btn.btn-primary(type="button" ng-click="confirm()" translate="CONFIRM" ng-disabled="header === 'DELAY_STAY' && modalCtrl.remark == null")

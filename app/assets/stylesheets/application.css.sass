@@ -9,6 +9,10 @@
 [class*='fa-caret-']
   margin-left: 6px
 
+.v-center-dt
+  margin: 5px 0
+.right-pad
+  padding-right: 5px
 .disabled
   display: none
 
@@ -28,6 +32,7 @@
 
 .container-slim
   width: 90%
+
 #header
   height: 60px
   @media screen and (min-width: 700px)
@@ -63,3 +68,7 @@ body
       #input-booking-date
         padding-left: 76px
 
+// remove selected date styling in bootstrap date-picker
+.btn:not(.btn-raised).btn-info
+  &, .input-group-btn &
+    color: #000

@@ -16,7 +16,6 @@ BedStatusController = ($uibModal, $anchorScroll, admitService, checkOutService, 
     $uibModal.open {
       templateUrl : 'templates/modals/bed-status-modal.html'
       controller  : 'modalController as modalCtrl'
-      size        : 'lg'
       resolve:{
         header    : ()-> header
         data      : ()-> queue
