@@ -63,7 +63,7 @@
       .form-group
         label.control-label.col-md-2(for="input-doctor" translate) DOCTOR
         .col-md-10
-          input#input-doctor.form-control(type="text" required ng-model="addQueueCtrl.admit.doctor_id")
+          input(type="text" ng-model="selected" uib-typeahead="doctor.name for doctor in addQueueCtrl.session.doctors | filter:$viewValue | limitTo:8" class="form-control")
           span.has-warning(ng-show="form.doctorCheck.$error.required" translate) FIELD_REQUIRED
         span.material-input
 

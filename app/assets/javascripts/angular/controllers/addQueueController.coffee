@@ -1,4 +1,6 @@
 addQueuesCtrl = ($state, $filter, admitService, patientService, sessionService)->
+  @session = sessionService
+
   @dateOptions = {
     minDate:      new Date()
     startingDay:  1
