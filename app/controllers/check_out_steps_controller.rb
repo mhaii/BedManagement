@@ -1,4 +1,3 @@
-require 'json'
 class CheckOutStepsController < ApplicationController
   before_action :get_steps, only: [:start, :stop, :reset]
   before_action :set_steps, only: [:show]

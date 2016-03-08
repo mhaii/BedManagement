@@ -1,6 +1,6 @@
-require 'json'
 class AdmitsController < ApplicationController
-  before_action :json_only
+  before_action :json_only, except: [:check_out]
+  before_action :json_and_xls,  only: [:check_out]
   before_action :set_admit, only: [:show, :update, :destroy]
   before_action :get_admits, only: [:index]
 
@@ -25,16 +25,16 @@ class AdmitsController < ApplicationController
   end
 
   def check_out
-    @admits = query.where(status: 3)
-  end
-
-  def check_out_list
-    if @current_user
-      query = Admit.includes([:patient, :doctor, :check_out_steps, room: :ward])
-      if @current_user.ward_id
-        @admits = query.joins(:room).where "admits.status = 3 AND rooms.ward_id = #{@current_user.ward_id}"
-      else
-        @admits = query.where status: 3
+    query = Admit.includes([:patient, :doctor, :check_out_steps, room: :ward])
+    if @current_user.ward_id
+      @admits = query.joins(:room).where "admits.status = 3 AND rooms.ward_id = #{@current_user.ward_id}"
+    else
+      respond_to do |format|
+        format.xls { @admits = query.where status: [3, 4] }
+        format.json do
+          @admits = query.where status: 3
+          render :detail
+        end
       end
     end
   end

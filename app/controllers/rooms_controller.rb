@@ -1,4 +1,3 @@
-require 'json'
 class RoomsController < ApplicationController
   before_action :json_only
   before_action :set_room, only: [:show, :update, :destroy]

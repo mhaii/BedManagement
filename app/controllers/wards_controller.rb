@@ -1,4 +1,3 @@
-require 'json'
 class WardsController < ApplicationController
   before_action :json_only
   before_action :set_ward, only: [:show, :update, :destroy, :ward_index]

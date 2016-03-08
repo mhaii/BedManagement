@@ -1,4 +1,3 @@
-require 'json'
 class PatientsController < ApplicationController
   before_action :json_only
   before_action :set_patient, only: [:show, :update, :destroy]
