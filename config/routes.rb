@@ -17,6 +17,7 @@ Rails.application.routes.draw do
     resources :doctors,   only:   [:index]
     resources :patients,  except: [:new, :edit]
     resources :rooms,     except: [:new, :edit]
+    resources :users,     only:   [:create]
 
     resources :wards,     except: [:new, :edit]  do
       get 'rooms',    on: :member,  action: :ward_index
