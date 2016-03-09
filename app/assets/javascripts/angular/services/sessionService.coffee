@@ -1,4 +1,4 @@
-sessionService = ($resource, admitService, checkOutService, doctorService, wardService)->
+sessionService = ($resource, admitService, checkOutService, doctorService, userService, wardService)->
   ######################## Misc helpers #######################
   @UTCDateTime          = (date)->  new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate(), date.getHours()-7, date.getMinutes(), date.getSeconds()))
   @isAuthorized         = (array)=> array.indexOf(@currentUser.role) != -1
@@ -12,7 +12,7 @@ sessionService = ($resource, admitService, checkOutService, doctorService, wardS
   updateICU             = => admitService.in_icu.query()  .$promise.then (data)=> @icuPatients     = data
   updateWards           = => wardService.all.query()      .$promise.then (data)=> @wards           = data
 
-  (@user = $resource('/sessions.json').get()).$promise.then (user)=>   # removing () would break stuff!
+  (@user = userService.currentUser.get()).$promise.then (user)=>   # removing () would break stuff!
     @currentUser        = user
 
     ############### Fetch data based on user role ###############
@@ -46,6 +46,6 @@ sessionService = ($resource, admitService, checkOutService, doctorService, wardS
       updateICU()
   @
 
-sessionService.$inject = ['$resource', 'admitService', 'checkOutService', 'doctorService', 'wardService']
+sessionService.$inject = ['$resource', 'admitService', 'checkOutService', 'doctorService', 'userService', 'wardService']
 
 angular.module('app').factory('sessionService', sessionService)
