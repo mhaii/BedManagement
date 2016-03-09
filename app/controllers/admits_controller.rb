@@ -15,7 +15,7 @@ class AdmitsController < ApplicationController
   end
 
   def today
-    @admits = query.where(status: 1, admitted_date: Date.today.beginning_of_day..Date.today.end_of_day).order :admitted_date
+    @admits = query.where(status: 2, admitted_date: Date.today.beginning_of_day..Date.today.end_of_day).order :admitted_date
     render :detail
   end
 
