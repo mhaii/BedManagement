@@ -63,15 +63,15 @@
       .form-group
         label.control-label.col-md-2(for="input-doctor" translate) DOCTOR
         .col-md-10
-          input(type="text" name="doctorCheck" ng-model="addQueueCtrl.admit.doctor_id" uib-typeahead="doctor.name for doctor in addQueueCtrl.session.doctors | filter:$viewValue | limitTo:8" class="form-control")
-          span.has-warning(ng-show="form.doctorCheck.$error.required" translate) FIELD_REQUIRED
+          input(type="text" name="doctorCheck" ng-model="addQueue.doctor" typeahead-select-on-exact="true" typeahead-editable="false" typeahead-on-select="addQueueCtrl.selectDoctor($item)" uib-typeahead="doctor as doctor.name for doctor in addQueueCtrl.session.doctors | filter:$viewValue | limitTo:8" class="form-control" )
+          div id: {{ addQueueCtrl.admit.doctor_id }}
         span.material-input
 
       .form-group
         label.control-label.col-md-2(for="input-booking-date" translate) BOOKING_DATE
         .col-md-10
           p.input-group
-            input.form-control(type="text" name="bookingDate" uib-datepicker-popup="yyyy-MM-dd" ng-model="addQueueCtrl.admit.admitted_date" is-open="addQueueCtrl.opened" datepicker-options="addQueueCtrl.dateOptions" ng-required="true" close-text="Close")
+            input.form-control(type="text" name="bookingDate" uib-datepicker-popup="yyyy-MM-dd" ng-model="addQueueCtrl.admit.admitted_date" is-open="addQueueCtrl.opened" datepicker-options="addQueueCtrl.dateOptions" ng-required="true" close-text="Close" typeahead-select-on-exact="true")
             span.input-group-btn
               button.btn.btn-default(type="button" ng-click="addQueueCtrl.opened = true")
                 i.glyphicon.glyphicon-calendar
@@ -81,4 +81,5 @@
 
       .form-group
         .col-md-10.col.md-offset-2
-          a.btn.btn-primary.fake-link(ng-click="addQueueCtrl.submit()" ng-disabled="!form.$valid") {{ CONFIRM | translate }}
+          div {{ form.$valid }}
+          button.btn.btn-primary(ng-click="addQueueCtrl.submit()" ng-disabled="!form.$valid" translate="CONFIRM" )
