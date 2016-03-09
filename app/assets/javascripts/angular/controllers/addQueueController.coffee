@@ -11,6 +11,8 @@ addQueuesCtrl = ($state, $filter, admitService, patientService, sessionService)-
   if @searched = @patientFound  = @editing = sessionService.admit
     @admit     = sessionService.admit
     sessionService.admit = null
+  else
+    @admit      = {}
 
   @search = =>
     patientService.patient.get({id: @admit.patient.hn}).$promise.then (patient)=>
@@ -20,26 +22,24 @@ addQueuesCtrl = ($state, $filter, admitService, patientService, sessionService)-
       @searched  = true
 
   @selectDoctor = (item)=>
-    @admit.doctor_id = item.id unless !@admit
+    @admit.doctor_id = item.id
 
   @submit = =>
-#   incase user is not select typeahead
+    saveAdmit = =>
+      admit = if @editing then admitService.admit.update({id: @admit.id}, @admit) else admitService.admits.save(@admit)
+      admit.$promise.then (data)=>
+        $state.go('queue')
+
     if !isNaN(@doctor)
       @admit.doctor_id = @doctor
-    @admit.admitted_date = $filter('date')(@admit.admitted_date, 'yyyy-MM-dd')
+
     if @patientFound
       @admit.patient_id   = @admit.patient.hn
+      saveAdmit()
     else
       patientService.patients.save(@admit.patient).$promise.then (patient)=>
         @admit.patient_id = patient.hn
-        @patientFound     = true
-
-    if @patientFound
-      # create new if this page isn't referred for edit
-      admit = if @editing then admitService.admit.update({id: @admit.id}, @admit) else admitService.admits.save(@admit)
-
-      admit.$promise.then (data)=>
-        $state.go('queue')
+        saveAdmit()
     return
 
   return
