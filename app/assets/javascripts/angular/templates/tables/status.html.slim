@@ -44,7 +44,11 @@
                   span(ng-hide="bedCtrl.session.isAuthorized(['admission'])")
                     a.btn-sm.info-button(ng-click="bedCtrl.checkOutModal(room)" translate) CHECK_OUT
                     a.btn-sm.info-button(ng-click="bedCtrl.delayStay(room)" translate) DELAY_STAY
-              #patient.hidden-box.popup(ng-if="room.status === 'available' && bedCtrl.session.isAuthorized(['op', 'admission'])")
+              #patient.hidden-box.popup(ng-if="(room.status === 'available' || room.status === 'disabled')&& bedCtrl.session.isAuthorized(['op', 'admission'])")
                 dl.detail-list
                   dt {{ "ROOM" | translate }}: {{ room.number }}
-                a.btn-sm.info-button(ng-click="bedCtrl.choose(room)" translate) RESERVE
+                span(ng-if="room.status === 'available'")
+                  a.btn-sm.info-button(ng-click="bedCtrl.choose(room)" translate) RESERVE
+                  a.btn-sm.info-button(ng-click="bedCtrl.disable(room)" translate) DISABLE_ROOM
+                span(ng-if="room.status === 'disabled'")
+                  a.btn-sm.info-button(ng-click="bedCtrl.enable(room)" translate) ENABLE_ROOM

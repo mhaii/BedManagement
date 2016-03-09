@@ -58,6 +58,13 @@ BedStatusController = ($uibModal, $anchorScroll, admitService, checkOutService, 
       newDate.setDate(newDate.getDate()+1)
       admitService.admit.update({id: room.admit.id}, {edd: newDate, remark: remark})
 
+  @disable = (room)->
+    confirmModal('DISABLE_ROOM', room).result.then (remark)->
+      roomService.room.update({id: room.id},{status: -2, remark: remark})
+
+  @enable = (room)->
+    roomService.room.update({id:room.id},{status: 0, remark: null})
+
   #################### ICU and back again. ####################
 
   @toICU = (room)->
