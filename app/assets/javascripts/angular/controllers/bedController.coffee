@@ -36,7 +36,7 @@ BedStatusController = ($uibModal, $anchorScroll, admitService, checkOutService, 
     modal = (queue)=>
       confirmModal('CONFIRM_ROOM', {admit: queue, room: room}).result.then (edd)=>
         console.log edd
-        admitService.admit.update({id: @queue.id}, {room_id: room.id, status: 2, edd: sessionService.UTCDateTime(edd)}).$promise.then =>
+        admitService.admit.update({id: queue.id}, {room_id: room.id, status: 2, edd: sessionService.UTCDateTime(edd)}).$promise.then =>
           @queue = null if @queue
     if @queue then modal(@queue) else queueModal().result.then (queue)-> modal(queue)
 
