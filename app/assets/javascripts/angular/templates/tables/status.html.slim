@@ -37,14 +37,14 @@
                       i.right-pad.fa.fa-credit-card(ng-if="step.step === 'CHECK_OUT_PAYMENT'")
                       i.right-pad.fa.fa-sign-out(ng-if="step.step === 'CHECK_OUT_PATIENT_LEAVE'")
                 span(ng-if="room.status === 'occupied'")
-                  span(ng-if="bedCtrl.session.isAuthorized(['op', 'admission'])")
+                  span(ng-if="bedCtrl.session.isAuthorized(['administrator', 'admission'])")
                     a.btn-sm.info-button(ng-click="bedCtrl.move(room)" translate) TRANSFER
                     a.btn-sm.info-button(ng-click="bedCtrl.remove(room)" translate) CANCEL
                     a.btn-sm.info-button(ng-click="bedCtrl.toICU(room)" translate) TO_ICU
                   span(ng-hide="bedCtrl.session.isAuthorized(['admission'])")
                     a.btn-sm.info-button(ng-click="bedCtrl.checkOutModal(room)" translate) CHECK_OUT
                     a.btn-sm.info-button(ng-click="bedCtrl.delayStay(room)" translate) DELAY_STAY
-              #patient.hidden-box.popup(ng-if="(room.status === 'available' || room.status === 'disabled')&& bedCtrl.session.isAuthorized(['op', 'admission'])")
+              #patient.hidden-box.popup(ng-if="(room.status === 'available' || room.status === 'disabled')&& bedCtrl.session.isAuthorized(['administrator', 'admission'])")
                 dl.detail-list
                   dt {{ "ROOM" | translate }}: {{ room.number }}
                 span(ng-if="room.status === 'available'")

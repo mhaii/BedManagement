@@ -6,7 +6,7 @@ angular.module('app').config ($stateProvider, $urlRouterProvider, $httpProvider)
     controller: 'homeController'
     templateUrl: 'templates/home.html',
     data: {
-      access: ['op', 'admission']
+      access: ['administrator', 'admission']
     }
   }
   $stateProvider.state 'queue', {
@@ -14,7 +14,7 @@ angular.module('app').config ($stateProvider, $urlRouterProvider, $httpProvider)
     controller: 'queueController as queueCtrl'
     templateUrl: 'templates/tables/queues.html'
     data: {
-      access: ['op', 'admission']
+      access: ['administrator', 'admission']
     }
   }
   $stateProvider.state 'add-queue', {
@@ -22,7 +22,7 @@ angular.module('app').config ($stateProvider, $urlRouterProvider, $httpProvider)
     controller: 'addQueuesCtrl as addQueueCtrl'
     templateUrl: 'templates/add-queue.html'
     data: {
-      access: ['op', 'admission']
+      access: ['administrator', 'admission']
     }
   }
   $stateProvider.state 'status', {
@@ -30,7 +30,7 @@ angular.module('app').config ($stateProvider, $urlRouterProvider, $httpProvider)
     controller: 'BedStatusController as bedCtrl'
     templateUrl: 'templates/bed-status.html'
     data: {
-      access: ['op', 'admission', 'nurse', 'nurseAssistance']
+      access: ['administrator', 'admission', 'nurse', 'nurseAssistance']
     }
   }
   $stateProvider.state 'check-out', {
@@ -38,21 +38,21 @@ angular.module('app').config ($stateProvider, $urlRouterProvider, $httpProvider)
     controller: 'checkOutController as checkOutCtrl'
     templateUrl: 'templates/check-out.html'
     data: {
-      access: ['op', 'nurse', 'nurseAssistance', 'cashier']
+      access: ['administrator', 'nurse', 'nurseAssistance', 'cashier']
     }
   }
   $stateProvider.state 'statistic', {
     url: '/statistic'
     templateUrl: 'templates/statistic.html'
     data: {
-      access: ['op', 'administrator']
+      access: ['administrator', 'executive']
     }
   }
   $stateProvider.state 'create-user', {
     url: '/create-user'
     templateUrl: 'templates/create-user.html'
     data: {
-      access: ['op']
+      access: ['administrator']
     }
   }
   $stateProvider.state 'rainbow-unicorn', {
