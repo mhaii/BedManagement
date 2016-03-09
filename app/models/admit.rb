@@ -23,20 +23,26 @@ class Admit < ActiveRecord::Base
     end
 
     def check_status
-      if [status_was, status].include? 'inICU'
-        WebsocketRails[:admits].trigger 'icu'
+      if status_changed?
+        if [status_was, status].include? 'inICU'
+          WebsocketRails[:admits].trigger 'icu'
+        end
+        if [status_was, status].include? 'preDischarged'
+          WebsocketRails[:admits].trigger 'check_out'
+        end
+
+        case status
+          when 'preDischarged'
+            room.availableSoon! unless self.room.nil? or room.availableSoon?
+            if self.id  # if not forced created
+              sql = ["(#{self.id}, 0, '#{DateTime.now.strftime '%F %T'}', null)"]
+              (1..11).each {|i| sql.push "(#{self.id}, #{i}, null, null)" }
+              ActiveRecord::Base.connection.execute "INSERT INTO check_out_steps (`admit_id`, `step`, `time_started`, `time_ended`) VALUES #{sql.join(', ')}"
+            end
+          when 'discharged'
+            self.room = nil
+        end
       end
-      case status
-        when 'preDischarged'
-          room.availableSoon! unless self.room.nil? or room.availableSoon?
-          if self.id  # if not forced created
-            sql = ["(#{self.id}, 0, '#{DateTime.now.strftime '%F %T'}', null)"]
-            (1..11).each {|i| sql.push "(#{self.id}, #{i}, null, null)" }
-            ActiveRecord::Base.connection.execute "INSERT INTO check_out_steps (`admit_id`, `step`, `time_started`, `time_ended`) VALUES #{sql.join(', ')}"
-          end
-        when 'discharged'
-          self.room = nil
-      end if status_changed?
     end
 
     def check_room
