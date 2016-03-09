@@ -19,6 +19,9 @@ addQueuesCtrl = ($state, $filter, admitService, patientService, sessionService)-
     , =>
       @searched  = true
 
+  @selectDoctor = (item)=>
+    @admit.doctor_id = item.id unless !@admit
+
   @submit = =>
     @admit.admitted_date = $filter('date')(@admit.admitted_date, 'yyyy-MM-dd')
 
