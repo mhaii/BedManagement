@@ -35,7 +35,7 @@ BedStatusController = ($uibModal, $anchorScroll, admitService, checkOutService, 
   @choose = (room)=>
     modal = (queue)=>
       confirmModal('CONFIRM_ROOM', {admit: queue, room: room}).result.then (edd)=>
-        admitService.admit.update({id: @queue.id},
+        admitService.admit.update({id: queue.id},
           if @queue
             {room_id: room.id, status: 2, admitted_date:sessionService.UTCDateTime(new Date()), edd: sessionService.UTCDateTime(edd)}
           else
