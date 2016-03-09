@@ -59,6 +59,7 @@ ActiveRecord::Schema.define(version: 20160301153524) do
     t.string  "number",  limit: 255
     t.integer "status",  limit: 4,   default: 0
     t.integer "price",   limit: 4
+    t.string  "remark",  limit: 255
     t.integer "ward_id", limit: 4
   end
 
