@@ -29,7 +29,11 @@ class Admit < ActiveRecord::Base
       case status
         when 'preDischarged'
           room.availableSoon! unless self.room.nil? or room.availableSoon?
-          (0..11).each {|i| CheckOutStep.create(i!=0 ? {admit_id: self.id, step: i} : {admit_id: self.id, step: i, time_started: DateTime.now})}
+          if self.id  # if not forced created
+            sql = ["(#{self.id}, 0, '#{DateTime.now.strftime '%F %T'}', null)"]
+            (1..11).each {|i| sql.push "(#{self.id}, #{i}, null, null)" }
+            ActiveRecord::Base.connection.execute "INSERT INTO check_out_steps (`admit_id`, `step`, `time_started`, `time_ended`) VALUES #{sql.join(', ')}"
+          end
         when 'discharged'
           self.room = nil
       end if status_changed?
