@@ -37,6 +37,9 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'faye-websocket', '0.10.0'
 gem 'websocket-rails'
 
+# schedule stuff
+gem 'whenever'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
