@@ -23,8 +23,10 @@ addQueuesCtrl = ($state, $filter, admitService, patientService, sessionService)-
     @admit.doctor_id = item.id unless !@admit
 
   @submit = =>
+#   incase user is not select typeahead
+    if !isNaN(@doctor)
+      @admit.doctor_id = @doctor
     @admit.admitted_date = $filter('date')(@admit.admitted_date, 'yyyy-MM-dd')
-
     if @patientFound
       @admit.patient_id   = @admit.patient.hn
     else
