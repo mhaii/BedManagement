@@ -36,5 +36,8 @@ nav.navbar.navbar-default.navbar-fixed-top
               = @current_user.username
               span.fa.fa-caret-down
             ul.dropdown-menu
+              - if @current_user.role == 'administrator'
+                li(ui-sref-active="active")
+                  a(ui-sref="create-user" translate) CREATE_USER
               li
                 = link_to "{{ 'LOGOUT' | translate }}", sessions_path, method: :delete

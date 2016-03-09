@@ -50,6 +50,7 @@ angular.module('app').config ($stateProvider, $urlRouterProvider, $httpProvider)
   }
   $stateProvider.state 'create-user', {
     url: '/create-user'
+    controller: 'createUserController as createUserCtrl'
     templateUrl: 'templates/create-user.html'
     data: {
       access: ['administrator']
