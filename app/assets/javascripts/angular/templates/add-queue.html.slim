@@ -63,7 +63,7 @@
       .form-group
         label.control-label.col-md-2(for="input-doctor" translate) DOCTOR
         .col-md-10
-          input(type="text" name="doctorCheck" ng-model="addQueue.doctor" typeahead-select-on-exact="true" typeahead-editable="false" typeahead-on-select="addQueueCtrl.selectDoctor($item)" uib-typeahead="doctor as doctor.name for doctor in addQueueCtrl.session.doctors | filter:$viewValue | limitTo:8" class="form-control" )
+          input(type="text" name="doctorCheck" ng-model="addQueueCtrl.doctor" typeahead-select-on-exact="true"  typeahead-on-select="addQueueCtrl.selectDoctor($item)" uib-typeahead="doctor as doctor.name for doctor in addQueueCtrl.session.doctors | filter:$viewValue | limitTo:8" class="form-control" )
           div id: {{ addQueueCtrl.admit.doctor_id }}
         span.material-input
 
@@ -81,5 +81,4 @@
 
       .form-group
         .col-md-10.col.md-offset-2
-          div {{ form.$valid }}
           button.btn.btn-primary(ng-click="addQueueCtrl.submit()" ng-disabled="!form.$valid" translate="CONFIRM" )
