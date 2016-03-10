@@ -2,7 +2,7 @@ div.container
   #checkOut-table
   #search-box.input-group-addon
     span.fa.fa-search
-    input.form-control(type="text" placeholder="Search patient" ng-model="checkOutCtrl.searchPatient")
+    input.form-control(type="text" placeholder="{{ 'SEARCH_PATIENT' | translate }}" ng-model="checkOutCtrl.searchPatient")
   .table-responsive(style="margin-top: 2%;")
     table.table.table-striped.table-bordered.table-hover
       thead
