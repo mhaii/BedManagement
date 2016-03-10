@@ -1,4 +1,4 @@
-modalController = ($scope, $uibModalInstance, checkOutService, sessionService, header, data)->
+modalController = ($scope, $uibModalInstance, admitService, checkOutService, sessionService, header, data)->
   $scope.header  = header
   $scope.data    = data
   $scope.session = sessionService
@@ -8,14 +8,23 @@ modalController = ($scope, $uibModalInstance, checkOutService, sessionService, h
     startingDay:  1
     dateDisabled: null
   }
+  checkAllProcessEnd = ()->
+    $scope.checkAllProcess = 0
+    for i in $scope.data.check_out_steps
+      if i.time_ended == null then $scope.checkAllProcess = $scope.checkAllProcess+1
 
   switch header
     when 'PROCESS'
       $scope.startProcess = (process)-> checkOutService.start.update({id: process.id})
       $scope.endProcess   = (process)-> checkOutService.stop .update({id: process.id})
       $scope.resetProcess = (process)-> checkOutService.reset.delete({id: process.id})
+      $scope.endCheckOut  = ()       ->
+        admitService.admit.update({id: $scope.data.id}, {status: 4}).$promise.then ()->
+          $uibModalInstance.dismiss('DONE_DISCHARGE')
+      checkAllProcessEnd()
       $scope.session.websocket.bind 'check_out', (steps)->
         $scope.data.check_out_steps = steps
+        checkAllProcessEnd()
     when 'QUEUE'
       @session       = sessionService
       @referred      = true
@@ -37,6 +46,6 @@ modalController = ($scope, $uibModalInstance, checkOutService, sessionService, h
   return
 
 
-modalController.$inject = ['$scope', '$uibModalInstance', 'checkOutService', 'sessionService', 'header', 'data']
+modalController.$inject = ['$scope', '$uibModalInstance', 'admitService', 'checkOutService', 'sessionService', 'header', 'data']
 
 angular.module('app').controller('modalController', modalController)
