@@ -35,7 +35,7 @@ class Admit < ActiveRecord::Base
           when 'preDischarged'
             room.availableSoon! unless self.room.nil? or room.availableSoon?
             if self.id  # if not forced created
-              sql = ["(#{self.id}, 0, '#{DateTime.now.strftime '%F %T'}', null)"]
+              sql = ["(#{self.id}, 0, '#{DateTime.now.utc.strftime '%F %T'}', null)"]
               (1..11).each {|i| sql.push "(#{self.id}, #{i}, null, null)" }
               ActiveRecord::Base.connection.execute "INSERT INTO check_out_steps (`admit_id`, `step`, `time_started`, `time_ended`) VALUES #{sql.join(', ')}"
             end
