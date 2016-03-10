@@ -43,7 +43,7 @@ statController = ($scope, sessionService, statService) ->
         "data"      : {
           "rows"  : []
           "cols"  : [
-            { "id": "step"    , "type": "number", "label": "Step Number" }
+            { "id": "step"    , "type": "string", "label": "Step Number" }
             { "id": "duration", "type": "number", "label": "Average duration of each process (minutes)" }
           ]
         }
@@ -51,7 +51,8 @@ statController = ($scope, sessionService, statService) ->
       $scope.checkOut.data.rows.push({"c": [{"v": x.step}, {"v": x.average_duration}]}) for x in data
 
   updateStat()
-
+  @session.websocket.bind 'check_out', (steps)->
+    updateStat()
 
 statController.$inject = ['$scope', 'sessionService', 'statService']
 
