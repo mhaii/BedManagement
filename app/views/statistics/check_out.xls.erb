@@ -7,28 +7,15 @@
   <Worksheet ss:Name="Sheet1">
     <Table>
       <Row>
-        <Cell><Data ss:Type="String">Patient HN</Data></Cell>
-        <Cell><Data ss:Type="String">Admit ID</Data></Cell>
-        <Cell><Data ss:Type="String">Name</Data></Cell>
-        <Cell><Data ss:Type="String">Diagnosis</Data></Cell>
-        <Cell><Data ss:Type="String">Estimated Date to Discharged</Data></Cell>
         <% CheckOutStep.steps.each do |string, id| %>
           <Cell><Data ss:Type="String"><%= string %></Data></Cell>
         <% end %>
       </Row>
-      <% @admits.each do |admit| %>
-        <Row>
-          <Cell><Data ss:Type="String"><%= admit.patient.hn %></Data></Cell>
-          <Cell><Data ss:Type="String"><%= admit.id %></Data></Cell>
-          <Cell><Data ss:Type="String"><%= admit.patient.first_name %> <%= admit.patient.last_name %></Data></Cell>
-          <Cell><Data ss:Type="String"><%= admit.diagnosis %></Data></Cell>
-          <Cell><Data ss:Type="String"><%= admit.edd %></Data></Cell>
-          <% admit.check_out_steps.each do |step| %>
-              <Cell><Data ss:Type="String"><%= step.time_started and step.time_ended and
-                                               Time.at(step.time_ended - step.time_started - 25200).strftime '%T' or '--------' %></Data></Cell>
-          <% end %>
-        </Row>
-      <% end %>
+      <Row>
+        <% @steps.each do |step| %>
+            <Cell><Data ss:Type="String"><%= step.average_duration %></Data></Cell>
+        <% end %>
+      </Row>
     </Table>
   </Worksheet>
 </Workbook>

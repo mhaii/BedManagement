@@ -1,12 +1,8 @@
 class StatisticsController < ApplicationController
   before_action :json_and_xls
 
-  def check_out
-    @admits = Admit.includes([:patient, :doctor, :check_out_steps, room: :ward]).where status: [3, 4]
-    respond_to do |format|
-      format.xls
-      format.json { render :detail }
-    end
+  def check_out # / arr.size
+    @steps = CheckOutStep.joins(:admit).where('admits.status IN (3, 4) AND time_ended IS NOT NULL AND time_started IS NOT NULL').group(:step).select('AVG((time_ended-time_started)/60) as "average_duration", check_out_steps.step').order(:step)
   end
 
   def in_out_rate

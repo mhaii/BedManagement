@@ -18,11 +18,6 @@ sessionService = ($resource, admitService, checkOutService, doctorService, statS
       updateDoctors         = => doctorService.all.query()    .$promise.then (data)=> @doctors         = data
       updateFreeRoomCount   = => wardService.free.query()     .$promise.then (data)=> @freeRoomCount   = data
 
-    if @isAuthorized ['administrator', 'executive']
-      updateInOutRate       = => statService.inOutRate.get()  .$promise.then (data)=> @inOutRate       = data
-      updateCheckOutStat    = => statService.checkOut.query() .$promise.then (data)=> @checkoutStat    = data
-
-
     if @isAuthorized ['administrator', 'admission']
       updateCheckOut        = => checkOutService.list.query() .$promise.then (data)=> @checkouts       = data
 
