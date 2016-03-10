@@ -47,6 +47,7 @@
               #patient.hidden-box.popup(ng-if="(room.status === 'available' || room.status === 'disabled')&& bedCtrl.session.isAuthorized(['administrator', 'admission'])")
                 dl.detail-list
                   dt {{ "ROOM" | translate }}: {{ room.number }}
+                  dt(ng-if="room.status === 'disabled'") {{ "REMARK" | translate }}: {{ room.remark }}
                 span(ng-if="room.status === 'available'")
                   a.btn-sm.info-button(ng-click="bedCtrl.choose(room)" translate) RESERVE
                   a.btn-sm.info-button(ng-click="bedCtrl.disable(room)" translate) DISABLE_ROOM
