@@ -25,12 +25,10 @@ sessionService = ($resource, admitService, checkOutService, doctorService, statS
     updateAdmit?()
     updateAdmittedToday?()
     updateCheckOut?()
-    updateCheckOutStat?()
     updateDischargedSoon?()
     updateDoctors?()
     updateFreeRoomCount?()
     updateICU?()
-    updateInOutRate?()
     updateWards?()
 
     ############# Bind fetch method with websocket ##############
