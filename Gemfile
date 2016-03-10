@@ -14,6 +14,7 @@ gem 'slim-rails'
 # Use rails-assets instead of bower
 source 'https://rails-assets.org' do
   gem 'rails-assets-angular'
+  gem 'rails-assets-angular-google-chart'
   gem 'rails-assets-angular-resource'
   gem 'rails-assets-angular-translate'
   gem 'rails-assets-angular-translate-loader-static-files'

@@ -137,6 +137,8 @@ GEM
       railties (= 4.2.4)
       sprockets-rails
     rails-assets-angular (1.5.0)
+    rails-assets-angular-google-chart (0.1.0)
+      rails-assets-angular (> 1.2.8)
     rails-assets-angular-resource (1.5.0)
       rails-assets-angular (= 1.5.0)
     rails-assets-angular-translate (2.10.0)
@@ -275,6 +277,7 @@ DEPENDENCIES
   mysql2 (~> 0.3.20)
   rails (= 4.2.4)
   rails-assets-angular!
+  rails-assets-angular-google-chart!
   rails-assets-angular-resource!
   rails-assets-angular-translate!
   rails-assets-angular-translate-loader-static-files!
