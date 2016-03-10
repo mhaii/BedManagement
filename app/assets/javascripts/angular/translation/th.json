@@ -7,31 +7,42 @@
   "AVAILABLE_SOON": "ห้องใกล้ว่าง",
 
   "BED_STATUS": "สถานะเตียง",
+  "BOOKING": "จองเตียง",
+  "BOOKING_DATE": "วันจอง",
 
   "CANCEL": "ยกเลิก",
   "CHECK_OUT": "แจ้งออก",
+  "CHECK_OUT_STEPS_DURATION": "ระยะเวลาเฉลี่ยแต่ละขั้นตอนของกระบวนการจำหน่าย",
   "CHECK_THIS_PATIENT_OUT": "ยืนยันการจ่ายออก",
   "CHOOSE": "เลือกห้อง",
   "CLOSE": "ปิดหน้านี้",
   "CONFIRM": "ยืนยัน",
   "CONFIRM_DELETE": "ยืนยันการยกเลิกนัด?",
   "CONFIRM_ROOM": "ยืนยันการเลือกห้อง",
-  "CONFIRM_TO_ICU": "ยืนยันการย้านไป ICU",
+  "CONFIRM_TO_ICU": "ยืนยันการย้ายไป ICU",
+  "CREATE_USER": "สร้างผู้ใช้ใหม่",
   "CURRENTLY_SELECTED":"ข้อมูลคนไข้ที่เลือกอยู่",
 
   "DATE": "วันที่",
   "DAY_TO_TIL": "1 วัน",
   "DAYS_TO_TIL": "{{days}} วัน",
   "DELETE": "ลบ",
-  "DELAY_STAY": "เลือนวันที่คาดว่าจะออก",
+  "DELAY_STAY": "เลื่อนวันที่คาดว่าจะออก",
   "DIAGNOSIS": "การวินิจฉัย",
   "DISABLED": "ปิดการใช้งาน",
+  "DISABLE_ROOM": "ปิดการใช้งานห้อง",
   "DOCTOR": "แพทย์",
+  "DOCTOR_ORDER_DC": "แพทย์เขียนคำสั่ง D/C",
+  "DONE": "เสร็จสิ้น",
+  "DOWNLOAD_AS_XLS": "ดาวน์โหลดไฟล์ xls",
 
   "EDIT": "แก้ไข",
+  "ENABLE_ROOM": "เปิดการใช้งานห้อง",
+  "END_TIME": "เวลาสิ้นสุด",
   "EXPECTED_DISCHARGE": "คาดว่าจะแจ้งออก",
 
   "FEMALE": "หญิง",
+  "FIELD_REQUIRED": "จำเป็นต้องกรอกข้อมูล",
   "FIRST_NAME": "ชื่อ",
 
   "GENDER": "เพศ",
@@ -43,6 +54,8 @@
 
   "INCORRECT_PASSWORD": "รหัสผ่านไม่ถูกต้อง",
   "INCORRECT_USERNAME": "ชิ่อผู้ใช้ไม่ถูกต้อง",
+  "IN_OUT_PATIENT_TIME": "ช่วงเวลาคนไข้เข้า - ออก",
+  "INVALID_FORMAT": "รูปแบบไม่ถูกต้อง",
 
   "LANG": "English",
   "LAST_NAME": "นามสกุล",
@@ -55,16 +68,19 @@
   "MINUTES_TO_TIL": "{{minutes}} นาที",
 
   "NAME": "ชื่อ",
+  "NAME_OR_DOCTOR_ID": "ชื่อหรือเลขประจำตัวแพทย์",
   "NO_BED": "จำนวนเตียง",
 
   "OCCUPIED": "ห้องไม่ว่าง",
 
   "PASSWORD": "รหัสผ่าน",
   "PATIENT": "ผู้ป่วย",
+  "PATIENT_NOT_FOUND": "ไม่พบข้อมูลผู้ป่วยที่ต้องการ",
   "PEOPLE_ADMITTED_TODAY": "คนไข้เข้าพักในวันนี้",
   "PHONE": "เบอร์ติดต่อ",
   "PREFIX_AGO": "",
   "PREFIX_FROM_NOW": "",
+  "PROCESS": "กระบวนการ",
 
   "QUEUE": "คิว",
   "QUEUES": "คิวทั้งหมด",
@@ -72,12 +88,15 @@
   "REMARK": "อื่นๆ",
   "REMEMBER_ME": "จดจำ",
   "RESERVE": "จอง",
-  "RESERVED": "ห้องถูกจอง",
   "RESERVE_ROOM": "จองห้อง ",
+  "RESERVED": "ห้องถูกจอง",
   "RETURN_TO_ROOM": "ย้ายผู้ป่วยกลับห้อง",
   "ROOM": "ห้อง",
   "ROOM_NUMBER": "เลขห้อง",
 
+  "SEARCH_PATIENT": "ค้นหาผู้ป่วย",
+  "START": "เริ่ม",
+  "START_TIME": "เวลาเริ่ม",
   "STATISTICS": "สถิติ",
   "STATUS": "สถานะ",
   "SUFFIX_AGO": "ที่ผ่านมา",
@@ -89,6 +108,8 @@
   "TO_ICU": "ไปไอซียู",
   "TRANSFER": "ย้าย",
 
+  "UPDATE": "อัพเดต",
+  "UPDATE_STATUS": "อัพเดตสถานะ",
   "USERNAME": "ชื่อผู้ใช้",
 
   "WARD": "วอร์ด",
@@ -97,7 +118,7 @@
 
   "confirmed": "ยืนยันการนัด",
   "currentlyAdmit": "กำลังเข้ารักษา",
-  "discharged": "จ่ายแบ้ว",
+  "discharged": "จำหน่ายผู้ป่วยแล้ว",
   "east": "อ",
   "pending": "รอการยืนยัน",
   "preDischarged": "เตรียมจ่ายออก",

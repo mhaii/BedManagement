@@ -7,26 +7,42 @@
   "AVAILABLE_SOON": "Available Soon",
 
   "BED_STATUS": "Bed Status",
+  "BOOKING": "Booking",
+  "BOOKING_DATE": "Booking Date",
 
   "CANCEL": "Cancel",
   "CHECK_OUT": "Check Out",
+  "CHECK_OUT_STEPS_DURATION": "Check-out steps duration",
+  "CHECK_THIS_PATIENT_OUT": "Check-out patient",
   "CHOOSE": "Choose",
   "CLOSE": "Close",
   "CONFIRM": "Confirm",
   "CONFIRM_DELETE": "Confirm delete appointment?",
+  "CONFIRM_ROOM": "Confirm room",
+  "CONFIRM_TO_ICU": "Confirm move patient to ICU",
+  "CREATE_USER": "Create a new user",
+  "CURRENTLY_SELECTED":"Currently selected patient information",
 
   "DATE": "Date",
   "DAY_TO_TIL": "1 day",
   "DAYS_TO_TIL": "{{days}} days",
   "DELETE": "Delete",
+  "DELAY_STAY": "Delay admitting time",
   "DIAGNOSIS": "Diagnosis",
   "DISABLED": "Disabled",
+  "DISABLE_ROOM": "Disable a room",
   "DOCTOR": "Doctor",
+  "DOCTOR_ORDER_DC": "Doctor order D/C",
+  "DONE": "Done",
+  "DOWNLOAD_AS_XLS": "Download a file as xls",
 
   "EDIT": "Edit",
+  "ENABLE_ROOM": "Enable a room",
+  "END_TIME": "End time",
   "EXPECTED_DISCHARGE": "Expected Discharge",
 
   "FEMALE": "Female",
+  "FIELD_REQUIRED": "Field requires to be added",
   "FIRST_NAME": "First Name",
 
   "GENDER": "Gender",
@@ -38,6 +54,8 @@
 
   "INCORRECT_PASSWORD": "Incorrect password",
   "INCORRECT_USERNAME": "Incorrect username",
+  "IN_OUT_PATIENT_TIME": "Number of in and out patient in a period of time",
+  "INVALID_FORMAT": "Invalid format",
 
   "LANG": "ภาษาไทย",
   "LAST_NAME": "Last Name",
@@ -50,16 +68,19 @@
   "MINUTES_TO_TIL": "{{minutes}} minutes",
 
   "NAME": "Name",
+  "NAME_OR_DOCTOR_ID": "Need to put name of ID of a doctor",
   "NO_BED": "No. Bed",
 
   "OCCUPIED": "Occupied",
 
   "PASSWORD": "Password",
   "PATIENT": "Patient",
+  "PATIENT_NOT_FOUND": "Patient is not found",
   "PEOPLE_ADMITTED_TODAY": "People Admitted Today",
   "PHONE": "Phone",
   "PREFIX_AGO": "",
   "PREFIX_FROM_NOW": "",
+  "PROCESS": "Process",
 
   "QUEUE": "Queue",
   "QUEUES": "Queues",
@@ -67,11 +88,15 @@
   "REMARK": "Remark",
   "REMEMBER_ME": "Remember me",
   "RESERVE": "Reserve",
+  "RESERVE_ROOM": "Reserving room",
   "RESERVED": "Reserved",
   "RETURN_TO_ROOM": "Return patient to room",
   "ROOM": "Room",
   "ROOM_NUMBER": "Room Number",
 
+  "SEARCH_PATIENT": "Search for patient",
+  "START": "Start",
+  "START_TIME": "Start time",
   "STATISTICS": "Statistics",
   "STATUS": "Status",
   "SUFFIX_AGO": "ago",
@@ -83,6 +108,8 @@
   "TO_ICU": "To ICU",
   "TRANSFER": "Transfer",
 
+  "UPDATE": "Update",
+  "UPDATE_STATUS": "Update status",
   "USERNAME": "Username",
 
   "WARD": "Ward",
