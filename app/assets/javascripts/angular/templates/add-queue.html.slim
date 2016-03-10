@@ -56,14 +56,16 @@
       .form-group
         label.control-label.col-md-2(for="input-diagnosis" translate) DIAGNOSIS
         .col-md-10
-          input#input-diagnosis.form-control(type="text" name="diagnosisCheck" required ng-model="addQueueCtrl.admit.diagnosis")
+          input.form-control(type="text" name="diagnosisCheck" ng-model="addQueueCtrl.admit.diagnosis" typeahead-select-on-exact="true"
+            autocomplete="off" placeholder="{{ 'DIAGNOSIS' | translate }}"
+            uib-typeahead="diagnosis for diagnosis in addQueueCtrl.data | filter:$viewValue | limitTo:8" class="form-control" )
           span.has-warning(ng-show="form.diagnosisCheck.$error.required" translate) FIELD_REQUIRED
         span.material-input
 
       .form-group
         label.control-label.col-md-2(for="input-doctor" translate) DOCTOR
         .col-md-10
-          input(type="text" name="doctorCheck" ng-model="addQueueCtrl.doctor" typeahead-select-on-exact="true"
+          input.form-control(type="text" name="doctorCheck" ng-model="addQueueCtrl.doctor" typeahead-select-on-exact="true"
             typeahead-on-select="addQueueCtrl.selectDoctor($item)" autocomplete="off" placeholder="{{ 'NAME_OR_DOCTOR_ID' | translate }}"
             uib-typeahead="doctor as doctor.name for doctor in addQueueCtrl.session.doctors | filter:$viewValue | limitTo:8" class="form-control" )
           div(ng-show="addQueueCtrl.admit.doctor_id") id: {{ addQueueCtrl.admit.doctor_id }}
@@ -78,9 +80,9 @@
               button.btn.btn-default(type="button" ng-click="addQueueCtrl.opened = true")
                 i.glyphicon.glyphicon-calendar
           span.has-warning(ng-show="form.bookingDate.$error.date" translate) INVALID_FORMAT
-          span.has-warning(ng-show="form.bookingDate.$error.required" translate) FIELD_REQUIRED
           /span.material-input
 
       .form-group
         .col-md-10.col.md-offset-2
-          button.btn.btn-primary(ng-click="addQueueCtrl.submit()" ng-disabled="!form.$valid" translate="CONFIRM" )
+          button.btn.btn-primary(ng-click="addQueueCtrl.submit()" ng-disabled="(addQueueCtrl.doctor == null) || (addQueueCtrl.admit.diagnosis == null) || (addQueueCtrl.admit.admitted_date == null) || (addQueueCtrl.admit.patient == null)" translate="CONFIRM" )
+          span.has-warning(ng-show="(addQueueCtrl.doctor == null) || (addQueueCtrl.admit.diagnosis == null) || (addQueueCtrl.admit.admitted_date == null) || (addQueueCtrl.admit.patient == null)" translate) FIELD_REQUIRED

@@ -1,6 +1,8 @@
 addQueuesCtrl = ($state, $filter, admitService, patientService, sessionService)->
   @session = sessionService
 
+  @data = ["Non-insulin-dependent diabetes mellitus, without complications", "Essential (primary) hypertension", "Need for immunization against rabies", "Chronic renal failure, unspecified", "Dyspepsia", "Diarrhoea and gastroenteritis of presumed infectious origin", "Peptic ulcer, site unspecified:", "Asthma, unspecified", "Stroke, not specified as haemorrhage or infarction", "Fever, unspecified"]
+
   @dateOptions = {
     minDate:      new Date()
     startingDay:  1
