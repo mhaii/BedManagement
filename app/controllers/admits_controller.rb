@@ -1,6 +1,5 @@
 class AdmitsController < ApplicationController
-  before_action :json_only, except: [:check_out]
-  before_action :json_and_xls,  only: [:check_out]
+  before_action :json_only
   before_action :set_admit, only: [:show, :update, :destroy]
   before_action :get_admits, only: [:index]
 
@@ -29,14 +28,9 @@ class AdmitsController < ApplicationController
     if @current_user.ward_id
       @admits = query.joins(:room).where "admits.status = 3 AND rooms.ward_id = #{@current_user.ward_id}"
     else
-      respond_to do |format|
-        format.xls { @admits = query.where status: [3, 4] }
-        format.json do
-          @admits = query.where status: 3
-          render :detail
-        end
-      end
+      @admits = query.where status: 3
     end
+    render :detail
   end
 
   def create

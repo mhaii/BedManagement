@@ -43,6 +43,7 @@ angular.module('app').config ($stateProvider, $urlRouterProvider, $httpProvider)
   }
   $stateProvider.state 'statistic', {
     url: '/statistic'
+    controller: 'statController'
     templateUrl: 'templates/statistic.html'
     data: {
       access: ['administrator', 'executive']

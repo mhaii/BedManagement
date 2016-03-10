@@ -14,10 +14,16 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :doctors,   only:   [:index]
-    resources :patients,  except: [:new, :edit]
-    resources :rooms,     except: [:new, :edit]
-    resources :users,     only:   [:create]
+    resources :doctors,     only:   [:index]
+    resources :patients,    except: [:new, :edit]
+    resources :rooms,       except: [:new, :edit]
+
+    resource  :statistics,  only:   [] do
+      get 'check_out'
+      get 'in_out_rate'
+    end
+
+    resources :users,       only:   [:create]
 
     resources :wards,     except: [:new, :edit]  do
       get 'rooms',    on: :member,  action: :ward_index

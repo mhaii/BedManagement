@@ -1,4 +1,4 @@
-sessionService = ($resource, admitService, checkOutService, doctorService, userService, wardService)->
+sessionService = ($resource, admitService, checkOutService, doctorService, statService, userService, wardService)->
   ######################## Misc helpers #######################
   @UTCDateTime     = (date)->  new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate(), date.getHours()-7, date.getMinutes(), date.getSeconds()))
   @isAuthorized    = (array)=> array.indexOf(@currentUser.role) != -1
@@ -18,6 +18,11 @@ sessionService = ($resource, admitService, checkOutService, doctorService, userS
       updateDoctors         = => doctorService.all.query()    .$promise.then (data)=> @doctors         = data
       updateFreeRoomCount   = => wardService.free.query()     .$promise.then (data)=> @freeRoomCount   = data
 
+    if @isAuthorized ['administrator', 'executive']
+      updateInOutRate       = => statService.inOutRate.get()  .$promise.then (data)=> @inOutRate       = data
+      updateCheckOutStat    = => statService.checkOut.query() .$promise.then (data)=> @checkoutStat    = data
+
+
     if @isAuthorized ['administrator', 'admission']
       updateCheckOut        = => checkOutService.list.query() .$promise.then (data)=> @checkouts       = data
 
@@ -25,10 +30,12 @@ sessionService = ($resource, admitService, checkOutService, doctorService, userS
     updateAdmit?()
     updateAdmittedToday?()
     updateCheckOut?()
+    updateCheckOutStat?()
     updateDischargedSoon?()
     updateDoctors?()
     updateFreeRoomCount?()
     updateICU?()
+    updateInOutRate?()
     updateWards?()
 
     ############# Bind fetch method with websocket ##############
@@ -52,6 +59,6 @@ sessionService = ($resource, admitService, checkOutService, doctorService, userS
       updateICU?()
   @
 
-sessionService.$inject = ['$resource', 'admitService', 'checkOutService', 'doctorService', 'userService', 'wardService']
+sessionService.$inject = ['$resource', 'admitService', 'checkOutService', 'doctorService', 'statService', 'userService', 'wardService']
 
 angular.module('app').factory('sessionService', sessionService)
