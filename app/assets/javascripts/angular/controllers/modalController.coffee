@@ -31,6 +31,8 @@ modalController = ($scope, $uibModalInstance, admitService, checkOutService, ses
       @confirmRoom   = (queue)->
         data = queue
         $uibModalInstance.close(data)
+      @toConfirmed = (admit)->
+        admitService.admit.update({id: admit.id}, {status: 1})
     when 'CONFIRM_ROOM'
       $scope.data.admit.edd = if $scope.data.admit.edd then new Date($scope.data.admit.edd) else null
     else
