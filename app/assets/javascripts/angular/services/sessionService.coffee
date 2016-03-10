@@ -12,13 +12,13 @@ sessionService = ($resource, admitService, checkOutService, doctorService, statS
       updateICU             = => admitService.in_icu.query()  .$promise.then (data)=> @icuPatients     = data
       updateWards           = => wardService.all.query()      .$promise.then (data)=> @wards           = data
 
-    if @isAuthorized ['administrator', 'nurse', 'nurseAssistance', 'cashier']
+    if @isAuthorized ['administrator', 'admission', 'nurse', 'nurseAssistance']
       updateAdmittedToday   = => admitService.today.query()   .$promise.then (data)=> @admittedToday   = data
       updateDischargedSoon  = => admitService.edd.query()     .$promise.then (data)=> @dischargedSoon  = data
       updateDoctors         = => doctorService.all.query()    .$promise.then (data)=> @doctors         = data
       updateFreeRoomCount   = => wardService.free.query()     .$promise.then (data)=> @freeRoomCount   = data
 
-    if @isAuthorized ['administrator', 'admission']
+    if @isAuthorized ['administrator', 'cashier']
       updateCheckOut        = => checkOutService.list.query() .$promise.then (data)=> @checkouts       = data
 
     ############### Fetch data based on user role ###############
