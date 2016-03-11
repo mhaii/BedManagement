@@ -67,6 +67,7 @@ GEM
     capistrano-rvm (0.1.2)
       capistrano (~> 3.0)
       sshkit (~> 1.2)
+    chronic (0.10.2)
     coffee-rails (4.1.1)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0, < 5.1.x)
@@ -137,6 +138,8 @@ GEM
       railties (= 4.2.4)
       sprockets-rails
     rails-assets-angular (1.5.0)
+    rails-assets-angular-google-chart (0.1.0)
+      rails-assets-angular (> 1.2.8)
     rails-assets-angular-resource (1.5.0)
       rails-assets-angular (= 1.5.0)
     rails-assets-angular-translate (2.10.0)
@@ -252,6 +255,8 @@ GEM
       redis
       redis-objects
       thin
+    whenever (0.9.4)
+      chronic (>= 0.6.3)
 
 PLATFORMS
   ruby
@@ -275,6 +280,7 @@ DEPENDENCIES
   puma
   rails (= 4.2.4)
   rails-assets-angular!
+  rails-assets-angular-google-chart!
   rails-assets-angular-resource!
   rails-assets-angular-translate!
   rails-assets-angular-translate-loader-static-files!
@@ -290,3 +296,4 @@ DEPENDENCIES
   uglifier (>= 1.3.0)
   web-console (~> 2.0)
   websocket-rails
+  whenever

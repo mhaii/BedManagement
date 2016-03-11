@@ -1,1 +1,10 @@
-h this is statistic
+.container
+  .stat-label.col-xs-offset-1
+    h4(translate) IN_OUT_PATIENT_TIME
+    a(href="/resources/statistics/in_out_rate.xls" translate) DOWNLOAD_AS_XLS
+  .stat-chart.center-block(google-chart chart="inOutRate")
+
+  .stat-label.col-xs-offset-1
+    h4(translate) CHECK_OUT_STEPS_DURATION
+    a(href="/resources/statistics/check_out.xls" translate) DOWNLOAD_AS_XLS
+  .stat-chart.center-block(google-chart chart="checkOut")

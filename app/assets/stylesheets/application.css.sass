@@ -9,6 +9,10 @@
 [class*='fa-caret-']
   margin-left: 6px
 
+.v-center-dt
+  margin: 5px 0
+.right-pad
+  padding-right: 5px
 .disabled
   display: none
 
@@ -28,6 +32,7 @@
 
 .container-slim
   width: 90%
+
 #header
   height: 60px
   @media screen and (min-width: 700px)
@@ -48,6 +53,16 @@
     padding-left: 30px
     margin-bottom: 0
 
+.stat-chart
+  z-index: -999
+  width: 80%
+  height: 500px
+  // margin-top: -30px
+  & > div > div > div > svg > rect
+    display: none
+
+#padTop
+  margin-top: 25px
 
 //= small piece of code here
 body
@@ -58,9 +73,12 @@ body
       .form-control
         margin-top: 10px
       button.btn-default
-        position: absolute
         @media (max-width: 991px)
           margin-top: 0
       #input-booking-date
         padding-left: 76px
 
+// remove selected date styling in bootstrap date-picker
+.btn:not(.btn-raised).btn-info
+  &, .input-group-btn &
+    color: #000

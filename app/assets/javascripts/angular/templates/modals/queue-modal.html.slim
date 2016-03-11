@@ -8,9 +8,17 @@
     dt {{ "LAST_NAME" | translate }}: {{ data.patient.last_name }}
     dt {{ "DIAGNOSIS" | translate }}: {{ data.diagnosis }}
     dt {{ "DOCTOR" | translate }}: {{ data.doctor.name }}
-    dt(ng-if="remarkOption")
-      span {{ "REMARK" | translate}}:
-      input(type="text")
+    dt
+      span
+        div.col-xs-1(style="margin-left: -15px;") {{ "REMARK" | translate }}
+        div.col-xs-7
+          select(name="size")
+            option(value="") เหตุผลของการยกเลิกนัด
+            option(value="s") ผู้ป่วยไม่สะดวก
+            option(value="m") ผู้ป่วยไม่พร้อม
+            option(value="l") หมอไม่พร้อม
+            option(value="xl") ผู้ป่วยเสียชีวิต
+
 .modal-footer
   button.btn.btn-warning(type="button" ng-click="close()" translate="CLOSE")
   button.btn.btn-primary(type="button" ng-click="confirm()" translate="CONFIRM")

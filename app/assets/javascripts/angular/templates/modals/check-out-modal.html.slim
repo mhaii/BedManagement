@@ -17,11 +17,13 @@
             td {{ process.time_started | date:'yyyy-MM-dd hh:mm:ss a' }}
             td {{ process.time_ended | date:'yyyy-MM-dd hh:mm:ss a' }}
             td
-              a.fake-link(ng-click="startProcess(process)" ng-hide="process.time_started" translate) START
-              a.fake-link(ng-click="endProcess(process)" ng-show="process.time_started && !process.time_ended" translate) END
-              span(ng-show="process.time_started && process.time_ended")
-                a.fake-link(translate) DONE
-                i.fake-link.fa.fa-undo(ng-click="resetProcess(process)")
+              span(ng-hide="$index == data.check_out_steps.length-1 && checkAllProcess > 1")
+                a.fake-link(ng-click="startProcess(process)" ng-hide="process.time_started" translate) START
+                a.fake-link(ng-if="$index !== data.check_out_steps.length-1 " ng-click="endProcess(process)" ng-show="process.time_started && !process.time_ended" translate) END
+                a.fake-link(ng-if="$index == data.check_out_steps.length-1" ng-click="endCheckOut()" ng-show="process.time_started && !process.time_ended" translate) END
+                span(ng-show="process.time_started && process.time_ended")
+                  a.fake-link(translate) DONE
+                  i.fake-link.fa.fa-undo(ng-click="resetProcess(process)")
 .modal-footers
   button.btn.btn-warning(type="button" ng-click="close()" translate="CLOSE")
   button.btn.btn-primary(type="button" ng-click="confirm()" translate="CONFIRM")

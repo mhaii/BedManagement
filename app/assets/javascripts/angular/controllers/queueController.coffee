@@ -1,9 +1,6 @@
 queueController = ($injector, $location, admitService, sessionService , $uibModal)->
   @session        = sessionService
-  ############### Methods and values for table ################
-  @tableColumns   = [['HN_NUMBER', 'patient.hn'], ['NAME', 'patient.first_name'], ['DIAGNOSIS', 'diagnosis'],
-                     ['APPOINTMENT', 'admitted_date'], ['DOCTOR', 'doctor.name'], ['PHONE', 'patient.phone'], ['STATUS', 'status']]
-
+  ############### Methods for table ################
   @sortTable      = (column)=>
     return @sortReversed and 'fa-caret-up' or 'fa-caret-down' unless column?
     @sortType     = column or 'admitted_date'

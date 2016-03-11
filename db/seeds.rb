@@ -2,11 +2,11 @@
 
 doc = Doctor.find_or_create_by(name: 'euei')
 
-User.find_or_create_by(id: 1, username: 'mhaii', role: :op, password_digest: '$2a$10$QqV8dQk8MLP67Kq9CGXF7.jKiFxx2B8V.pl6s3BC/7dBga.D28Pn2')
-User.find_or_create_by(id: 2, username: 'noey',  role: :op, password_digest: '$2a$10$f4Jc4hFDe6bVxSdUSv4tG.YmIH5eeQ4OPwx1ZcjWS0aBDGV4MT6li')
-User.find_or_create_by(id: 3, username: 'boss',  role: :op, password_digest: '$2a$10$2YXfH/Afzq252H1gv9wUTeAWNRoIc0YX1xn6jbs3v825Oi9wx3kC2')
+User.find_or_create_by(id: 1, username: 'mhaii', role: :administrator, password_digest: '$2a$10$QqV8dQk8MLP67Kq9CGXF7.jKiFxx2B8V.pl6s3BC/7dBga.D28Pn2')
+User.find_or_create_by(id: 2, username: 'noey',  role: :administrator, password_digest: '$2a$10$f4Jc4hFDe6bVxSdUSv4tG.YmIH5eeQ4OPwx1ZcjWS0aBDGV4MT6li')
+User.find_or_create_by(id: 3, username: 'boss',  role: :administrator, password_digest: '$2a$10$2YXfH/Afzq252H1gv9wUTeAWNRoIc0YX1xn6jbs3v825Oi9wx3kC2')
 
-%w(cashier nurseAssistant nurse admission administrator op).each_with_index do |role, i|
+%w(cashier nurseAssistant nurse admission executive administrator).each_with_index do |role, i|
   User.find_or_create_by id: i+4, password_digest: '$2a$10$n9IRcRNBMCGlUe6U5FJkvuZecNlRF./Mm0YgZ2L4frjqABAsfPCre', username: role, role: i
 end
 

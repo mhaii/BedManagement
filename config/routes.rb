@@ -10,12 +10,20 @@ Rails.application.routes.draw do
         get 'out_soon'
         get 'today'
         get 'queue'
-        get 'check_out_list'
+        get 'check_out'
       end
     end
 
-    resources :patients,  except: [:new, :edit]
-    resources :rooms,     except: [:new, :edit]
+    resources :doctors,     only:   [:index]
+    resources :patients,    except: [:new, :edit]
+    resources :rooms,       except: [:new, :edit]
+
+    resource  :statistics,  only:   [] do
+      get 'check_out'
+      get 'in_out_rate'
+    end
+
+    resources :users,       only:   [:create]
 
     resources :wards,     except: [:new, :edit]  do
       get 'rooms',    on: :member,  action: :ward_index

@@ -1,7 +1,7 @@
 nav.navbar.navbar-default.navbar-fixed-top
   .container-fluid
     .navbar-header
-      a.navbar-brand.navbar-link(href="#") HBM
+      a.navbar-brand.navbar-link(data-target="#") HBM
       button.navbar-toggle.collapsed(data-toggle="collapse" data-target="#navcol-1")
         span.sr-only(translate) Toggle Navigation
         span.icon-bar
@@ -10,20 +10,20 @@ nav.navbar.navbar-default.navbar-fixed-top
     #navcol-1.collapse.navbar-collapse
       ul.nav.navbar-nav
         - if @current_user
-          - if %w(admission op).include? @current_user.role
+          - if %w(admission administrator).include? @current_user.role
             li(ui-sref-active="active")
               a(href ui-sref="home" translate) HOME
             li(ui-sref-active="active")
               a(ui-sref="queue" translate) QUEUES
             li(ui-sref-active="active")
               a(ui-sref="add-queue" translate) ADD_QUEUE
-          - unless %w(cashier administrator).include? @current_user.role
+          - unless %w(cashier executive).include? @current_user.role
             li(ui-sref-active="active")
               a(ui-sref="status" translate) BED_STATUS
-          - if @current_user.role == 'op'
+          - if @current_user.role == 'administrator'
             li(ui-sref-active="active")
               a(ui-sref="statistic" translate) STATISTICS
-          - unless %w(cashier admission administrator).include? @current_user.role
+          - unless %w(cashier admission executive).include? @current_user.role
             li(ui-sref-active="active")
               a(ui-sref="check-out" translate) CHECK_OUT
       ul.nav.navbar-nav.navbar-right
@@ -36,5 +36,8 @@ nav.navbar.navbar-default.navbar-fixed-top
               = @current_user.username
               span.fa.fa-caret-down
             ul.dropdown-menu
+              - if @current_user.role == 'administrator'
+                li(ui-sref-active="active")
+                  a(ui-sref="create-user" translate) CREATE_USER
               li
                 = link_to "{{ 'LOGOUT' | translate }}", sessions_path, method: :delete

@@ -1,1 +1,1 @@
-angular.module('app',['templates', 'ui.bootstrap', 'ui.router', 'ngResource', 'pascalprecht.translate'])
+angular.module('app',['templates', 'ui.bootstrap', 'ui.router', 'ngResource', 'googlechart', 'pascalprecht.translate'])

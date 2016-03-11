@@ -24,7 +24,15 @@ RSpec.describe Admit, type: :model do
     expect(@room.status).to eq 'occupied'
   end
 
-  it 'should vacant the room when the patient is discharged' do
+  it 'should preallocate all the check-out steps on patient pre-discharge' do
+    admit = Admit.create({ status: :currentlyAdmit, patient: @patient, room: @room })
+    admit.preDischarged!
+
+    expect(admit.check_out_steps.count).not_to eq 0
+    expect(admit.check_out_steps.where step: 0).not_to be_nil
+  end
+
+  it 'should vacant the room on patient discharge' do
     admit = Admit.create({ status: :preDischarged, patient: @patient, room: @room })
     admit.discharged!
     @room.reload

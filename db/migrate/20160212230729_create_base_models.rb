@@ -31,6 +31,7 @@ class CreateBaseModels < ActiveRecord::Migration
       t.string    :number
       t.integer   :status, default: 0
       t.integer   :price
+      t.string    :remark
     end
 
     create_table :wards do |t|

@@ -16,9 +16,9 @@ globalController = ($rootScope, $scope, $state, $translate, sessionService) ->
             $state.go('check-out')
           when 'nurseAssistance', 'nurse'
             $state.go('status')
-          when 'admission', 'op'
+          when 'admission', 'administrator'
             $state.go('home')
-          when 'administrator'
+          when 'executive'
             $state.go('statistic')
       else
         $state.go toState, toParams

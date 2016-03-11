@@ -1,12 +1,12 @@
 #queues-table(ng-class="{ container : queueCtrl.isAlone }" style="" )
   #search-box.input-group-addon
     span.fa.fa-search
-    input.form-control(type="text" placeholder="Search patient" ng-model="queueCtrl.searchPatient")
+    input.form-control(type="text" placeholder="{{ SEARCH_PATIENT | translate }}" ng-model="queueCtrl.searchPatient")
   .table-responsive(style="margin-top: 2%;")
     table.table.table-striped.table-bordered.table-hover
       thead
         tr
-          th(ng-repeat="object in queueCtrl.tableColumns")
+          th(ng-repeat="object in [['HN_NUMBER', 'patient.hn'], ['NAME', 'patient.first_name'], ['DIAGNOSIS', 'diagnosis'], ['APPOINTMENT', 'admitted_date'], ['DOCTOR', 'doctor.name'], ['PHONE', 'patient.phone'], ['STATUS', 'status']]")
             a(href="" ng-click="queueCtrl.sortTable(object[1])")
               span(translate) {{ object[0] }}
               span.fa(ng-show="queueCtrl.sortType == object[1]" ng-class="queueCtrl.sortTable()")

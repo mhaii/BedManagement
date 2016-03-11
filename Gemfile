@@ -14,6 +14,7 @@ gem 'slim-rails'
 # Use rails-assets instead of bower
 source 'https://rails-assets.org' do
   gem 'rails-assets-angular'
+  gem 'rails-assets-angular-google-chart'
   gem 'rails-assets-angular-resource'
   gem 'rails-assets-angular-translate'
   gem 'rails-assets-angular-translate-loader-static-files'
@@ -36,6 +37,9 @@ gem 'bcrypt', '~> 3.1.7'
 # newer faye-websocket is presented with breaking bug
 gem 'faye-websocket', '0.10.0'
 gem 'websocket-rails'
+
+# schedule stuff
+gem 'whenever'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

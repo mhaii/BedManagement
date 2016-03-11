@@ -1,4 +1,3 @@
-require 'json'
 class AdmitsController < ApplicationController
   before_action :json_only
   before_action :set_admit, only: [:show, :update, :destroy]
@@ -15,7 +14,7 @@ class AdmitsController < ApplicationController
   end
 
   def today
-    @admits = query.where(status: 1, admitted_date: Date.today.beginning_of_day..Date.today.end_of_day).order :admitted_date
+    @admits = query.where(status: 2, admitted_date: Date.today.beginning_of_day..Date.today.end_of_day).order :admitted_date
     render :detail
   end
 
@@ -25,18 +24,13 @@ class AdmitsController < ApplicationController
   end
 
   def check_out
-    @admits = query.where(status: 3)
-  end
-
-  def check_out_list
-    if @current_user
-      query = Admit.includes([:patient, :doctor, :check_out_steps, room: :ward])
-      if @current_user.ward_id
-        @admits = query.joins(:room).where "admits.status = 3 AND rooms.ward_id = #{@current_user.ward_id}"
-      else
-        @admits = query.where status: 3
-      end
+    query = Admit.includes([:patient, :doctor, :check_out_steps, room: :ward])
+    if @current_user.ward_id
+      @admits = query.joins(:room).where "admits.status = 3 AND rooms.ward_id = #{@current_user.ward_id}"
+    else
+      @admits = query.where status: 3
     end
+    render :detail
   end
 
   def create

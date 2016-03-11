@@ -16,6 +16,7 @@
 //= require bootstrap-material-design
 
 //= require angular
+//= require angular-google-chart
 //= require angular-rails-templates
 //= require angular-resource
 //= require angular-translate
