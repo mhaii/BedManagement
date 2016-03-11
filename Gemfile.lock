@@ -122,6 +122,7 @@ GEM
     nokogiri (1.6.7.2)
       mini_portile2 (~> 2.0.0.rc2)
     phantomjs (2.1.1.0)
+    puma (3.1.0)
     rack (1.6.4)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -269,12 +270,14 @@ DEPENDENCIES
   capistrano-rails
   capistrano-rvm
   coffee-rails (~> 4.1.0)
+  eventmachine
   faye-websocket (= 0.10.0)
   font-awesome-sass
   jasmine
   jbuilder (~> 2.0)
   jquery-rails
   mysql2 (~> 0.3.20)
+  puma
   rails (= 4.2.4)
   rails-assets-angular!
   rails-assets-angular-google-chart!
