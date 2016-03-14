@@ -25,8 +25,8 @@ ActiveRecord::Schema.define(version: 20160301153524) do
   end
 
   create_table "check_out_steps", force: :cascade do |t|
-    t.integer  "admit_id",     limit: 4, null: false
-    t.integer  "step",         limit: 4, null: false
+    t.integer  "admit_id",     limit: 4
+    t.integer  "step",         limit: 4
     t.datetime "time_started"
     t.datetime "time_ended"
   end
