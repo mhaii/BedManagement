@@ -2,7 +2,8 @@ require 'rails_helper'
 
 RSpec.describe Admit, type: :model do
   before do
-    @room  = Room.find_or_create_by({ number: '1412' })
+    @ward = Ward.create({name: 'WardName'})
+    @room  = Room.find_or_create_by({ number: '1412', ward: @ward })
     @patient = Patient.find_or_create_by({ hn: 1111, first_name: 'first', last_name: 'last'})
   end
 
@@ -48,7 +49,7 @@ RSpec.describe Admit, type: :model do
   end
 
   it 'should set status of both rooms when switching between rooms' do
-    room  = Room.find_or_create_by({ number: '3412' })
+    room  = Room.find_or_create_by({ number: '3412', ward: @ward })
     admit = Admit.create({ status: :currentlyAdmit, patient: @patient, room: @room })
     admit.update room: room
 

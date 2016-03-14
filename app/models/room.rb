@@ -3,6 +3,8 @@ class Room < ActiveRecord::Base
   belongs_to  :ward
   has_one     :admit
 
+  validates_presence_of :number, :ward
+
   before_save :check_status
 
   def check_status
