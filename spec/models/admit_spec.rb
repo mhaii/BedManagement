@@ -6,6 +6,11 @@ RSpec.describe Admit, type: :model do
     @patient = Patient.find_or_create_by({ hn: 1111, first_name: 'first', last_name: 'last'})
   end
 
+  it 'must not allow record without necessary attribute' do
+    expect(Admit.create.valid?).to be_falsey
+    expect(Admit.create({patient: @patient}).valid?).to be_truthy
+  end
+
   it 'should occupy the room when patient is placed in' do
     admit = Admit.create({ patient: @patient })
     admit.update({ status: :currentlyAdmit, room: @room })
@@ -39,7 +44,7 @@ RSpec.describe Admit, type: :model do
 
     expect(admit.room).to be_nil
     expect(admit.status).to eq 'discharged'
-    expect(@room.status). to eq 'available'
+    expect(@room.status).to eq 'available'
   end
 
   it 'should set status of both rooms when switching between rooms' do

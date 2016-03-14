@@ -5,6 +5,8 @@ class Admit < ActiveRecord::Base
   belongs_to  :doctor
   has_many    :check_out_steps
 
+  validates_presence_of :patient
+
   before_save   :check_status
   before_save   :check_room
   after_save    :trigger_update_event
