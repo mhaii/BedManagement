@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160301153524) do
+ActiveRecord::Schema.define(version: 20160315070948) do
 
   create_table "admits", force: :cascade do |t|
     t.integer  "status",        limit: 4,   default: 0
@@ -43,6 +43,15 @@ ActiveRecord::Schema.define(version: 20160301153524) do
 
   create_table "doctors", force: :cascade do |t|
     t.string "name", limit: 255
+  end
+
+  create_table "logs", force: :cascade do |t|
+    t.integer  "user_id",    limit: 4
+    t.string   "model",      limit: 255
+    t.string   "change",     limit: 255
+    t.string   "target_id",  limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   create_table "patients", id: false, force: :cascade do |t|
