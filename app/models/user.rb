@@ -1,9 +1,9 @@
 class User < ActiveRecord::Base
   enum role: [:cashier, :nurseAssistance, :nurse, :admission, :executive, :administrator]
   belongs_to :ward
+  has_many   :logs, dependent: :destroy
   validates :username, uniqueness: true, presence: true, length: { maximum: 20 }
   validate :password_input
-
 
   has_secure_password
 
@@ -24,7 +24,6 @@ class User < ActiveRecord::Base
   def forget
     update_attribute(:remember_digest, nil)
   end
-
 
   def authenticated?(remember_token)
     return false if remember_digest.nil?

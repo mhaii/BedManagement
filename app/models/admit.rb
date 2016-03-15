@@ -3,7 +3,7 @@ class Admit < ActiveRecord::Base
   belongs_to  :patient
   belongs_to  :room
   belongs_to  :doctor
-  has_many    :check_out_steps
+  has_many    :check_out_steps, dependent: :destroy
 
   validates_presence_of :patient
 
