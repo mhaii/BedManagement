@@ -24,6 +24,8 @@
 //= require angular-ui-bootstrap-bower/ui-bootstrap-tpls
 //= require angular-ui-router
 
+//= require SHA-1
+
 //= require websocket_rails/main
 
 //= require_tree ./angular/templates

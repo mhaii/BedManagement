@@ -21,6 +21,7 @@ source 'https://rails-assets.org' do
   gem 'rails-assets-angular-ui-bootstrap-bower'
   gem 'rails-assets-angular-ui-router'
   gem 'rails-assets-bootstrap-material-design'
+  gem 'rails-assets-SHA-1'
 end
 # Allow angular to access templates from Rails pipeline
 gem 'angular-rails-templates'
