@@ -2,22 +2,48 @@ class SessionsController < ApplicationController
   before_action :json_only, only: :show
 
   def create
-    if (user = User.find_by(username: params[:sessions][:username]))
-      if user.authenticate(params[:sessions][:password])
+    data = {}
+    respond_to do |format|
+      format.html do
+        data[:username]  = params[:sessions][:username]     || ''
+        data[:password]  = params[:sessions][:password]     || ''
+        data[:persist]   = params[:sessions][:remember_me]  || '0'
+      end
+      format.json do
+        json = JSON.parse(request.body.string, symbolize_names: true)
+        data[:username]  = json[:username]    || ''
+        data[:password]  = json[:password]    || ''
+        data[:persist]   = json[:remember_me] || '0'
+      end
+    end
+    if (user = User.find_by(username: data[:username]))
+      if user.authenticate(data[:password])
         log_in user
-        params[:sessions][:remember_me] == '1' ? remember(user) : forget(user)
+        data[:persist] == '1' ? remember(user) : forget(user)
       else
-        flash[:danger] = 'INCORRECT_PASSWORD'
+        data[:error] = 'INCORRECT_PASSWORD'
       end
     else
-      flash[:danger]   = 'INCORRECT_USERNAME'
+      data[:error]   = 'INCORRECT_USERNAME'
     end
-    redirect_to root_url
+    respond_to do |format|
+      format.html do
+        flash[:danger] = data[:error] if data[:error]
+        redirect_to root_url
+      end
+      format.json do
+        render json: {status: 'ok'} and return unless data[:error]
+        render json: {error: data[:error]}, status: 401
+      end
+    end
   end
 
   def destroy
     log_out if logged_in?
-    redirect_to root_url
+    respond_to do |format|
+      format.html { redirect_to root_url }
+      format.json { render json: { status: 'success'}, status: 200 }
+    end
   end
 
   def show
