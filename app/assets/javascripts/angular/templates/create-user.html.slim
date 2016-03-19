@@ -1,38 +1,38 @@
 #login.container-hover.container-slim.center-block
   .col-xs-12.col-sm-8.col-sm-offset-2
     form.box-form
-      span {{ createUserCtrl.message | translate }}
+      span {{ userCtrl.message | translate }}
       .form-group
         label#padTop.control-label.col-md-2(for="input-username" autocomplete="off" ) {{ 'USERNAME' | translate }} :
         .col-md-10
-          input#input-username.form-control(type="text" ng-model="createUserCtrl.user.username")
+          input#input-username.form-control(type="text" ng-model="userCtrl.user.username")
         span.material-input
 
       .form-group
         label#padTop.control-label.col-md-2(for="input-password" autocomplete="off" translate) {{ 'PASSWORD' | translate }} :
         .col-md-10
-          input#input-password.form-control(type="password" ng-model="createUserCtrl.user.password")
+          input#input-password.form-control(type="password" ng-model="userCtrl.user.rawPassword")
         span.material-input
 
       .form-group
         label#padTop.control-label.col-md-2(for="input-role") {{ "ROLE" | translate }} :
         .btn-group.col-md-9(uib-dropdown keyboard-nav)
           button#simple-btn-keyboard-nav.btn.btn-default(type="button" uib-dropdown-toggle)
-            span {{ createUserCtrl.user.role || ("ROLE" | translate)}}
+            span {{ userCtrl.user.role || ("ROLE" | translate)}}
             span.fa.fa-caret-down
           ul(uib-dropdown-menu role="menu" aria-labelledby="simple-btn-keyboard-nav")
             li(role="menu-item" ng-repeat="role in ['CASHIER', 'NURSE_ASSISTANCE', 'NURSE', 'ADMISSION', 'EXECUTIVE', 'ADMINISTRATOR']")
-              a.fake-link(ng-click="createUserCtrl.selectRole(role)") {{ role | translate }}
+              a.fake-link(ng-click="userCtrl.selectRole(role)") {{ role | translate }}
 
-      .form-group(ng-show="['NURSE_ASSISTANCE', 'NURSE'].indexOf(createUserCtrl.user.role) != -1")
+      .form-group(ng-show="['NURSE_ASSISTANCE', 'NURSE'].indexOf(userCtrl.user.role) != -1")
         label#padTop.control-label.col-md-2(for="input-ward") {{ 'WARD' | translate }} :
         .btn-group.col-md-9(uib-dropdown keyboard-nav)
           button#simple-btn-keyboard-nav.btn.btn-default(type="button" uib-dropdown-toggle)
-            span {{ createUserCtrl.user.ward_id || ('WARD' | translate) }}
+            span {{ userCtrl.user.ward_id || ('WARD' | translate) }}
             span.fa.fa-caret-down
           ul(uib-dropdown-menu role="menu" aria-labelledby="simple-btn-keyboard-nav")
-            li(role="menu-item" ng-repeat="ward in createUserCtrl.session.wards")
-              a.fake-link(ng-click="createUserCtrl.selectWard(ward)") {{ ward.name }} {{ ward.remark | splitAndTranslate }}
+            li(role="menu-item" ng-repeat="ward in userCtrl.session.wards")
+              a.fake-link(ng-click="userCtrl.selectWard(ward)") {{ ward.name }} {{ ward.remark | splitAndTranslate }}
 
       .row
-        input.btn.btn-primary.btn-raised.pull-right(type="button" ng-click="createUserCtrl.createUser()" name="commit" value="{{ 'CREATE_USER' | translate }}")
+        input.btn.btn-primary.btn-raised.pull-right(type="button" ng-click="userCtrl.createUser()" name="commit" value="{{ 'CREATE_USER' | translate }}")
