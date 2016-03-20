@@ -4,10 +4,7 @@ class Log < ActiveRecord::Base
     !new_record?
   end
 
-  has_one :user
+  belongs_to :user
 
-  validates_presence_of :user, :model, :changes, :timestamps
-
-  # Prevent objects from being destroyed
-  before_destroy { raise ActiveRecord::ReadOnlyRecord }
+  validates_presence_of :user, :model
 end

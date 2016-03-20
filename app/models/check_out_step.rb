@@ -12,5 +12,9 @@ class CheckOutStep < ActiveRecord::Base
   private
     def trigger_update_event
       WebsocketRails[:admits].trigger 'check_out', admit.check_out_steps
+      self.changes.each do |attr, change|
+        Log.create({user: User.current, model: self.class.name, attr: attr, change: "#{change[0]} -> #{change[1]}",
+                    target_id: self.id, logged_at: DateTime.now})
+      end
     end
 end
