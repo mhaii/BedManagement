@@ -46,12 +46,12 @@ ActiveRecord::Schema.define(version: 20160315070948) do
   end
 
   create_table "logs", force: :cascade do |t|
-    t.integer  "user_id",    limit: 4
-    t.string   "model",      limit: 255
-    t.string   "change",     limit: 255
-    t.string   "target_id",  limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.integer  "user_id",   limit: 4
+    t.string   "model",     limit: 255
+    t.string   "attr",      limit: 255
+    t.string   "change",    limit: 255
+    t.string   "target_id", limit: 255
+    t.datetime "logged_at"
   end
 
   create_table "patients", id: false, force: :cascade do |t|
