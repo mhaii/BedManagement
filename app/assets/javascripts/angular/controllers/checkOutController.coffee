@@ -1,5 +1,6 @@
-checkOutController = (checkOutService, $uibModal, sessionService)->
+checkOutController = ($uibModal, checkOutService, sessionService)->
   @session = sessionService
+  @stepIcon = checkOutService.icon
 
   @updateModal = (data) =>
     $uibModal.open {
@@ -16,6 +17,6 @@ checkOutController = (checkOutService, $uibModal, sessionService)->
   return
 
 checkOutController
-  .$inject = ['checkOutService', '$uibModal', 'sessionService']
+  .$inject = ['$uibModal', 'checkOutService', 'sessionService']
 
 angular.module('app').controller('checkOutController', checkOutController)
