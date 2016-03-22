@@ -20,7 +20,8 @@
           tr(ng-repeat="ward in bedCtrl.session.wards")
             td {{ ward.name }} {{ ward.remark | splitAndTranslate }} {{ "TEL" | translate }}. {{ ward.phone }} ({{ ward.rooms[0].price }})
             td.room(ng-repeat="room in ward.rooms" ng-attr-id="{{ ward.id }}-{{ room.number }}" ng-class="'room-' + room.status")
-              span {{ room.number }}
+              span.right-pad {{ room.number }}
+              span.fa.fa-sign-out(ng-if="room.status === 'availableSoon' && room.admit.check_out_steps[room.admit.check_out_steps.length-1].time_started")
               #patient.hidden-box.popup(ng-if="room.status === 'occupied' || room.status === 'availableSoon'")
                 dl.detail-list
                   dt {{ "ROOM" | translate }}: {{ room.number }}
