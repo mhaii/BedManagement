@@ -22,5 +22,9 @@
 set :environment, ENV['RAILS_ENV'] || 'development'
 
 every :day, at: '12:00am' do
-  rake 'scheduled_tasks:clear_predischarge'
+  rake 'scheduled_tasks:clear_predischarge_daily'
+end
+
+every :hour do
+  rake 'scheduled_tasks:clear_predischarged_4hr'
 end
