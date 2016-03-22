@@ -51,5 +51,6 @@ test:
 production:
   <<: *default
   database: BedManagement_production
-  # username: BedManagement
+  username: BedManagement
+  password: "this is very secure"
   # password: <%= ENV['BEDMANAGEMENT_DATABASE_PASSWORD'] %>
