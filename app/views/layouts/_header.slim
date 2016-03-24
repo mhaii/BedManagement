@@ -1,43 +1,44 @@
-nav.navbar.navbar-default.navbar-fixed-top
-  .container-fluid
-    .navbar-header
-      a.navbar-brand.navbar-link(data-target="#") HBM
-      button.navbar-toggle.collapsed(data-toggle="collapse" data-target="#navcol-1")
-        span.sr-only(translate) Toggle Navigation
-        span.icon-bar
-        span.icon-bar
-        span.icon-bar
-    #navcol-1.collapse.navbar-collapse
-      ul.nav.navbar-nav
-        - if @current_user
-          - if %w(admission administrator).include? @current_user.role
-            li(ui-sref-active="active")
-              a(href ui-sref="home" translate) HOME
-            li(ui-sref-active="active")
-              a(ui-sref="queue" translate) QUEUES
-            li(ui-sref-active="active")
-              a(ui-sref="add-queue" translate) ADD_QUEUE
-          - unless %w(cashier executive).include? @current_user.role
-            li(ui-sref-active="active")
-              a(ui-sref="status" translate) BED_STATUS
-          - if @current_user.role == 'administrator'
-            li(ui-sref-active="active")
-              a(ui-sref="statistic" translate) STATISTICS
-          - unless %w(cashier admission executive).include? @current_user.role
-            li(ui-sref-active="active")
-              a(ui-sref="check-out" translate) CHECK_OUT
-      ul.nav.navbar-nav.navbar-right
-        li.fake-link
-          a(ng-if="getLanguage() != 'th'" ng-click="changeLanguage('th')" translate) LANG
-          a(ng-if="getLanguage() != 'en'" ng-click="changeLanguage('en')" translate) LANG
-        - if @current_user
-          li.dropdown
-            a.dropdown-toggle.fake-link(data-target="#" data-toggle="dropdown")
-              = @current_user.username
-              span.fa.fa-caret-down
-            ul.dropdown-menu
-              - if @current_user.role == 'administrator'
-                li(ui-sref-active="active")
-                  a(ui-sref="create-user" translate) CREATE_USER
-              li
-                = link_to "{{ 'LOGOUT' | translate }}", sessions_path, method: :delete
+#header
+  nav.navbar.navbar-default.navbar-fixed-top
+    .container-fluid
+      .navbar-header
+        a.navbar-brand.navbar-link(data-target="#") HBM
+        button.navbar-toggle.collapsed(data-toggle="collapse" data-target="#navcol-1")
+          span.sr-only(translate) Toggle Navigation
+          span.icon-bar
+          span.icon-bar
+          span.icon-bar
+      #navcol-1.collapse.navbar-collapse
+        ul.nav.navbar-nav
+          - if @current_user
+            - if %w(admission administrator).include? @current_user.role
+              li(ui-sref-active="active")
+                a(href ui-sref="home" translate) HOME
+              li(ui-sref-active="active")
+                a(ui-sref="queue" translate) QUEUES
+              li(ui-sref-active="active")
+                a(ui-sref="add-queue" translate) ADD_QUEUE
+            - unless %w(cashier executive).include? @current_user.role
+              li(ui-sref-active="active")
+                a(ui-sref="status" translate) BED_STATUS
+            - if @current_user.role == 'administrator'
+              li(ui-sref-active="active")
+                a(ui-sref="statistic" translate) STATISTICS
+            - unless %w(cashier admission executive).include? @current_user.role
+              li(ui-sref-active="active")
+                a(ui-sref="check-out" translate) CHECK_OUT
+        ul.nav.navbar-nav.navbar-right
+          li.fake-link
+            a(ng-if="getLanguage() != 'th'" ng-click="changeLanguage('th')" translate) LANG
+            a(ng-if="getLanguage() != 'en'" ng-click="changeLanguage('en')" translate) LANG
+          - if @current_user
+            li.dropdown
+              a.dropdown-toggle.fake-link(data-target="#" data-toggle="dropdown")
+                = @current_user.username
+                span.fa.fa-caret-down
+              ul.dropdown-menu
+                - if @current_user.role == 'administrator'
+                  li(ui-sref-active="active")
+                    a(ui-sref="create-user" translate) CREATE_USER
+                li
+                  = link_to "{{ 'LOGOUT' | translate }}", sessions_path, method: :delete

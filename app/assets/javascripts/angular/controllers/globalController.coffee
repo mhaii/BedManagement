@@ -1,4 +1,5 @@
 globalController = ($rootScope, $scope, $state, $translate, sessionService) ->
+  @session = sessionService
   ############### Methods concerning translation ##############
   $scope.changeLanguage = (lang) ->
     $translate.use(lang)
@@ -8,10 +9,10 @@ globalController = ($rootScope, $scope, $state, $translate, sessionService) ->
 
   ########## Listener for authentication validation ###########
   cork = false
-  $rootScope.$on '$stateChangeStart', (event, toState, toParams, fromState, fromParams)->
-    checkAuthenticity = ()->
-      if toState.data.access.indexOf(sessionService.currentUser.role) == -1 or fromState is ''
-        switch sessionService.currentUser.role
+  $rootScope.$on '$stateChangeStart', (event, toState, toParams, fromState, fromParams)=>
+    checkAuthenticity = ()=>
+      if toState.data.access.indexOf(@session.currentUser.role) == -1 or fromState is ''
+        switch @session.currentUser.role
           when 'cashier'
             $state.go('check-out')
           when 'nurseAssistance', 'nurse'
@@ -26,8 +27,8 @@ globalController = ($rootScope, $scope, $state, $translate, sessionService) ->
     # stop if not fetched current user yet
     if cork = !cork
       event.preventDefault()
-      if !sessionService.user.$resolved
-        sessionService.user.$promise.then checkAuthenticity
+      if !@session.user.$resolved
+        @session.user.$promise.then checkAuthenticity
       else
         checkAuthenticity()
 

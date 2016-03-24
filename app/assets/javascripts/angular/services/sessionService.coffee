@@ -3,6 +3,8 @@ sessionService = ($resource, admitService, checkOutService, doctorService, statS
   @UTCDateTime     = (date)->  new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate(), date.getHours()-7, date.getMinutes(), date.getSeconds()))
   @isAuthorized    = (array)=> array.indexOf(@currentUser.role) != -1
 
+  @websocket = new WebSocketRails(location.host + '/websocket').subscribe('admits')
+
   (@user = userService.currentUser.get()).$promise.then (user)=>   # removing () would break stuff!
     @currentUser        = user
 
@@ -32,8 +34,6 @@ sessionService = ($resource, admitService, checkOutService, doctorService, statS
     updateWards?()
 
     ############# Bind fetch method with websocket ##############
-    @websocket = new WebSocketRails(location.host + '/websocket').subscribe('admits')
-
     @websocket.bind 'updated', (admit)->
       updateAdmit?()
       updateAdmittedToday?()
