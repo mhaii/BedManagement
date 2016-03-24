@@ -1,9 +1,17 @@
 statController = ($scope, sessionService, statService) ->
-  @session = sessionService
+  @session    = sessionService
+  @queryDate  = statService.queryDate
+
+  @dateOptions = {
+    maxDate:      new Date()
+    startingDay:  1
+    dateDisabled: null
+  }
+
   updateStat = =>
     statService.inOutRate.get().$promise.then (data)=>
       sessionService.inOutRate = data
-      $scope.inOutRate = {
+      @inOutRate = {
         "type"      : "AreaChart"
         "displayed" : false
         "data"      : {
@@ -34,11 +42,11 @@ statController = ($scope, sessionService, statService) ->
         "formatters"  : {}
         "view"        : {}
       }
-      $scope.inOutRate.data.rows.push({"c": [{"v": i + " O'Clock"}, {"v": @session.inOutRate.startDischargeProcess[i]}, {"v": @session.inOutRate.endOfDischargedProcess[i]}, {"v": @session.inOutRate.newPatientAdmitted[i]}]}) for i in [0...23]
+      @inOutRate.data.rows.push({"c": [{"v": i + " O'Clock"}, {"v": @session.inOutRate.startDischargeProcess[i]}, {"v": @session.inOutRate.endOfDischargedProcess[i]}, {"v": @session.inOutRate.newPatientAdmitted[i]}]}) for i in [0...23]
 
     statService.checkOut.query().$promise.then (data)=>
       sessionService.checkOut = data
-      $scope.checkOut = {
+      @checkOut = {
         "type"      : "ColumnChart"
         "data"      : {
           "rows"  : []
@@ -48,7 +56,7 @@ statController = ($scope, sessionService, statService) ->
           ]
         }
       }
-      $scope.checkOut.data.rows.push({"c": [{"v": x.step}, {"v": x.average_duration}]}) for x in data
+      @checkOut.data.rows.push({"c": [{"v": x.step}, {"v": x.average_duration}]}) for x in data
 
   updateStat()
   @session.websocket.bind 'check_out', (steps)->

@@ -23,6 +23,11 @@ sessionService = ($resource, admitService, checkOutService, doctorService, statS
     if @isAuthorized ['administrator', 'cashier']
       updateCheckOut        = => checkOutService.list.query() .$promise.then (data)=> @checkouts       = data
 
+    if @isAuthorized ['administrator', 'executive']
+
+      @updateStats = =>
+        console.log 'updated!'
+
     ############### Fetch data based on user role ###############
     updateAdmit?()
     updateAdmittedToday?()
@@ -31,6 +36,7 @@ sessionService = ($resource, admitService, checkOutService, doctorService, statS
     updateDoctors?()
     updateFreeRoomCount?()
     updateICU?()
+    @updateStats?()
     updateWards?()
 
     ############# Bind fetch method with websocket ##############
