@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+ruby '2.2.1'
+
 gem 'rake', '10.5.0'
 gem 'rails', '4.2.4'
 gem 'sdoc', '~> 0.4.0', group: :doc
@@ -46,7 +48,6 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
   gem 'rspec-rails', '~> 3.0'
-  gem 'jasmine'
 end
 
 group :development do
@@ -63,5 +64,3 @@ group :production do
   # for heroku
   gem 'rails_12factor'
 end
-
-ruby '2.2.1'
