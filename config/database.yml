@@ -50,4 +50,4 @@ test:
 #
 production:
   <<: *default
-  url: <%= ENV[if ENV['HEROKU'] then 'CLEARDB_DATABASE_URL' else 'BEDMANAGEMENT_DATABASE'] %>
+  url: <%= ENV[if ENV['HEROKU'] then 'CLEARDB_DATABASE_URL' else 'BEDMANAGEMENT_DATABASE' end] %>
