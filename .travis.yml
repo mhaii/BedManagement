@@ -6,7 +6,7 @@ notifications:
 
 language: ruby
 rvm:
-  - 2.2.1
+  - 2.2.4
 
 services:
   - mysql
