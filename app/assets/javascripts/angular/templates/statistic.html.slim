@@ -5,19 +5,19 @@
         span.input-group-btn
           button.btn.btn-default(type="button" ng-click="statCtrl.openFrom = true")
             i.glyphicon.glyphicon-calendar
-        input.form-control(type="text" name="queryFrom" uib-datepicker-popup="yyyy-MM-dd" ng-model="statCtrl.queryDate.queryFrom" is-open="statCtrl.openFrom" datepicker-options="statCtrl.dateOptions" ng-required="false" close-text="Close" typeahead-select-on-exact="true" ng-change="statCtrl.session.updateStats()")
+        input.form-control(type="text" name="queryFrom" uib-datepicker-popup="yyyy-MM-d" ng-model="statCtrl.queryDate.queryFrom" is-open="statCtrl.openFrom" datepicker-options="statCtrl.dateOptions" ng-required="false" close-text="Close" typeahead-select-on-exact="true" ng-change="statCtrl.refresh()")
     .col-xs-12.col-sm-5
       .input-group
         span.input-group-btn
           button.btn.btn-default(type="button" ng-click="statCtrl.openTil = true")
             i.glyphicon.glyphicon-calendar
-        input.form-control(type="text" name="queryTil" uib-datepicker-popup="yyyy-MM-dd" ng-model="statCtrl.queryDate.queryTil" is-open="statCtrl.openTil" datepicker-options="statCtrl.dateOptions" ng-required="false" close-text="Close" typeahead-select-on-exact="true" ng-change="statCtrl.session.updateStats()")
+        input.form-control(type="text" name="queryTil" uib-datepicker-popup="yyyy-MM-d" ng-model="statCtrl.queryDate.queryTil" is-open="statCtrl.openTil" datepicker-options="statCtrl.dateOptions" ng-required="false" close-text="Close" typeahead-select-on-exact="true" ng-change="statCtrl.refresh()")
   .stat-label.col-xs-offset-1
     h4(translate) IN_OUT_PATIENT_TIME
-    a(href="/resources/statistics/in_out_rate.xls" translate) DOWNLOAD_AS_XLS
+    a(href="/resources/statistics/in_out_rate.xls?from={{statCtrl.queryDate.queryFrom | date:'yyyy-MM-dd'}}&to={{statCtrl.queryDate.queryTil | date:'yyyy-MM-dd'}}" translate) DOWNLOAD_AS_XLS
   .stat-chart.center-block(google-chart chart="statCtrl.inOutRate")
 
   .stat-label.col-xs-offset-1
     h4(translate) CHECK_OUT_STEPS_DURATION
-    a(href="/resources/statistics/check_out.xls" translate) DOWNLOAD_AS_XLS
+    a(href="/resources/statistics/check_out.xls?from={{statCtrl.queryDate.queryFrom | date:'yyyy-MM-dd'}}&to={{statCtrl.queryDate.queryTil | date:'yyyy-MM-dd'}}" translate) DOWNLOAD_AS_XLS
   .stat-chart.center-block(google-chart chart="statCtrl.checkOut")
