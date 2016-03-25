@@ -24,9 +24,13 @@ sessionService = ($resource, admitService, checkOutService, doctorService, statS
       updateCheckOut        = => checkOutService.list.query() .$promise.then (data)=> @checkouts       = data
 
     if @isAuthorized ['administrator', 'executive']
-
       @updateStats = =>
-        console.log 'updated!'
+        statService.inOutRate.get({from: statService.queryDate.queryFrom, to: statService.queryDate.queryTil}).$promise.then (data)=>
+          statService.inOutRateForm.data.rows = (({"c": [{"v": i + " O'Clock"}, {"v": data.startDischargeProcess[i]}, {"v": data.endOfDischargedProcess[i]}, {"v": data.newPatientAdmitted[i]}]}) for i in [0...24])
+
+        statService.checkOut.query({from: statService.queryDate.queryFrom, to: statService.queryDate.queryTil}).$promise.then (data)=>
+          statService.checkOutForm.data.rows  = (({"c": [{"v": x.step}, {"v": x.average_duration}]}) for x in data)
+
 
     ############### Fetch data based on user role ###############
     updateAdmit?()
@@ -45,10 +49,12 @@ sessionService = ($resource, admitService, checkOutService, doctorService, statS
       updateAdmittedToday?()
       updateDischargedSoon?()
       updateFreeRoomCount?()
+      @updateStats?()
       updateWards?()
 
     @websocket.bind 'check_out', (step)->
       updateCheckOut?()
+      @updateStats?()
       updateWards?()
 
     @websocket.bind 'destroyed', ()->
