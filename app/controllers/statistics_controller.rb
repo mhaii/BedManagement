@@ -14,7 +14,7 @@ class StatisticsController < ApplicationController
   end
 
   def get_range
-    @from = params[:from] || Date.today.beginning_of_day
-    @to   = params[:to]   || Date.today.end_of_day
+    @from = if params[:from].nil? or params[:from].blank? then Date.today.beginning_of_day else Date.parse(params[:from]).beginning_of_day  end
+    @to   = if params[:to].nil?   or params[:to].blank?   then Date.today.end_of_day       else Date.parse(params[:to]).end_of_day          end
   end
 end
