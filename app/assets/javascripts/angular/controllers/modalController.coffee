@@ -8,23 +8,26 @@ modalController = ($scope, $uibModalInstance, admitService, checkOutService, ses
     startingDay:  1
     dateDisabled: null
   }
-  checkAllProcessEnd = ()->
-    $scope.checkAllProcess = 0
-    for i in $scope.data.check_out_steps
-      if i.time_ended == null then $scope.checkAllProcess = $scope.checkAllProcess+1
 
   switch header
     when 'PROCESS'
+      checkAllProcessEnded    = ()->
+        for step in data.check_out_steps[..-2]
+          unless step.time_ended then return false
+        true
+      $scope.allProcessEnded  = checkAllProcessEnded()
+
       $scope.startProcess = (process)-> checkOutService.start.update({id: process.id})
-      $scope.endProcess   = (process)-> checkOutService.stop .update({id: process.id})
       $scope.resetProcess = (process)-> checkOutService.reset.delete({id: process.id})
-      $scope.endCheckOut  = ()       ->
-        admitService.admit.update({id: $scope.data.id}, {status: 4}).$promise.then ()->
-          $uibModalInstance.dismiss('DONE_DISCHARGE')
-      checkAllProcessEnd()
+      $scope.endProcess   = (process)->
+        checkOutService.stop.update({id: process.id})
+        if process is data.check_out_steps[-1..][0]
+          admitService.admit.update({id: $scope.data.id}, {status: 4}).$promise.then ()->
+            $uibModalInstance.dismiss('DONE_DISCHARGE')
+
       $scope.session.websocket.bind 'check_out', (steps)->
+        $scope.allProcessEnded = checkAllProcessEnded()
         $scope.data.check_out_steps = steps
-        checkAllProcessEnd()
     when 'QUEUE'
       @session       = sessionService
       @referred      = true

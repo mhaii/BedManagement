@@ -20,7 +20,8 @@
           tr(ng-repeat="ward in bedCtrl.session.wards")
             td {{ ward.name }} {{ ward.remark | splitAndTranslate }} {{ "TEL" | translate }}. {{ ward.phone }} ({{ ward.rooms[0].price }})
             td.room(ng-repeat="room in ward.rooms" ng-attr-id="{{ ward.id }}-{{ room.number }}" ng-class="'room-' + room.status")
-              span {{ room.number }}
+              span.right-pad {{ room.number }}
+              span.fa.fa-sign-out(ng-if="room.status === 'availableSoon' && room.admit.check_out_steps[room.admit.check_out_steps.length-1].time_started")
               #patient.hidden-box.popup(ng-if="room.status === 'occupied' || room.status === 'availableSoon'")
                 dl.detail-list
                   dt {{ "ROOM" | translate }}: {{ room.number }}
@@ -29,13 +30,7 @@
                   dt {{ "DOCTOR" | translate }}: {{ room.admit.doctor.name }}
                   dt {{ "EDD" | translate }}: {{ room.admit.edd }}
                   span(ng-if="room.status === 'availableSoon'")
-                    span(ng-if="step.time_ended || (step.step == 'CHECK_OUT_PATIENT_LEAVE' && step.time_started)" ng-repeat="step in room.admit.check_out_steps")
-                      i.right-pad.fa.fa-sticky-note(ng-if="step.step === 'CHECK_OUT_DC'")
-                      i.right-pad.fa.fa-envelope-o(ng-if="step.step === 'CHECK_OUT_APPOINTMENT'")
-                      i.right-pad.fa.fa-medkit(ng-if="step.step === 'CHECK_OUT_RETURN_MED'")
-                      i.right-pad.fa.fa-phone(ng-if="step.step === 'CHECK_OUT_CONTACT_FAM'")
-                      i.right-pad.fa.fa-credit-card(ng-if="step.step === 'CHECK_OUT_PAYMENT'")
-                      i.right-pad.fa.fa-sign-out(ng-if="step.step === 'CHECK_OUT_PATIENT_LEAVE'")
+                    i.right-pad.fa(ng-class="bedCtrl.stepIcon(step)" ng-if="step.time_ended || (step.step == 'CHECK_OUT_PATIENT_LEAVE' && step.time_started)" ng-repeat="step in room.admit.check_out_steps")
                 span(ng-if="room.status === 'occupied'")
                   span(ng-if="bedCtrl.session.isAuthorized(['administrator', 'admission'])")
                     a.btn-sm.info-button(ng-click="bedCtrl.move(room)" translate) TRANSFER

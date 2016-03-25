@@ -3,6 +3,8 @@ sessionService = ($resource, admitService, checkOutService, doctorService, statS
   @UTCDateTime     = (date)->  new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate(), date.getHours()-7, date.getMinutes(), date.getSeconds()))
   @isAuthorized    = (array)=> array.indexOf(@currentUser.role) != -1
 
+  @websocket = new WebSocketRails(location.host + '/websocket').subscribe('admits')
+
   (@user = userService.currentUser.get()).$promise.then (user)=>   # removing () would break stuff!
     @currentUser        = user
 
@@ -21,6 +23,15 @@ sessionService = ($resource, admitService, checkOutService, doctorService, statS
     if @isAuthorized ['administrator', 'cashier']
       updateCheckOut        = => checkOutService.list.query() .$promise.then (data)=> @checkouts       = data
 
+    if @isAuthorized ['administrator', 'executive']
+      @updateStats = =>
+        statService.inOutRate.get({from: statService.queryDate.queryFrom, to: statService.queryDate.queryTil}).$promise.then (data)=>
+          statService.inOutRateForm.data.rows = (({"c": [{"v": i + " O'Clock"}, {"v": data.startDischargeProcess[i]}, {"v": data.endOfDischargedProcess[i]}, {"v": data.newPatientAdmitted[i]}]}) for i in [0...24])
+
+        statService.checkOut.query({from: statService.queryDate.queryFrom, to: statService.queryDate.queryTil}).$promise.then (data)=>
+          statService.checkOutForm.data.rows  = (({"c": [{"v": x.step}, {"v": x.average_duration}]}) for x in data)
+
+
     ############### Fetch data based on user role ###############
     updateAdmit?()
     updateAdmittedToday?()
@@ -29,20 +40,21 @@ sessionService = ($resource, admitService, checkOutService, doctorService, statS
     updateDoctors?()
     updateFreeRoomCount?()
     updateICU?()
+    @updateStats?()
     updateWards?()
 
     ############# Bind fetch method with websocket ##############
-    @websocket = new WebSocketRails(location.host + '/websocket').subscribe('admits')
-
     @websocket.bind 'updated', (admit)->
       updateAdmit?()
       updateAdmittedToday?()
       updateDischargedSoon?()
       updateFreeRoomCount?()
+      @updateStats?()
       updateWards?()
 
     @websocket.bind 'check_out', (step)->
       updateCheckOut?()
+      @updateStats?()
       updateWards?()
 
     @websocket.bind 'destroyed', ()->

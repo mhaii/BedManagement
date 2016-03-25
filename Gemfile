@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+ruby '2.2.4' if ENV['HEROKU']
+
 gem 'rake', '10.5.0'
 gem 'rails', '4.2.4'
 gem 'sdoc', '~> 0.4.0', group: :doc
@@ -17,10 +19,10 @@ source 'https://rails-assets.org' do
   gem 'rails-assets-angular-google-chart'
   gem 'rails-assets-angular-resource'
   gem 'rails-assets-angular-translate'
-  gem 'rails-assets-angular-translate-loader-static-files'
   gem 'rails-assets-angular-ui-bootstrap-bower'
   gem 'rails-assets-angular-ui-router'
   gem 'rails-assets-bootstrap-material-design'
+  gem 'rails-assets-SHA-1'
 end
 # Allow angular to access templates from Rails pipeline
 gem 'angular-rails-templates'
@@ -45,7 +47,6 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
   gem 'rspec-rails', '~> 3.0'
-  gem 'jasmine'
 end
 
 group :development do
@@ -59,4 +60,6 @@ end
 group :production do
   gem 'eventmachine'
   gem 'puma'
+  # for heroku
+  gem 'rails_12factor'
 end

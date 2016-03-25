@@ -1,17 +1,15 @@
-#login.container-hover.container-slim.center-block
-  .flashes
-    - flash.each do |message_type, message|
-      .alert class=("alert-#{message_type}") translate=(message)
+#login.container-hover.container-slim.center-block(ng-controller="userController as userCtrl")
+  .alert.alert-danger style="position: absolute" translate="{{userCtrl.error}}" ng-show="userCtrl.error"
   .col-xs-12.col-sm-8.col-sm-offset-2
-    = form_for :sessions, url: sessions_path, html: {class: 'box-form'} do |f|
-      = f.label :username, "{{ 'USERNAME' | translate }}"
-      = f.text_field :username, class: 'form-control'
+    = form_for :sessions, html: {id: 'username-password-form', class: 'box-form', ng_submit: 'userCtrl.login($event)'} do |f|
+      = f.label :username, translate: 'USERNAME'
+      = f.text_field :username, class: 'form-control', ng_model: 'userCtrl.user.username'
 
-      = f.label :password, "{{ 'PASSWORD' | translate }}"
-      = f.password_field :password, class: 'form-control'
+      = f.label :rawPassword, translate: 'PASSWORD'
+      = f.password_field :rawPassword, class: 'form-control', ng_model: 'userCtrl.user.rawPassword'
 
       .row.form-inline
         .remember
-          = f.check_box :remember_me, class: 'form-control'
-          = f.label :remember_me, "{{ 'REMEMBER_ME' | translate }}"
+          = f.check_box :remember, class: 'form-control', ng_model: 'userCtrl.user.remember_me'
+          = f.label :remember, translate: 'REMEMBER_ME'
         = f.submit "{{ 'LOGIN' | translate }}", class: 'btn btn-primary btn-raised pull-right'

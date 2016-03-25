@@ -50,6 +50,4 @@ test:
 #
 production:
   <<: *default
-  database: BedManagement_production
-  # username: BedManagement
-  # password: <%= ENV['BEDMANAGEMENT_DATABASE_PASSWORD'] %>
+  url: <%= ENV[if ENV['HEROKU'] then 'CLEARDB_DATABASE_URL' else 'BEDMANAGEMENT_DATABASE' end] %>

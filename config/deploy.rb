@@ -46,6 +46,7 @@ namespace :deploy do
       within release_path do
         execute :bash, 'rm Gemfile.lock'
         invoke 'puma:restart'
+        execute :bash, 'RAILS_ENV=production rake assets:precompile'
       end
     end
   end

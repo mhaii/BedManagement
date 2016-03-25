@@ -1,8 +1,9 @@
 BedStatusController = ($uibModal, $anchorScroll, admitService, checkOutService, roomService, sessionService, $rootScope)->
-  @session = sessionService
+  @session  = sessionService
+  @stepIcon = checkOutService.icon
   ########### Pre-assign variable if it's referred ############
   if sessionService.admit
-    @queue = sessionService.admit
+    @queue  = sessionService.admit
     sessionService.admit = null
 
   ########################### Modals ##########################

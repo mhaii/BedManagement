@@ -3,7 +3,9 @@ class Admit < ActiveRecord::Base
   belongs_to  :patient
   belongs_to  :room
   belongs_to  :doctor
-  has_many    :check_out_steps
+  has_many    :check_out_steps, dependent: :destroy
+
+  validates_presence_of :patient
 
   before_save   :check_status
   before_save   :check_room
@@ -16,10 +18,15 @@ class Admit < ActiveRecord::Base
   private
     def trigger_update_event
       WebsocketRails[:admits].trigger 'updated', self
+      self.changes.each do |attr, change|
+        Log.create({user: User.current, model: self.class.name, attr: attr, change: "#{change[0]} -> #{change[1]}",
+                    target_id: self.id, logged_at: DateTime.now})
+      end
     end
 
     def trigger_destroy_event
       WebsocketRails[:admits].trigger 'destroyed'
+      Log.create({ user: User.current, model: self.class.name, attr: '-', change: 'delete', target_id: self.id, logged_at: DateTime.now })
     end
 
     def check_status
