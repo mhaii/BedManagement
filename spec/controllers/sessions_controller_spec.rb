@@ -1,8 +1,6 @@
 require 'rails_helper'
 RSpec.describe SessionsController, type: :controller do
-  before do
-    @user  = User.create({ username: 'tester', password: 'testpass' })
-  end
+  let(:user) { User.create({ username: 'tester', password: 'testpass' }) }
 
   it 'should display what is incorrect on incorrect login' do
     post :create, { sessions: { username: 'bob', password: 'yui' }}
